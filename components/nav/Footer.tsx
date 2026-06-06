@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, Linkedin, FileDown } from "lucide-react";
+import { Mail, Phone, Linkedin, Globe, FileDown } from "lucide-react";
 import { site } from "@/content/site";
 
 export function Footer() {
@@ -27,12 +27,26 @@ export function Footer() {
             <Mail size={15} aria-hidden /> {site.meta.email}
           </a>
           <a
+            href={site.meta.phoneHref}
+            className="inline-flex items-center gap-2 text-ink-muted transition-colors hover:text-accent-cyan"
+          >
+            <Phone size={15} aria-hidden /> {site.meta.phone}
+          </a>
+          <a
             href={site.meta.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-ink-muted transition-colors hover:text-accent-cyan"
           >
             <Linkedin size={15} aria-hidden /> LinkedIn
+          </a>
+          <a
+            href={site.meta.company.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-ink-muted transition-colors hover:text-accent-cyan"
+          >
+            <Globe size={15} aria-hidden /> {site.meta.company.name}
           </a>
           <Link
             href="/recruiter"

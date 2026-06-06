@@ -77,8 +77,14 @@ const personSchema = {
   url: site.meta.url,
   jobTitle: site.meta.jobTitle,
   email: `mailto:${site.meta.email}`,
+  telephone: site.meta.phone,
   description: site.meta.description,
-  sameAs: [site.meta.linkedin],
+  worksFor: {
+    "@type": "Organization",
+    name: site.meta.company.name,
+    url: site.meta.company.url,
+  },
+  sameAs: [site.meta.linkedin, site.meta.company.url],
   knowsAbout: [
     "AI Automation",
     "Agentic Systems",

@@ -15,7 +15,10 @@ export const site = {
     description:
       "Matt Martelli designs and builds production AI systems that connect voice, CRM, marketing automation, data pipelines, and multi-agent workflows to solve real business problems.",
     email: "mattmartelli@mac.com",
+    phone: "(214) 608-8290",
+    phoneHref: "tel:+12146088290",
     linkedin: "https://www.linkedin.com/in/mattmartelli/",
+    company: { name: "growthmindset.ai", url: "https://growthmindset.ai" },
     jobTitle: "AI Systems Architect",
     location: "United States",
   },

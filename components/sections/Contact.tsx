@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { Mail, Linkedin, Send, Check, AlertCircle } from "lucide-react";
+import { Mail, Linkedin, Phone, Globe, Send, Check, AlertCircle } from "lucide-react";
 import { site } from "@/content/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
@@ -75,6 +75,13 @@ export function Contact() {
                   <span className="text-sm text-ink">{meta.email}</span>
                 </a>
                 <a
+                  href={meta.phoneHref}
+                  className="flex items-center gap-3 rounded-lg border border-line bg-surface-elevated/50 px-4 py-3.5 transition-colors hover:border-accent-cyan/40"
+                >
+                  <Phone size={18} className="text-accent-cyan" aria-hidden />
+                  <span className="text-sm text-ink">{meta.phone}</span>
+                </a>
+                <a
                   href={meta.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -82,6 +89,18 @@ export function Contact() {
                 >
                   <Linkedin size={18} className="text-accent-cyan" aria-hidden />
                   <span className="text-sm text-ink">{contact.linkedinLabel}</span>
+                </a>
+                <a
+                  href={meta.company.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 rounded-lg border border-line bg-surface-elevated/50 px-4 py-3.5 transition-colors hover:border-accent-cyan/40"
+                >
+                  <Globe size={18} className="text-accent-cyan" aria-hidden />
+                  <span className="text-sm text-ink">
+                    {meta.company.name}
+                    <span className="text-ink-faint"> · my company</span>
+                  </span>
                 </a>
               </div>
 
