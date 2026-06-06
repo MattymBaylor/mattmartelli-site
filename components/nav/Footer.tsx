@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Mail, Phone, Linkedin, Youtube, Globe, FileDown } from "lucide-react";
 import { site } from "@/content/site";
 
@@ -8,12 +9,13 @@ export function Footer() {
       <div className="container-x flex flex-col gap-8 py-12 sm:flex-row sm:items-center sm:justify-between">
         <div className="max-w-md">
           <div className="flex items-center gap-2.5">
-            <span
-              aria-hidden
-              className="grid h-7 w-7 place-items-center rounded-md bg-accent-gradient font-display text-xs font-bold text-night"
-            >
-              M
-            </span>
+            <Image
+              src="/brand/matt-mm-monogram-primary.svg"
+              alt=""
+              width={28}
+              height={28}
+              className="h-7 w-7"
+            />
             <span className="font-display text-sm font-semibold">Matt Martelli</span>
           </div>
           <p className="mt-3 text-sm text-ink-muted">{site.footer.tagline}</p>

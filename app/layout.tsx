@@ -45,6 +45,12 @@ export const metadata: Metadata = {
     "Matt Martelli",
   ],
   alternates: { canonical: "/" },
+  icons: {
+    icon: "/favicons/favicon.ico",
+    shortcut: "/favicons/favicon-32x32.png",
+    apple: "/favicons/apple-touch-icon.png",
+  },
+  manifest: "/favicons/site.webmanifest",
   openGraph: {
     type: "website",
     url: site.meta.url,
@@ -65,7 +71,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0A0A0F",
+  themeColor: "#06070B",
   width: "device-width",
   initialScale: 1,
 };

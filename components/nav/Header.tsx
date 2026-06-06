@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { site } from "@/content/site";
@@ -41,12 +42,14 @@ export function Header() {
           className="group flex items-center gap-2.5"
           aria-label="Matt Martelli — home"
         >
-          <span
-            aria-hidden
-            className="grid h-8 w-8 place-items-center rounded-md bg-accent-gradient font-display text-sm font-bold text-night shadow-glow"
-          >
-            M
-          </span>
+          <Image
+            src="/brand/matt-mm-monogram-primary.svg"
+            alt=""
+            width={40}
+            height={40}
+            className="h-10 w-10"
+            priority
+          />
           <span className="font-display text-sm font-semibold tracking-tight">
             Matt Martelli
           </span>
