@@ -7,7 +7,6 @@ import {
   Mail,
   Linkedin,
   ArrowUpRight,
-  Play,
   Github,
   Star,
 } from "lucide-react";
@@ -94,14 +93,13 @@ export default function RecruiterPage() {
             {recruiter.flagship.description}
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <a
-              href={recruiter.flagship.demo.href}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href={recruiter.flagship.caseStudy.href}
               className="inline-flex items-center gap-2 rounded-md bg-accent-gradient px-4 py-2.5 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03]"
             >
-              <Play size={15} aria-hidden /> {recruiter.flagship.demo.label}
-            </a>
+              {recruiter.flagship.caseStudy.label}
+              <ArrowUpRight size={15} aria-hidden />
+            </Link>
             <a
               href={recruiter.flagship.repo.href}
               target="_blank"
@@ -110,13 +108,6 @@ export default function RecruiterPage() {
             >
               <Github size={15} aria-hidden /> {recruiter.flagship.repo.label}
             </a>
-            <Link
-              href={recruiter.flagship.caseStudy.href}
-              className="inline-flex items-center gap-2 rounded-md border border-line-strong px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50"
-            >
-              {recruiter.flagship.caseStudy.label}
-              <ArrowUpRight size={15} aria-hidden />
-            </Link>
           </div>
         </section>
 

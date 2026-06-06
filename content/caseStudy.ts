@@ -283,23 +283,30 @@ export const caseStudy = {
   skins: {
     eyebrow: "One Architecture, Many Skins",
     heading: "The Theme Changes. The Operating Model Does Not.",
-    body: "The same architecture can be re-skinned for any organization. The important parts are role clarity, state management, routing, QA, handoffs, and measurable outcomes.",
+    body: "The theme is the glitter — an internal engagement layer that helps the team operating the system reason about it at a glance and actually enjoy using it. Customers never see the characters; they experience a professional system doing real work. The same architecture re-skins for any organization. What actually matters underneath never changes: role clarity, state management, routing, QA, handoffs, and measurable outcomes.",
     examples: [
-      "Seinfeld HQ",
-      "Marvel HQ",
-      "Sales Team",
-      "Customer Service Team",
-      "Recruiting Team",
-      "Home Services Company",
+      "Seinfeld",
+      "Marvel",
+      "The Office",
+      "Star Wars",
+      "Ocean's Eleven",
+      "NFL / NBA Roster",
+      "Your Own Departments",
+      "Plain Job Titles",
     ],
+    stat: {
+      value: "23%",
+      label:
+        "higher profitability for the most engaged teams vs. the least — Gallup's meta-analysis of 3.3M+ employees. Engagement isn't decoration; it's a performance multiplier. The theme is how I buy it cheaply.",
+    },
   },
 
   hiringManager: {
     eyebrow: "For Hiring Managers",
     heading: "If You're a Hiring Manager",
     body: [
-      "The Seinfeld theme is intentional, but it is not the point. I have built similar frameworks using other themes, business departments, sales teams, service teams, and operational roles.",
-      "The branding changes. The orchestration does not.",
+      "The Seinfeld theme is intentional, but it is not the point — and it is internal only. The characters are an engagement layer for the team that operates the system, never something a customer sees. Clients experience a professional system doing real work; the cast just keeps the people running it oriented and engaged.",
+      "I have built the same framework with other themes, business departments, sales teams, service teams, and operational roles. The branding changes. The orchestration does not.",
       "What you are evaluating here is not the joke. You are evaluating my ability to design AI systems people can understand, adopt, debug, and operate.",
     ],
   },

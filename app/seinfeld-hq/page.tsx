@@ -368,6 +368,16 @@ export default function CaseStudyPage() {
                 </span>
               </div>
             </Reveal>
+            <Reveal delay={0.14}>
+              <div className="surface-card mt-6 flex flex-col items-center gap-4 p-6 text-center sm:flex-row sm:items-center sm:gap-6 sm:p-7 sm:text-left">
+                <span className="bg-accent-gradient bg-clip-text font-display text-5xl font-bold leading-none text-transparent sm:text-6xl">
+                  {cs.skins.stat.value}
+                </span>
+                <p className="max-w-2xl text-sm leading-relaxed text-ink-muted">
+                  {cs.skins.stat.label}
+                </p>
+              </div>
+            </Reveal>
           </div>
         </section>
 

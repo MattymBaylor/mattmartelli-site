@@ -145,12 +145,12 @@ export const projects: Project[] = [
   },
   {
     id: "seinfeld-hq",
-    title: "Seinfeld HQ: Multi-Agent Command Center",
+    title: "Designing Multi-Agent Systems Humans Actually Understand",
     flagship: true,
     outcome:
       "A working demonstration that orchestration, routing, memory, and QA can run real workflows end to end — a system, not a prototype.",
     description:
-      "An interactive AI environment demonstrating agent orchestration, specialized worker agents, routing, memory, QA validation, and real-world workflow execution. It shows — rather than tells — how a multi-agent system divides a business problem, delegates to the right specialist, validates the work, and executes, with humans in the loop where it matters.",
+      "A flagship case study in turning complex AI workflows into understandable business systems: agent orchestration, specialized worker agents, routing, memory, QA validation, and real-world workflow execution. It shows — rather than tells — how a multi-agent system divides a business problem, delegates to the right specialist, validates the work, and executes, with humans in the loop where it matters. Themed as a Seinfeld cast to make the org chart legible — but the theme is the wrapper; the architecture is the product.",
     image: {
       src: "/seinfeld-hq.png",
       alt: "GrowthMindset.ai feature: 'I Run My Whole Company on a Cast of Seinfeld Characters' — a multi-agent system named after Seinfeld characters, illustrated as a lineup of characters.",

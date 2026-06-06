@@ -16,9 +16,9 @@ export const recruiter = {
   ],
 
   flagship: {
-    title: "Seinfeld HQ: Multi-Agent Command Center",
+    title: "Designing Multi-Agent Systems Humans Actually Understand",
     description:
-      "An interactive multi-agent system demonstrating orchestration, routing, memory management, QA gates, workflow automation, voice AI, CRM integration, and human handoffs. This project showcases how complex AI systems can be transformed into intuitive operating models that organizations can understand, trust, and scale.",
+      "A flagship case study in turning complex AI workflows into understandable business systems — orchestration, routing, memory, QA gates, workflow automation, voice AI, CRM integration, and human handoffs. Themed as a Seinfeld cast to make the org chart legible, but the theme is the wrapper; the architecture is the product.",
     caseStudy: { label: "Read the Case Study", href: "/seinfeld-hq" },
     demo: { label: "Launch Interactive Demo", href: "https://growthmindset.ai/seinfeld-hq/" },
     repo: {
@@ -59,8 +59,8 @@ export const recruiter = {
   // Condensed featured projects (full versions live in projects.ts).
   featured: [
     {
-      title: "Seinfeld HQ: Multi-Agent Command Center",
-      line: "Flagship interactive demo of agent orchestration, routing, memory, QA, and real workflow execution.",
+      title: "Multi-Agent Command Center",
+      line: "Flagship case study in agent orchestration, routing, memory, QA, and real workflow execution.",
     },
     {
       title: "AI Voice Agent Ecosystem",
