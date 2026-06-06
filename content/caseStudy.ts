@@ -60,6 +60,130 @@ export const caseStudy = {
     quote: "The characters are optional. The architecture is the product.",
   },
 
+  /**
+   * orgChart — the interactive centerpiece. The Seinfeld cast mapped to the
+   * ~15-agent business operating model. Each character = one role = one clear
+   * set of duties. `tier` drives the visual grouping (orchestrator → core
+   * specialists → operations/customer → safeguards → bench).
+   */
+  orgChart: {
+    eyebrow: "The Operating Model",
+    heading: "Each character is a role. Each role is an agent.",
+    intro:
+      "Hover or tap any agent to see what it owns. Strip the names away and what's left is a clean, inspectable org chart: one orchestrator, specialized workers, real operations, and human-in-the-loop safeguards.",
+    hint: "Hover or tap an agent",
+    orchestrator: {
+      id: "jerry",
+      name: "Jerry",
+      role: "Orchestrator / Supervisor",
+      duties:
+        "The connective tissue. Routes every request to the right specialist, sequences the work, catches anything that stalls, and stays the point of contact when a human needs to step in. The reason it's a system and not a pile of bots tripping over each other.",
+    },
+    groups: [
+      {
+        label: "Core Specialists",
+        agents: [
+          {
+            id: "elaine",
+            name: "Elaine",
+            role: "Content & Social",
+            duties:
+              "Owns everything that goes out the door in words — blogs, posts, SEO copy, and the review request, sent at the right moment on the customer's preferred channel.",
+          },
+          {
+            id: "george",
+            name: "George",
+            role: "Budget & Rankings",
+            duties:
+              "Watches every dollar and every keyword position. Conservative and analytical by design — flags budget and ranking issues before they cost you.",
+          },
+          {
+            id: "kramer",
+            name: "Kramer",
+            role: "Automation Builder",
+            duties:
+              "The ideas-and-workflows agent, tuned to be exploratory. Builds the automations that connect the rest of the system together.",
+          },
+          {
+            id: "puddy",
+            name: "Puddy",
+            role: "Data & Market Intel",
+            duties:
+              "Stares at the data. Surfaces the competitor intelligence and market trends the rest of the team acts on.",
+          },
+        ],
+      },
+      {
+        label: "Operations & Customer",
+        agents: [
+          {
+            id: "joe",
+            name: "Joe",
+            role: "Traffic Router",
+            duties:
+              "Sequences the follow-ups. A sale is never one call — it's a chain of them, and Joe makes sure they happen in the right order.",
+          },
+          {
+            id: "whatley",
+            name: "Whatley",
+            role: "Operations",
+            duties:
+              "Keeps operations on schedule and runs the post-job satisfaction check — catching a small concern before it becomes a one-star review.",
+          },
+          {
+            id: "leo",
+            name: "Uncle Leo",
+            role: "Customer Concierge",
+            duties:
+              "Answers the question every customer is secretly asking: where am I, and what's next? Sends proactive milestone updates on the exact channel the customer chose.",
+          },
+          {
+            id: "frank",
+            name: "Frank",
+            role: "Sales & Referrals",
+            duties:
+              "Pushes hard on outreach and makes the referral ask with real money attached — then makes sure the credit actually gets applied.",
+          },
+          {
+            id: "peterman",
+            name: "J. Peterman",
+            role: "Creative",
+            duties:
+              "Owns the creative voice — the distinctive, on-brand framing that makes the output feel human instead of generated.",
+          },
+        ],
+      },
+      {
+        label: "Safeguards",
+        agents: [
+          {
+            id: "mickey",
+            name: "Mickey",
+            role: "QA Gates",
+            duties:
+              "Small, fierce, and does not care about your feelings — only whether the step actually completed. Verifies each gate before the next stage is allowed to start.",
+          },
+          {
+            id: "newman",
+            name: "Newman",
+            role: "Watchdog / Monitoring",
+            duties:
+              "Sees everything — uptime, error logs, broken links. Here, being the guy who notices every flaw is a feature.",
+          },
+          {
+            id: "lloyd",
+            name: "Lloyd Braun",
+            role: "Compliance",
+            duties:
+              "Stays current on the rules — codes, regulations, and requirements that change constantly — and answers them live, pulling the latest version instead of stale training data.",
+          },
+        ],
+      },
+    ],
+    footnote:
+      "Plus a bench — Bania, Sue Ellen, and others — ready to take on roles as the operating model expands. The cast is the wrapper; single-responsibility agents, gated hand-offs, and a supervisor are the architecture.",
+  },
+
   whyThisMatters: {
     eyebrow: "Why This Matters",
     heading: "Businesses don't need another chatbot",

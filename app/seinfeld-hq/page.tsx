@@ -8,7 +8,6 @@ import {
   Github,
   Play,
   ChevronDown,
-  ChevronRight,
   Check,
   AlertTriangle,
   Boxes,
@@ -17,6 +16,7 @@ import {
 import { Header } from "@/components/nav/Header";
 import { Footer } from "@/components/nav/Footer";
 import { Reveal } from "@/components/ui/Reveal";
+import { AgentOrgChart } from "@/components/flow/AgentOrgChart";
 import { caseStudy as cs } from "@/content/caseStudy";
 import { site } from "@/content/site";
 
@@ -134,33 +134,22 @@ export default function CaseStudyPage() {
               </div>
             </Reveal>
 
-            {/* Lightweight specialized-agents diagram (org chart drops in here later) */}
+            {/* Interactive agent org chart — the centerpiece */}
             <Reveal delay={0.08}>
-              <div className="surface-card mt-8 flex flex-col items-center gap-3 p-6 sm:p-8">
-                <span className="rounded-md border border-accent-indigo/50 bg-surface-raised px-4 py-2 font-mono text-xs text-accent-indigo">
-                  Orchestrator
-                </span>
-                <ChevronDown size={16} className="text-accent-cyan/60" aria-hidden />
-                <div className="flex flex-wrap items-center justify-center gap-2">
-                  {["Agent", "Agent", "Agent", "Agent", "Agent"].map((a, i) => (
-                    <span
-                      key={i}
-                      className="rounded-md border border-line-strong bg-surface-raised px-3 py-2 font-mono text-xs text-ink-muted"
-                    >
-                      {a} {i + 1}
-                    </span>
-                  ))}
-                </div>
-                <ChevronDown size={16} className="text-accent-cyan/60" aria-hidden />
-                <div className="flex flex-wrap items-center justify-center gap-2">
-                  <span className="rounded-md border border-accent-cyan/50 bg-surface-raised px-3 py-2 font-mono text-xs text-accent-cyan">
-                    QA Gate
-                  </span>
-                  <ChevronRight size={14} className="text-accent-cyan/60" aria-hidden />
-                  <span className="rounded-md border border-warm/50 bg-surface-raised px-3 py-2 font-mono text-xs text-warm">
-                    Human Handoff
-                  </span>
-                </div>
+              <div className="mt-10">
+                <p className="eyebrow mb-2">{cs.orgChart.eyebrow}</p>
+                <h3 className="max-w-2xl text-2xl font-semibold sm:text-3xl">
+                  {cs.orgChart.heading}
+                </h3>
+                <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink-muted">
+                  {cs.orgChart.intro}
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.12}>
+              <div className="mt-6">
+                <AgentOrgChart />
               </div>
             </Reveal>
 
