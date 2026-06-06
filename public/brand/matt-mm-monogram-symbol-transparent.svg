@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Matt Martelli monogram symbol">
+  <defs>
+    <linearGradient id="blue" x1="260" y1="300" x2="392" y2="410" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5DBBFF"/>
+      <stop offset="1" stop-color="#3D5AFE"/>
+    </linearGradient>
+    <linearGradient id="white" x1="100" y1="100" x2="340" y2="380" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E9EEF7"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#white)" d="M100 360V116l156 156 156-156v76l-156 156-92-92v104z"/>
+  <path fill="url(#blue)" d="M258 360 412 206v154h-70v-66l-66 66z"/>
+</svg>

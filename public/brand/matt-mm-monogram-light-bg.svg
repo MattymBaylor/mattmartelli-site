@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Matt Martelli monogram dark logo">
+  <rect x="28" y="28" width="456" height="456" rx="82" fill="#FFFFFF"/>
+  <path fill="#05070A" d="M100 360V116l156 156 156-156v76l-156 156-92-92v104z"/>
+  <path fill="#3D5AFE" d="M258 360 412 206v154h-70v-66l-66 66z"/>
+</svg>
