@@ -7,6 +7,26 @@ export const recruiter = {
   heading: "For hiring managers who want the highlights",
   sub: "Everything that matters in under 60 seconds.",
 
+  targetRoles: [
+    "Marketing Automation Leader",
+    "Customer Journey Infrastructure Owner",
+    "Revenue Operations & Systems Leader",
+    "AI Systems Architect",
+    "Lifecycle Marketing & Automation Executive",
+  ],
+
+  flagship: {
+    title: "Seinfeld HQ: Multi-Agent Command Center",
+    description:
+      "An interactive multi-agent system demonstrating orchestration, routing, memory management, QA gates, workflow automation, voice AI, CRM integration, and human handoffs. This project showcases how complex AI systems can be transformed into intuitive operating models that organizations can understand, trust, and scale.",
+    caseStudy: { label: "Read the Case Study", href: "/seinfeld-hq" },
+    demo: { label: "Launch Interactive Demo", href: "https://growthmindset.ai/seinfeld-hq/" },
+    repo: {
+      label: "View GitHub Repository",
+      href: "https://github.com/MattymBaylor/gms-website-3.0-perplexity",
+    },
+  },
+
   executiveSummary:
     "AI Systems Architect and Marketing Operations leader with 25+ years at the intersection of marketing, technology, operations, and customer experience. I design and build production AI systems — voice agents, multi-agent workflows, CRM and lifecycle automation — that connect data, automation, and human teams to deliver measurable business outcomes. I'm framework-agnostic by design: the system and the result come first, the tooling follows.",
 

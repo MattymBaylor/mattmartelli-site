@@ -159,8 +159,8 @@ export const projects: Project[] = [
     },
     flow: ["Router", "Worker Agents", "Memory", "QA Validation", "Execution"],
     link: {
-      label: "Read the story",
-      href: "https://growthmindset.ai/blog/seinfeld-ai-agents",
+      label: "View the case study",
+      href: "/seinfeld-hq",
     },
     skills: [
       "Agent orchestration",

@@ -7,6 +7,9 @@ import {
   Mail,
   Linkedin,
   ArrowUpRight,
+  Play,
+  Github,
+  Star,
 } from "lucide-react";
 import { recruiter } from "@/content/recruiter";
 import { site } from "@/content/site";
@@ -58,6 +61,64 @@ export default function RecruiterPage() {
             </a>
           </div>
         </header>
+
+        {/* Target Roles */}
+        <section aria-labelledby="target-roles" className="mt-8">
+          <h2 id="target-roles" className="eyebrow mb-3">
+            Target Roles
+          </h2>
+          <ul className="flex flex-wrap gap-2">
+            {recruiter.targetRoles.map((r) => (
+              <li
+                key={r}
+                className="rounded-md border border-line bg-surface-elevated/50 px-3 py-1.5 text-sm text-ink-muted"
+              >
+                {r}
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {/* Featured Flagship Project */}
+        <section
+          aria-labelledby="flagship"
+          className="mt-8 rounded-2xl border border-accent-cyan/30 bg-surface-elevated/60 p-6 shadow-glow sm:p-8"
+        >
+          <p className="mb-2 inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-warm">
+            <Star size={11} aria-hidden /> Featured Flagship Project
+          </p>
+          <h2 id="flagship" className="font-display text-2xl font-semibold sm:text-3xl">
+            {recruiter.flagship.title}
+          </h2>
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-muted sm:text-base">
+            {recruiter.flagship.description}
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <a
+              href={recruiter.flagship.demo.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-md bg-accent-gradient px-4 py-2.5 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03]"
+            >
+              <Play size={15} aria-hidden /> {recruiter.flagship.demo.label}
+            </a>
+            <a
+              href={recruiter.flagship.repo.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-md border border-line-strong px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50"
+            >
+              <Github size={15} aria-hidden /> {recruiter.flagship.repo.label}
+            </a>
+            <Link
+              href={recruiter.flagship.caseStudy.href}
+              className="inline-flex items-center gap-2 rounded-md border border-line-strong px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50"
+            >
+              {recruiter.flagship.caseStudy.label}
+              <ArrowUpRight size={15} aria-hidden />
+            </Link>
+          </div>
+        </section>
 
         <div className="mt-10 grid gap-10 lg:grid-cols-[1.5fr_1fr]">
           <div className="space-y-10">
