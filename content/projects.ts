@@ -144,7 +144,7 @@ export const projects: Project[] = [
      Re-add this card (with a stronger visual) when ready.
   {
     id: "seinfeld-hq",
-    title: "Designing Multi-Agent Systems Humans Actually Understand",
+    title: "Designing Multi-Agent Systems Businesses Actually Understand",
     flagship: true,
     outcome:
       "A working demonstration that orchestration, routing, memory, and QA can run real workflows end to end — a system, not a prototype.",

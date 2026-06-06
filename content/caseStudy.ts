@@ -9,7 +9,7 @@
 export const caseStudy = {
   slug: "seinfeld-hq",
   meta: {
-    title: "Designing Multi-Agent Systems Humans Actually Understand",
+    title: "Designing Multi-Agent Systems Businesses Actually Understand",
     description:
       "A flagship case study: how Matt Martelli turns complex AI workflows into understandable business systems — agent architecture, voice AI, automation, CRM integration, human handoffs, and measurable operating outcomes.",
   },
@@ -24,7 +24,7 @@ export const caseStudy = {
 
   hero: {
     eyebrow: "Flagship Case Study",
-    headline: "Designing Multi-Agent Systems Humans Actually Understand",
+    headline: "Designing Multi-Agent Systems Businesses Actually Understand",
     subheadline:
       "A flagship case study showing how I turn complex AI workflows into understandable business systems — combining agent architecture, voice AI, automation, CRM integration, human handoffs, and measurable operating outcomes.",
     coreMessage: "The theme is optional. The architecture is the product.",

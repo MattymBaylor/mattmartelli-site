@@ -16,7 +16,7 @@ export const recruiter = {
   ],
 
   flagship: {
-    title: "Designing Multi-Agent Systems Humans Actually Understand",
+    title: "Designing Multi-Agent Systems Businesses Actually Understand",
     description:
       "A flagship case study in turning complex AI workflows into understandable business systems — orchestration, routing, memory, QA gates, workflow automation, voice AI, CRM integration, and human handoffs. Themed as a Seinfeld cast to make the org chart legible, but the theme is the wrapper; the architecture is the product.",
     caseStudy: { label: "Read the Case Study", href: "/seinfeld-hq" },
