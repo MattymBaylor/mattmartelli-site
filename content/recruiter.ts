@@ -22,7 +22,7 @@ export const recruiter = {
     caseStudy: { label: "Read the Case Study", href: "/seinfeld-hq" },
     demo: { label: "Launch Interactive Demo", href: "https://growthmindset.ai/seinfeld-hq/" },
     repo: {
-      label: "View GitHub Repository",
+      label: "View on GitHub",
       href: "https://github.com/MattymBaylor/gms-website-3.0-perplexity",
     },
   },
