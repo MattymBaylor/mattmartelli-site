@@ -30,10 +30,6 @@ export function Hero() {
         },
       };
 
-  // The payoff headline is mostly white; only this phrase carries the cyan accent.
-  const ACCENT = "business systems";
-  const [headBefore, headAfter] = hero.coreStatement.split(ACCENT);
-
   return (
     <section
       id="top"
@@ -48,48 +44,35 @@ export function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-night" />
       </div>
 
-      <div className="container-x grid min-h-[88vh] scroll-mt-24 grid-cols-1 items-center gap-10 pb-12 pt-32 sm:pt-40 lg:grid-cols-[minmax(0,1fr)_440px] lg:gap-14">
+      <div className="container-x grid min-h-[72vh] scroll-mt-24 grid-cols-1 items-center gap-10 pb-6 pt-32 sm:pt-40 lg:grid-cols-[minmax(0,1fr)_500px] lg:gap-14">
         <motion.div
           variants={container}
           initial="hidden"
           animate="show"
           className="max-w-2xl"
         >
-          <motion.p
-            variants={item}
-            className="eyebrow"
-          >
-            {hero.titleLine}
-          </motion.p>
-
-          {/* Setup line — animates in first, muted, no gradient */}
-          <motion.p
-            variants={item}
-            className="mt-6 text-lg font-normal text-ink-muted sm:text-xl"
-          >
-            {hero.setupLine}
-          </motion.p>
-
-          {/* Payoff headline — white, with one cyan accent phrase */}
+          {/* Headline — two stacked lines; line 2 carries the emphasis */}
           <motion.h1
             id="hero-heading"
             variants={item}
-            className="mt-2 text-balance text-4xl font-semibold leading-[1.07] tracking-tight text-ink sm:text-5xl lg:text-6xl"
+            className="text-balance text-4xl font-semibold leading-[1.07] tracking-tight sm:text-5xl lg:text-6xl"
           >
-            {headAfter !== undefined ? (
-              <>
-                {headBefore}
-                <span className="text-accent-cyan">{ACCENT}</span>
-                {headAfter}
-              </>
-            ) : (
-              hero.coreStatement
-            )}
+            <span className="block text-ink-muted">{hero.headlineLine1}</span>
+            <span className="block text-ink">{hero.headlineLine2}</span>
           </motion.h1>
 
+          {/* Subheadline — secondary emphasis */}
           <motion.p
             variants={item}
-            className="mt-6 max-w-2xl border-l-2 border-accent-cyan/50 pl-4 text-base leading-relaxed text-ink sm:text-lg"
+            className="mt-5 font-display text-xl leading-snug text-ink sm:text-2xl"
+          >
+            {hero.subheadline}
+          </motion.p>
+
+          {/* Body — smaller, the supporting detail */}
+          <motion.p
+            variants={item}
+            className="mt-5 max-w-2xl border-l-2 border-accent-cyan/50 pl-4 text-base leading-relaxed text-ink-muted sm:text-lg"
           >
             {hero.introduction}
           </motion.p>

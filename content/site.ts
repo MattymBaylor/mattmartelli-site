@@ -44,12 +44,12 @@ export const site = {
 
   hero: {
     name: "Matt Martelli",
-    titleLine:
-      "AI Systems Architect · Marketing Operations Leader · Agentic Systems Builder",
-    setupLine: "I don't specialize in AI tools.",
-    coreStatement: "I design business systems powered by AI.",
+    // Headline renders as two stacked lines; line 2 carries the emphasis.
+    headlineLine1: "AI is the tool.",
+    headlineLine2: "The system is the product.",
+    subheadline: "The system is the constant. The tools just serve it.",
     introduction:
-      "I've spent 25+ years at the intersection of marketing, technology, and operations — building the marketing-automation ecosystems and customer-journey infrastructure that businesses run on. Today I design AI-powered systems that connect voice, automation, data, and human teams to get real work done.",
+      "I've spent 25+ years building the marketing, CRM, and operational systems businesses rely on every day. Today I architect AI-powered ecosystems that connect voice, automation, data, and human teams to create measurable business outcomes.",
     ctas: {
       primary: { label: "Explore the Systems", href: "#proof-of-work" },
       secondary: { label: "Recruiter Fast Path", href: "/recruiter" },

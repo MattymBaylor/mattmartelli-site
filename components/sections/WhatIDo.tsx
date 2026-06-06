@@ -14,7 +14,7 @@ const icons = {
 export function WhatIDo() {
   const { whatIDo } = site;
   return (
-    <section id="what-i-do" className="section">
+    <section id="what-i-do" className="section pt-12 sm:pt-16">
       <div className="container-x">
         <SectionHeading eyebrow="What drives me" title={whatIDo.heading} />
 
