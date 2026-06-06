@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { site } from "@/content/site";
 import { ConstellationBackground } from "@/components/hero/ConstellationBackground";
+import { HeroSystemDiagram } from "@/components/hero/HeroSystemDiagram";
 import { usePrefersReducedMotion } from "@/lib/useReducedMotion";
 
 const { hero } = site;
@@ -43,12 +44,12 @@ export function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-night" />
       </div>
 
-      <div className="container-x flex min-h-[92vh] flex-col justify-center pb-20 pt-28 sm:pt-32">
+      <div className="container-x grid min-h-[92vh] grid-cols-1 items-center gap-10 pb-20 pt-28 sm:pt-32 lg:grid-cols-[minmax(0,1fr)_440px] lg:gap-14">
         <motion.div
           variants={container}
           initial="hidden"
           animate="show"
-          className="max-w-4xl"
+          className="max-w-2xl"
         >
           <motion.p
             variants={item}
@@ -117,8 +118,9 @@ export function Hero() {
             </Link>
           </motion.div>
 
-          {/* Flagship teaser — the one artifact that proves the whole thesis */}
-          <motion.div variants={item} className="mt-7">
+          {/* Flagship teaser — shown on mobile only; on desktop the system
+              diagram in the right column is the flagship doorway instead. */}
+          <motion.div variants={item} className="mt-7 lg:hidden">
             <Link
               href={hero.flagshipTeaser.href}
               className="group inline-flex max-w-2xl items-start gap-3 rounded-xl border border-line bg-surface-elevated/50 px-4 py-3 transition-colors hover:border-accent-cyan/40"
@@ -139,6 +141,17 @@ export function Hero() {
               </span>
             </Link>
           </motion.div>
+        </motion.div>
+
+        {/* Right column — the live system diagram, a clickable doorway to the
+            flagship. Hidden on mobile (the text teaser above covers it there). */}
+        <motion.div
+          initial={reduced ? false : { opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.35, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="hidden lg:block"
+        >
+          <HeroSystemDiagram />
         </motion.div>
       </div>
     </section>
