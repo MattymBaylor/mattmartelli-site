@@ -5,6 +5,7 @@ import { WhatIDo } from "@/components/sections/WhatIDo";
 import { AgenticSystems } from "@/components/sections/AgenticSystems";
 import { Orchestration } from "@/components/sections/Orchestration";
 import { VoiceAI } from "@/components/sections/VoiceAI";
+import { InteractiveVoiceCapabilities } from "@/components/sections/InteractiveVoiceCapabilities";
 import { MarketingOps } from "@/components/sections/MarketingOps";
 import { ProofOfWork } from "@/components/sections/ProofOfWork";
 import { Projects } from "@/components/sections/Projects";
@@ -21,6 +22,7 @@ export default function HomePage() {
         <AgenticSystems />
         <Orchestration />
         <VoiceAI />
+        <InteractiveVoiceCapabilities />
         <MarketingOps />
         <ProofOfWork />
         <Projects />
