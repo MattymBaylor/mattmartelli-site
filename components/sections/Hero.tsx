@@ -57,7 +57,7 @@ export function Hero() {
             variants={item}
             className="text-balance font-semibold leading-[1.05] tracking-tight"
           >
-            <span className="block text-3xl text-ink-muted sm:text-4xl lg:text-5xl">
+            <span className="block text-3xl text-accent-cyan sm:text-4xl lg:text-5xl">
               {hero.headlineLine1}
             </span>
             <span className="block text-4xl text-ink sm:text-5xl lg:text-[4.25rem]">
