@@ -7,7 +7,7 @@ import { Reveal } from "@/components/ui/Reveal";
 interface Zone {
   id: string;
   label: string;
-  position: { x: number; y: number; width: number; height: number };
+  index: number;
   title: string;
   description: string;
   icon: string;
@@ -17,7 +17,7 @@ const zones: Zone[] = [
   {
     id: "intake",
     label: "Intake",
-    position: { x: 10, y: 35, width: 16, height: 30 },
+    index: 0,
     title: "Call Intake",
     description:
       "The voice agent answers instantly, introduces itself, captures the caller's intent and key details in real time—no voicemail, no missed opportunity.",
@@ -26,7 +26,7 @@ const zones: Zone[] = [
   {
     id: "qualify",
     label: "Qualify",
-    position: { x: 28, y: 35, width: 16, height: 30 },
+    index: 1,
     title: "Lead Qualification",
     description:
       "Asks discovery questions, scores the opportunity against your criteria, and determines fit—all while the caller is on the line.",
@@ -35,7 +35,7 @@ const zones: Zone[] = [
   {
     id: "schedule",
     label: "Schedule",
-    position: { x: 46, y: 35, width: 16, height: 30 },
+    index: 2,
     title: "Appointment Booking",
     description:
       "Checks live calendar availability and books the appointment directly—no back-and-forth emails, no scheduling tools.",
@@ -44,7 +44,7 @@ const zones: Zone[] = [
   {
     id: "handoff",
     label: "Handoff",
-    position: { x: 64, y: 35, width: 16, height: 30 },
+    index: 3,
     title: "Warm Transfer",
     description:
       "Briefs your team with everything captured—who the caller is, what they need, and when they're booked. Human takes it from there.",
@@ -53,7 +53,7 @@ const zones: Zone[] = [
   {
     id: "followup",
     label: "Follow-Up",
-    position: { x: 82, y: 35, width: 16, height: 30 },
+    index: 4,
     title: "Automated Follow-Up",
     description:
       "Sends SMS confirmation, reminder, and follow-up sequences automatically. No step gets missed, no lead goes cold.",
@@ -76,115 +76,45 @@ export function InteractiveVoiceCapabilities() {
 
         <Reveal delay={0.08}>
           <div className="mt-12">
-            {/* SVG Interactive Grid */}
-            <div className="relative mb-8 rounded-xl border border-line bg-surface/50 p-6">
-              <svg
-                viewBox="0 0 100 100"
-                className="w-full"
-                style={{ minHeight: "200px" }}
-              >
-                {/* Flow arrows */}
-                <defs>
-                  <marker
-                    id="arrowhead"
-                    markerWidth="10"
-                    markerHeight="10"
-                    refX="9"
-                    refY="3"
-                    orient="auto"
-                  >
-                    <polygon points="0 0, 10 3, 0 6" fill="rgb(100, 116, 139)" />
-                  </marker>
-                </defs>
-
-                {/* Background connecting line */}
-                <line
-                  x1="18"
-                  y1="50"
-                  x2="90"
-                  y2="50"
-                  stroke="rgb(100, 116, 139)"
-                  strokeWidth="1.5"
-                  strokeDasharray="4,4"
-                  opacity="0.3"
-                />
-
-                {/* Zone rectangles - clickable areas */}
-                {zones.map((zone) => (
-                  <g key={zone.id}>
-                    {/* Main zone box */}
-                    <rect
-                      x={zone.position.x}
-                      y={zone.position.y}
-                      width={zone.position.width}
-                      height={zone.position.height}
-                      fill={
-                        activeZone === zone.id
-                          ? "rgb(34, 197, 94)"
-                          : "rgb(51, 65, 85)"
-                      }
-                      stroke={
-                        activeZone === zone.id
-                          ? "rgb(74, 222, 128)"
-                          : "rgb(100, 116, 139)"
-                      }
-                      strokeWidth="1.5"
-                      rx="2"
-                      className="cursor-pointer transition-all"
-                      onClick={() =>
-                        setActiveZone(
-                          activeZone === zone.id ? null : zone.id
-                        )
-                      }
-                      style={{
-                        filter:
-                          activeZone === zone.id
-                            ? "drop-shadow(0 0 8px rgba(34, 197, 94, 0.3))"
-                            : "none",
-                      }}
-                    />
-                    {/* Label text */}
-                    <text
-                      x={zone.position.x + zone.position.width / 2}
-                      y={zone.position.y + zone.position.height / 2 + 2}
-                      textAnchor="middle"
-                      dominantBaseline="middle"
-                      fill={activeZone === zone.id ? "white" : "rgb(148, 163, 184)"}
-                      fontSize="6"
-                      fontWeight={activeZone === zone.id ? "700" : "500"}
-                      className="pointer-events-none"
-                    >
+            {/* Grid of clickable stage cards */}
+            <div className="grid gap-3 lg:grid-cols-5 sm:grid-cols-2 grid-cols-1 mb-8">
+              {zones.map((zone) => (
+                <button
+                  key={zone.id}
+                  onClick={() =>
+                    setActiveZone(activeZone === zone.id ? null : zone.id)
+                  }
+                  className={`relative p-4 rounded-lg border-2 transition-all cursor-pointer group ${ activeZone === zone.id
+                    ? "border-accent-cyan bg-accent-cyan/10 shadow-glow"
+                    : "border-line bg-surface/50 hover:border-accent-cyan/50 hover:bg-surface/70"
+                  }`}
+                >
+                  <div className="flex flex-col items-center gap-2">
+                    <span className="text-3xl">{zone.icon}</span>
+                    <span className={`text-xs font-medium tracking-wider uppercase ${ activeZone === zone.id
+                      ? "text-accent-cyan"
+                      : "text-ink-muted group-hover:text-accent-cyan"
+                    }`}>
                       {zone.label}
-                    </text>
-                  </g>
-                ))}
-
-                {/* Icons above zones */}
-                {zones.map((zone) => (
-                  <text
-                    key={`icon-${zone.id}`}
-                    x={zone.position.x + zone.position.width / 2}
-                    y={zone.position.y - 4}
-                    textAnchor="middle"
-                    fontSize="8"
-                    className="pointer-events-none"
-                  >
-                    {zone.icon}
-                  </text>
-                ))}
-              </svg>
+                    </span>
+                  </div>
+                </button>
+              ))}
             </div>
+
+            {/* Connecting flow line (visual only) */}
+            <div className="relative mb-8 h-1 bg-gradient-to-r from-transparent via-line/40 to-transparent rounded-full" />
 
             {/* Details panel */}
             {active ? (
               <div className="rounded-lg border border-accent-cyan/30 bg-accent-cyan/5 p-6 transition-all">
-                <div className="flex items-start gap-3">
-                  <span className="text-2xl">{active.icon}</span>
+                <div className="flex items-start gap-4">
+                  <span className="text-4xl flex-shrink-0">{active.icon}</span>
                   <div className="flex-1">
-                    <h3 className="font-display text-lg font-semibold text-accent-cyan">
+                    <h3 className="font-display text-xl font-semibold text-accent-cyan">
                       {active.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                    <p className="mt-3 text-sm leading-relaxed text-ink-muted">
                       {active.description}
                     </p>
                   </div>
