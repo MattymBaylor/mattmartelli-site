@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronRight, X, Check, Maximize2, AudioWaveform } from "lucide-react";
+import { ChevronRight, X, Check, Maximize2, AudioWaveform, ArrowRight } from "lucide-react";
 import {
   blueprints,
   flowFilters,
@@ -13,6 +13,7 @@ import {
 } from "@/content/blueprints";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { DeckViewer } from "@/components/sections/DeckViewer";
 import { usePrefersReducedMotion } from "@/lib/useReducedMotion";
 
 /** Card visual — feature tiles split horizontally on desktop; halves stack. */
@@ -118,10 +119,13 @@ function AudioCard() {
 export function AiBlueprints() {
   const [activeFlow, setActiveFlow] = useState<FlowTag | "all">("all");
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [deckOpenId, setDeckOpenId] = useState<string | null>(null);
   const reduced = usePrefersReducedMotion();
   const closeRef = useRef<HTMLButtonElement>(null);
   const lastTrigger = useRef<HTMLButtonElement | null>(null);
+  const deckBtnRef = useRef<HTMLButtonElement>(null);
   const active = blueprints.find((b) => b.id === activeId) ?? null;
+  const deckBlueprint = blueprints.find((b) => b.id === deckOpenId && b.deck) ?? null;
 
   const visible = blueprints.filter(
     (b) => activeFlow === "all" || b.flows.includes(activeFlow)
@@ -316,12 +320,49 @@ export function AiBlueprints() {
                   ))}
                 </div>
 
-                <p className="mt-6 rounded-lg border border-dashed border-line px-4 py-3 text-xs leading-relaxed text-ink-faint">
+                {active.deck && (
+                  <>
+                    <div className="mt-6 flex justify-center">
+                      <button
+                        ref={deckBtnRef}
+                        type="button"
+                        onClick={() => setDeckOpenId(active.id)}
+                        className="group inline-flex items-center gap-2 rounded-full bg-accent-gradient px-6 py-3 text-sm font-semibold text-night shadow-glow transition-all hover:scale-[1.04] hover:shadow-[0_0_28px_-4px_rgba(34,211,238,0.7)] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/70"
+                      >
+                        See the full concept stack
+                        <ArrowRight
+                          size={16}
+                          aria-hidden
+                          className="transition-transform group-hover:translate-x-0.5"
+                        />
+                      </button>
+                    </div>
+                    <p className="mt-2 text-center text-xs text-ink-faint">
+                      {active.deck.label}
+                    </p>
+                  </>
+                )}
+
+                <p className="mt-4 text-center text-xs leading-relaxed text-ink-faint">
                   {active.note}
                 </p>
               </div>
             </motion.div>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Third disclosure layer — full slide-deck walkthrough, above the modal */}
+      <AnimatePresence>
+        {deckBlueprint?.deck && (
+          <DeckViewer
+            deck={deckBlueprint.deck}
+            title={deckBlueprint.headline}
+            onClose={() => {
+              setDeckOpenId(null);
+              deckBtnRef.current?.focus();
+            }}
+          />
         )}
       </AnimatePresence>
     </section>

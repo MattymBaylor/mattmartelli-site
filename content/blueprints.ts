@@ -26,6 +26,14 @@ export const flowFilters: { id: FlowTag | "all"; label: string }[] = [
   { id: "memory", label: "Memory & security" },
 ];
 
+export type Deck = {
+  dir: string; // folder under /public/blueprints/decks/
+  count: number; // total slides; filenames are slide-01.jpg … (zero-padded)
+  width: number; // 1400
+  height: number; // 782
+  label: string; // e.g. "15-slide walkthrough"
+};
+
 export type Blueprint = {
   id: string;
   size: "feature" | "half"; // feature = large tile, half = standard
@@ -37,6 +45,7 @@ export type Blueprint = {
   problem: string; // human-terms framing, shown first in modal
   does: string[]; // "what the system does" — 3 scannable lines
   note: string; // honesty note: blueprint/concept
+  deck?: Deck; // optional full slide-deck walkthrough (third disclosure layer)
 };
 
 export const blueprints: Blueprint[] = [
@@ -61,6 +70,7 @@ export const blueprints: Blueprint[] = [
       "A security layer guards your data — PIN lock, secret scanner, kill phrase",
     ],
     note: "Blueprint / concept architecture — a designed system, presented to show end-to-end thinking.",
+    deck: { dir: "claudeclaw", count: 15, width: 1400, height: 782, label: "15-slide walkthrough" },
   },
   {
     id: "enterprise",
@@ -82,7 +92,8 @@ export const blueprints: Blueprint[] = [
       "Built-in change-management: how to win over front-line staff and middle managers",
       "Measures ROI as cycle-time saved vs. coordination overhead removed",
     ],
-    note: "Blueprint / concept methodology — the 'Martelli Method' for deploying agent teams.",
+    note: "Blueprint / concept methodology — a repeatable approach for deploying agent teams.",
+    deck: { dir: "enterprise", count: 12, width: 1400, height: 782, label: "12-slide walkthrough" },
   },
   {
     id: "sales",
@@ -105,5 +116,6 @@ export const blueprints: Blueprint[] = [
       "Voice + chat confirmation agents cut no-shows and recover revenue",
     ],
     note: "Blueprint / concept architecture — modeled for a service-industry sales floor.",
+    deck: { dir: "sales", count: 15, width: 1400, height: 782, label: "15-slide walkthrough" },
   },
 ];
