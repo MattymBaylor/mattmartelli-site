@@ -124,7 +124,7 @@ export const projects: Project[] = [
     ],
     // Example of a wired link — the public Yelp Interactive Dashboard repo.
     link: {
-      label: "View the repository",
+      label: "View live site",
       href: "https://github.com/MattymBaylor/yelp-interactive-dashboard",
     },
   },
