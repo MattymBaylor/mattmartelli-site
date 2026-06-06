@@ -40,14 +40,14 @@ export function HeroSystemDiagram() {
           Draped across the top-right corner; clipped by the card's overflow-hidden. */}
       <span
         aria-hidden
-        className={`pointer-events-none absolute right-[-52px] top-[28px] z-20 flex w-[200px] rotate-45 items-center justify-center gap-1 bg-warm py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-night ${
+        className={`pointer-events-none absolute right-[-64px] top-[34px] z-20 flex w-[240px] rotate-45 items-center justify-center gap-1 whitespace-nowrap bg-[#FACC15] py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-night ${
           reduced
-            ? "shadow-[inset_0_1px_0_rgba(255,255,255,0.3),inset_0_-2px_0_rgba(0,0,0,0.18),0_0_16px_1px_rgba(245,165,36,0.5),0_2px_5px_-1px_rgba(0,0,0,0.45)]"
+            ? "shadow-[inset_0_1px_0_rgba(255,255,255,0.45),inset_0_-2px_0_rgba(0,0,0,0.2),0_0_18px_2px_rgba(250,204,21,0.6),0_2px_5px_-1px_rgba(0,0,0,0.45)]"
             : "animate-ribbon-pulse transition-[transform,filter] duration-200 group-hover:scale-[1.06] group-hover:brightness-110"
         }`}
       >
         See how it works
-        <ArrowUpRight size={10} className="shrink-0" aria-hidden />
+        <ArrowUpRight size={11} className="shrink-0" aria-hidden />
       </span>
 
       {/* Header row */}
