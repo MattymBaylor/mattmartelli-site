@@ -9,6 +9,7 @@ import { InteractiveVoiceCapabilities } from "@/components/sections/InteractiveV
 import { MarketingOps } from "@/components/sections/MarketingOps";
 import { ProofOfWork } from "@/components/sections/ProofOfWork";
 import { Projects } from "@/components/sections/Projects";
+import { AiBlueprints } from "@/components/sections/AiBlueprints";
 import { RecruiterSummary } from "@/components/sections/RecruiterSummary";
 import { Contact } from "@/components/sections/Contact";
 
@@ -26,6 +27,7 @@ export default function HomePage() {
         <MarketingOps />
         <ProofOfWork />
         <Projects />
+        <AiBlueprints />
         <RecruiterSummary />
         <Contact />
       </main>

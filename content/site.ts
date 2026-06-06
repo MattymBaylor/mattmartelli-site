@@ -35,6 +35,7 @@ export const site = {
       { label: "Marketing Ops", href: "#marketing-ops" },
       { label: "Proof of Work", href: "#proof-of-work" },
       { label: "Projects", href: "#projects" },
+      { label: "AI Blueprints", href: "#ai-blueprints" },
     ],
     cta: {
       recruiter: { label: "Recruiter Fast Path", href: "/recruiter" },
