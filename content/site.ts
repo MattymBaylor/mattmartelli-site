@@ -54,6 +54,14 @@ export const site = {
       primary: { label: "Explore the Systems", href: "#proof-of-work" },
       secondary: { label: "Recruiter Fast Path", href: "/recruiter" },
     },
+    // Single flagship teaser — the one artifact that demonstrates the whole
+    // thesis. Lives just under the hero CTAs; the full flagship card is in
+    // Projects. Theme stays second; this leads with what it proves.
+    flagshipTeaser: {
+      lead: "Proof I practice what I build:",
+      detail: "the multi-agent system that runs my own company.",
+      href: "/seinfeld-hq",
+    },
   },
 
   whatIDo: {
