@@ -51,12 +51,12 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: "yelp-dashboard",
-    title: "Yelp Interactive Dashboard",
+    id: "client-dashboard",
+    title: "Custom Client Performance Dashboard",
     outcome:
-      "Gives clients a simple, visual way to see and manipulate their results — without ever touching the automation behind it.",
+      "Gives a client a simple, visual way to see and explore their results — without ever touching a CLI or the technical layer underneath.",
     description:
-      "An interactive marketing-performance dashboard built front-end-first: a single pane that surfaces the metrics operators actually watch day to day and renders them as a live, layered performance view rather than a static report. Delivery, click, response, bounce, and opt-out rates with trend deltas; a weekly performance chart layering every channel; a conversion funnel; and live campaign status — all in a dark, executive-grade UI with gradient data visualizations. An example of production front-end development that hands the client clarity, not complexity.",
+      "A custom front-end I built for a client so they could see everything they care about in one place — no CLI, no config, no wading through technical tooling. An interactive marketing-performance dashboard built front-end-first: a single pane that surfaces the metrics operators actually watch day to day and renders them as a live, layered performance view rather than a static report. Delivery, click, response, bounce, and opt-out rates with trend deltas; a weekly performance chart layering every channel; a conversion funnel; and live campaign status — all in a dark, executive-grade UI with gradient data visualizations. Built for one client, but the pattern works for any business that wants clarity instead of complexity.",
     image: {
       src: "/yelp-dashboard.png",
       alt: "Interactive marketing dashboard: KPI cards for delivery, click, response, bounce and opt-out rates; a weekly performance area chart; a conversion funnel; and active campaign cards — dark UI with gradient data visualization.",
@@ -73,10 +73,6 @@ export const projects: Project[] = [
     ],
     tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Interactive charting"],
     skills: ["Front-end engineering", "Data visualization", "Dashboard design", "Interactive UI"],
-    link: {
-      label: "View on GitHub",
-      href: "https://github.com/MattymBaylor/yelp-interactive-dashboard",
-    },
   },
   {
     id: "viral-video-workflow",
@@ -143,6 +139,9 @@ export const projects: Project[] = [
     ],
     tech: ["Retell AI", "OpenAI Realtime", "Twilio", "n8n", "CRM", "Google Calendar"],
   },
+  /* TEMPORARILY REMOVED from the Projects grid for a cleaner recruiter view.
+     The flagship still lives on /seinfeld-hq and as the homepage hero teaser.
+     Re-add this card (with a stronger visual) when ready.
   {
     id: "seinfeld-hq",
     title: "Designing Multi-Agent Systems Humans Actually Understand",
@@ -173,6 +172,7 @@ export const projects: Project[] = [
       "UX design",
     ],
   },
+  */
   {
     id: "command-center",
     title: "Interactive Multi-Agent Command Center",
