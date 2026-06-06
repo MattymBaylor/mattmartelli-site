@@ -265,6 +265,7 @@ export const site = {
   contact: {
     heading: "Let's build the system",
     sub: "Tell me about the business problem. I'll tell you how I'd architect the system that solves it.",
+    preferenceNote: "Email or a text usually reaches me fastest — happy to jump on a call from there.",
     email: "mattmartelli@mac.com",
     linkedinLabel: "Connect on LinkedIn",
     closingStatement:

@@ -179,16 +179,19 @@ export const projects: Project[] = [
     outcome:
       "Shows decision-makers, in real time, how specialized agents divide and conquer a business problem.",
     description:
-      "A fully interactive environment demonstrating how specialized AI agents collaborate to solve business problems — a coordinator decomposing the goal, specialists owning each stage, and a visible path from request to result.",
+      "A fully interactive environment demonstrating how specialized AI agents collaborate to solve business problems — a coordinator decomposing the goal, specialists owning each stage, and a visible path from request to result. The live command center is a single, searchable pane over every dashboard, agent, workflow, and site.",
     image: {
-      src: "",
-      alt: "Interactive multi-agent command center — screenshot coming soon.",
-      width: 1600,
-      height: 1000,
-      placeholder: true,
+      src: "/ops-dashboard.png",
+      alt: "Live multi-agent command center: a dark, searchable dashboard with categorized cards for Operations, Sales & Clients, Architecture, Agents, Launch, Live Sites, and Infrastructure.",
+      width: 1680,
+      height: 1050,
     },
     flow: ["Coordinator", "Specialists", "Collaboration", "Result"],
     skills: ["Agent collaboration", "Routing", "Orchestration", "Interactive UX"],
+    link: {
+      label: "View live command center",
+      href: "https://ops-dashboard-ten-woad.vercel.app",
+    },
   },
   {
     id: "voice-ecosystem",
@@ -196,16 +199,16 @@ export const projects: Project[] = [
     outcome:
       "Turns missed and after-hours calls into qualified, scheduled, revenue-generating conversations.",
     description:
-      "Voice AI systems that answer calls, qualify leads, schedule appointments, and recover revenue opportunities around the clock — connecting the voice layer to CRM, scheduling, and follow-up so no call goes to waste.",
+      "Voice AI systems that answer calls, qualify leads, schedule appointments, and recover revenue opportunities around the clock — connecting the voice layer to CRM, scheduling, and follow-up so no call goes to waste. Productized as a live offering: AI that answers the phone, qualifies the lead, and books the job before the caller hangs up.",
     image: {
-      src: "",
-      alt: "AI voice agent ecosystem — screenshot coming soon.",
+      src: "/voice-ecosystem.png",
+      alt: "Voice AI product landing: 'Every Missed Call Is a Job You'll Never Know You Lost' — AI that answers the phone, qualifies the lead, and books the job, with a call-flow diagram.",
       width: 1600,
       height: 1000,
-      placeholder: true,
     },
     flow: ["Call", "Voice Agent", "CRM", "Scheduler", "Follow-Up"],
     skills: ["Voice AI", "Realtime systems", "CRM integration", "Scheduling"],
+    link: { label: "View live site", href: "https://growthmindset.ai" },
   },
   {
     id: "revenue-recovery",
@@ -213,16 +216,16 @@ export const projects: Project[] = [
     outcome:
       "Recaptures revenue that normally leaks away — missed calls, after-hours inquiries, and slow follow-up.",
     description:
-      "Automation that detects missed opportunities — missed calls, after-hours inquiries, and delayed follow-up — and re-engages them automatically to reclaim revenue that would otherwise be lost.",
+      "Automation that detects missed opportunities — missed calls, after-hours inquiries, and delayed follow-up — and re-engages them automatically to reclaim revenue that would otherwise be lost. Built around speed-to-lead: the first responder wins the job, so the system responds in under 60 seconds, automatically.",
     image: {
-      src: "",
-      alt: "Revenue recovery platform — screenshot coming soon.",
+      src: "/revenue-recovery.png",
+      alt: "Speed-to-lead product: 'Your Leads Are Dying. Every Minute Costs You $47' with metric cards — 78% of jobs go to the first responder, 21x higher conversion under 5 minutes, 42% conversion under 60 seconds.",
       width: 1600,
       height: 1000,
-      placeholder: true,
     },
     flow: ["Detect", "Re-engage", "Qualify", "Recover"],
     skills: ["Workflow automation", "Revenue operations", "Event detection"],
+    link: { label: "View live site", href: "https://speedlead-pi.vercel.app" },
   },
   {
     id: "marketing-transformation",

@@ -67,6 +67,7 @@ export function Contact() {
           <Reveal>
             <div className="flex h-full flex-col justify-between gap-8">
               <div className="space-y-3">
+                <p className="text-sm text-ink-faint">{contact.preferenceNote}</p>
                 <a
                   href={`mailto:${meta.email}`}
                   className="flex items-center gap-3 rounded-lg border border-line bg-surface-elevated/50 px-4 py-3.5 transition-colors hover:border-accent-cyan/40"
