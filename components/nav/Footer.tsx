@@ -10,7 +10,7 @@ export function Footer() {
           <div className="flex items-center gap-2.5">
             <span
               aria-hidden
-              className="grid h-7 w-7 place-items-center rounded-md bg-accent-gradient font-display text-xs font-bold text-base"
+              className="grid h-7 w-7 place-items-center rounded-md bg-accent-gradient font-display text-xs font-bold text-night"
             >
               M
             </span>

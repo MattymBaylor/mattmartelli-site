@@ -2,17 +2,8 @@
 
 import { memo } from "react";
 import { Handle, Position, type NodeProps } from "@xyflow/react";
-import {
-  PhoneIncoming,
-  Bot,
-  Database,
-  Cog,
-  Send,
-  Users,
-  Trophy,
-  type LucideIcon,
-} from "lucide-react";
 import type { NodeKind } from "@/content/diagrams";
+import { kindIcon, kindStyle } from "./kinds";
 
 export interface SystemNodeData {
   label: string;
@@ -24,26 +15,6 @@ export interface SystemNodeData {
   onSelect: (index: number) => void;
   [key: string]: unknown;
 }
-
-const kindIcon: Record<NodeKind, LucideIcon> = {
-  input: PhoneIncoming,
-  agent: Bot,
-  system: Cog,
-  data: Database,
-  action: Send,
-  human: Users,
-  outcome: Trophy,
-};
-
-const kindStyle: Record<NodeKind, { border: string; text: string; chip: string }> = {
-  input: { border: "border-accent-cyan/55", text: "text-accent-cyan", chip: "Input" },
-  agent: { border: "border-accent-indigo/60", text: "text-accent-indigo", chip: "Agent" },
-  system: { border: "border-accent-cyan/55", text: "text-accent-cyan", chip: "System" },
-  data: { border: "border-line-strong", text: "text-ink-muted", chip: "Data" },
-  action: { border: "border-accent-cyan/55", text: "text-accent-cyan", chip: "Action" },
-  human: { border: "border-warm/60", text: "text-warm", chip: "Human" },
-  outcome: { border: "border-warm/70", text: "text-warm", chip: "Outcome" },
-};
 
 function SystemNodeComponent({ data }: NodeProps) {
   const d = data as SystemNodeData;

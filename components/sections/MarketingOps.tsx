@@ -10,7 +10,7 @@ export function MarketingOps() {
     <section id="marketing-ops" className="section border-t border-line/60">
       <div className="container-x">
         <SectionHeading
-          eyebrow="Marketing Operations & CRM"
+          eyebrow="25+ years in market"
           title={marketing.heading}
           sub={marketing.copy}
         />

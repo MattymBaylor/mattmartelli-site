@@ -14,8 +14,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Layered near-black backgrounds
-        base: "#0A0A0F",
+        // Layered near-black backgrounds.
+        // NOTE: named "night" (not "base") to avoid colliding with the
+        // built-in `text-base` font-size utility.
+        night: "#0A0A0F",
         surface: {
           DEFAULT: "#0D1117",
           elevated: "#12141C",

@@ -51,7 +51,7 @@ export function RecruiterSummary() {
               </ul>
               <Link
                 href="/recruiter"
-                className="mt-6 inline-flex items-center gap-1.5 self-start rounded-md bg-accent-gradient px-4 py-2.5 text-sm font-semibold text-base shadow-glow transition-transform hover:scale-[1.03]"
+                className="mt-6 inline-flex items-center gap-1.5 self-start rounded-md bg-accent-gradient px-4 py-2.5 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03]"
               >
                 Open the Recruiter Fast Path
                 <ArrowUpRight size={15} aria-hidden />

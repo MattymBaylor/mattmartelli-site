@@ -1,4 +1,5 @@
-import { Boxes } from "lucide-react";
+import Link from "next/link";
+import { Boxes, ArrowRight } from "lucide-react";
 import { site } from "@/content/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
@@ -9,11 +10,10 @@ export function Orchestration() {
     <section id="orchestration" className="section border-t border-line/60">
       <div className="container-x">
         <SectionHeading
-          eyebrow="AI Orchestration & Frameworks"
+          eyebrow="Framework-agnostic by design"
           title={orchestration.heading}
         >
           <p className="mt-4 font-display text-xl text-ink sm:text-2xl">
-            <span className="text-ink-faint">{"// "}</span>
             {orchestration.framing}
           </p>
           <p className="mt-4 text-base leading-relaxed text-ink-muted">
@@ -26,19 +26,29 @@ export function Orchestration() {
           <Reveal>
             <div className="surface-card h-full p-6">
               <p className="eyebrow mb-4">What matters, in order</p>
-              <ol className="space-y-2.5">
-                {orchestration.emphasis.map((label, i) => (
-                  <li key={label} className="flex items-center gap-3">
-                    <span className="grid h-6 w-6 shrink-0 place-items-center rounded-md bg-accent-gradient font-mono text-[11px] font-bold text-base">
-                      {i + 1}
-                    </span>
-                    <span
-                      className={`${
-                        i < 2 ? "text-ink" : "text-ink-muted"
-                      } text-sm font-medium sm:text-base`}
+              <ol className="space-y-1.5">
+                {orchestration.emphasis.map((item, i) => (
+                  <li key={item.label}>
+                    <Link
+                      href={item.href}
+                      className="group flex items-center gap-3 rounded-lg px-2 py-2 -mx-2 transition-colors hover:bg-surface-raised/60"
                     >
-                      {label}
-                    </span>
+                      <span className="grid h-6 w-6 shrink-0 place-items-center rounded-md bg-accent-gradient font-mono text-[11px] font-bold text-night">
+                        {i + 1}
+                      </span>
+                      <span
+                        className={`${
+                          i < 2 ? "text-ink" : "text-ink-muted"
+                        } flex-1 text-sm font-medium transition-colors group-hover:text-ink sm:text-base`}
+                      >
+                        {item.label}
+                      </span>
+                      <ArrowRight
+                        size={15}
+                        aria-hidden
+                        className="shrink-0 text-ink-faint opacity-0 transition-all group-hover:translate-x-0.5 group-hover:text-accent-cyan group-hover:opacity-100"
+                      />
+                    </Link>
                   </li>
                 ))}
               </ol>

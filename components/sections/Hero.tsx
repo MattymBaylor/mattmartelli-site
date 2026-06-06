@@ -40,7 +40,7 @@ export function Hero() {
         <ConstellationBackground />
         <div className="absolute inset-0 bg-grid-faint [background-size:64px_64px] opacity-40" />
         <div className="absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(34,211,238,0.10),transparent_70%)]" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-base" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-night" />
       </div>
 
       <div className="container-x flex min-h-[92vh] flex-col justify-center pb-20 pt-28 sm:pt-32">
@@ -95,7 +95,7 @@ export function Hero() {
           >
             <Link
               href={hero.ctas.primary.href}
-              className="group inline-flex items-center justify-center gap-2 rounded-md bg-accent-gradient px-5 py-3 text-sm font-semibold text-base shadow-glow transition-transform hover:scale-[1.03]"
+              className="group inline-flex items-center justify-center gap-2 rounded-md bg-accent-gradient px-5 py-3 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03]"
             >
               {hero.ctas.primary.label}
               <ArrowRight

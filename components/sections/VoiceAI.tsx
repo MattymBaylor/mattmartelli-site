@@ -10,7 +10,7 @@ export function VoiceAI() {
   return (
     <section id="voice-ai" className="section border-t border-line/60">
       <div className="container-x">
-        <SectionHeading eyebrow="Voice AI" title={voice.heading} sub={voice.copy} />
+        <SectionHeading eyebrow="Production voice" title={voice.heading} sub={voice.copy} />
 
         <Reveal delay={0.06}>
           <div className="mt-8 flex flex-wrap gap-2">

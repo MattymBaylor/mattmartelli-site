@@ -15,7 +15,6 @@ export const site = {
     description:
       "Matt Martelli designs and builds production AI systems that connect voice, CRM, marketing automation, data pipelines, and multi-agent workflows to solve real business problems.",
     email: "mattmartelli@mac.com",
-    // Replace with the real LinkedIn URL when available.
     linkedin: "https://www.linkedin.com/in/mattmartelli/",
     jobTitle: "AI Systems Architect",
     location: "United States",
@@ -145,15 +144,16 @@ export const site = {
     heading: "AI Orchestration & Frameworks",
     framing: "The framework is never the product. The system is the product.",
     body: "Frameworks are supporting implementation options — interchangeable parts in service of a design. I select them to fit the system and the business outcome, never the other way around.",
-    // Priority order the site emphasizes — surfaced as a visible hierarchy.
+    // Priority order the site emphasizes — surfaced as a visible, clickable
+    // hierarchy. Each links to the section that best demonstrates it.
     emphasis: [
-      "System design",
-      "Business outcomes",
-      "Agent orchestration",
-      "Workflow architecture",
-      "Voice AI",
-      "Marketing operations",
-      "Revenue operations",
+      { label: "System design", href: "#proof-of-work" },
+      { label: "Business outcomes", href: "#projects" },
+      { label: "Agent orchestration", href: "#agentic-systems" },
+      { label: "Workflow architecture", href: "#proof-of-work" },
+      { label: "Voice AI", href: "#voice-ai" },
+      { label: "Marketing operations", href: "#marketing-ops" },
+      { label: "Revenue operations", href: "#projects" },
     ],
     takeaway:
       "Matt can design, build, and deploy production AI systems regardless of the orchestration framework.",

@@ -9,7 +9,7 @@ export function AgenticSystems() {
     <section id="agentic-systems" className="section border-t border-line/60">
       <div className="container-x">
         <SectionHeading
-          eyebrow="Agentic Systems"
+          eyebrow="Multi-agent architecture"
           title={agentic.heading}
           sub={agentic.copy}
         />

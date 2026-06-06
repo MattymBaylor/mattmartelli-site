@@ -54,10 +54,13 @@ export const recruiter = {
       title: "Marketing Automation Transformation",
       line: "Enterprise CRM and lifecycle programs driving measurable, attributable pipeline.",
     },
+    {
+      title: "Yelp Interactive Dashboard",
+      line: "Custom front-end analytics dashboard delivered as the output of an agentic workflow.",
+    },
   ],
 
   links: {
-    // Replace with the real LinkedIn URL when available.
     linkedin: { label: "LinkedIn", href: "https://www.linkedin.com/in/mattmartelli/" },
     email: { label: "Email", href: "mailto:mattmartelli@mac.com" },
   },

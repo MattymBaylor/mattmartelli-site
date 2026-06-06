@@ -72,7 +72,7 @@ export function ProofOfWork() {
                   onKeyDown={(e) => onTabsKeyDown(e, i)}
                   className={`rounded-md px-3.5 py-2 text-sm font-medium transition-colors ${
                     selected
-                      ? "bg-accent-gradient text-base shadow-glow"
+                      ? "bg-accent-gradient text-night shadow-glow"
                       : "text-ink-muted hover:text-ink"
                   }`}
                 >

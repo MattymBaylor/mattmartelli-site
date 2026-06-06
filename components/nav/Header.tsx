@@ -28,7 +28,7 @@ export function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
         scrolled
-          ? "border-b border-line bg-base/80 backdrop-blur-md"
+          ? "border-b border-line bg-night/80 backdrop-blur-md"
           : "border-b border-transparent"
       }`}
     >
@@ -43,7 +43,7 @@ export function Header() {
         >
           <span
             aria-hidden
-            className="grid h-8 w-8 place-items-center rounded-md bg-accent-gradient font-display text-sm font-bold text-base shadow-glow"
+            className="grid h-8 w-8 place-items-center rounded-md bg-accent-gradient font-display text-sm font-bold text-night shadow-glow"
           >
             M
           </span>
@@ -75,7 +75,7 @@ export function Header() {
           </Link>
           <Link
             href={`/${site.nav.cta.contact.href}`}
-            className="hidden rounded-md bg-accent-gradient px-3.5 py-2 text-sm font-semibold text-base shadow-glow transition-transform hover:scale-[1.03] sm:inline-flex"
+            className="hidden rounded-md bg-accent-gradient px-3.5 py-2 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03] sm:inline-flex"
           >
             {site.nav.cta.contact.label}
           </Link>
@@ -97,7 +97,7 @@ export function Header() {
       {open && (
         <div
           id="mobile-menu"
-          className="border-t border-line bg-base/95 backdrop-blur-md lg:hidden"
+          className="border-t border-line bg-night/95 backdrop-blur-md lg:hidden"
         >
           <ul className="container-x flex flex-col gap-1 py-4">
             {site.nav.links.map((l) => (
@@ -123,7 +123,7 @@ export function Header() {
               <Link
                 href={`/${site.nav.cta.contact.href}`}
                 onClick={() => setOpen(false)}
-                className="rounded-md bg-accent-gradient px-3.5 py-2.5 text-center text-sm font-semibold text-base"
+                className="rounded-md bg-accent-gradient px-3.5 py-2.5 text-center text-sm font-semibold text-night"
               >
                 {site.nav.cta.contact.label}
               </Link>

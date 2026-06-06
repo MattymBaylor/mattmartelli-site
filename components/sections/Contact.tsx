@@ -124,7 +124,7 @@ export function Contact() {
               <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="inline-flex items-center gap-2 rounded-md bg-accent-gradient px-5 py-2.5 text-sm font-semibold text-base shadow-glow transition-transform hover:scale-[1.02] disabled:opacity-60"
+                className="inline-flex items-center gap-2 rounded-md bg-accent-gradient px-5 py-2.5 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.02] disabled:opacity-60"
               >
                 <Send size={15} aria-hidden />
                 {status === "submitting" ? "Sending…" : "Send message"}

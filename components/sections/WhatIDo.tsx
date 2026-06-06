@@ -16,7 +16,7 @@ export function WhatIDo() {
   return (
     <section id="what-i-do" className="section">
       <div className="container-x">
-        <SectionHeading eyebrow="What I Do" title={whatIDo.heading} sub={whatIDo.framing} />
+        <SectionHeading eyebrow="Operating philosophy" title={whatIDo.heading} sub={whatIDo.framing} />
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {whatIDo.pillars.map((p, i) => {
@@ -47,7 +47,6 @@ export function WhatIDo() {
 
         <Reveal delay={0.1}>
           <p className="mt-10 font-display text-lg text-ink sm:text-xl">
-            <span className="text-ink-faint">{"// "}</span>
             {whatIDo.reinforce}
           </p>
         </Reveal>
