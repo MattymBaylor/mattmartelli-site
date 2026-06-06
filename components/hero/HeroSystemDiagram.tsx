@@ -12,10 +12,14 @@
  * cyan = input/system, indigo = agent, warm = outcome.
  */
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { PhoneIncoming, Bot, BarChart3, Cpu, Trophy, ArrowUpRight } from "lucide-react";
 import { usePrefersReducedMotion } from "@/lib/useReducedMotion";
+
+// Ribbon CTA cycles between these on a slow loop to pull the eye.
+const RIBBON_PHRASES = ["Click here", "See how it works"] as const;
 
 const CYAN = "#22D3EE";
 const INDIGO = "#6366F1";
@@ -29,6 +33,19 @@ const pillars = [
 
 export function HeroSystemDiagram() {
   const reduced = usePrefersReducedMotion();
+  const [phase, setPhase] = useState(0);
+
+  // Cycle the ribbon CTA on a slow loop (paused under reduced motion).
+  useEffect(() => {
+    if (reduced) return;
+    const id = setInterval(
+      () => setPhase((p) => (p + 1) % RIBBON_PHRASES.length),
+      3000
+    );
+    return () => clearInterval(id);
+  }, [reduced]);
+
+  const ribbonText = reduced ? "See how it works" : RIBBON_PHRASES[phase];
 
   return (
     <Link
@@ -40,14 +57,25 @@ export function HeroSystemDiagram() {
           Draped across the top-right corner; clipped by the card's overflow-hidden. */}
       <span
         aria-hidden
-        className={`pointer-events-none absolute right-[-64px] top-[34px] z-20 flex w-[240px] rotate-45 items-center justify-center gap-1 whitespace-nowrap bg-[#FACC15] py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-night ${
+        className={`pointer-events-none absolute right-[-46px] top-[46px] z-20 flex w-[230px] rotate-45 items-center justify-center whitespace-nowrap bg-[#FACC15] py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-night ${
           reduced
             ? "shadow-[inset_0_1px_0_rgba(255,255,255,0.45),inset_0_-2px_0_rgba(0,0,0,0.2),0_0_18px_2px_rgba(250,204,21,0.6),0_2px_5px_-1px_rgba(0,0,0,0.45)]"
             : "animate-ribbon-pulse transition-[transform,filter] duration-200 group-hover:scale-[1.06] group-hover:brightness-110"
         }`}
       >
-        See how it works
-        <ArrowUpRight size={11} className="shrink-0" aria-hidden />
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.span
+            key={ribbonText}
+            initial={reduced ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={reduced ? undefined : { opacity: 0 }}
+            transition={{ duration: 0.45 }}
+            className="inline-flex items-center gap-1"
+          >
+            {ribbonText}
+            <ArrowUpRight size={11} className="shrink-0" aria-hidden />
+          </motion.span>
+        </AnimatePresence>
       </span>
 
       {/* Header row */}
