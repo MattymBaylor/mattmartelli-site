@@ -44,21 +44,25 @@ export function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-night" />
       </div>
 
-      <div className="container-x grid min-h-[72vh] scroll-mt-24 grid-cols-1 items-center gap-10 pb-6 pt-32 sm:pt-40 lg:grid-cols-[minmax(0,1fr)_500px] lg:gap-14">
+      <div className="container-x grid min-h-[72vh] scroll-mt-24 grid-cols-1 items-center gap-10 pb-6 pt-32 sm:pt-40 lg:grid-cols-[minmax(0,1fr)_460px] lg:gap-14">
         <motion.div
           variants={container}
           initial="hidden"
           animate="show"
-          className="max-w-2xl"
+          className="max-w-2xl lg:max-w-none"
         >
-          {/* Headline — two stacked lines; line 2 carries the emphasis */}
+          {/* Headline — two stacked lines; line 2 is larger and carries the emphasis */}
           <motion.h1
             id="hero-heading"
             variants={item}
-            className="text-balance text-4xl font-semibold leading-[1.07] tracking-tight sm:text-5xl lg:text-6xl"
+            className="text-balance font-semibold leading-[1.05] tracking-tight"
           >
-            <span className="block text-ink-muted">{hero.headlineLine1}</span>
-            <span className="block text-ink">{hero.headlineLine2}</span>
+            <span className="block text-3xl text-ink-muted sm:text-4xl lg:text-5xl">
+              {hero.headlineLine1}
+            </span>
+            <span className="block text-4xl text-ink sm:text-5xl lg:text-[4.25rem]">
+              {hero.headlineLine2}
+            </span>
           </motion.h1>
 
           {/* Subheadline — secondary emphasis */}

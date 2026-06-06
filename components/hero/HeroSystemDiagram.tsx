@@ -56,23 +56,28 @@ export function HeroSystemDiagram() {
               <path d="M0,0 L6,3 L0,6 Z" fill={CYAN} />
             </marker>
           </defs>
-          {/* pillars -> core */}
-          {[54, 150, 246].map((y, i) => (
+          {/* pillars -> core — stop at the core's left edge (not its center),
+              endpoints kept on each line's trajectory so arrowheads touch the box */}
+          {[
+            { y1: 54, y2: 116 },
+            { y1: 150, y2: 150 },
+            { y1: 246, y2: 184 },
+          ].map((p, i) => (
             <line
               key={`in-${i}`}
-              x1="120" y1={y} x2="200" y2="150"
+              x1="120" y1={p.y1} x2="172" y2={p.y2}
               stroke="rgba(34,211,238,0.28)" strokeWidth="1.5" markerEnd="url(#hero-arrow)"
             />
           ))}
-          {/* core -> outcome */}
-          <line x1="200" y1="150" x2="320" y2="150" stroke="rgba(34,211,238,0.28)" strokeWidth="1.5" markerEnd="url(#hero-arrow)" />
-          {/* flowing pulses */}
+          {/* core -> outcome — start at the core's right edge, stop short of the outcome node */}
+          <line x1="232" y1="150" x2="300" y2="150" stroke="rgba(34,211,238,0.28)" strokeWidth="1.5" markerEnd="url(#hero-arrow)" />
+          {/* flowing pulses — match the corrected endpoints so dots stop at the nodes */}
           {!reduced && (
             <>
-              <circle r="3" fill={CYAN}><animateMotion dur="2.2s" repeatCount="indefinite" path="M120,54 L200,150" /></circle>
-              <circle r="3" fill={INDIGO}><animateMotion dur="2.6s" repeatCount="indefinite" path="M120,150 L200,150" /></circle>
-              <circle r="3" fill={CYAN}><animateMotion dur="2.4s" repeatCount="indefinite" path="M120,246 L200,150" /></circle>
-              <circle r="3.5" fill={WARM}><animateMotion dur="1.8s" repeatCount="indefinite" path="M200,150 L320,150" /></circle>
+              <circle r="3" fill={CYAN}><animateMotion dur="2.2s" repeatCount="indefinite" path="M120,54 L172,116" /></circle>
+              <circle r="3" fill={INDIGO}><animateMotion dur="2.6s" repeatCount="indefinite" path="M120,150 L172,150" /></circle>
+              <circle r="3" fill={CYAN}><animateMotion dur="2.4s" repeatCount="indefinite" path="M120,246 L172,184" /></circle>
+              <circle r="3.5" fill={WARM}><animateMotion dur="1.8s" repeatCount="indefinite" path="M232,150 L300,150" /></circle>
             </>
           )}
         </svg>
