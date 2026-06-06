@@ -38,13 +38,14 @@ export function ConstellationBackground() {
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      // Density scales with area but is capped for performance.
-      const count = Math.min(46, Math.floor((width * height) / 26000));
+      // Density scales with area but is capped low so it reads ambient.
+      const count = Math.min(30, Math.floor((width * height) / 26000));
       nodes = Array.from({ length: count }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.22,
-        vy: (Math.random() - 0.5) * 0.22,
+        // Calm drift — about half the previous velocity.
+        vx: (Math.random() - 0.5) * 0.11,
+        vy: (Math.random() - 0.5) * 0.11,
         r: Math.random() * 1.6 + 0.8,
       }));
     };
@@ -53,6 +54,9 @@ export function ConstellationBackground() {
 
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
+
+      // Keep the whole field ambient — it sits behind the hero text.
+      ctx.globalAlpha = 0.5;
 
       // Edges
       for (let i = 0; i < nodes.length; i++) {

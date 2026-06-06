@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Network, AudioLines, LineChart, Workflow, ArrowUpRight } from "lucide-react";
+import { Network, AudioLines, LineChart, Workflow, ArrowUpRight, ArrowRight } from "lucide-react";
 import { site } from "@/content/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
@@ -16,7 +16,13 @@ export function WhatIDo() {
   return (
     <section id="what-i-do" className="section">
       <div className="container-x">
-        <SectionHeading eyebrow="What drives me" title={whatIDo.heading} sub={whatIDo.framing} />
+        <SectionHeading eyebrow="What drives me" title={whatIDo.heading} />
+
+        <Reveal>
+          <p className="mt-4 max-w-3xl text-base leading-relaxed text-ink-muted sm:text-lg lg:max-w-4xl">
+            {whatIDo.framing}
+          </p>
+        </Reveal>
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {whatIDo.pillars.map((p, i) => {
@@ -39,6 +45,14 @@ export function WhatIDo() {
                     />
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-ink-muted">{p.blurb}</p>
+                  <span className="mt-auto flex items-center gap-1 pt-4 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-faint transition-colors group-hover:text-accent-cyan">
+                    Jump to
+                    <ArrowRight
+                      size={12}
+                      className="transition-transform group-hover:translate-x-0.5"
+                      aria-hidden
+                    />
+                  </span>
                 </Link>
               </Reveal>
             );

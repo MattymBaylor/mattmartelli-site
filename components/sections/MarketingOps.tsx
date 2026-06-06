@@ -4,6 +4,7 @@ import { site } from "@/content/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { StatCallout } from "@/components/ui/StatCallout";
+import { MarketingOpsDiagram } from "@/components/sections/MarketingOpsDiagram";
 
 export function MarketingOps() {
   const { marketing } = site;
@@ -30,6 +31,12 @@ export function MarketingOps() {
         </Reveal>
 
         <Reveal delay={0.1}>
+          <div className="mt-8">
+            <MarketingOpsDiagram />
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.12}>
           <Link
             href="#proof-of-work"
             className="group mt-8 inline-flex items-center gap-2 text-sm font-medium text-accent-cyan"

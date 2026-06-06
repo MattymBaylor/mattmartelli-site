@@ -9,7 +9,7 @@ Log-only — no visual changes were made without approval. Two parts:
 
 ## Part F — bare / dark sections
 
-- **Marketing Operations & CRM** (`components/sections/MarketingOps.tsx`, `#marketing-ops`) — renders only the section heading, a wrapping list of stack chips, and a text link to `#proof-of-work`. No inline image, icon, or diagram; mostly dark space. The "Marketing Operations Engine" it references lives two sections down in Proof of Work, not inline. — suggest: an inline mini marketing-ops flow diagram (mirror the `SystemDiagram`/`FlowMotif` motif used elsewhere) or a small dashboard screenshot, so the section has a visual anchor.
+- ~~**Marketing Operations & CRM** (`#marketing-ops`) — was bare (heading + chips + link only).~~ **RESOLVED:** added an inline `lead → revenue` pipeline diagram (`components/sections/MarketingOpsDiagram.tsx`) as the section's visual anchor; the full interactive "Marketing Operations Engine" still lives in Proof of Work.
 - **AI Orchestration & Frameworks** (`components/sections/Orchestration.tsx`, `#orchestration`) — has two text cards (the ordered "what matters" list + the dashed "tooling layer" grid) and a single `Boxes` icon, but no diagram/imagery. Reads as text-dense rather than truly bare. — suggest (optional): a small "system core ← orbiting tools" diagram would reinforce the "system first, tooling follows" thesis visually.
 
 ### Promised diagrams — verified present (no gap)
@@ -46,7 +46,7 @@ Areas that would benefit from a real asset. For each I've noted what it is, wher
 
 ### Missing / placeholder (will look unfinished until filled)
 - **Marketing Automation Transformation** — `content/projects.ts` (`id: marketing-transformation`) currently renders the `FlowMotif` placeholder (`image.placeholder: true`, empty `src`). — provide: a screenshot of a CRM/lifecycle dashboard, journey builder, or attribution report (HubSpot/Salesforce/Marketo). Target ~1600×1000, ≤250 KB. Redact client names. Then set `src`, drop `placeholder`, and add a real `alt`.
-- **Marketing Operations & CRM section** (`#marketing-ops`) is visually bare (chips + link only). — provide: either reuse the transformation screenshot above as an inline visual, OR I can build a small inline "Marketing Operations Engine" diagram (no asset needed from you — code-only) so the section has an anchor. Your call.
+- ~~**Marketing Operations & CRM section** is visually bare.~~ **RESOLVED** with an inline code-only diagram (see above). No asset needed; a screenshot could still replace it later if you prefer a real-data visual.
 
 ### Optional upgrades (work today, would land harder with a real image)
 - **AI Voice Agent Ecosystem** — `voice-ecosystem.png` (1600×1000) is a product landing screenshot. Fine as-is; if you have a cleaner call-flow graphic or a Retell/AI dashboard shot, it would read more "system" than "marketing page."

@@ -30,6 +30,10 @@ export function Hero() {
         },
       };
 
+  // The payoff headline is mostly white; only this phrase carries the cyan accent.
+  const ACCENT = "business systems";
+  const [headBefore, headAfter] = hero.coreStatement.split(ACCENT);
+
   return (
     <section
       id="top"
@@ -58,15 +62,29 @@ export function Hero() {
             {hero.titleLine}
           </motion.p>
 
+          {/* Setup line — animates in first, muted, no gradient */}
+          <motion.p
+            variants={item}
+            className="mt-6 text-lg font-normal text-ink-muted sm:text-xl"
+          >
+            {hero.setupLine}
+          </motion.p>
+
+          {/* Payoff headline — white, with one cyan accent phrase */}
           <motion.h1
             id="hero-heading"
             variants={item}
-            className="mt-6 text-balance text-4xl font-semibold leading-[1.07] tracking-tight sm:text-5xl lg:text-6xl"
+            className="mt-2 text-balance text-4xl font-semibold leading-[1.07] tracking-tight text-ink sm:text-5xl lg:text-6xl"
           >
-            I don&apos;t specialize in AI tools.{" "}
-            <span className="accent-text">
-              I specialize in designing business systems powered by AI.
-            </span>
+            {headAfter !== undefined ? (
+              <>
+                {headBefore}
+                <span className="text-accent-cyan">{ACCENT}</span>
+                {headAfter}
+              </>
+            ) : (
+              hero.coreStatement
+            )}
           </motion.h1>
 
           <motion.p

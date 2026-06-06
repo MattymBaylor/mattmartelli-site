@@ -46,8 +46,8 @@ export const site = {
     name: "Matt Martelli",
     titleLine:
       "AI Systems Architect · Marketing Operations Leader · Agentic Systems Builder",
-    coreStatement:
-      "I don't specialize in AI tools. I specialize in designing business systems powered by AI.",
+    setupLine: "I don't specialize in AI tools.",
+    coreStatement: "I design business systems powered by AI.",
     introduction:
       "I've spent 25+ years at the intersection of marketing, technology, and operations — building the marketing-automation ecosystems and customer-journey infrastructure that businesses run on. Today I design AI-powered systems that connect voice, automation, data, and human teams to get real work done.",
     ctas: {
@@ -73,29 +73,25 @@ export const site = {
         id: "agentic",
         title: "Agentic Systems",
         href: "#agentic-systems",
-        blurb:
-          "Multi-agent architectures where specialized AI workers coordinate to execute real business processes end to end.",
+        blurb: "Multi-agent systems that run real processes end to end.",
       },
       {
         id: "voice",
         title: "Voice AI",
         href: "#voice-ai",
-        blurb:
-          "Production voice agents that answer, qualify, schedule, and recover revenue — around the clock.",
+        blurb: "Voice agents that answer, qualify, schedule, and recover revenue.",
       },
       {
         id: "marketing",
         title: "Marketing Operations & CRM",
         href: "#marketing-ops",
-        blurb:
-          "25+ years architecting lifecycle marketing, lead management, and revenue operations at enterprise scale.",
+        blurb: "Lifecycle, lead, and revenue operations at enterprise scale.",
       },
       {
         id: "orchestration",
         title: "AI Orchestration",
         href: "#orchestration",
-        blurb:
-          "Framework-agnostic orchestration that connects agents, data, and human teams into one coherent system.",
+        blurb: "Framework-agnostic orchestration across agents, data, and teams.",
       },
     ],
   },
