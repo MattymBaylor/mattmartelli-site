@@ -73,26 +73,24 @@ export const showcases: Showcase[] = [
     // a `live` link once the real Retell details are ready.
     id: "retell-voice-agent",
     eyebrow: "Featured Example",
-    title: "Retell Voice AI — inbound call handling & appointment booking",
+    title: "Retell Voice AI — revenue-recovery voice agent",
     summary:
-      "A production voice agent answers every inbound call, understands intent, qualifies the caller, and books appointments against live availability — then hands a warm, fully-briefed opportunity to the team. 24/7 coverage that converts calls instead of losing them to voicemail.",
+      "A production Retell voice agent built to recover missed revenue — engaging callers naturally, qualifying the opportunity, booking appointments, and handing warm, briefed leads to the team. This is the actual agent: its prompt, conversation logic, speech tuning, and live simulation environment.",
     image: {
-      // Temporary placeholder image — swap for the real Retell screenshot.
-      src: "/workflow-viral-video.png",
-      alt: "Placeholder image — a Retell Voice AI call-handling diagram will be added here.",
-      width: 3700,
-      height: 1902,
-      placeholder: true,
+      src: "/retell-voice-agent.png",
+      alt: "Retell AI agent builder showing a production revenue-recovery voice agent — its role prompt, dynamic call context, speech settings, and real-time simulation environment.",
+      width: 4112,
+      height: 2336,
     },
     callouts: [
-      { n: 1, label: "Inbound caller dials in (any hour)" },
-      { n: 2, label: "Retell voice agent answers and understands intent" },
-      { n: 3, label: "Agent qualifies the lead in real time" },
-      { n: 4, label: "Live calendar checked; appointment booked" },
-      { n: 5, label: "CRM updated with structured call data" },
-      { n: 6, label: "SMS confirmation and reminders sent" },
-      { n: 7, label: "Warm handoff to the human team" },
-      { n: 8, label: "Outcome logged for reporting and attribution" },
+      { n: 1, label: "Voice agent opens the conversation naturally" },
+      { n: 2, label: "Captures intent and context in real time" },
+      { n: 3, label: "Qualifies the opportunity against the script" },
+      { n: 4, label: "Books appointments against live availability" },
+      { n: 5, label: "Logs structured call data to CRM" },
+      { n: 6, label: "Triggers SMS confirmation and follow-up" },
+      { n: 7, label: "Recovers missed-revenue opportunities" },
+      { n: 8, label: "Warm handoff to the human team" },
     ],
     techStack: [
       "Retell AI",
@@ -103,6 +101,6 @@ export const showcases: Showcase[] = [
       "Google Calendar",
       "Google Sheets",
     ],
-    // No live link yet — add one when available.
+    // Add a `live` link here if a public demo URL becomes available.
   },
 ];

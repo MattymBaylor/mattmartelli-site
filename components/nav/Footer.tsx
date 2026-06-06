@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, Linkedin } from "lucide-react";
+import { Mail, Linkedin, FileDown } from "lucide-react";
 import { site } from "@/content/site";
 
 export function Footer() {
@@ -40,6 +40,13 @@ export function Footer() {
           >
             Recruiter Fast Path
           </Link>
+          <a
+            href="/resume.pdf"
+            download="Matt_Martelli_Resume.pdf"
+            className="inline-flex items-center gap-2 text-ink-muted transition-colors hover:text-accent-cyan"
+          >
+            <FileDown size={15} aria-hidden /> Download Résumé
+          </a>
         </div>
       </div>
       <div className="container-x border-t border-line py-6">
