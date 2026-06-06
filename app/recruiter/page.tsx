@@ -6,6 +6,7 @@ import {
   Check,
   Mail,
   Linkedin,
+  Youtube,
   ArrowUpRight,
   Star,
 } from "lucide-react";
@@ -56,6 +57,14 @@ export default function RecruiterPage() {
               className="inline-flex items-center gap-2 rounded-md border border-line-strong px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50"
             >
               <Linkedin size={15} aria-hidden /> LinkedIn
+            </a>
+            <a
+              href={recruiter.links.youtube.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-md border border-line-strong px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50"
+            >
+              <Youtube size={15} aria-hidden /> YouTube
             </a>
           </div>
         </header>
@@ -179,6 +188,14 @@ export default function RecruiterPage() {
                   className="flex items-center gap-2 text-ink-muted transition-colors hover:text-accent-cyan"
                 >
                   <Linkedin size={15} aria-hidden /> LinkedIn
+                </a>
+                <a
+                  href={recruiter.links.youtube.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-ink-muted transition-colors hover:text-accent-cyan"
+                >
+                  <Youtube size={15} aria-hidden /> YouTube
                 </a>
               </div>
             </div>

@@ -174,6 +174,25 @@ export const projects: Project[] = [
   },
   */
   {
+    id: "ai-brief",
+    title: "The 60-Second AI Brief",
+    outcome:
+      "Thought leadership: plain-English AI briefings that help business leaders turn AI into revenue.",
+    description:
+      "My YouTube channel — intelligence for business leaders on the go. Simple, plain-English AI briefings: fast, practical explainers on how AI actually drives revenue, cuts costs, and makes teams more effective. Topics span turning ChatGPT, Claude, and Gemini into real competitive advantage; building automations that save teams hours every week; using AI for sharper decisions and clearer communication; what not to do with AI at work; and real-world playbooks from implementing AI day to day. It's where I translate the systems I build into language any executive can act on.",
+    image: {
+      src: "/ai-brief.png",
+      alt: "The 60-Second AI Brief — a YouTube channel of plain-English AI briefings for business leaders.",
+      width: 1280,
+      height: 720,
+    },
+    skills: ["Thought leadership", "AI strategy", "Executive communication", "Content"],
+    link: {
+      label: "Watch The 60-Second AI Brief",
+      href: "https://www.youtube.com/@matt_martelli",
+    },
+  },
+  {
     id: "voice-ecosystem",
     title: "AI Voice Agent Ecosystem",
     outcome:

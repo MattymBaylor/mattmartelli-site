@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { Mail, Linkedin, Phone, Globe, Send, Check, AlertCircle } from "lucide-react";
+import { Mail, Linkedin, Youtube, Phone, Globe, Send, Check, AlertCircle } from "lucide-react";
 import { site } from "@/content/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
@@ -90,6 +90,15 @@ export function Contact() {
                 >
                   <Linkedin size={18} className="text-accent-cyan" aria-hidden />
                   <span className="text-sm text-ink">{contact.linkedinLabel}</span>
+                </a>
+                <a
+                  href={meta.youtube}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 rounded-lg border border-line bg-surface-elevated/50 px-4 py-3.5 transition-colors hover:border-accent-cyan/40"
+                >
+                  <Youtube size={18} className="text-accent-cyan" aria-hidden />
+                  <span className="text-sm text-ink">{meta.youtubeLabel}</span>
                 </a>
                 <a
                   href={meta.company.url}

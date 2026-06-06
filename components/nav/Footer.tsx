@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, Phone, Linkedin, Globe, FileDown } from "lucide-react";
+import { Mail, Phone, Linkedin, Youtube, Globe, FileDown } from "lucide-react";
 import { site } from "@/content/site";
 
 export function Footer() {
@@ -39,6 +39,14 @@ export function Footer() {
             className="inline-flex items-center gap-2 text-ink-muted transition-colors hover:text-accent-cyan"
           >
             <Linkedin size={15} aria-hidden /> LinkedIn
+          </a>
+          <a
+            href={site.meta.youtube}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-ink-muted transition-colors hover:text-accent-cyan"
+          >
+            <Youtube size={15} aria-hidden /> YouTube
           </a>
           <a
             href={site.meta.company.url}
