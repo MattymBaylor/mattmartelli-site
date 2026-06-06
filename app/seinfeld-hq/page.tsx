@@ -183,6 +183,42 @@ export default function CaseStudyPage() {
           </div>
         </section>
 
+        {/* 4b. PROOF IN PRACTICE — real examples */}
+        <section className="section border-b border-line/60 bg-surface/30">
+          <div className="container-x">
+            <Reveal>
+              <div className="max-w-2xl">
+                <Eyebrow>{cs.examples.eyebrow}</Eyebrow>
+                <h2 className="text-3xl font-semibold sm:text-4xl">{cs.examples.heading}</h2>
+                <p className="mt-5 text-base leading-relaxed text-ink-muted">
+                  {cs.examples.intro}
+                </p>
+              </div>
+            </Reveal>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {cs.examples.cards.map((c, i) => (
+                <Reveal key={c.title} delay={(i % 3) * 0.06}>
+                  <div className="flex h-full flex-col rounded-xl border border-line bg-surface-elevated/70 p-5 transition-colors hover:border-accent-cyan/40">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-accent-cyan/80">
+                      {c.tag}
+                    </span>
+                    <h3 className="mt-2 font-display text-base font-semibold text-ink">{c.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-muted">{c.request}</p>
+                    <p className="mt-auto pt-4 font-mono text-[11px] leading-relaxed text-ink-faint">
+                      {c.agents}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+            <Reveal delay={0.1}>
+              <p className="mt-8 max-w-3xl text-base leading-relaxed text-ink-muted">
+                {cs.examples.closer}
+              </p>
+            </Reveal>
+          </div>
+        </section>
+
         {/* 5. MY ROLE */}
         <section className="section border-b border-line/60 bg-surface/30">
           <div className="container-x">

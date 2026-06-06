@@ -1,41 +1,44 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, Cpu, Users, ShieldCheck } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { usePrefersReducedMotion } from "@/lib/useReducedMotion";
 import { caseStudy as cs } from "@/content/caseStudy";
 
-type Agent = { id: string; name: string; role: string; duties: string };
+type Agent = {
+  id: string;
+  name: string;
+  role: string;
+  duties: string;
+  img: string;
+};
 
 const oc = cs.orgChart;
 
 // Flat list so the detail panel can resolve any agent by id. The content
 // object is `as const` (deeply readonly with literal types), so we widen to
 // the structural Agent shape here.
+const LEADERSHIP = oc.leadership as readonly Agent[];
 const ALL: readonly Agent[] = [
-  oc.orchestrator,
+  ...LEADERSHIP,
   ...oc.groups.flatMap((g) => g.agents as readonly Agent[]),
 ];
-
-const GROUP_ICONS: Record<string, typeof Cpu> = {
-  "Core Specialists": Cpu,
-  "Operations & Customer": Users,
-  Safeguards: ShieldCheck,
-};
 
 /**
  * AgentOrgChart — the interactive centerpiece of the case study.
  *
- * The Seinfeld cast mapped to a ~15-agent business operating model. One
- * orchestrator routes to grouped specialists; selecting any agent (hover,
- * tap, focus, or arrow keys) updates the inline detail panel with its role
- * and duties. Fully keyboard operable and reduced-motion aware.
+ * Matt's real internal operating model: two leadership roles (Jerry the
+ * conductor, Joe Devola the traffic manager) over nine specialists who execute
+ * in parallel. Selecting any agent (hover, tap, focus, or arrow keys) updates
+ * the inline detail panel with its portrait, role, and duties. Fully keyboard
+ * operable and reduced-motion aware.
  */
 export function AgentOrgChart() {
-  const [activeId, setActiveId] = useState<string>(oc.orchestrator.id);
+  const [activeId, setActiveId] = useState<string>(LEADERSHIP[0].id);
   const reduced = usePrefersReducedMotion();
-  const active = ALL.find((a) => a.id === activeId) ?? oc.orchestrator;
+  const active = ALL.find((a) => a.id === activeId) ?? LEADERSHIP[0];
 
   const select = (id: string) => setActiveId(id);
 
@@ -61,10 +64,10 @@ export function AgentOrgChart() {
     variant = "specialist",
   }: {
     agent: Agent;
-    variant?: "orchestrator" | "specialist";
+    variant?: "lead" | "specialist";
   }) => {
     const selected = agent.id === active.id;
-    const isOrch = variant === "orchestrator";
+    const isLead = variant === "lead";
     return (
       <button
         type="button"
@@ -76,9 +79,9 @@ export function AgentOrgChart() {
         onFocus={() => select(agent.id)}
         onKeyDown={onKeyDown}
         className={[
-          "group/node w-full rounded-xl border px-3.5 py-3 text-left transition-all duration-200",
+          "group/node flex w-full items-center gap-3 rounded-xl border px-3 py-2.5 text-left transition-all duration-200",
           "focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/70",
-          isOrch
+          isLead
             ? selected
               ? "border-accent-indigo/70 bg-surface-raised shadow-glow-indigo"
               : "border-accent-indigo/50 bg-surface-raised hover:border-accent-indigo/70"
@@ -87,25 +90,36 @@ export function AgentOrgChart() {
               : "border-line bg-surface-elevated/70 hover:border-accent-cyan/40",
         ].join(" ")}
       >
-        <span className="flex items-center justify-between gap-2">
+        <span
+          className={[
+            "relative h-11 w-11 shrink-0 overflow-hidden rounded-lg ring-1 transition-all",
+            selected
+              ? isLead
+                ? "ring-accent-indigo/70"
+                : "ring-accent-cyan/70"
+              : "ring-line-strong group-hover/node:ring-accent-cyan/40",
+          ].join(" ")}
+        >
+          <Image
+            src={agent.img}
+            alt={`${agent.name} — ${agent.role}`}
+            fill
+            sizes="44px"
+            className="object-cover"
+          />
+        </span>
+        <span className="min-w-0">
           <span
             className={[
-              "font-display text-sm font-semibold",
-              isOrch ? "text-accent-indigo" : "text-ink",
+              "block truncate font-display text-sm font-semibold",
+              isLead ? "text-accent-indigo" : "text-ink",
             ].join(" ")}
           >
             {agent.name}
           </span>
-          <span
-            className={[
-              "h-1.5 w-1.5 shrink-0 rounded-full transition-colors",
-              selected ? "bg-accent-cyan" : isOrch ? "bg-accent-indigo/60" : "bg-line-strong",
-            ].join(" ")}
-            aria-hidden
-          />
-        </span>
-        <span className="mt-0.5 block font-mono text-[10px] uppercase tracking-[0.12em] text-ink-faint">
-          {agent.role}
+          <span className="block truncate font-mono text-[10px] uppercase tracking-[0.1em] text-ink-faint">
+            {agent.role}
+          </span>
         </span>
       </button>
     );
@@ -122,9 +136,11 @@ export function AgentOrgChart() {
       <div className="grid gap-7 lg:grid-cols-[1.35fr_1fr] lg:items-start lg:gap-9">
         {/* LEFT: the chart */}
         <div role="group" aria-label="Agent org chart">
-          {/* Orchestrator */}
-          <div className="mx-auto max-w-xs">
-            <Node agent={oc.orchestrator} variant="orchestrator" />
+          {/* Leadership: conductor + traffic manager */}
+          <div className="grid gap-2.5 sm:grid-cols-2">
+            {LEADERSHIP.map((agent) => (
+              <Node key={agent.id} agent={agent} variant="lead" />
+            ))}
           </div>
 
           {/* connector */}
@@ -132,25 +148,19 @@ export function AgentOrgChart() {
             <ChevronDown size={18} className="text-accent-cyan/60" />
           </div>
 
-          {/* Groups */}
-          <div className="space-y-5">
-            {oc.groups.map((group) => {
-              const Icon = GROUP_ICONS[group.label] ?? Cpu;
-              return (
-                <div key={group.label}>
-                  <p className="mb-2.5 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-faint">
-                    <Icon size={13} className="text-accent-cyan/70" aria-hidden />
-                    {group.label}
-                  </p>
-                  <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3">
-                    {group.agents.map((agent) => (
-                      <Node key={agent.id} agent={agent} />
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          {/* Specialists */}
+          {oc.groups.map((group) => (
+            <div key={group.label}>
+              <p className="mb-2.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-faint">
+                {group.label}
+              </p>
+              <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 xl:grid-cols-3">
+                {group.agents.map((agent) => (
+                  <Node key={agent.id} agent={agent} />
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
 
         {/* RIGHT: detail panel (sticky on desktop so it tracks while exploring) */}
@@ -164,14 +174,27 @@ export function AgentOrgChart() {
                 exit={reduced ? undefined : { opacity: 0, y: -8 }}
                 transition={{ duration: 0.22 }}
               >
-                <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-cyan/80">
-                  {active.role}
-                </p>
-                <h3 className="mt-2 font-display text-2xl font-semibold text-ink">
-                  {active.name}
-                </h3>
+                <div className="flex items-center gap-4">
+                  <span className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl ring-1 ring-accent-cyan/40">
+                    <Image
+                      src={active.img}
+                      alt={`${active.name} — ${active.role}`}
+                      fill
+                      sizes="64px"
+                      className="object-cover"
+                    />
+                  </span>
+                  <div>
+                    <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-accent-cyan/80">
+                      {active.role}
+                    </p>
+                    <h3 className="mt-1 font-display text-2xl font-semibold text-ink">
+                      {active.name}
+                    </h3>
+                  </div>
+                </div>
                 <p
-                  className="mt-3 text-sm leading-relaxed text-ink-muted"
+                  className="mt-4 text-sm leading-relaxed text-ink-muted"
                   aria-live="polite"
                 >
                   {active.duties}

@@ -70,118 +70,159 @@ export const caseStudy = {
     eyebrow: "The Operating Model",
     heading: "Each character is a role. Each role is an agent.",
     intro:
-      "Hover or tap any agent to see what it owns. Strip the names away and what's left is a clean, inspectable org chart: one orchestrator, specialized workers, real operations, and human-in-the-loop safeguards.",
+      "I don't manage AI tools — I manage a team of AI agents. One instruction routes through an orchestrator to specialists who execute in parallel. Hover or tap any agent to see what it owns.",
     hint: "Hover or tap an agent",
-    orchestrator: {
-      id: "jerry",
-      name: "Jerry",
-      role: "Orchestrator / Supervisor",
-      duties:
-        "The connective tissue. Routes every request to the right specialist, sequences the work, catches anything that stalls, and stays the point of contact when a human needs to step in. The reason it's a system and not a pile of bots tripping over each other.",
-    },
+    // The two roles that make the whole thing work — shown above the specialists.
+    leadership: [
+      {
+        id: "jerry",
+        name: "Jerry",
+        role: "The Conductor",
+        img: "/agents/jerry.png",
+        duties:
+          "The only agent I talk to directly. Jerry receives the request, understands intent, confirms scope, and decides what the job requires — then hands it off. He doesn't do the work himself; he decides who does. Nothing goes out without his quality check.",
+      },
+      {
+        id: "devola",
+        name: "Joe Devola",
+        role: "Traffic Manager",
+        img: "/agents/devola.png",
+        duties:
+          "The operations backbone. Devola breaks the job into discrete tasks, routes each to the right agent, manages sequencing (what runs first, what runs in parallel), and tracks completion. When everything's done and QA'd, he triggers the ping back to me.",
+      },
+    ],
     groups: [
       {
-        label: "Core Specialists",
+        label: "The Specialists — Execute in Parallel",
         agents: [
           {
             id: "elaine",
             name: "Elaine",
-            role: "Content & Social",
+            role: "Content",
+            img: "/agents/elaine.png",
             duties:
-              "Owns everything that goes out the door in words — blogs, posts, SEO copy, and the review request, sent at the right moment on the customer's preferred channel.",
-          },
-          {
-            id: "george",
-            name: "George",
-            role: "Budget & Rankings",
-            duties:
-              "Watches every dollar and every keyword position. Conservative and analytical by design — flags budget and ranking issues before they cost you.",
+              "Blog posts, email sequences, social copy, landing pages, brand voice — all written content flows through Elaine.",
           },
           {
             id: "kramer",
             name: "Kramer",
-            role: "Automation Builder",
+            role: "Automation",
+            img: "/agents/kramer.png",
             duties:
-              "The ideas-and-workflows agent, tuned to be exploratory. Builds the automations that connect the rest of the system together.",
+              "n8n workflows, webhook triggers, API integrations, system architecture — Kramer builds the pipes that connect everything.",
+          },
+          {
+            id: "george",
+            name: "George",
+            role: "SEO & Efficiency",
+            img: "/agents/george.png",
+            duties:
+              "Keyword research, competitive SEO, pricing models, cost analysis — George finds the angles and optimizes the numbers.",
           },
           {
             id: "puddy",
             name: "Puddy",
-            role: "Data & Market Intel",
+            role: "Research",
+            img: "/agents/puddy.png",
             duties:
-              "Stares at the data. Surfaces the competitor intelligence and market trends the rest of the team acts on.",
-          },
-        ],
-      },
-      {
-        label: "Operations & Customer",
-        agents: [
-          {
-            id: "joe",
-            name: "Joe",
-            role: "Traffic Router",
-            duties:
-              "Sequences the follow-ups. A sale is never one call — it's a chain of them, and Joe makes sure they happen in the right order.",
+              "Market research, competitor deep-dives, industry analysis, client discovery — Puddy digs until there's nothing left to find.",
           },
           {
-            id: "whatley",
-            name: "Whatley",
-            role: "Operations",
+            id: "peterman",
+            name: "Peterman",
+            role: "Creative",
+            img: "/agents/peterman.png",
             duties:
-              "Keeps operations on schedule and runs the post-job satisfaction check — catching a small concern before it becomes a one-star review.",
-          },
-          {
-            id: "leo",
-            name: "Uncle Leo",
-            role: "Customer Concierge",
-            duties:
-              "Answers the question every customer is secretly asking: where am I, and what's next? Sends proactive milestone updates on the exact channel the customer chose.",
+              "Visual concepts, mockups, design direction, video scripts, brand aesthetics — Peterman handles everything visual and creative.",
           },
           {
             id: "frank",
             name: "Frank",
-            role: "Sales & Referrals",
+            role: "Sales",
+            img: "/agents/frank.png",
             duties:
-              "Pushes hard on outreach and makes the referral ask with real money attached — then makes sure the credit actually gets applied.",
-          },
-          {
-            id: "peterman",
-            name: "J. Peterman",
-            role: "Creative",
-            duties:
-              "Owns the creative voice — the distinctive, on-brand framing that makes the output feel human instead of generated.",
-          },
-        ],
-      },
-      {
-        label: "Safeguards",
-        agents: [
-          {
-            id: "mickey",
-            name: "Mickey",
-            role: "QA Gates",
-            duties:
-              "Small, fierce, and does not care about your feelings — only whether the step actually completed. Verifies each gate before the next stage is allowed to start.",
+              "Sales collateral, objection handlers, one-pagers, follow-up sequences, pitch decks — Frank closes the deal.",
           },
           {
             id: "newman",
             name: "Newman",
-            role: "Watchdog / Monitoring",
+            role: "Watchdog",
+            img: "/agents/newman.png",
             duties:
-              "Sees everything — uptime, error logs, broken links. Here, being the guy who notices every flaw is a feature.",
+              "24/7 monitoring, failure alerts, system health checks, uptime tracking — Newman watches everything so nothing slips through.",
           },
           {
-            id: "lloyd",
-            name: "Lloyd Braun",
-            role: "Compliance",
+            id: "mickey",
+            name: "Mickey",
+            role: "QA",
+            img: "/agents/mickey.png",
             duties:
-              "Stays current on the rules — codes, regulations, and requirements that change constantly — and answers them live, pulling the latest version instead of stale training data.",
+              "Test calls, link checks, formatting reviews, edge-case testing — nothing ships until Mickey signs off on it.",
+          },
+          {
+            id: "jackie",
+            name: "Jackie",
+            role: "Operations",
+            img: "/agents/jackie.png",
+            duties:
+              "Structured reports, action items, operational formatting, compliance checks — Jackie makes sure everything is buttoned up.",
           },
         ],
       },
     ],
     footnote:
-      "Plus a bench — Bania, Sue Ellen, and others — ready to take on roles as the operating model expands. The cast is the wrapper; single-responsibility agents, gated hand-offs, and a supervisor are the architecture.",
+      "Jerry decides what needs to happen. Devola decides how it gets done and who does it. Between them, any request — from a quick question to a multi-week project — gets routed, executed, and delivered without me managing the middle.",
+  },
+
+  /**
+   * examples — concrete proof the operating model does real work. Condensed
+   * from the live "What This Actually Looks Like" section: one instruction in,
+   * a coordinated team out. Shows range, not depth.
+   */
+  examples: {
+    eyebrow: "Proof in Practice",
+    heading: "What this actually looks like",
+    intro:
+      "Not one deep dive — the range. How many different kinds of work flow through the same system in a given week. One instruction in; a coordinated team out.",
+    cards: [
+      {
+        tag: "Product Development",
+        title: "“Build me a SaaS product”",
+        request:
+          "Come up with 10 SaaS ideas, research each, then fully develop the top three — mockups, social assets, landing copy, positioning, pricing. Present all three.",
+        agents: "Puddy research · George pricing · Elaine copy · Peterman mockups · Kramer landing pages · Mickey QA",
+      },
+      {
+        tag: "Content & Marketing",
+        title: "“Launch a content campaign this week”",
+        request:
+          "A full content push for the new voice AI offering — blog post, LinkedIn carousel, three email sequences, a sales one-pager. Aligned, SEO-optimized, ready to publish.",
+        agents: "Elaine all copy · George SEO · Peterman visuals · Frank sales one-pager · Mickey QA",
+      },
+      {
+        tag: "Research & Intelligence",
+        title: "“What are our competitors doing?”",
+        request:
+          "A competitive intelligence report — who's doing multi-agent voice AI, what they charge, where the gaps are, where we're stronger and where we're exposed.",
+        agents: "Puddy deep-dive · George analysis · Elaine brief · Jackie report & action items",
+      },
+      {
+        tag: "Automation & Systems",
+        title: "“Automate this entire workflow”",
+        request:
+          "Every closed deal in HubSpot should trigger a welcome sequence, a Slack ping, an onboarding-board add, and a personalized video intro. Build the whole thing.",
+        agents: "Kramer automation · Elaine sequence · Peterman video script · Newman monitoring · Mickey testing",
+      },
+      {
+        tag: "Client Delivery",
+        title: "“Set up a voice agent for a client”",
+        request:
+          "New client, a dental practice — a voice agent for appointment scheduling, insurance questions, and after-hours triage, on their existing CRM. Go.",
+        agents: "Puddy research · Kramer integration · Elaine scripts · Frank follow-up · Mickey test calls · Newman monitoring",
+      },
+    ],
+    closer:
+      "The complexity of the request doesn't change the process. Jerry confirms scope, Devola routes, the specialists execute, and I get a ping when it's done. The same architecture I run my own company on is the one each client gets — battle-tested internally, purpose-built per client.",
   },
 
   whyThisMatters: {
