@@ -2,6 +2,7 @@ import { ArrowUpRight, ChevronRight, Star } from "lucide-react";
 import { projects, type Project } from "@/content/projects";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { Showcases } from "@/components/sections/WorkflowShowcase";
 
 function FlowMotif({ steps }: { steps: string[] }) {
   return (
@@ -115,6 +116,9 @@ export function FeaturedProjects() {
             </Reveal>
           ))}
         </div>
+
+        {/* Screenshot-based work examples (n8n workflow, voice AI, etc.) */}
+        <Showcases />
       </div>
     </section>
   );
