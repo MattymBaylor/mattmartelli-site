@@ -99,7 +99,7 @@ export function Projects() {
                   setActiveId(p.id);
                 }}
                 aria-haspopup="dialog"
-                className="group flex h-full w-full flex-col overflow-hidden rounded-xl border border-line bg-surface-elevated/70 text-left transition-all hover:-translate-y-1 hover:border-accent-cyan/40 hover:shadow-glow"
+                className="group flex h-full w-full flex-col overflow-hidden rounded-xl border border-line bg-surface-elevated/70 text-left transition-all hover:-translate-y-1 hover:border-accent-cyan/40 hover:bg-surface-elevated hover:shadow-glow"
               >
                 <div className="relative border-b border-line">
                   <CardVisual project={p} />

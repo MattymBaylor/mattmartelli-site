@@ -16,7 +16,7 @@ export function WhatIDo() {
   return (
     <section id="what-i-do" className="section">
       <div className="container-x">
-        <SectionHeading eyebrow="Operating philosophy" title={whatIDo.heading} sub={whatIDo.framing} />
+        <SectionHeading eyebrow="What drives me" title={whatIDo.heading} sub={whatIDo.framing} />
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {whatIDo.pillars.map((p, i) => {
@@ -25,7 +25,7 @@ export function WhatIDo() {
               <Reveal key={p.id} delay={i * 0.06} as="article">
                 <Link
                   href={p.href}
-                  className="group flex h-full flex-col rounded-xl border border-line bg-surface-elevated/70 p-5 transition-all hover:-translate-y-1 hover:border-accent-cyan/40 hover:shadow-glow"
+                  className="group flex h-full flex-col rounded-xl border border-line bg-surface-elevated/70 p-5 transition-all hover:-translate-y-1 hover:border-accent-cyan/40 hover:bg-surface-elevated hover:shadow-glow"
                 >
                   <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-line bg-surface-raised text-accent-cyan">
                     <Icon size={18} aria-hidden />
@@ -44,12 +44,6 @@ export function WhatIDo() {
             );
           })}
         </div>
-
-        <Reveal delay={0.1}>
-          <p className="mt-10 font-display text-lg text-ink sm:text-xl">
-            {whatIDo.reinforce}
-          </p>
-        </Reveal>
       </div>
     </section>
   );

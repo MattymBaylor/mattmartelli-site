@@ -77,6 +77,12 @@ export const caseStudy = {
         img: "/agents/jerry.png",
         duties:
           "The only agent I talk to directly. Jerry receives the request, understands intent, confirms scope, and decides what the job requires — then hands it off. He doesn't do the work himself; he decides who does. Nothing goes out without his quality check.",
+        points: [
+          "Single entry point — the only agent I talk to",
+          "Interprets intent, confirms scope, decides what's required",
+          "Owns the final QA gate — nothing ships unchecked",
+        ],
+        proof: "One front door = a system you can reason about, not a prompt soup.",
       },
       {
         id: "devola",
@@ -85,6 +91,12 @@ export const caseStudy = {
         img: "/agents/devola.png",
         duties:
           "The operations backbone. Devola breaks the job into discrete tasks, routes each to the right agent, manages sequencing (what runs first, what runs in parallel), and tracks completion. When everything's done and QA'd, he triggers the ping back to me.",
+        points: [
+          "Decomposes the job into discrete tasks",
+          "Routes each to the right specialist, sequences parallel vs serial",
+          "Tracks completion, triggers the ping-back",
+        ],
+        proof: "This is orchestration — the layer that makes multi-agent actually work.",
       },
     ],
     groups: [
@@ -98,6 +110,12 @@ export const caseStudy = {
             img: "/agents/elaine.png",
             duties:
               "Blog posts, email sequences, social copy, landing pages, brand voice — all written content flows through Elaine.",
+            points: [
+              "Owns brand-voice consistency across every channel",
+              "Works from Puddy's research, never a blank page",
+              "Drafts → routes to Mickey (QA) before anything ships",
+            ],
+            proof: "Content as a pipeline stage with an owner, not an afterthought.",
           },
           {
             id: "kramer",
@@ -106,6 +124,12 @@ export const caseStudy = {
             img: "/agents/kramer.png",
             duties:
               "n8n workflows, webhook triggers, API integrations, system architecture — Kramer builds the pipes that connect everything.",
+            points: [
+              "Builds the n8n workflows, webhooks, API integrations",
+              "Connects the systems the other agents depend on",
+              "Owns the 'pipes' so specialists stay focused",
+            ],
+            proof: "The integration layer is a role, not an accident.",
           },
           {
             id: "george",
@@ -114,6 +138,12 @@ export const caseStudy = {
             img: "/agents/george.png",
             duties:
               "Keyword research, competitive SEO, pricing models, cost analysis — George finds the angles and optimizes the numbers.",
+            points: [
+              "Keyword/competitive SEO + pricing and cost models",
+              "Finds the angles and optimizes the numbers",
+              "Feeds efficiency data back into decisions",
+            ],
+            proof: "Growth and unit economics, owned in one place.",
           },
           {
             id: "puddy",
@@ -122,6 +152,12 @@ export const caseStudy = {
             img: "/agents/puddy.png",
             duties:
               "Market research, competitor deep-dives, industry analysis, client discovery — Puddy digs until there's nothing left to find.",
+            points: [
+              "Market, competitor, and client-discovery deep-dives",
+              "Verifies before it synthesizes",
+              "Hands decision-ready inputs to Elaine/Frank",
+            ],
+            proof: "Upstream rigor is why downstream output is trustworthy.",
           },
           {
             id: "peterman",
@@ -130,6 +166,12 @@ export const caseStudy = {
             img: "/agents/peterman.png",
             duties:
               "Visual concepts, mockups, design direction, video scripts, brand aesthetics — Peterman handles everything visual and creative.",
+            points: [
+              "Visual concepts, mockups, design direction, video scripts",
+              "Owns brand aesthetics end to end",
+              "Translates strategy into something people see",
+            ],
+            proof: "Creative as a defined function, not a freelance scramble.",
           },
           {
             id: "frank",
@@ -138,6 +180,12 @@ export const caseStudy = {
             img: "/agents/frank.png",
             duties:
               "Sales collateral, objection handlers, one-pagers, follow-up sequences, pitch decks — Frank closes the deal.",
+            points: [
+              "Collateral, objection handlers, one-pagers, follow-up sequences",
+              "Turns research + content into closing assets",
+              "Aligned to the pipeline, not generic decks",
+            ],
+            proof: "The revenue-facing output of the whole system.",
           },
           {
             id: "newman",
@@ -146,6 +194,12 @@ export const caseStudy = {
             img: "/agents/newman.png",
             duties:
               "24/7 monitoring, failure alerts, system health checks, uptime tracking — Newman watches everything so nothing slips through.",
+            points: [
+              "24/7 monitoring, failure alerts, uptime tracking",
+              "Catches problems before humans notice",
+              "Health checks across every agent",
+            ],
+            proof: "Observability is a first-class role — that's how you trust automation.",
           },
           {
             id: "mickey",
@@ -154,6 +208,12 @@ export const caseStudy = {
             img: "/agents/mickey.png",
             duties:
               "Test calls, link checks, formatting reviews, edge-case testing — nothing ships until Mickey signs off on it.",
+            points: [
+              "Test calls, link checks, formatting, edge-case testing",
+              "Nothing ships until it signs off",
+              "Independent of the agents producing the work",
+            ],
+            proof: "A real QA gate is the difference between a demo and a system.",
           },
           {
             id: "jackie",
@@ -162,6 +222,12 @@ export const caseStudy = {
             img: "/agents/jackie.png",
             duties:
               "Structured reports, action items, operational formatting, compliance checks — Jackie makes sure everything is buttoned up.",
+            points: [
+              "Structured reports, action items, compliance checks",
+              "Buttons up everything before delivery",
+              "Keeps the operating record clean",
+            ],
+            proof: "Ops discipline is designed in, not bolted on.",
           },
         ],
       },
@@ -293,7 +359,8 @@ export const caseStudy = {
     stat: {
       value: "23%",
       label:
-        "higher profitability for the most engaged teams vs. the least — Gallup's meta-analysis of 3.3M+ employees. Engagement isn't decoration; it's a performance multiplier. The theme is how I buy it cheaply.",
+        "more profitable for the most engaged teams vs. the least — why I engineer engagement into the system. Engagement isn't decoration; it's a performance multiplier, and the theme is how I buy it cheaply.",
+      footnote: "Gallup meta-analysis of 3.3M+ employees across 183,000+ teams.",
     },
   },
 

@@ -26,7 +26,6 @@ export const recruiter = {
   executiveSummary:
     "AI Systems Architect and Marketing Operations leader with 25+ years at the intersection of marketing, technology, operations, and customer experience. I design and build production AI systems — voice agents, multi-agent workflows, CRM and lifecycle automation — that connect data, automation, and human teams to deliver measurable business outcomes. I'm framework-agnostic by design: the system and the result come first, the tooling follows.",
 
-  // Wire to the real file when ready. Placeholder lives at /public/resume.pdf.
   resume: {
     label: "Download Résumé (PDF)",
     href: "/resume.pdf",
@@ -57,22 +56,53 @@ export const recruiter = {
     {
       title: "Multi-Agent Command Center",
       line: "Flagship case study in agent orchestration, routing, memory, QA, and real workflow execution.",
+      points: [
+        "Orchestrator routes each request to the right specialist agent",
+        "Memory + QA gates keep work consistent and inspectable",
+        "Humans stay in the loop where judgment matters",
+      ],
+      result:
+        "Proof a multi-agent system can run real workflows end to end — not a prototype.",
     },
     {
       title: "AI Voice Agent Ecosystem",
-      line: "Voice systems that answer, qualify, schedule, and recover revenue around the clock.",
+      line: "Recovers the revenue that leaks after hours — missed calls answered, qualified, and booked before the lead goes cold.",
+      points: [
+        "Answers, qualifies, and books 24/7 — including after hours",
+        "Connects voice to CRM, scheduling, and follow-up",
+        "Turns missed and after-hours calls into booked revenue",
+      ],
+      result: "The revenue-recovery layer most businesses leak the most through.",
     },
     {
       title: "Revenue Recovery Platform",
       line: "Automation that reclaims missed calls, after-hours inquiries, and delayed follow-up.",
+      points: [
+        "Detects missed calls, abandoned forms, stalled deals",
+        "Re-engages automatically before the lead goes cold",
+        "Hands warm, context-rich leads back to the team",
+      ],
+      result: "Built around speed-to-lead: first responder wins the deal.",
     },
     {
       title: "Marketing Automation Transformation",
       line: "Enterprise CRM and lifecycle programs driving measurable, attributable pipeline.",
+      points: [
+        "Enterprise CRM + lifecycle programs across the funnel",
+        "Lead scoring, segmentation, revenue attribution",
+        "Turns fragmented data into measurable, attributable pipeline",
+      ],
+      result: "25+ years of marketing-ops depth, applied as a system.",
     },
     {
       title: "Interactive Operations Dashboard",
       line: "A live, single-pane command center unifying dashboards, agents, and workflows — built and deployed.",
+      points: [
+        "Single pane unifying dashboards, agents, and workflows",
+        "Live status the operating team actually uses",
+        "Built front-end-first for non-technical clients",
+      ],
+      result: "Clarity instead of complexity — built and deployed.",
     },
   ],
 

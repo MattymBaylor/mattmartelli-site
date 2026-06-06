@@ -13,6 +13,8 @@ type Agent = {
   role: string;
   duties: string;
   img: string;
+  points?: readonly string[];
+  proof?: string;
 };
 
 const oc = cs.orgChart;
@@ -199,6 +201,27 @@ export function AgentOrgChart() {
                 >
                   {active.duties}
                 </p>
+                {active.points && active.points.length > 0 && (
+                  <ul className="mt-4 space-y-1.5">
+                    {active.points.map((point) => (
+                      <li
+                        key={point}
+                        className="flex items-start gap-2 text-sm leading-relaxed text-ink-muted"
+                      >
+                        <span
+                          className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent-cyan/60"
+                          aria-hidden
+                        />
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {active.proof && (
+                  <p className="mt-4 text-xs leading-relaxed text-accent-cyan/80">
+                    {active.proof}
+                  </p>
+                )}
               </motion.div>
             </AnimatePresence>
           </div>

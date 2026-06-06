@@ -16,6 +16,7 @@ import { Header } from "@/components/nav/Header";
 import { Footer } from "@/components/nav/Footer";
 import { Reveal } from "@/components/ui/Reveal";
 import { AgentOrgChart } from "@/components/flow/AgentOrgChart";
+import { StatCallout } from "@/components/ui/StatCallout";
 import { caseStudy as cs } from "@/content/caseStudy";
 import { site } from "@/content/site";
 
@@ -360,14 +361,13 @@ export default function CaseStudyPage() {
               </div>
             </Reveal>
             <Reveal delay={0.14}>
-              <div className="surface-card mt-6 flex flex-col items-center gap-4 p-6 text-center sm:flex-row sm:items-center sm:gap-6 sm:p-7 sm:text-left">
-                <span className="bg-accent-gradient bg-clip-text font-display text-5xl font-bold leading-none text-transparent sm:text-6xl">
-                  {cs.skins.stat.value}
-                </span>
-                <p className="max-w-2xl text-sm leading-relaxed text-ink-muted">
-                  {cs.skins.stat.label}
-                </p>
-              </div>
+              <StatCallout
+                value={cs.skins.stat.value}
+                kind="industry"
+                footnote={cs.skins.stat.footnote}
+              >
+                {cs.skins.stat.label}
+              </StatCallout>
             </Reveal>
           </div>
         </section>

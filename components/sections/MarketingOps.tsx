@@ -3,6 +3,7 @@ import { ArrowDown } from "lucide-react";
 import { site } from "@/content/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { StatCallout } from "@/components/ui/StatCallout";
 
 export function MarketingOps() {
   const { marketing } = site;
@@ -36,6 +37,12 @@ export function MarketingOps() {
             <ArrowDown size={15} aria-hidden className="transition-transform group-hover:translate-y-0.5" />
             {marketing.diagramRef}
           </Link>
+        </Reveal>
+
+        <Reveal delay={0.12}>
+          <StatCallout value="21×" kind="industry" footnote={site.footnotes[0]}>
+            more likely to qualify a lead contacted within 5 minutes vs 30.
+          </StatCallout>
         </Reveal>
       </div>
     </section>
