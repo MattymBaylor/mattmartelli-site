@@ -34,10 +34,24 @@ export function HeroSystemDiagram() {
     <Link
       href="/seinfeld-hq"
       aria-label="Open the multi-agent system that runs my company — Seinfeld HQ flagship case study"
-      className="group relative block rounded-2xl border border-line bg-surface-elevated/40 p-5 transition-colors hover:border-accent-cyan/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/50 sm:p-6"
+      className="group relative block overflow-hidden rounded-2xl border border-line bg-surface-elevated/40 p-5 transition-colors hover:border-accent-cyan/45 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/50 sm:p-6"
     >
+      {/* Decorative corner ribbon — reinforces the card's single link target.
+          Draped across the top-right corner; clipped by the card's overflow-hidden. */}
+      <span
+        aria-hidden
+        className={`pointer-events-none absolute right-[-52px] top-[28px] z-20 flex w-[200px] rotate-45 items-center justify-center gap-1 bg-warm py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-night ${
+          reduced
+            ? "shadow-[inset_0_1px_0_rgba(255,255,255,0.3),inset_0_-2px_0_rgba(0,0,0,0.18),0_0_16px_1px_rgba(245,165,36,0.5),0_2px_5px_-1px_rgba(0,0,0,0.45)]"
+            : "animate-ribbon-pulse transition-[transform,filter] duration-200 group-hover:scale-[1.06] group-hover:brightness-110"
+        }`}
+      >
+        See how it works
+        <ArrowUpRight size={10} className="shrink-0" aria-hidden />
+      </span>
+
       {/* Header row */}
-      <div className="mb-4 flex items-center justify-between">
+      <div className="mb-4 flex items-center gap-2.5">
         <span className="rounded-md bg-accent-cyan/10 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-accent-cyan/90">
           Live system
         </span>

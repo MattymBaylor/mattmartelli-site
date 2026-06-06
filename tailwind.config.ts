@@ -82,10 +82,22 @@ const config: Config = {
         "dash": {
           to: { strokeDashoffset: "-16" },
         },
+        // Slow gold glow for the hero card's corner ribbon (warm = #F5A524).
+        "ribbon-pulse": {
+          "0%, 100%": {
+            boxShadow:
+              "inset 0 1px 0 rgba(255,255,255,0.3), inset 0 -2px 0 rgba(0,0,0,0.18), 0 0 0 0 rgba(245,165,36,0), 0 2px 5px -1px rgba(0,0,0,0.45)",
+          },
+          "50%": {
+            boxShadow:
+              "inset 0 1px 0 rgba(255,255,255,0.3), inset 0 -2px 0 rgba(0,0,0,0.18), 0 0 20px 3px rgba(245,165,36,0.6), 0 2px 5px -1px rgba(0,0,0,0.45)",
+          },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.6s ease-out both",
         "pulse-soft": "pulse-soft 3s ease-in-out infinite",
+        "ribbon-pulse": "ribbon-pulse 2.8s ease-in-out infinite",
       },
     },
   },
