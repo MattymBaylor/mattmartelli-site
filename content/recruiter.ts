@@ -55,8 +55,8 @@ export const recruiter = {
       line: "Enterprise CRM and lifecycle programs driving measurable, attributable pipeline.",
     },
     {
-      title: "Yelp Interactive Dashboard",
-      line: "Custom front-end analytics dashboard delivered as the output of an agentic workflow.",
+      title: "Interactive Operations Dashboard",
+      line: "A live, single-pane command center unifying dashboards, agents, and workflows — built and deployed.",
     },
   ],
 

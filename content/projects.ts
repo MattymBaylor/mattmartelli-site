@@ -107,25 +107,4 @@ export const projects: Project[] = [
     ],
     link: undefined,
   },
-  {
-    id: "yelp-dashboard",
-    title: "Yelp Interactive Dashboard",
-    outcome:
-      "An interactive analytics dashboard delivered to the client as the front-end output of an agentic workflow — turning raw data into a fast, explorable decision tool.",
-    description:
-      "Custom front-end and data-visualization work produced as part of an agentic system: a responsive, filterable dashboard that shows how an agent-driven workflow ships a real, usable business deliverable — not just a recommendation.",
-    flow: ["Agentic Workflow", "Data", "Dashboard UI", "Interactive Charts", "Client Insights"],
-    skills: [
-      "Agentic workflow output",
-      "Front-end engineering",
-      "Data visualization",
-      "Interactive UI",
-      "Dashboard design",
-    ],
-    // Example of a wired link — the public Yelp Interactive Dashboard repo.
-    link: {
-      label: "View on GitHub",
-      href: "https://github.com/MattymBaylor/yelp-interactive-dashboard",
-    },
-  },
 ];

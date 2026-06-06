@@ -29,6 +29,34 @@ export interface Showcase {
 
 export const showcases: Showcase[] = [
   {
+    id: "lead-results-dashboard",
+    eyebrow: "Front-End Development",
+    title: "Lead Results Dashboard — interactive front-end",
+    summary:
+      "An example of production front-end development: a custom, interactive dashboard that gives clients a simple, visual way to see and manipulate their results — without ever digging into the automation behind it. A dark, executive command surface that's searchable, responsive, and fast. Shipped as a real, deployed application, not a mockup — click through to the live build.",
+    image: {
+      src: "/ops-dashboard.png",
+      alt: "A live interactive dashboard front-end: a dark, executive UI with a search bar and categorized cards grouped into sections, each showing live counts and status.",
+      width: 1680,
+      height: 1050,
+    },
+    callouts: [
+      { n: 1, label: "Dark, executive-grade UI built for fast scanning" },
+      { n: 2, label: "Searchable, filterable card directory" },
+      { n: 3, label: "Clean information architecture across sections" },
+      { n: 4, label: "Live counts and status indicators per card" },
+      { n: 5, label: "Responsive, component-driven layout" },
+      { n: 6, label: "Single-pane view of every workstream" },
+      { n: 7, label: "Built for real operators, not a static report" },
+      { n: 8, label: "Deployed and live — a working application" },
+    ],
+    techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Vercel"],
+    live: {
+      label: "View live dashboard",
+      href: "https://ops-dashboard-ten-woad.vercel.app",
+    },
+  },
+  {
     id: "viral-video-workflow",
     eyebrow: "Featured Workflow",
     title:
