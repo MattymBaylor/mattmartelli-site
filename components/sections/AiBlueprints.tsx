@@ -100,7 +100,7 @@ function AudioCard() {
       <div className="flex-1">
         <p className="eyebrow mb-1.5">For the people who&apos;d rather listen</p>
         <p className="font-display text-base font-semibold text-ink sm:text-lg">
-          The whole system, in plain English — 2 minutes
+          The whole system, in plain English — the full walkthrough (~20 min)
         </p>
         <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">
           Same architecture, no jargon. The way I walk a client through it when the

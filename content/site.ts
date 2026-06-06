@@ -27,15 +27,26 @@ export const site = {
   },
 
   nav: {
-    links: [
-      { label: "What I Do", href: "#what-i-do" },
-      { label: "Agentic Systems", href: "#agentic-systems" },
-      { label: "Orchestration", href: "#orchestration" },
-      { label: "Voice AI", href: "#voice-ai" },
-      { label: "Marketing Ops", href: "#marketing-ops" },
-      { label: "Proof of Work", href: "#proof-of-work" },
-      { label: "Projects", href: "#projects" },
-      { label: "AI Blueprints", href: "#ai-blueprints" },
+    // Two grouped dropdowns keep the bar lean; the CTAs sit to the right.
+    groups: [
+      {
+        label: "Approach",
+        links: [
+          { label: "What I Do", href: "#what-i-do" },
+          { label: "Agentic Systems", href: "#agentic-systems" },
+          { label: "Voice AI", href: "#voice-ai" },
+          { label: "Marketing Ops & CRM", href: "#marketing-ops" },
+          { label: "AI Orchestration", href: "#orchestration" },
+        ],
+      },
+      {
+        label: "Work",
+        links: [
+          { label: "Proof of Work", href: "#proof-of-work" },
+          { label: "Projects", href: "#projects" },
+          { label: "AI Blueprints", href: "#ai-blueprints" },
+        ],
+      },
     ],
     cta: {
       recruiter: { label: "Recruiter Fast Path", href: "/recruiter" },

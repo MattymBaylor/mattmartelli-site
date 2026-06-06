@@ -3,12 +3,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X, ArrowUpRight, ChevronDown } from "lucide-react";
 import { site } from "@/content/site";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  // Desktop dropdown + mobile accordion: track the open group by label.
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const [openMobileGroup, setOpenMobileGroup] = useState<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -17,13 +20,16 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close the mobile menu on Escape.
+  // Close the mobile menu and any open dropdown on Escape.
   useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setOpen(false);
+      setOpenMenu(null);
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [open]);
+  }, []);
 
   return (
     <header
@@ -55,18 +61,55 @@ export function Header() {
           </span>
         </Link>
 
-        {/* Desktop links */}
-        <ul className="hidden items-center gap-6 lg:flex">
-          {site.nav.links.map((l) => (
-            <li key={l.href}>
-              <Link
-                href={`/${l.href}`}
-                className="text-sm text-ink-muted transition-colors hover:text-ink"
+        {/* Desktop dropdowns */}
+        <ul className="hidden items-center gap-1 lg:flex">
+          {site.nav.groups.map((g) => {
+            const menuOpen = openMenu === g.label;
+            return (
+              <li
+                key={g.label}
+                className="relative"
+                onMouseEnter={() => setOpenMenu(g.label)}
+                onMouseLeave={() =>
+                  setOpenMenu((m) => (m === g.label ? null : m))
+                }
               >
-                {l.label}
-              </Link>
-            </li>
-          ))}
+                <button
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded={menuOpen}
+                  onClick={() => setOpenMenu(menuOpen ? null : g.label)}
+                  className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm text-ink-muted transition-colors hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/60"
+                >
+                  {g.label}
+                  <ChevronDown
+                    size={14}
+                    aria-hidden
+                    className={`transition-transform ${
+                      menuOpen ? "rotate-180 text-accent-cyan" : ""
+                    }`}
+                  />
+                </button>
+                {menuOpen && (
+                  <div className="absolute left-0 top-full min-w-[220px] rounded-xl border border-line bg-surface-elevated/95 p-1.5 shadow-elevated backdrop-blur-md">
+                    <ul className="flex flex-col">
+                      {g.links.map((l) => (
+                        <li key={l.href}>
+                          <Link
+                            href={`/${l.href}`}
+                            onClick={() => setOpenMenu(null)}
+                            className="block rounded-md px-3 py-2 text-sm text-ink-muted transition-colors hover:bg-surface-raised hover:text-ink"
+                          >
+                            {l.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </li>
+            );
+          })}
         </ul>
 
         <div className="flex items-center gap-2">
@@ -96,24 +139,55 @@ export function Header() {
         </div>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile menu — grouped accordions */}
       {open && (
         <div
           id="mobile-menu"
           className="border-t border-line bg-night/95 backdrop-blur-md lg:hidden"
         >
           <ul className="container-x flex flex-col gap-1 py-4">
-            {site.nav.links.map((l) => (
-              <li key={l.href}>
-                <Link
-                  href={`/${l.href}`}
-                  onClick={() => setOpen(false)}
-                  className="block rounded-md px-2 py-2.5 text-base text-ink-muted hover:bg-surface-raised hover:text-ink"
-                >
-                  {l.label}
-                </Link>
-              </li>
-            ))}
+            {site.nav.groups.map((g) => {
+              const groupOpen = openMobileGroup === g.label;
+              return (
+                <li key={g.label}>
+                  <button
+                    type="button"
+                    aria-expanded={groupOpen}
+                    onClick={() =>
+                      setOpenMobileGroup(groupOpen ? null : g.label)
+                    }
+                    className="flex w-full items-center justify-between rounded-md px-2 py-2.5 text-base text-ink hover:bg-surface-raised"
+                  >
+                    {g.label}
+                    <ChevronDown
+                      size={16}
+                      aria-hidden
+                      className={`transition-transform ${
+                        groupOpen ? "rotate-180 text-accent-cyan" : ""
+                      }`}
+                    />
+                  </button>
+                  {groupOpen && (
+                    <ul className="mt-0.5 flex flex-col gap-0.5 pb-1 pl-3">
+                      {g.links.map((l) => (
+                        <li key={l.href}>
+                          <Link
+                            href={`/${l.href}`}
+                            onClick={() => {
+                              setOpen(false);
+                              setOpenMobileGroup(null);
+                            }}
+                            className="block rounded-md px-2 py-2 text-sm text-ink-muted hover:bg-surface-raised hover:text-ink"
+                          >
+                            {l.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              );
+            })}
             <li className="mt-2 flex flex-col gap-2">
               <Link
                 href={site.nav.cta.recruiter.href}
