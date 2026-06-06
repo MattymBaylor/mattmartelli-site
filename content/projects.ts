@@ -174,26 +174,6 @@ export const projects: Project[] = [
   },
   */
   {
-    id: "command-center",
-    title: "Interactive Multi-Agent Command Center",
-    outcome:
-      "Shows decision-makers, in real time, how specialized agents divide and conquer a business problem.",
-    description:
-      "A fully interactive environment demonstrating how specialized AI agents collaborate to solve business problems — a coordinator decomposing the goal, specialists owning each stage, and a visible path from request to result. The live command center is a single, searchable pane over every dashboard, agent, workflow, and site.",
-    image: {
-      src: "/ops-dashboard.png",
-      alt: "Live multi-agent command center: a dark, searchable dashboard with categorized cards for Operations, Sales & Clients, Architecture, Agents, Launch, Live Sites, and Infrastructure.",
-      width: 1680,
-      height: 1050,
-    },
-    flow: ["Coordinator", "Specialists", "Collaboration", "Result"],
-    skills: ["Agent collaboration", "Routing", "Orchestration", "Interactive UX"],
-    link: {
-      label: "View live command center",
-      href: "https://ops-dashboard-ten-woad.vercel.app",
-    },
-  },
-  {
     id: "voice-ecosystem",
     title: "AI Voice Agent Ecosystem",
     outcome:

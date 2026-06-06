@@ -21,10 +21,13 @@ import { DetailPanel } from "./DetailPanel";
 
 const nodeTypes = { system: SystemNode };
 
-// Tighter horizontal spacing so the whole flow fits the full-width canvas
-// at a readable scale — no panning needed to see it.
-const NODE_GAP_X = 184;
-const FIT_OPTIONS = { padding: 0.12 };
+// Horizontal spacing between nodes. The node itself is 150px wide, so this
+// must leave enough clear space for the connector AND its edge label
+// (e.g. "handoff", "confirm") to sit between boxes without being clipped or
+// crammed. ~100px of breathing room. fitView auto-scales the wider flow so
+// the whole thing still frames without panning.
+const NODE_GAP_X = 248;
+const FIT_OPTIONS = { padding: 0.1 };
 
 export function SystemDiagram({ diagram }: { diagram: SystemDiagramData }) {
   const reduced = usePrefersReducedMotion();
@@ -82,8 +85,10 @@ export function SystemDiagram({ diagram }: { diagram: SystemDiagramData }) {
           fontFamily: "var(--font-jetbrains-mono)",
           fontSize: 10,
         },
-        labelBgStyle: { fill: "#0D1117", fillOpacity: 0.85 },
-        labelBgPadding: [4, 2] as [number, number],
+        labelShowBg: true,
+        labelBgStyle: { fill: "#0D1117", fillOpacity: 0.92 },
+        labelBgPadding: [8, 4] as [number, number],
+        labelBgBorderRadius: 4,
         style: { stroke: "#22D3EE", strokeWidth: 1.75 },
         markerEnd: { type: MarkerType.ArrowClosed, color: "#22D3EE", width: 16, height: 16 },
       })),
@@ -128,7 +133,7 @@ export function SystemDiagram({ diagram }: { diagram: SystemDiagramData }) {
         <div className="surface-card overflow-hidden">
           {/* Full-width visual canvas — fits entirely, no panning required */}
           <div
-            className="h-[420px] w-full"
+            className="h-[340px] w-full"
             role="img"
             aria-label={`${diagram.title} flow diagram. ${diagram.nodes
               .map((n) => n.label)
