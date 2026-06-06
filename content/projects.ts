@@ -51,6 +51,30 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: "matt-maya-show",
+    title: "Matt & Maya Show",
+    outcome:
+      "A podcast about people, patterns, and the collision between human instinct and machine intelligence.",
+    description:
+      "Matt & Maya is a podcast exploring what happens when human intuition meets AI precision. Matt brings gut feelings, contradictions, and irrational passion for systems that somehow work. Maya brings patterns, data, and playful honesty about what the numbers mean. Every episode is a real debate about decisions, dilemmas, and the stuff people argue about\u2014exploring why we do what we do, even when we know better. No breathless futurism, no talking points. Just the human condition analyzed from two radically different perspectives: the part of you that feels and the part that knows. Visit the site and play the audio teaser to hear just how real the conversation gets.",
+    image: {
+      src: "/matt-maya-show.jpg",
+      alt: "Matt & Maya Show \u2014 Human Mess meets Elegant Logic. A podcast about people, patterns, and the beautiful collision between human instinct and machine intelligence.",
+      width: 1400,
+      height: 951,
+    },
+    skills: [
+      "Podcast production",
+      "Thought leadership",
+      "AI narrative",
+      "Human-AI collaboration",
+    ],
+    link: {
+      label: "Listen to the teaser",
+      href: "https://mattandmayashow.com",
+    },
+  },
+  {
     id: "client-dashboard",
     title: "Custom Client Performance Dashboard",
     outcome:
