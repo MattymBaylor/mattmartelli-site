@@ -44,7 +44,7 @@ export function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-night" />
       </div>
 
-      <div className="container-x grid min-h-[92vh] grid-cols-1 items-center gap-10 pb-20 pt-28 sm:pt-32 lg:grid-cols-[minmax(0,1fr)_440px] lg:gap-14">
+      <div className="container-x grid min-h-[88vh] scroll-mt-24 grid-cols-1 items-center gap-10 pb-12 pt-32 sm:pt-40 lg:grid-cols-[minmax(0,1fr)_440px] lg:gap-14">
         <motion.div
           variants={container}
           initial="hidden"
@@ -71,23 +71,9 @@ export function Hero() {
 
           <motion.p
             variants={item}
-            className="mt-6 font-display text-lg text-ink-muted sm:text-xl"
-          >
-            {hero.subLine}
-          </motion.p>
-
-          <motion.p
-            variants={item}
             className="mt-6 max-w-2xl border-l-2 border-accent-cyan/50 pl-4 text-base leading-relaxed text-ink sm:text-lg"
           >
             {hero.introduction}
-          </motion.p>
-
-          <motion.p
-            variants={item}
-            className="mt-5 max-w-2xl text-sm leading-relaxed text-ink-muted sm:text-base"
-          >
-            {hero.positioning}
           </motion.p>
 
           <motion.div

@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { recruiter } from "@/content/recruiter";
 import { site } from "@/content/site";
+import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
 
 export const metadata: Metadata = {
   title: "Recruiter Fast Path",
@@ -140,14 +141,7 @@ export default function RecruiterPage() {
               <h2 id="featured" className="text-xl font-semibold">
                 Featured projects
               </h2>
-              <ul className="mt-4 space-y-4">
-                {recruiter.featured.map((f) => (
-                  <li key={f.title} className="surface-card p-4">
-                    <p className="font-display font-semibold text-ink">{f.title}</p>
-                    <p className="mt-1 text-sm leading-relaxed text-ink-muted">{f.line}</p>
-                  </li>
-                ))}
-              </ul>
+              <FeaturedProjects />
               <Link
                 href="/#projects"
                 className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent-cyan"

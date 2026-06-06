@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { StatCallout } from "@/components/ui/StatCallout";
+import { site } from "@/content/site";
 
 interface Zone {
   id: string;
@@ -129,6 +131,12 @@ export function InteractiveVoiceCapabilities() {
               </div>
             )}
           </div>
+        </Reveal>
+
+        <Reveal delay={0.12}>
+          <StatCallout value="~80%" kind="industry" footnote={site.footnotes[2]}>
+            of callers who reach voicemail hang up without leaving a message.
+          </StatCallout>
         </Reveal>
       </div>
     </section>

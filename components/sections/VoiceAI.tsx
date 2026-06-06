@@ -5,6 +5,8 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { Explorable } from "@/components/ui/Explorable";
 import { LiteYouTube } from "@/components/ui/LiteYouTube";
+import { StatCallout } from "@/components/ui/StatCallout";
+import { Footnotes } from "@/components/ui/Footnotes";
 
 export function VoiceAI() {
   const { voice } = site;
@@ -35,6 +37,14 @@ export function VoiceAI() {
             </p>
             <Explorable items={voice.capabilities} ariaLabel="Voice AI capabilities" />
           </div>
+        </Reveal>
+
+        <Reveal delay={0.11}>
+          <StatCallout value="38%" kind="owned" footnote={site.footnotes[3]}>
+            automated appointment-confirmation calls cut cancellations — in a
+            home-services workflow I built; the pattern fits any business that
+            books appointments.
+          </StatCallout>
         </Reveal>
 
         <Reveal delay={0.12}>
@@ -82,6 +92,8 @@ export function VoiceAI() {
             {voice.diagramRef}
           </Link>
         </Reveal>
+
+        <Footnotes numbers={[1, 3, 4, 5, 6]} />
       </div>
     </section>
   );

@@ -8,6 +8,10 @@ export interface ExplorableItem {
   id: string;
   label: string;
   detail: string;
+  points?: readonly string[]; // NEW: 2–3 scannable sub-capabilities
+  proof?: string; // NEW: optional one-line outcome / who it's for
+  // Owned (first-party) proof renders warm/gold; industry benchmarks render cyan.
+  proofKind?: "owned" | "industry";
 }
 
 /**
@@ -65,7 +69,7 @@ export function Explorable({
         })}
       </div>
 
-      <div className="surface-card min-h-[150px] p-6">
+      <div className="surface-card min-h-[150px] border-l-2 border-accent-cyan/50 p-6 ring-1 ring-accent-cyan/20">
         <AnimatePresence mode="wait">
           <motion.div
             key={active?.id}
@@ -80,6 +84,31 @@ export function Explorable({
             <p className="mt-3 text-sm leading-relaxed text-ink sm:text-base" aria-live="polite">
               {active?.detail}
             </p>
+            {active?.points && active.points.length > 0 && (
+              <ul className="mt-4 space-y-1.5">
+                {active.points.map((point) => (
+                  <li
+                    key={point}
+                    className="flex items-start gap-2 text-sm leading-relaxed text-ink-muted"
+                  >
+                    <span
+                      className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent-cyan/60"
+                      aria-hidden
+                    />
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            )}
+            {active?.proof && (
+              <p
+                className={`mt-4 text-xs leading-relaxed ${
+                  active.proofKind === "owned" ? "text-warm/90" : "text-accent-cyan/80"
+                }`}
+              >
+                {active.proof}
+              </p>
+            )}
           </motion.div>
         </AnimatePresence>
       </div>

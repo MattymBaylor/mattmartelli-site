@@ -222,10 +222,10 @@ export const projects: Project[] = [
     outcome:
       "Turns missed and after-hours calls into qualified, scheduled, revenue-generating conversations.",
     description:
-      "Voice AI systems that answer calls, qualify leads, schedule appointments, and recover revenue opportunities around the clock — connecting the voice layer to CRM, scheduling, and follow-up so no call goes to waste. Productized as a live offering: AI that answers the phone, qualifies the lead, and books the job before the caller hangs up.",
+      "Voice AI systems that answer calls, qualify leads, schedule appointments, and recover revenue opportunities around the clock — connecting the voice layer to CRM, scheduling, and follow-up so no call goes to waste. Productized as a live offering: AI that answers the phone, qualifies the lead, and books the appointment before the caller hangs up. The same pattern applies to any business that books appointments — coaching, medical, B2B, field service.",
     image: {
       src: "/voice-ecosystem.png",
-      alt: "Voice AI product landing: 'Every Missed Call Is a Job You'll Never Know You Lost' — AI that answers the phone, qualifies the lead, and books the job, with a call-flow diagram.",
+      alt: "Voice AI product landing: 'Every missed call is lost revenue' — AI that answers the phone, qualifies the lead, and books the job, with a call-flow diagram.",
       width: 1600,
       height: 1000,
     },
@@ -239,10 +239,10 @@ export const projects: Project[] = [
     outcome:
       "Recaptures revenue that normally leaks away — missed calls, after-hours inquiries, and slow follow-up.",
     description:
-      "Automation that detects missed opportunities — missed calls, after-hours inquiries, and delayed follow-up — and re-engages them automatically to reclaim revenue that would otherwise be lost. Built around speed-to-lead: the first responder wins the job, so the system responds in under 60 seconds, automatically.",
+      "Automation that detects missed opportunities — missed calls, after-hours inquiries, and delayed follow-up — and re-engages them automatically to reclaim revenue that would otherwise be lost. Built around speed-to-lead: the first responder wins the deal, so the system responds in under 60 seconds, automatically.",
     image: {
       src: "/revenue-recovery.png",
-      alt: "Speed-to-lead product: 'Your Leads Are Dying. Every Minute Costs You $47' with metric cards — 78% of jobs go to the first responder, 21x higher conversion under 5 minutes, 42% conversion under 60 seconds.",
+      alt: "Speed-to-lead product: 'Your Leads Are Dying. Every Minute Costs You $47' with metric cards — 78% of jobs go to the first responder, 21x higher conversion under 5 minutes, 391% higher conversion when calling within one minute.",
       width: 1600,
       height: 1000,
     },
