@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Offset anchored sections for the sticky header. */
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    @apply bg-base text-ink font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: rgba(34, 211, 238, 0.28);
+    color: #f4fbff;
+  }
+
+  /* Visible, consistent focus ring for keyboard users. */
+  :focus-visible {
+    outline: 2px solid #22d3ee;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-tight;
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-content px-5 sm:px-8;
+  }
+
+  .section {
+    @apply scroll-mt-24 py-20 sm:py-28;
+  }
+
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-[0.22em] text-accent-cyan/80;
+  }
+
+  .surface-card {
+    @apply rounded-xl border border-line bg-surface-elevated/80 shadow-elevated;
+  }
+
+  .accent-text {
+    @apply bg-accent-gradient bg-clip-text text-transparent;
+  }
+
+  /* Skip link */
+  .skip-link {
+    @apply sr-only;
+  }
+  .skip-link:focus {
+    @apply not-sr-only fixed left-4 top-4 z-[100] rounded-md bg-accent-indigo px-4 py-2 text-sm font-medium text-white;
+  }
+}
+
+/* Animated flow on diagram edges. Disabled under reduced motion below. */
+.react-flow__edge-path {
+  stroke-width: 1.75;
+}
+
+.flow-animated .react-flow__edge .react-flow__edge-path {
+  stroke-dasharray: 6 6;
+  animation: dash 0.7s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+/* React Flow controls/attribution restyle for dark theme */
+.react-flow__attribution {
+  background: transparent !important;
+  color: rgba(105, 117, 134, 0.6);
+  font-size: 10px;
+}
+
+.react-flow__controls {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0.7);
+}
+.react-flow__controls-button {
+  background: #12141c;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+  color: #9ba7b4;
+}
+.react-flow__controls-button:hover {
+  background: #171a24;
+}
+.react-flow__controls-button svg {
+  fill: currentColor;
+}
+
+/* Respect user motion preferences globally. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .flow-animated .react-flow__edge .react-flow__edge-path {
+    animation: none;
+    stroke-dasharray: 0;
+  }
+}
