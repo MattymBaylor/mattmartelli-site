@@ -16,10 +16,6 @@ export const caseStudy = {
 
   links: {
     demo: { label: "Launch Interactive Demo", href: "https://growthmindset.ai/seinfeld-hq/" },
-    repo: {
-      label: "View on GitHub",
-      href: "https://github.com/MattymBaylor/gms-website-3.0-perplexity",
-    },
   },
 
   hero: {

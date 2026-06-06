@@ -21,10 +21,6 @@ export const recruiter = {
       "A flagship case study in turning complex AI workflows into understandable business systems — orchestration, routing, memory, QA gates, workflow automation, voice AI, CRM integration, and human handoffs. Themed as a Seinfeld cast to make the org chart legible, but the theme is the wrapper; the architecture is the product.",
     caseStudy: { label: "Read the Case Study", href: "/seinfeld-hq" },
     demo: { label: "Launch Interactive Demo", href: "https://growthmindset.ai/seinfeld-hq/" },
-    repo: {
-      label: "View on GitHub",
-      href: "https://github.com/MattymBaylor/gms-website-3.0-perplexity",
-    },
   },
 
   executiveSummary:

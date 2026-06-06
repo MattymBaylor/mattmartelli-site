@@ -5,7 +5,6 @@ import {
   ArrowLeft,
   ArrowRight,
   ArrowUpRight,
-  Github,
   Play,
   ChevronDown,
   Check,
@@ -326,14 +325,6 @@ export default function CaseStudyPage() {
                   className="inline-flex items-center justify-center gap-2 rounded-md bg-accent-gradient px-5 py-3 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03]"
                 >
                   <Play size={16} aria-hidden /> {cs.links.demo.label}
-                </a>
-                <a
-                  href={cs.links.repo.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-md border border-line-strong px-5 py-3 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50"
-                >
-                  <Github size={16} aria-hidden /> {cs.links.repo.label}
                 </a>
               </div>
             </Reveal>

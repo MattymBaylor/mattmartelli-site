@@ -7,7 +7,6 @@ import {
   Mail,
   Linkedin,
   ArrowUpRight,
-  Github,
   Star,
 } from "lucide-react";
 import { recruiter } from "@/content/recruiter";
@@ -100,14 +99,6 @@ export default function RecruiterPage() {
               {recruiter.flagship.caseStudy.label}
               <ArrowUpRight size={15} aria-hidden />
             </Link>
-            <a
-              href={recruiter.flagship.repo.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md border border-line-strong px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50"
-            >
-              <Github size={15} aria-hidden /> {recruiter.flagship.repo.label}
-            </a>
           </div>
         </section>
 
