@@ -1,7 +1,7 @@
 import { Header } from "@/components/nav/Header";
 import { Footer } from "@/components/nav/Footer";
 import { Hero } from "@/components/sections/Hero";
-import { WhatIDo } from "@/components/sections/WhatIDo";
+import { SeinfeldHighlight } from "@/components/sections/SeinfeldHighlight";
 import { AgenticSystems } from "@/components/sections/AgenticSystems";
 import { Orchestration } from "@/components/sections/Orchestration";
 import { VoiceAI } from "@/components/sections/VoiceAI";
@@ -19,7 +19,7 @@ export default function HomePage() {
       <Header />
       <main id="main">
         <Hero />
-        <WhatIDo />
+        <SeinfeldHighlight />
         <AgenticSystems />
         <Orchestration />
         <VoiceAI />

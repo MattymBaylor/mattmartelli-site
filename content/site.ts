@@ -32,7 +32,6 @@ export const site = {
       {
         label: "Approach",
         links: [
-          { label: "What I Do", href: "#what-i-do" },
           { label: "Agentic Systems", href: "#agentic-systems" },
           { label: "Voice AI", href: "#voice-ai" },
           { label: "Marketing Ops & CRM", href: "#marketing-ops" },

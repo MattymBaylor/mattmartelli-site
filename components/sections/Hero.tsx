@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { site } from "@/content/site";
 import { ConstellationBackground } from "@/components/hero/ConstellationBackground";
-import { HeroSystemDiagram } from "@/components/hero/HeroSystemDiagram";
 import { usePrefersReducedMotion } from "@/lib/useReducedMotion";
 
 const { hero } = site;
@@ -44,12 +43,12 @@ export function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-night" />
       </div>
 
-      <div className="container-x grid min-h-[72vh] scroll-mt-24 grid-cols-1 items-center gap-10 pb-6 pt-32 sm:pt-40 lg:grid-cols-[minmax(0,1fr)_460px] lg:gap-14">
+      <div className="container-x scroll-mt-24 pb-10 pt-32 text-left sm:pt-40">
         <motion.div
           variants={container}
           initial="hidden"
           animate="show"
-          className="max-w-2xl lg:max-w-none"
+          className="w-full"
         >
           {/* Headline — two stacked lines; line 2 is larger and carries the emphasis */}
           <motion.h1
@@ -76,7 +75,7 @@ export function Hero() {
           {/* Body — smaller, the supporting detail */}
           <motion.p
             variants={item}
-            className="mt-5 max-w-2xl border-l-2 border-accent-cyan/50 pl-4 text-base leading-relaxed text-ink-muted sm:text-lg"
+            className="mt-5 max-w-4xl border-l-2 border-accent-cyan/50 pl-4 text-base leading-relaxed text-ink-muted sm:text-lg"
           >
             {hero.introduction}
           </motion.p>
@@ -108,41 +107,6 @@ export function Hero() {
               />
             </Link>
           </motion.div>
-
-          {/* Flagship teaser — shown on mobile only; on desktop the system
-              diagram in the right column is the flagship doorway instead. */}
-          <motion.div variants={item} className="mt-7 lg:hidden">
-            <Link
-              href={hero.flagshipTeaser.href}
-              className="group inline-flex max-w-2xl items-start gap-3 rounded-xl border border-line bg-surface-elevated/50 px-4 py-3 transition-colors hover:border-accent-cyan/40"
-            >
-              <span className="mt-0.5 shrink-0 rounded-md bg-accent-cyan/10 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-accent-cyan/90">
-                Flagship
-              </span>
-              <span className="text-sm leading-relaxed">
-                <span className="font-medium text-ink transition-colors group-hover:text-accent-cyan">
-                  {hero.flagshipTeaser.lead}
-                </span>{" "}
-                <span className="text-ink-muted">{hero.flagshipTeaser.detail}</span>
-                <ArrowRight
-                  size={14}
-                  className="ml-1 inline-block align-[-1px] text-accent-cyan transition-transform group-hover:translate-x-0.5"
-                  aria-hidden
-                />
-              </span>
-            </Link>
-          </motion.div>
-        </motion.div>
-
-        {/* Right column — the live system diagram, a clickable doorway to the
-            flagship. Hidden on mobile (the text teaser above covers it there). */}
-        <motion.div
-          initial={reduced ? false : { opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.35, ease: [0.21, 0.47, 0.32, 0.98] }}
-          className="hidden lg:block"
-        >
-          <HeroSystemDiagram />
         </motion.div>
       </div>
     </section>
