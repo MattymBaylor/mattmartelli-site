@@ -50,15 +50,6 @@ export function Hero() {
           animate="show"
           className="w-full"
         >
-          {/* Eyebrow — muted, small-caps role label. Subtle, sets the seniority
-              register before the headline. */}
-          <motion.p
-            variants={item}
-            className="mb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-accent-cyan/70 sm:text-xs"
-          >
-            {hero.eyebrow}
-          </motion.p>
-
           {/* Headline — two stacked lines, both the same size. Line 1 is the
               accent color, line 2 is ink; size is uniform so it reads as one H1. */}
           <motion.h1

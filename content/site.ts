@@ -52,10 +52,10 @@ export const site = {
   hero: {
     name: "Matt Martelli",
     // Headline renders as two stacked lines; line 2 carries the emphasis.
-    eyebrow: "AI Systems Architect • Marketing Operations Leader",
     headlineLine1: "AI is the tool.",
     headlineLine2: "The system is the product.",
-    capabilities: "Voice AI • Multi-Agent Systems • Marketing Operations",
+    capabilities:
+      "AI Voice Agent & Agentic Workflow Architect | Marketing & Sales Automation | HubSpot Certified",
     introduction:
       "I build production AI systems that connect voice agents, automation, CRM platforms, and human teams into measurable revenue engines.",
     experience:
