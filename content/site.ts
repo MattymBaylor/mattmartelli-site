@@ -55,7 +55,7 @@ export const site = {
     headlineLine1: "AI is the tool.",
     headlineLine2: "The system is the product.",
     capabilities:
-      "AI Voice Agent & Agentic Workflow Architect | Marketing & Sales Automation | HubSpot Certified",
+      "AI Voice Agent & Agentic Workflow Architect • Marketing & Sales Automation • HubSpot Certified",
     introduction:
       "I build production AI systems that connect voice agents, automation, CRM platforms, and human teams into measurable revenue engines.",
     experience:
