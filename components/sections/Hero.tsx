@@ -111,6 +111,22 @@ export function Hero() {
                 aria-hidden
               />
             </Link>
+            {/* Flagship CTA — the warm yellow accent, sized to match the row */}
+            <Link
+              href="/seinfeld-hq"
+              className={`group inline-flex items-center justify-center gap-2 rounded-md bg-[#FACC15] px-5 py-3 text-sm font-semibold text-night transition-transform hover:scale-[1.03] ${
+                reduced
+                  ? "shadow-[0_0_0_1px_rgba(250,204,21,0.5),0_0_28px_-6px_rgba(250,204,21,0.7)]"
+                  : "animate-ribbon-pulse"
+              }`}
+            >
+              See a live workflow
+              <ArrowUpRight
+                size={16}
+                className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                aria-hidden
+              />
+            </Link>
           </motion.div>
         </motion.div>
       </div>
