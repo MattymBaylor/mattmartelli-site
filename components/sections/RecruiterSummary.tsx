@@ -16,6 +16,7 @@ export function RecruiterSummary() {
           eyebrow="Recruiter Fast Path"
           title="For hiring managers who want the highlights"
           sub="The 60-second version. The full fast-path page has the résumé, accomplishments, and condensed projects."
+          headingId="recruiter-heading"
         />
 
         <div className="mt-10 grid gap-6 lg:grid-cols-[1.2fr_1fr]">
