@@ -27,8 +27,9 @@ export const site = {
   },
 
   nav: {
-    // Two grouped dropdowns keep the bar lean; the CTAs sit to the right.
-    groups: [
+    // A nav item is either a dropdown (has `links`) or a direct link (has `href`).
+    // Approach stays a dropdown; Work, Projects, Blueprints are direct links.
+    items: [
       {
         label: "Approach",
         links: [
@@ -38,14 +39,9 @@ export const site = {
           { label: "AI Orchestration", href: "#orchestration" },
         ],
       },
-      {
-        label: "Work",
-        links: [
-          { label: "Proof of Work", href: "#proof-of-work" },
-          { label: "Projects", href: "#projects" },
-          { label: "AI Blueprints", href: "#ai-blueprints" },
-        ],
-      },
+      { label: "Work", href: "#proof-of-work" },
+      { label: "Projects", href: "#projects" },
+      { label: "Blueprints", href: "#ai-blueprints" },
     ],
     cta: {
       recruiter: { label: "Recruiter Fast Path", href: "/recruiter" },
@@ -58,9 +54,11 @@ export const site = {
     // Headline renders as two stacked lines; line 2 carries the emphasis.
     headlineLine1: "AI is the tool.",
     headlineLine2: "The system is the product.",
-    subheadline: "The system is the constant. The tools just serve it.",
+    capabilities: "Voice AI • Multi-Agent Systems • Marketing Operations",
     introduction:
-      "I've spent 25+ years building the marketing, CRM, and operational systems businesses rely on every day. Today I architect AI-powered ecosystems that connect voice, automation, data, and human teams to create measurable business outcomes.",
+      "I design and deploy production AI systems that connect voice agents, automation, CRM platforms, and human teams to drive measurable revenue outcomes.",
+    experience:
+      "25+ years building the marketing, CRM, and operational infrastructure businesses run on every day.",
     ctas: {
       primary: { label: "Explore the Systems", href: "#proof-of-work" },
       secondary: { label: "Recruiter Fast Path", href: "/recruiter" },

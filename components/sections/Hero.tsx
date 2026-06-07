@@ -50,34 +50,39 @@ export function Hero() {
           animate="show"
           className="w-full"
         >
-          {/* Headline — two stacked lines; line 2 is larger and carries the emphasis */}
+          {/* Headline — two stacked lines, both the same size. Line 1 is the
+              accent color, line 2 is ink; size is uniform so it reads as one H1. */}
           <motion.h1
             id="hero-heading"
             variants={item}
-            className="text-balance font-semibold leading-[1.05] tracking-tight"
+            className="text-balance font-semibold leading-[1.12] tracking-tight text-4xl sm:text-5xl lg:text-[3.5rem]"
           >
-            <span className="block text-3xl text-accent-cyan sm:text-4xl lg:text-5xl">
-              {hero.headlineLine1}
-            </span>
-            <span className="block text-4xl text-ink sm:text-5xl lg:text-[4.25rem]">
-              {hero.headlineLine2}
-            </span>
+            <span className="block text-accent-cyan">{hero.headlineLine1}</span>
+            <span className="block text-ink">{hero.headlineLine2}</span>
           </motion.h1>
 
-          {/* Subheadline — secondary emphasis */}
+          {/* Capabilities line — the three pillars */}
           <motion.p
             variants={item}
-            className="mt-5 font-display text-xl leading-snug text-ink sm:text-2xl"
+            className="mt-6 font-display text-lg leading-snug text-ink sm:text-xl"
           >
-            {hero.subheadline}
+            {hero.capabilities}
           </motion.p>
 
-          {/* Body — smaller, the supporting detail */}
+          {/* Body — the supporting detail */}
           <motion.p
             variants={item}
-            className="mt-5 max-w-4xl border-l-2 border-accent-cyan/50 pl-4 text-base leading-relaxed text-ink-muted sm:text-lg"
+            className="mt-6 max-w-3xl text-base leading-relaxed text-ink-muted sm:text-lg"
           >
             {hero.introduction}
+          </motion.p>
+
+          {/* Experience line */}
+          <motion.p
+            variants={item}
+            className="mt-4 max-w-3xl text-base leading-relaxed text-ink-muted sm:text-lg"
+          >
+            {hero.experience}
           </motion.p>
 
           <motion.div

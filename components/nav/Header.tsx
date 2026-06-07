@@ -61,27 +61,41 @@ export function Header() {
           </span>
         </Link>
 
-        {/* Desktop dropdowns */}
+        {/* Desktop nav — dropdowns (items with `links`) and direct links */}
         <ul className="hidden items-center gap-1 lg:flex">
-          {site.nav.groups.map((g) => {
-            const menuOpen = openMenu === g.label;
+          {site.nav.items.map((item) => {
+            // Direct link — no dropdown.
+            if (!("links" in item)) {
+              return (
+                <li key={item.label}>
+                  <Link
+                    href={`/${item.href}`}
+                    className="inline-flex items-center rounded-md px-3 py-2 text-sm text-ink-muted transition-colors hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/60"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            }
+
+            const menuOpen = openMenu === item.label;
             return (
               <li
-                key={g.label}
+                key={item.label}
                 className="relative"
-                onMouseEnter={() => setOpenMenu(g.label)}
+                onMouseEnter={() => setOpenMenu(item.label)}
                 onMouseLeave={() =>
-                  setOpenMenu((m) => (m === g.label ? null : m))
+                  setOpenMenu((m) => (m === item.label ? null : m))
                 }
               >
                 <button
                   type="button"
                   aria-haspopup="true"
                   aria-expanded={menuOpen}
-                  onClick={() => setOpenMenu(menuOpen ? null : g.label)}
+                  onClick={() => setOpenMenu(menuOpen ? null : item.label)}
                   className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm text-ink-muted transition-colors hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/60"
                 >
-                  {g.label}
+                  {item.label}
                   <ChevronDown
                     size={14}
                     aria-hidden
@@ -93,7 +107,7 @@ export function Header() {
                 {menuOpen && (
                   <div className="absolute left-0 top-full min-w-[220px] rounded-xl border border-line bg-surface-elevated/95 p-1.5 shadow-elevated backdrop-blur-md">
                     <ul className="flex flex-col">
-                      {g.links.map((l) => (
+                      {item.links.map((l) => (
                         <li key={l.href}>
                           <Link
                             href={`/${l.href}`}
@@ -146,19 +160,34 @@ export function Header() {
           className="border-t border-line bg-night/95 backdrop-blur-md lg:hidden"
         >
           <ul className="container-x flex flex-col gap-1 py-4">
-            {site.nav.groups.map((g) => {
-              const groupOpen = openMobileGroup === g.label;
+            {site.nav.items.map((item) => {
+              // Direct link — no accordion.
+              if (!("links" in item)) {
+                return (
+                  <li key={item.label}>
+                    <Link
+                      href={`/${item.href}`}
+                      onClick={() => setOpen(false)}
+                      className="block rounded-md px-2 py-2.5 text-base text-ink hover:bg-surface-raised"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              }
+
+              const groupOpen = openMobileGroup === item.label;
               return (
-                <li key={g.label}>
+                <li key={item.label}>
                   <button
                     type="button"
                     aria-expanded={groupOpen}
                     onClick={() =>
-                      setOpenMobileGroup(groupOpen ? null : g.label)
+                      setOpenMobileGroup(groupOpen ? null : item.label)
                     }
                     className="flex w-full items-center justify-between rounded-md px-2 py-2.5 text-base text-ink hover:bg-surface-raised"
                   >
-                    {g.label}
+                    {item.label}
                     <ChevronDown
                       size={16}
                       aria-hidden
@@ -169,7 +198,7 @@ export function Header() {
                   </button>
                   {groupOpen && (
                     <ul className="mt-0.5 flex flex-col gap-0.5 pb-1 pl-3">
-                      {g.links.map((l) => (
+                      {item.links.map((l) => (
                         <li key={l.href}>
                           <Link
                             href={`/${l.href}`}
