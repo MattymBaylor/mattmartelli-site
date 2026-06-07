@@ -43,7 +43,7 @@ export function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-night" />
       </div>
 
-      <div className="container-x scroll-mt-24 pb-10 pt-32 text-left sm:pt-40">
+      <div className="container-x scroll-mt-24 pb-6 pt-32 text-left sm:pt-40">
         <motion.div
           variants={container}
           initial="hidden"
