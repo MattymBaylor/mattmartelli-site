@@ -4,11 +4,9 @@ import { Hero } from "@/components/sections/Hero";
 import { AgenticSystems } from "@/components/sections/AgenticSystems";
 import { Orchestration } from "@/components/sections/Orchestration";
 import { VoiceAI } from "@/components/sections/VoiceAI";
-import { InteractiveVoiceCapabilities } from "@/components/sections/InteractiveVoiceCapabilities";
 import { MarketingOps } from "@/components/sections/MarketingOps";
 import { ProofOfWork } from "@/components/sections/ProofOfWork";
 import { Projects } from "@/components/sections/Projects";
-import { AiBlueprints } from "@/components/sections/AiBlueprints";
 import { RecruiterSummary } from "@/components/sections/RecruiterSummary";
 import { Contact } from "@/components/sections/Contact";
 
@@ -21,11 +19,9 @@ export default function HomePage() {
         <AgenticSystems />
         <Orchestration />
         <VoiceAI />
-        <InteractiveVoiceCapabilities />
         <MarketingOps />
         <ProofOfWork />
         <Projects />
-        <AiBlueprints />
         <RecruiterSummary />
         <Contact />
       </main>

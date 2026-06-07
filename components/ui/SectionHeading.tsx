@@ -19,7 +19,7 @@ export function SectionHeading({
 }) {
   return (
     <Reveal>
-      <div className={align === "center" ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
+      <div className={align === "center" ? "mx-auto max-w-2xl text-center" : "max-w-4xl"}>
         {eyebrow && <p className="eyebrow mb-3">{eyebrow}</p>}
         <h2 id={headingId} className="text-3xl font-semibold leading-tight sm:text-4xl">
           {title}

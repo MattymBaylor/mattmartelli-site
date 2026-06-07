@@ -8,7 +8,7 @@ import { Footnotes } from "@/components/ui/Footnotes";
 export function AgenticSystems() {
   const { agentic } = site;
   return (
-    <section id="agentic-systems" className="section border-t border-line/60 pt-10 sm:pt-14">
+    <section id="agentic-systems" className="section border-t border-line/60">
       <div className="container-x">
         <SectionHeading
           eyebrow="Multi-agent architecture"

@@ -49,7 +49,7 @@ export function Header() {
           aria-label="Matt Martelli — home"
         >
           <Image
-            src="/brand/matt-mm-monogram-primary.svg"
+            src="/brand/logo-m-geometric.svg"
             alt=""
             width={40}
             height={40}

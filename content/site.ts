@@ -31,17 +31,16 @@ export const site = {
     // Approach stays a dropdown; Work, Projects, Blueprints are direct links.
     items: [
       {
-        label: "Approach",
+        label: "Systems",
         links: [
           { label: "Agentic Systems", href: "#agentic-systems" },
           { label: "Voice AI", href: "#voice-ai" },
           { label: "Marketing Ops & CRM", href: "#marketing-ops" },
           { label: "AI Orchestration", href: "#orchestration" },
+          { label: "Proof of Work", href: "#proof-of-work" },
         ],
       },
-      { label: "Work", href: "#proof-of-work" },
       { label: "Projects", href: "#projects" },
-      { label: "Blueprints", href: "#ai-blueprints" },
     ],
     cta: {
       recruiter: { label: "Recruiter Fast Path", href: "/recruiter" },
@@ -52,11 +51,12 @@ export const site = {
   hero: {
     name: "Matt Martelli",
     // Headline renders as two stacked lines; line 2 carries the emphasis.
+    eyebrow: "AI Systems Architect • Marketing Operations Leader",
     headlineLine1: "AI is the tool.",
     headlineLine2: "The system is the product.",
     capabilities: "Voice AI • Multi-Agent Systems • Marketing Operations",
     introduction:
-      "I design and deploy production AI systems that connect voice agents, automation, CRM platforms, and human teams to drive measurable revenue outcomes.",
+      "I build production AI systems that connect voice agents, automation, CRM platforms, and human teams into measurable revenue engines.",
     experience:
       "25+ years building the marketing, CRM, and operational infrastructure businesses run on every day.",
     ctas: {
@@ -107,7 +107,7 @@ export const site = {
 
   agentic: {
     heading: "Agentic Systems",
-    copy: "Design and orchestrate multi-agent architectures that coordinate specialized AI workers to execute business processes.",
+    copy: "AI workers that qualify leads, recover revenue, support customers, and automate operations — coordinated as a single system.",
     // Explorable chips — selecting one updates the inline description.
     applications: [
       {

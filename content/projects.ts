@@ -138,31 +138,6 @@ export const projects: Project[] = [
       href: "https://n8n.growthmindsetai.tech/workflow/CwIi4IELhYQA2zyJ",
     },
   },
-  {
-    id: "retell-voice-agent",
-    title: "Retell Voice AI — Revenue-Recovery Agent",
-    outcome:
-      "A production voice agent that recovers missed revenue — engaging callers, qualifying, booking, and handing off warm leads.",
-    description:
-      "A production Retell voice agent built to recover missed revenue: it engages callers naturally, captures intent and context in real time, qualifies the opportunity, books appointments against live availability, and hands a warm, fully-briefed lead to the team. This is the actual agent — its role prompt, dynamic call context, conversation logic, speech tuning, and live simulation environment.",
-    image: {
-      src: "/retell-voice-agent.png",
-      alt: "Retell AI agent builder showing a production revenue-recovery voice agent — its role prompt, dynamic call context, speech settings, and real-time simulation environment.",
-      width: 4112,
-      height: 2336,
-    },
-    callouts: [
-      { n: 1, label: "Voice agent opens the conversation naturally" },
-      { n: 2, label: "Captures intent and context in real time" },
-      { n: 3, label: "Qualifies the opportunity against the script" },
-      { n: 4, label: "Books appointments against live availability" },
-      { n: 5, label: "Logs structured call data to CRM" },
-      { n: 6, label: "Triggers SMS confirmation and follow-up" },
-      { n: 7, label: "Recovers missed-revenue opportunities" },
-      { n: 8, label: "Warm handoff to the human team" },
-    ],
-    tech: ["Retell AI", "OpenAI Realtime", "Twilio", "n8n", "CRM", "Google Calendar"],
-  },
   /* TEMPORARILY REMOVED from the Projects grid for a cleaner recruiter view.
      The flagship still lives on /seinfeld-hq and as the homepage hero teaser.
      Re-add this card (with a stronger visual) when ready.
@@ -249,22 +224,5 @@ export const projects: Project[] = [
     flow: ["Detect", "Re-engage", "Qualify", "Recover"],
     skills: ["Workflow automation", "Revenue operations", "Event detection"],
     link: { label: "View live site", href: "https://speedlead-pi.vercel.app" },
-  },
-  {
-    id: "marketing-transformation",
-    title: "Marketing Automation Transformation",
-    outcome:
-      "Large-scale lifecycle and CRM programs that turned fragmented data into measurable, attributable pipeline.",
-    description:
-      "Large-scale CRM and lifecycle marketing initiatives focused on lead management, customer journeys, reporting, and operational efficiency — turning fragmented data into a measurable, attributable pipeline across enterprise marketing and revenue operations.",
-    image: {
-      src: "",
-      alt: "Marketing automation transformation — screenshot coming soon.",
-      width: 1600,
-      height: 1000,
-      placeholder: true,
-    },
-    flow: ["Lead Mgmt", "Journeys", "Scoring", "Reporting", "Efficiency"],
-    skills: ["Lifecycle marketing", "CRM architecture", "Lead scoring", "Revenue attribution"],
   },
 ];

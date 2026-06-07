@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Matt Martelli monogram">
+  <!-- Option B — "M" drawn as a connected node/edge network, echoing the
+       constellation background. Hollow corner nodes, a filled core node. -->
+  <rect width="64" height="64" rx="12" fill="#0A0A0F"/>
+  <path d="M14 47 L14 17 L32 37 L50 17 L50 47" fill="none" stroke="#22D3EE" stroke-opacity="0.85" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="14" cy="47" r="3.4" fill="#0A0A0F" stroke="#22D3EE" stroke-width="2"/>
+  <circle cx="14" cy="17" r="3.4" fill="#0A0A0F" stroke="#22D3EE" stroke-width="2"/>
+  <circle cx="50" cy="17" r="3.4" fill="#0A0A0F" stroke="#22D3EE" stroke-width="2"/>
+  <circle cx="50" cy="47" r="3.4" fill="#0A0A0F" stroke="#22D3EE" stroke-width="2"/>
+  <circle cx="32" cy="37" r="4" fill="#22D3EE"/>
+</svg>

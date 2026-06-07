@@ -10,7 +10,7 @@ export function Footer() {
         <div className="max-w-md">
           <div className="flex items-center gap-2.5">
             <Image
-              src="/brand/matt-mm-monogram-primary.svg"
+              src="/brand/logo-m-geometric.svg"
               alt=""
               width={28}
               height={28}
