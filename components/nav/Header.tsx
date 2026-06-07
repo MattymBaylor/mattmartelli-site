@@ -33,7 +33,7 @@ export function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 backdrop-blur-[14px] backdrop-saturate-150 transition-[background-color,border-color,box-shadow] duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 transform-gpu backdrop-blur-[14px] backdrop-saturate-150 [will-change:transform] transition-[background-color,border-color,box-shadow] duration-300 ${
         scrolled
           ? "border-b border-[rgba(110,180,255,0.18)] bg-[rgba(4,8,18,0.9)] shadow-[0_12px_34px_-20px_rgba(0,0,0,0.85)]"
           : "border-b border-[rgba(110,180,255,0.10)] bg-[rgba(8,11,20,0.72)]"
