@@ -60,23 +60,6 @@ export default function CaseStudyPage() {
             <p className="mt-8 max-w-4xl border-l-2 border-accent-cyan/60 pl-4 font-display text-xl text-ink sm:text-2xl">
               {cs.hero.coreMessage}
             </p>
-
-            {/* My Role strip */}
-            <div className="mt-9">
-              <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
-                My role
-              </p>
-              <ul className="flex flex-wrap gap-2">
-                {cs.hero.roleStrip.map((r) => (
-                  <li
-                    key={r}
-                    className="rounded-md border border-line bg-surface-elevated/50 px-3 py-1.5 font-mono text-xs text-ink-muted"
-                  >
-                    {r}
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
         </section>
 
