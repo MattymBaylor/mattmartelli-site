@@ -3,11 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   ArrowLeft,
-  ArrowRight,
-  ArrowUpRight,
   Play,
   ChevronDown,
-  Check,
   AlertTriangle,
   Boxes,
   Briefcase,
@@ -57,10 +54,10 @@ export default function CaseStudyPage() {
             <h1 className="mt-4 max-w-4xl text-balance text-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
               {cs.hero.headline}
             </h1>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg">
+            <p className="mt-6 max-w-4xl text-base leading-relaxed text-ink-muted sm:text-lg">
               {cs.hero.subheadline}
             </p>
-            <p className="mt-8 max-w-2xl border-l-2 border-accent-cyan/60 pl-4 font-display text-xl text-ink sm:text-2xl">
+            <p className="mt-8 max-w-4xl border-l-2 border-accent-cyan/60 pl-4 font-display text-xl text-ink sm:text-2xl">
               {cs.hero.coreMessage}
             </p>
 
@@ -123,7 +120,7 @@ export default function CaseStudyPage() {
         <section className="section border-b border-line/60 bg-surface/30">
           <div className="container-x">
             <Reveal>
-              <div className="max-w-2xl">
+              <div className="max-w-4xl">
                 <Eyebrow>{cs.solution.eyebrow}</Eyebrow>
                 <h2 className="text-3xl font-semibold sm:text-4xl">{cs.solution.heading}</h2>
                 <div className="mt-5 space-y-4">
@@ -138,10 +135,10 @@ export default function CaseStudyPage() {
             <Reveal delay={0.08}>
               <div className="mt-10">
                 <p className="eyebrow mb-2">{cs.orgChart.eyebrow}</p>
-                <h3 className="max-w-2xl text-2xl font-semibold sm:text-3xl">
+                <h3 className="max-w-4xl text-2xl font-semibold sm:text-3xl">
                   {cs.orgChart.heading}
                 </h3>
-                <p className="mt-4 max-w-2xl text-base leading-relaxed text-ink-muted">
+                <p className="mt-4 max-w-4xl text-base leading-relaxed text-ink-muted">
                   {cs.orgChart.intro}
                 </p>
               </div>
@@ -165,7 +162,7 @@ export default function CaseStudyPage() {
         <section className="section border-b border-line/60">
           <div className="container-x">
             <Reveal>
-              <div className="max-w-2xl">
+              <div className="max-w-4xl">
                 <Eyebrow>{cs.whyThisMatters.eyebrow}</Eyebrow>
                 <h2 className="text-3xl font-semibold sm:text-4xl">{cs.whyThisMatters.heading}</h2>
                 <div className="mt-5 space-y-4">
@@ -187,7 +184,7 @@ export default function CaseStudyPage() {
         <section className="section border-b border-line/60 bg-surface/30">
           <div className="container-x">
             <Reveal>
-              <div className="max-w-2xl">
+              <div className="max-w-4xl">
                 <Eyebrow>{cs.examples.eyebrow}</Eyebrow>
                 <h2 className="text-3xl font-semibold sm:text-4xl">{cs.examples.heading}</h2>
                 <p className="mt-5 text-base leading-relaxed text-ink-muted">
@@ -219,40 +216,17 @@ export default function CaseStudyPage() {
           </div>
         </section>
 
-        {/* 5. MY ROLE */}
-        <section className="section border-b border-line/60 bg-surface/30">
-          <div className="container-x">
-            <Reveal>
-              <div className="max-w-2xl">
-                <Eyebrow>{cs.myRole.eyebrow}</Eyebrow>
-                <h2 className="text-3xl font-semibold sm:text-4xl">{cs.myRole.heading}</h2>
-                <p className="mt-5 text-base leading-relaxed text-ink-muted">{cs.myRole.intro}</p>
-              </div>
-            </Reveal>
-            <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {cs.myRole.items.map((item, i) => (
-                <Reveal key={item} delay={(i % 4) * 0.05}>
-                  <div className="flex h-full items-start gap-2.5 rounded-xl border border-line bg-surface-elevated/70 p-4">
-                    <Check size={16} className="mt-0.5 shrink-0 text-accent-cyan" aria-hidden />
-                    <span className="text-sm font-medium text-ink">{item}</span>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* 6. ARCHITECTURE */}
         <section className="section border-b border-line/60">
           <div className="container-x">
             <Reveal>
-              <div className="max-w-2xl">
+              <div className="max-w-4xl">
                 <Eyebrow>{cs.architecture.eyebrow}</Eyebrow>
                 <h2 className="text-3xl font-semibold sm:text-4xl">{cs.architecture.heading}</h2>
                 <p className="mt-5 font-display text-lg text-ink sm:text-xl">{cs.architecture.aboveLine}</p>
               </div>
             </Reveal>
-            <div className="mx-auto mt-8 max-w-2xl">
+            <div className="mt-8 max-w-2xl">
               {cs.architecture.layers.map((layer, i) => (
                 <Reveal key={layer.name} delay={i * 0.04}>
                   <div className="surface-card flex items-center gap-4 p-5">
@@ -273,7 +247,7 @@ export default function CaseStudyPage() {
               ))}
             </div>
             <Reveal delay={0.1}>
-              <p className="mx-auto mt-8 max-w-2xl text-center text-base leading-relaxed text-ink-muted">
+              <p className="mt-8 max-w-4xl text-base leading-relaxed text-ink-muted">
                 {cs.architecture.belowLine}
               </p>
             </Reveal>
@@ -284,7 +258,7 @@ export default function CaseStudyPage() {
         <section className="section border-b border-line/60 bg-surface/30">
           <div className="container-x">
             <Reveal>
-              <div className="max-w-2xl">
+              <div className="max-w-4xl">
                 <Eyebrow>{cs.demo.eyebrow}</Eyebrow>
                 <h2 className="text-3xl font-semibold sm:text-4xl">{cs.demo.heading}</h2>
                 <div className="mt-5 space-y-4">
@@ -317,18 +291,6 @@ export default function CaseStudyPage() {
                 </span>
               </a>
             </Reveal>
-            <Reveal delay={0.1}>
-              <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-                <a
-                  href={cs.links.demo.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-md bg-accent-gradient px-5 py-3 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03]"
-                >
-                  <Play size={16} aria-hidden /> {cs.links.demo.label}
-                </a>
-              </div>
-            </Reveal>
           </div>
         </section>
 
@@ -336,7 +298,7 @@ export default function CaseStudyPage() {
         <section className="section border-b border-line/60">
           <div className="container-x">
             <Reveal>
-              <div className="max-w-2xl">
+              <div className="max-w-4xl">
                 <Eyebrow>{cs.skins.eyebrow}</Eyebrow>
                 <h2 className="text-3xl font-semibold sm:text-4xl">{cs.skins.heading}</h2>
                 <p className="mt-5 text-base leading-relaxed text-ink-muted">{cs.skins.body}</p>
@@ -395,7 +357,7 @@ export default function CaseStudyPage() {
         <section className="section border-b border-line/60">
           <div className="container-x">
             <Reveal>
-              <div className="max-w-2xl">
+              <div className="max-w-4xl">
                 <Eyebrow>{cs.demonstrates.eyebrow}</Eyebrow>
                 <h2 className="text-3xl font-semibold sm:text-4xl">{cs.demonstrates.heading}</h2>
               </div>
@@ -413,38 +375,6 @@ export default function CaseStudyPage() {
           </div>
         </section>
 
-        {/* 11. FINAL CTA */}
-        <section className="py-16 sm:py-20">
-          <div className="container-x">
-            <Reveal>
-              <div className="surface-card flex flex-col gap-6 p-8 sm:p-10">
-                <h2 className="max-w-3xl font-display text-2xl font-semibold leading-snug sm:text-3xl">
-                  {cs.cta.heading}
-                </h2>
-                <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                  {cs.cta.buttons.map((b) => (
-                    <Link
-                      key={b.label}
-                      href={b.href}
-                      className={
-                        b.primary
-                          ? "inline-flex items-center justify-center gap-2 rounded-md bg-accent-gradient px-5 py-3 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03]"
-                          : "inline-flex items-center justify-center gap-2 rounded-md border border-line-strong px-5 py-3 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50"
-                      }
-                    >
-                      {b.label}
-                      {b.primary ? (
-                        <ArrowUpRight size={15} aria-hidden />
-                      ) : (
-                        <ArrowRight size={15} aria-hidden />
-                      )}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </section>
       </main>
       <Footer />
     </>

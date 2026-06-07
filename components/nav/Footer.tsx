@@ -6,7 +6,7 @@ import { site } from "@/content/site";
 export function Footer() {
   return (
     <footer className="border-t border-line bg-surface/40">
-      <div className="container-x flex flex-col gap-8 py-12 sm:flex-row sm:items-center sm:justify-between">
+      <div className="container-x flex flex-col gap-8 py-10 sm:flex-row sm:items-center sm:justify-between">
         <div className="max-w-md">
           <div className="flex items-center gap-2.5">
             <Image
@@ -21,7 +21,7 @@ export function Footer() {
           <p className="mt-3 text-sm text-ink-muted">{site.footer.tagline}</p>
         </div>
 
-        <div className="flex flex-col gap-3 text-sm">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-2.5 text-sm">
           <a
             href={`mailto:${site.meta.email}`}
             className="inline-flex items-center gap-2 text-ink-muted transition-colors hover:text-accent-cyan"
@@ -73,7 +73,7 @@ export function Footer() {
           </a>
         </div>
       </div>
-      <div className="container-x border-t border-line py-6">
+      <div className="container-x border-t border-line py-5">
         <p className="text-xs text-ink-faint">
           © {new Date().getFullYear()} Matt Martelli. Designing business systems powered by AI.
         </p>
