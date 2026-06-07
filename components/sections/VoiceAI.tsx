@@ -16,7 +16,7 @@ export function VoiceAI() {
         <SectionHeading eyebrow="Production voice" title={voice.heading} sub={voice.copy} />
 
         <Reveal delay={0.06}>
-          <div className="mt-8 flex flex-wrap gap-2">
+          <div className="mt-10 flex flex-wrap gap-2">
             {voice.platforms.map((p) => (
               <span
                 key={p.name}

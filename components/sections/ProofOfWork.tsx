@@ -55,7 +55,7 @@ export function ProofOfWork() {
             ref={tabsRef}
             role="tablist"
             aria-label="Choose a system to explore"
-            className="mt-9 inline-flex max-w-full flex-wrap gap-1 rounded-lg border border-line bg-surface-elevated/60 p-1"
+            className="mt-10 inline-flex max-w-full flex-wrap gap-1 rounded-lg border border-line bg-surface-elevated/60 p-1"
           >
             {diagrams.map((d, i) => {
               const selected = d.id === activeId;

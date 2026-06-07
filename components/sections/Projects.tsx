@@ -89,7 +89,7 @@ export function Projects() {
           sub="Each project leads with the business outcome it produced. Click any card for the full story and a closer look."
         />
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((p, i) => (
             <Reveal key={p.id} delay={(i % 3) * 0.06}>
               <button
