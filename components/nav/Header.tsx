@@ -33,15 +33,15 @@ export function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+      className={`fixed inset-x-0 top-0 z-50 backdrop-blur-[14px] backdrop-saturate-150 transition-[background-color,border-color,box-shadow] duration-300 ${
         scrolled
-          ? "border-b border-line bg-night/80 backdrop-blur-md"
-          : "border-b border-transparent"
+          ? "border-b border-[rgba(110,180,255,0.18)] bg-[rgba(4,8,18,0.9)] shadow-[0_12px_34px_-20px_rgba(0,0,0,0.85)]"
+          : "border-b border-[rgba(110,180,255,0.10)] bg-[rgba(8,11,20,0.72)]"
       }`}
     >
       <nav
         aria-label="Primary"
-        className="container-x flex h-16 items-center justify-between gap-4"
+        className="container-x flex h-20 items-center justify-between gap-6"
       >
         <Link
           href="/#top"
@@ -62,7 +62,7 @@ export function Header() {
         </Link>
 
         {/* Desktop nav — dropdowns (items with `links`) and direct links */}
-        <ul className="hidden items-center gap-1 lg:flex">
+        <ul className="hidden items-center gap-2 lg:flex xl:gap-3">
           {site.nav.items.map((item) => {
             // Direct link — no dropdown.
             if (!("links" in item)) {
@@ -70,7 +70,7 @@ export function Header() {
                 <li key={item.label}>
                   <Link
                     href={`/${item.href}`}
-                    className="inline-flex items-center rounded-md px-3 py-2 text-sm text-ink-muted transition-colors hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/60"
+                    className="inline-flex items-center rounded-md px-4 py-2 text-sm text-ink-muted transition-colors hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/60"
                   >
                     {item.label}
                   </Link>
@@ -93,7 +93,7 @@ export function Header() {
                   aria-haspopup="true"
                   aria-expanded={menuOpen}
                   onClick={() => setOpenMenu(menuOpen ? null : item.label)}
-                  className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm text-ink-muted transition-colors hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/60"
+                  className="inline-flex items-center gap-1 rounded-md px-4 py-2 text-sm text-ink-muted transition-colors hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/60"
                 >
                   {item.label}
                   <ChevronDown
@@ -126,16 +126,16 @@ export function Header() {
           })}
         </ul>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2.5">
           <Link
             href={site.nav.cta.recruiter.href}
-            className="hidden rounded-md border border-line-strong px-3.5 py-2 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan sm:inline-flex"
+            className="hidden rounded-md border border-line-strong px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan sm:inline-flex"
           >
             {site.nav.cta.recruiter.label}
           </Link>
           <Link
             href={`/${site.nav.cta.contact.href}`}
-            className="hidden rounded-md bg-accent-gradient px-3.5 py-2 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03] sm:inline-flex"
+            className="hidden rounded-md bg-accent-gradient px-4 py-2 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03] sm:inline-flex"
           >
             {site.nav.cta.contact.label}
           </Link>

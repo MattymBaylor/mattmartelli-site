@@ -41,6 +41,7 @@ export const site = {
         ],
       },
       { label: "Projects", href: "#projects" },
+      { label: "About", href: "#recruiter" },
     ],
     cta: {
       recruiter: { label: "Recruiter Fast Path", href: "/recruiter" },
