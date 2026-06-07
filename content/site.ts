@@ -234,8 +234,8 @@ export const site = {
   },
 
   voice: {
-    heading: "Voice AI",
-    copy: "Production voice solutions.",
+    heading: "Professional Voice AI Frameworks",
+    copy: "Ability to run over 60 simultaneous calls using one workflow.",
     platforms: [
       { name: "Retell AI", note: "Realtime voice agents" },
       { name: "ElevenLabs", note: "Voice synthesis" },
