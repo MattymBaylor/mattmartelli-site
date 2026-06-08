@@ -292,6 +292,8 @@ export const caseStudy = {
     eyebrow: "Architecture",
     heading: "How every request flows",
     aboveLine: "Not a script. An operating model: 2 leadership agents, 9 specialist agents, one QA gate, and a single human in the loop.",
+    platformLine:
+      "The orchestration is one reusable component; the theme is a folder of markdown files. Re-skinning a deployment is a configuration change, not a rebuild.",
     belowLine: "Each layer makes the system easier to explain, easier to debug, and easier to scale.",
     layers: [
       { name: "Theme Layer", note: "The legible skin — naming and UX that make the system understandable" },

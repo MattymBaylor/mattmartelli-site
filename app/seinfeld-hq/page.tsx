@@ -230,8 +230,14 @@ export default function CaseStudyPage() {
                 </Reveal>
               ))}
             </div>
-            <Reveal delay={0.1}>
-              <p className="mt-8 max-w-4xl text-base leading-relaxed text-ink-muted">
+            <Reveal delay={0.08}>
+              <p className="mt-8 max-w-3xl border-l-2 border-accent-cyan/60 pl-5 font-display text-xl leading-relaxed text-ink sm:text-2xl">
+                {cs.architecture.platformLine}
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.12}>
+              <p className="mt-6 max-w-4xl text-base leading-relaxed text-ink-muted">
                 {cs.architecture.belowLine}
               </p>
             </Reveal>
