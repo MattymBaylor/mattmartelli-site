@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
@@ -41,8 +41,28 @@ export function AgentOrgChart() {
   const [activeId, setActiveId] = useState<string>(LEADERSHIP[0].id);
   const reduced = usePrefersReducedMotion();
   const active = ALL.find((a) => a.id === activeId) ?? LEADERSHIP[0];
+  const panelRef = useRef<HTMLDivElement | null>(null);
 
   const select = (id: string) => setActiveId(id);
+
+  // On tap (coarse-pointer / mobile), the detail panel sits below the chart and
+  // can update silently off-screen. Scroll it into view so feedback is visible.
+  const selectAndReveal = (id: string) => {
+    setActiveId(id);
+    if (typeof window === "undefined") return;
+    const isCoarse = window.matchMedia("(pointer: coarse)").matches;
+    if (!isCoarse) return;
+    requestAnimationFrame(() => {
+      panelRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+  };
+
+  // Hover-to-select on fine pointers only — touch devices report a synthetic
+  // mouseenter on tap that would otherwise lock selection on the last-tapped node.
+  const handleHover = (id: string) => {
+    if (typeof window === "undefined") return;
+    if (window.matchMedia("(pointer: fine)").matches) setActiveId(id);
+  };
 
   // Roving arrow-key navigation across the whole roster, in DOM order.
   const onKeyDown = (e: React.KeyboardEvent) => {
@@ -76,8 +96,8 @@ export function AgentOrgChart() {
         data-agent={agent.id}
         aria-pressed={selected}
         tabIndex={selected ? 0 : -1}
-        onClick={() => select(agent.id)}
-        onMouseEnter={() => select(agent.id)}
+        onClick={() => selectAndReveal(agent.id)}
+        onMouseEnter={() => handleHover(agent.id)}
         onFocus={() => select(agent.id)}
         onKeyDown={onKeyDown}
         className={[
@@ -166,7 +186,7 @@ export function AgentOrgChart() {
         </div>
 
         {/* RIGHT: detail panel (sticky on desktop so it tracks while exploring) */}
-        <div className="lg:sticky lg:top-24">
+        <div ref={panelRef} className="lg:sticky lg:top-24">
           <div className="rounded-xl border border-accent-cyan/30 bg-surface-raised/60 p-5 shadow-glow sm:p-6">
             <AnimatePresence mode="wait">
               <motion.div

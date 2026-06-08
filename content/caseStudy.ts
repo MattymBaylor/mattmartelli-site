@@ -24,16 +24,6 @@ export const caseStudy = {
     subheadline:
       "A flagship case study showing how I turn complex AI workflows into understandable business systems — combining agent architecture, voice AI, automation, CRM integration, human handoffs, and measurable operating outcomes.",
     coreMessage: "The theme is optional. The architecture is the product.",
-    roleStrip: [
-      "Solution Architecture",
-      "Agent Design",
-      "Workflow Orchestration",
-      "Voice AI Design",
-      "Prompt Engineering",
-      "CRM Integration",
-      "UX Strategy",
-      "Deployment Planning",
-    ],
   },
 
   problem: {
@@ -53,7 +43,7 @@ export const caseStudy = {
       "Instead of one assistant that does everything, the work is split across specialized agents that each own a clear responsibility — routed by an orchestrator, checked by QA gates, and handed to a human when judgment is required.",
       "The theme is just a memorable way to make the org chart legible: each character is a role, each role is an agent. Strip the names away and what's left is a clean, inspectable operating model.",
     ],
-    quote: "The characters are optional. The architecture is the product.",
+    quote: "Two leaders. Nine specialists. One QA gate. Every request routed, executed, and signed off before it ships.",
   },
 
   /**
@@ -67,7 +57,7 @@ export const caseStudy = {
     heading: "Each character is a role. Each role is an agent.",
     intro:
       "I don't manage AI tools — I manage a team of AI agents. One instruction routes through an orchestrator to specialists who execute in parallel. Hover or tap any agent to see what it owns.",
-    hint: "Hover or tap an agent",
+    hint: "Hover, tap, or use arrow keys to explore",
     // The two roles that make the whole thing work — shown above the specialists.
     leadership: [
       {
@@ -284,41 +274,24 @@ export const caseStudy = {
       },
     ],
     closer:
-      "The complexity of the request doesn't change the process. Jerry confirms scope, Devola routes, the specialists execute, and I get a ping when it's done. The same architecture I run my own company on is the one each client gets — battle-tested internally, purpose-built per client.",
+      "The complexity of the request doesn't change the process. Jerry confirms scope, Devola routes, the specialists execute, and I get a ping when it's done. This is the operating model I run my own company on — designed to re-skin for any team that needs the same routing, accountability, and human-in-the-loop discipline underneath.",
   },
 
   whyThisMatters: {
     eyebrow: "Why This Matters",
     heading: "Businesses don't need another chatbot",
     body: [
-      "Most AI projects fail because they are built as isolated tools. Businesses do not need another chatbot.",
-      "They need systems that can route work, coordinate teams, enforce process, maintain context, trigger follow-up, and drive measurable outcomes.",
-      "This project demonstrates how complex AI architectures can be transformed into operating models that people actually understand, trust, and improve.",
+      "Most AI projects fail because they're built as isolated tools. A chatbot answers one question at a time; it doesn't move a workflow forward.",
+      "Businesses need systems that route work, coordinate teams, enforce process, maintain context across handoffs, trigger follow-up, and drive measurable outcomes — not a smarter prompt box.",
+      "This is what I design and ship: AI operating models that non-technical teams can actually understand, trust, debug, and improve.",
     ],
-    emphasis: "The Seinfeld theme is just the wrapper. The architecture underneath is the product.",
-  },
-
-  myRole: {
-    eyebrow: "My Role",
-    heading: "My Role",
-    intro:
-      "I designed this as a working example of how multi-agent systems can be made understandable for non-technical teams without watering down the architecture underneath.",
-    items: [
-      "Solution architecture",
-      "Agent role design",
-      "Workflow orchestration",
-      "Prompt and behavior design",
-      "QA gates and human handoffs",
-      "CRM / automation thinking",
-      "UX and presentation layer",
-      "Business translation for non-technical stakeholders",
-    ],
+    emphasis: "Anyone can buy ChatGPT seats. Designing the operating model that turns AI into actual leverage is the work.",
   },
 
   architecture: {
     eyebrow: "Architecture",
     heading: "How every request flows",
-    aboveLine: "This is not a script. It is an operating model.",
+    aboveLine: "Not a script. An operating model: 2 leadership agents, 9 specialist agents, one QA gate, and a single human in the loop.",
     belowLine: "Each layer makes the system easier to explain, easier to debug, and easier to scale.",
     layers: [
       { name: "Theme Layer", note: "The legible skin — naming and UX that make the system understandable" },
@@ -328,14 +301,27 @@ export const caseStudy = {
       { name: "CRM / Scheduling / SMS / Voice", note: "The systems of record and channels the work touches" },
       { name: "Business Outcomes", note: "Booked jobs, recovered revenue, faster response, less manual work" },
     ],
+    stack: {
+      label: "Built with",
+      items: [
+        "n8n",
+        "HubSpot",
+        "Retell",
+        "ElevenLabs",
+        "OpenAI",
+        "Anthropic",
+        "Supabase",
+        "Vercel",
+      ],
+    },
   },
 
   demo: {
     eyebrow: "Interactive Demo",
     heading: "Explore the Interactive Prototype",
     body: [
-      "The demo shows the presentation layer of the system: specialized agents, visible roles, routing logic, and an interactive way to understand how the workflow works.",
-      "This is not the final product. It is the proof-of-thinking layer — a way to make complex orchestration visible.",
+      "Click through the live presentation layer: specialized agents, visible roles, routing logic, and an interactive walk-through of how a request moves through the system.",
+      "This is the proof-of-thinking layer — the part that makes complex orchestration visible to a non-engineer in under a minute.",
     ],
     previewSrc: "/seinfeld-demo.png",
     previewAlt:
@@ -359,8 +345,8 @@ export const caseStudy = {
     stat: {
       value: "23%",
       label:
-        "more profitable for the most engaged teams vs. the least — why I engineer engagement into the system. Engagement isn't decoration; it's a performance multiplier, and the theme is how I buy it cheaply.",
-      footnote: "Gallup meta-analysis of 3.3M+ employees across 183,000+ teams.",
+        "the profitability gap Gallup found between the most-engaged teams and the least. The theme isn't decoration — it's how I make a complex system one a team actually wants to operate. Engagement is a performance multiplier, and naming each role after a character buys it cheaply.",
+      footnote: "Gallup, State of the Global Workplace meta-analysis — 3.3M+ employees across 183,000+ teams.",
     },
   },
 
@@ -368,9 +354,9 @@ export const caseStudy = {
     eyebrow: "For Hiring Managers",
     heading: "If You're a Hiring Manager",
     body: [
-      "The Seinfeld theme is intentional, but it is not the point — and it is internal only. The characters are an engagement layer for the team that operates the system, never something a customer sees. Clients experience a professional system doing real work; the cast just keeps the people running it oriented and engaged.",
-      "I have built the same framework with other themes, business departments, sales teams, service teams, and operational roles. The branding changes. The orchestration does not.",
-      "What you are evaluating here is not the joke. You are evaluating my ability to design AI systems people can understand, adopt, debug, and operate.",
+      "The Seinfeld theme is intentional, but it isn't the point — and it's an internal engagement layer. The cast keeps the team running the system oriented because the roles have memorable names they can hold in their head; customers experience a professional system doing real work and never see the wrapper.",
+      "The same operating model re-skins cleanly to business departments, sales and service teams, or plain operational job titles. The branding changes. The orchestration — routing, specialists, QA gate, human-in-the-loop — doesn't.",
+      "What you're evaluating here isn't the joke. You're evaluating my ability to design AI systems people can understand, adopt, debug, and operate.",
     ],
   },
 

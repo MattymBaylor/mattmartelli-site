@@ -117,7 +117,7 @@ export function Hero() {
               href="/seinfeld-hq"
               className="group inline-flex items-center justify-center gap-2 rounded-md bg-[#FACC15] px-5 py-3 text-sm font-semibold text-night shadow-[0_0_0_1px_rgba(250,204,21,0.35),0_0_16px_-8px_rgba(250,204,21,0.4)] transition-transform hover:scale-[1.03]"
             >
-              See a Live Workflow
+              Read the Flagship Case Study
               <ArrowUpRight
                 size={16}
                 className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"

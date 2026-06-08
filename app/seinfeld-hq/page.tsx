@@ -3,10 +3,11 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   ArrowLeft,
+  ArrowRight,
+  ArrowUpRight,
   Play,
   ChevronDown,
   AlertTriangle,
-  Boxes,
   Briefcase,
 } from "lucide-react";
 import { Header } from "@/components/nav/Header";
@@ -37,7 +38,7 @@ export default function CaseStudyPage() {
     <>
       <Header />
       <main id="main">
-        {/* 1. HERO */}
+        {/* 1 — HERO */}
         <section className="relative isolate overflow-hidden border-b border-line">
           <div className="absolute inset-0 -z-10">
             <div className="absolute inset-0 bg-grid-faint [background-size:64px_64px] opacity-30" />
@@ -63,7 +64,7 @@ export default function CaseStudyPage() {
           </div>
         </section>
 
-        {/* 2. THE PROBLEM */}
+        {/* 2 — THE PROBLEM */}
         <section className="section border-b border-line/60">
           <div className="container-x grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
             <Reveal>
@@ -99,7 +100,7 @@ export default function CaseStudyPage() {
           </div>
         </section>
 
-        {/* 3. THE SOLUTION */}
+        {/* 3 — THE SOLUTION */}
         <section className="section border-b border-line/60 bg-surface/30">
           <div className="container-x">
             <Reveal>
@@ -141,7 +142,7 @@ export default function CaseStudyPage() {
           </div>
         </section>
 
-        {/* 4. WHY THIS MATTERS */}
+        {/* 4 — WHY THIS MATTERS */}
         <section className="section border-b border-line/60">
           <div className="container-x">
             <Reveal>
@@ -163,7 +164,7 @@ export default function CaseStudyPage() {
           </div>
         </section>
 
-        {/* 4b. PROOF IN PRACTICE — real examples */}
+        {/* 5 — PROOF IN PRACTICE */}
         <section className="section border-b border-line/60 bg-surface/30">
           <div className="container-x">
             <Reveal>
@@ -192,14 +193,14 @@ export default function CaseStudyPage() {
               ))}
             </div>
             <Reveal delay={0.1}>
-              <p className="mt-8 max-w-3xl text-base leading-relaxed text-ink-muted">
+              <p className="mt-10 max-w-3xl border-l-2 border-accent-cyan/60 pl-5 font-display text-xl leading-relaxed text-ink sm:text-2xl">
                 {cs.examples.closer}
               </p>
             </Reveal>
           </div>
         </section>
 
-        {/* 6. ARCHITECTURE */}
+        {/* 6 — ARCHITECTURE */}
         <section className="section border-b border-line/60">
           <div className="container-x">
             <Reveal>
@@ -234,10 +235,29 @@ export default function CaseStudyPage() {
                 {cs.architecture.belowLine}
               </p>
             </Reveal>
+
+            {/* Stack strip — ATS-readable inventory of the tools underneath. */}
+            <Reveal delay={0.14}>
+              <div className="mt-10 rounded-xl border border-line bg-surface-elevated/60 p-5 sm:p-6">
+                <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
+                  {cs.architecture.stack.label}
+                </p>
+                <ul className="flex flex-wrap gap-2">
+                  {cs.architecture.stack.items.map((tool) => (
+                    <li
+                      key={tool}
+                      className="rounded-md border border-line bg-surface/60 px-3 py-1.5 font-mono text-xs text-ink-muted"
+                    >
+                      {tool}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
           </div>
         </section>
 
-        {/* 7. INTERACTIVE DEMO */}
+        {/* 7 — INTERACTIVE DEMO */}
         <section className="section border-b border-line/60 bg-surface/30">
           <div className="container-x">
             <Reveal>
@@ -277,7 +297,7 @@ export default function CaseStudyPage() {
           </div>
         </section>
 
-        {/* 8. ONE ARCHITECTURE, MANY SKINS */}
+        {/* 8 — ONE ARCHITECTURE, MANY SKINS */}
         <section className="section border-b border-line/60">
           <div className="container-x">
             <Reveal>
@@ -297,14 +317,6 @@ export default function CaseStudyPage() {
                 </Reveal>
               ))}
             </div>
-            <Reveal delay={0.1}>
-              <div className="mt-6 flex items-center justify-center gap-3 rounded-xl border border-dashed border-accent-cyan/30 bg-accent-cyan/[0.04] px-5 py-4 text-center">
-                <Boxes size={16} className="shrink-0 text-accent-cyan" aria-hidden />
-                <span className="text-sm text-ink-muted">
-                  Same orchestration underneath — only the branding changes.
-                </span>
-              </div>
-            </Reveal>
             <Reveal delay={0.14}>
               <StatCallout
                 value={cs.skins.stat.value}
@@ -317,11 +329,11 @@ export default function CaseStudyPage() {
           </div>
         </section>
 
-        {/* 9. IF YOU'RE A HIRING MANAGER */}
+        {/* 9 — IF YOU'RE A HIRING MANAGER */}
         <section className="section border-b border-line/60 bg-surface/30">
           <div className="container-x">
             <Reveal>
-              <div className="surface-card border-accent-cyan/30 p-8 shadow-glow sm:p-10">
+              <div className="surface-card border-accent-cyan/30 p-8 sm:p-10">
                 <p className="mb-3 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-accent-cyan">
                   <Briefcase size={13} aria-hidden /> {cs.hiringManager.eyebrow}
                 </p>
@@ -336,7 +348,7 @@ export default function CaseStudyPage() {
           </div>
         </section>
 
-        {/* 10. WHAT THIS PROJECT DEMONSTRATES */}
+        {/* 10 — WHAT THIS PROJECT DEMONSTRATES */}
         <section className="section border-b border-line/60">
           <div className="container-x">
             <Reveal>
@@ -355,6 +367,53 @@ export default function CaseStudyPage() {
                 </Reveal>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* 11 — CLOSING CTA */}
+        <section className="section bg-surface/30">
+          <div className="container-x">
+            <Reveal>
+              <div className="mx-auto max-w-3xl text-center">
+                <p className="font-display text-xl leading-relaxed text-ink sm:text-2xl">
+                  {cs.cta.heading}
+                </p>
+                <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                  {cs.cta.buttons.map((btn) => {
+                    const isExternal = btn.href.startsWith("http");
+                    const className = btn.primary
+                      ? "group inline-flex items-center justify-center gap-2 rounded-md bg-accent-gradient px-5 py-3 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03]"
+                      : "group inline-flex items-center justify-center gap-2 rounded-md border border-line-strong px-5 py-3 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan";
+                    const Icon = btn.primary ? ArrowRight : ArrowUpRight;
+                    return isExternal ? (
+                      <a
+                        key={btn.label}
+                        href={btn.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={className}
+                      >
+                        {btn.label}
+                        <Icon
+                          size={16}
+                          className="transition-transform group-hover:translate-x-0.5"
+                          aria-hidden
+                        />
+                      </a>
+                    ) : (
+                      <Link key={btn.label} href={btn.href} className={className}>
+                        {btn.label}
+                        <Icon
+                          size={16}
+                          className="transition-transform group-hover:translate-x-0.5"
+                          aria-hidden
+                        />
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            </Reveal>
           </div>
         </section>
 
