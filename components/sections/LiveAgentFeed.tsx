@@ -295,11 +295,24 @@ export function LiveAgentFeed({ eyebrow, heading, body, stats, footnote }: Props
         onFocus={() => setPaused(true)}
         onBlur={() => setPaused(false)}
       >
-        {/* outer glow */}
-        <div className="absolute inset-0 -z-10 translate-y-2 scale-95 rounded-[3rem] bg-accent-cyan/10 blur-3xl" aria-hidden />
+        {/* Backlight stack — three layers create depth: a large soft halo,
+            a mid-range cyan wash, and a tight rim glow on the bezel itself.
+            The phone reads as illuminated, not pasted onto the page. */}
+        <div
+          className="pointer-events-none absolute -inset-16 -z-30 rounded-[6rem] bg-[radial-gradient(closest-side,rgba(34,211,238,0.22),rgba(99,102,241,0.10)_45%,transparent_75%)] blur-2xl"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute -inset-6 -z-20 rounded-[3.5rem] bg-[radial-gradient(closest-side,rgba(34,211,238,0.16),transparent_70%)] blur-xl"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute -inset-px -z-10 rounded-[2.5rem] bg-gradient-to-b from-accent-cyan/40 via-accent-indigo/20 to-transparent opacity-70 blur-[2px]"
+          aria-hidden
+        />
 
         {/* phone bezel */}
-        <div className="relative aspect-[9/19.5] w-full overflow-hidden rounded-[2.4rem] border border-line-strong bg-night shadow-2xl ring-1 ring-white/[0.04]">
+        <div className="relative aspect-[9/19.5] w-full overflow-hidden rounded-[2.4rem] border border-line-strong bg-night shadow-[0_30px_60px_-15px_rgba(34,211,238,0.45),0_0_0_1px_rgba(255,255,255,0.04)_inset] ring-1 ring-white/[0.04]">
           {/* notch */}
           <div className="absolute left-1/2 top-2 z-30 h-6 w-28 -translate-x-1/2 rounded-full bg-black" aria-hidden>
             {/* pause indicator slides into the notch on hover */}
