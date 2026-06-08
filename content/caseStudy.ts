@@ -318,6 +318,19 @@ export const caseStudy = {
     },
   },
 
+  liveOps: {
+    eyebrow: "Live Ops",
+    heading: "The war room, in your pocket",
+    body: "What you'd see if you looked over my shoulder right now. Specialized agents posting status, daily ships, pattern observations, and the occasional catch — public-safe slice of the real internal feed. Tap or hover to pause.",
+    stats: [
+      { value: "120+", label: "SaaS dossiers · 60 days" },
+      { value: "24/7", label: "watchdog cadence" },
+      { value: "11", label: "specialist agents" },
+    ],
+    footnote:
+      "Names, dollar figures, client identifiers, and file paths are stripped at the source. What you see is the operating pattern, not the operational specifics.",
+  },
+
   demo: {
     eyebrow: "Interactive Demo",
     heading: "Explore the Interactive Prototype",

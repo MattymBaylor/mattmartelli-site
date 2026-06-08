@@ -14,6 +14,7 @@ import { Header } from "@/components/nav/Header";
 import { Footer } from "@/components/nav/Footer";
 import { Reveal } from "@/components/ui/Reveal";
 import { AgentOrgChart } from "@/components/flow/AgentOrgChart";
+import { LiveAgentFeed } from "@/components/sections/LiveAgentFeed";
 import { StatCallout } from "@/components/ui/StatCallout";
 import { caseStudy as cs } from "@/content/caseStudy";
 import { site } from "@/content/site";
@@ -263,8 +264,23 @@ export default function CaseStudyPage() {
           </div>
         </section>
 
-        {/* 7 — INTERACTIVE DEMO */}
+        {/* 6.5 — LIVE OPS FEED */}
         <section className="section border-b border-line/60 bg-surface/30">
+          <div className="container-x">
+            <Reveal>
+              <LiveAgentFeed
+                eyebrow={cs.liveOps.eyebrow}
+                heading={cs.liveOps.heading}
+                body={cs.liveOps.body}
+                stats={cs.liveOps.stats}
+                footnote={cs.liveOps.footnote}
+              />
+            </Reveal>
+          </div>
+        </section>
+
+        {/* 7 — INTERACTIVE DEMO */}
+        <section className="section border-b border-line/60">
           <div className="container-x">
             <Reveal>
               <div className="max-w-4xl">
