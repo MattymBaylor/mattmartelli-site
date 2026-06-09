@@ -84,7 +84,7 @@ export const PAGES: Record<string, PageConfig> = {
   },
   "seth-hood": {
     slug: "seth-hood",
-    clientName: "MARTELLI, MATTHEW",
+    clientName: "HOOD, SETH",
     recipientHonorific: "MR.",
     recipientFirstName: "Seth",
     recipientLastName: "HOOD",
