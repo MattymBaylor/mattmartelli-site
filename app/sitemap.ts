@@ -1,26 +1,38 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/content/site";
+import { PAGES } from "@/content/clientPages";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = site.meta.url;
-  return [
+  const now = new Date();
+
+  const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: base,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: "monthly",
       priority: 1,
     },
     {
       url: `${base}/recruiter`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${base}/seinfeld-hq`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: "monthly",
       priority: 0.9,
     },
   ];
+
+  const clientRoutes: MetadataRoute.Sitemap = Object.keys(PAGES).map((slug) => ({
+    url: `${base}/client/${slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [...staticRoutes, ...clientRoutes];
 }

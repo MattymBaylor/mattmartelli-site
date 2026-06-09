@@ -31,6 +31,11 @@ export const metadata: Metadata = {
     description: cs.meta.description,
     url: `${site.meta.url}/seinfeld-hq`,
   },
+  twitter: {
+    card: "summary_large_image",
+    title: cs.meta.title,
+    description: cs.meta.description,
+  },
 };
 
 function Eyebrow({ children }: { children: React.ReactNode }) {

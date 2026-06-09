@@ -17,9 +17,24 @@ export async function generateMetadata({
   if (!config) {
     return { title: "Case File · Not Found" };
   }
+  const title = `Case File · ${config.clientName}`;
+  const description = config.subheadline;
+  const url = `/client/${slug}`;
   return {
-    title: `Case File · ${config.clientName}`,
-    description: config.subheadline,
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article",
+      title,
+      description,
+      url,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }
 

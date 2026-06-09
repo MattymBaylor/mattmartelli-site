@@ -19,6 +19,19 @@ export const metadata: Metadata = {
   description:
     "Matt Martelli — executive summary, accomplishments, and featured AI systems work, readable in under 60 seconds.",
   alternates: { canonical: "/recruiter" },
+  openGraph: {
+    type: "profile",
+    title: "Recruiter Fast Path · Matt Martelli",
+    description:
+      "Matt Martelli — executive summary, accomplishments, and featured AI systems work, readable in under 60 seconds.",
+    url: "/recruiter",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Recruiter Fast Path · Matt Martelli",
+    description:
+      "Matt Martelli — executive summary, accomplishments, and featured AI systems work, readable in under 60 seconds.",
+  },
 };
 
 export default function RecruiterPage() {
