@@ -13,8 +13,11 @@ import {
 import { Header } from "@/components/nav/Header";
 import { Footer } from "@/components/nav/Footer";
 import { Reveal } from "@/components/ui/Reveal";
-import { AgentOrgChart } from "@/components/flow/AgentOrgChart";
-import { LiveAgentFeed } from "@/components/sections/LiveAgentFeed";
+import {
+  LiveAgentFeed,
+  LiveAgentFeedPhone,
+  LiveAgentFeedTablet,
+} from "@/components/sections/LiveAgentFeed";
 import { StatCallout } from "@/components/ui/StatCallout";
 import { caseStudy as cs } from "@/content/caseStudy";
 import { site } from "@/content/site";
@@ -55,19 +58,19 @@ export default function CaseStudyPage() {
             <p className="eyebrow mt-8">{cs.hero.eyebrow}</p>
             <h1 className="mt-4 max-w-4xl text-balance text-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
               {cs.hero.headline}
+              <span className="mt-3 block font-display text-2xl font-normal leading-tight text-ink-muted sm:text-3xl lg:text-4xl">
+                {cs.hero.headlineCoda}
+              </span>
             </h1>
             <p className="mt-6 max-w-4xl text-base leading-relaxed text-ink-muted sm:text-lg">
               {cs.hero.subheadline}
-            </p>
-            <p className="mt-8 max-w-4xl border-l-2 border-accent-cyan/60 pl-4 font-display text-xl text-ink sm:text-2xl">
-              {cs.hero.coreMessage}
             </p>
           </div>
         </section>
 
         {/* 2 — THE PROBLEM */}
-        <section className="section border-b border-line/60">
-          <div className="container-x grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
+        <section className="section relative overflow-x-clip border-b border-line/60">
+          <div className="container-x grid gap-12 lg:grid-cols-[1fr_minmax(280px,340px)] lg:items-start lg:gap-16">
             <Reveal>
               <div>
                 <Eyebrow>{cs.problem.eyebrow}</Eyebrow>
@@ -76,68 +79,59 @@ export default function CaseStudyPage() {
                   {cs.problem.body.map((p) => (
                     <p key={p} className="text-base leading-relaxed text-ink-muted">{p}</p>
                   ))}
+                  {/* Pulled up from the Solution section to fill the column
+                      next to the tall phone — Matt to massage copy later. */}
+                  {cs.solution.body.map((p) => (
+                    <p key={p} className="text-base leading-relaxed text-ink-muted">{p}</p>
+                  ))}
                 </div>
-              </div>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <div className="surface-card p-6">
-                <div className="flex items-center gap-2.5 text-warm">
-                  <AlertTriangle size={18} aria-hidden />
-                  <span className="font-mono text-xs uppercase tracking-[0.16em]">Monolithic assistant</span>
-                </div>
-                <div className="mt-5 rounded-lg border border-dashed border-warm/40 bg-warm/[0.05] p-5 text-center">
-                  <p className="font-display text-lg text-ink">One giant prompt</p>
-                  <p className="mt-1 text-sm text-ink-faint">does everything</p>
-                </div>
-                <ul className="mt-5 grid grid-cols-2 gap-2">
-                  {cs.problem.failModes.map((x) => (
-                    <li key={x} className="flex items-center gap-2.5 text-sm text-ink-muted">
-                      <span className="h-1.5 w-1.5 rounded-full bg-warm/70" aria-hidden /> {x}
+                {/* Failure-mode chips — fill the column visually so the
+                    left/right balance reads intentional at mid widths. */}
+                <ul className="mt-7 flex flex-wrap gap-2">
+                  {cs.problem.failModes.map((f) => (
+                    <li
+                      key={f}
+                      className="inline-flex items-center gap-2 rounded-full border border-warm/30 bg-warm/[0.06] px-3 py-1.5 text-xs text-ink-muted"
+                    >
+                      <span className="h-1.5 w-1.5 rounded-full bg-warm/70" aria-hidden />
+                      {f}
                     </li>
                   ))}
                 </ul>
               </div>
             </Reveal>
+            <Reveal delay={0.08}>
+              <LiveAgentFeedPhone />
+            </Reveal>
           </div>
         </section>
 
-        {/* 3 — THE SOLUTION */}
-        <section className="section border-b border-line/60 bg-surface/30">
+        {/* 3 — THE SOLUTION — section removed. Body paragraphs were pulled up
+            into the Problem column; the interactive org chart is now embedded
+            inside the iPad's Operating Model view in the section below. */}
+
+        {/* 3.5 — LIVE OPS COMMAND (iPad tablet, view-switcher). Three views:
+            War Room (live feed), HQ Cam (apartment floor plan), and Operating
+            Model (the interactive agent org chart). The page's main showcase. */}
+        <section className="section relative overflow-x-clip border-b border-line/60 bg-surface/30">
           <div className="container-x">
             <Reveal>
-              <div className="max-w-4xl">
-                <Eyebrow>{cs.solution.eyebrow}</Eyebrow>
-                <h2 className="text-3xl font-semibold sm:text-4xl">{cs.solution.heading}</h2>
-                <div className="mt-5 space-y-4">
-                  {cs.solution.body.map((p) => (
-                    <p key={p} className="text-base leading-relaxed text-ink-muted">{p}</p>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Interactive agent org chart — the centerpiece */}
-            <Reveal delay={0.08}>
-              <div className="mt-10">
-                <p className="eyebrow mb-2">{cs.orgChart.eyebrow}</p>
-                <h3 className="max-w-4xl text-2xl font-semibold sm:text-3xl">
-                  {cs.orgChart.heading}
-                </h3>
-                <p className="mt-4 max-w-4xl text-base leading-relaxed text-ink-muted">
-                  {cs.orgChart.intro}
-                </p>
+              <div className="mx-auto max-w-3xl text-center">
+                <p className="eyebrow mb-3">{cs.liveOps.eyebrow}</p>
+                <h2 className="text-3xl font-semibold sm:text-4xl">{cs.liveOps.heading}</h2>
+                <p className="mt-5 text-base leading-relaxed text-ink-muted">{cs.liveOps.body}</p>
               </div>
             </Reveal>
 
             <Reveal delay={0.12}>
-              <div className="mt-6">
-                <AgentOrgChart />
+              <div className="mt-12">
+                <LiveAgentFeedTablet />
               </div>
             </Reveal>
 
-            <Reveal delay={0.1}>
-              <p className="mt-8 max-w-3xl border-l-2 border-accent-cyan/60 pl-5 font-display text-2xl text-ink sm:text-3xl">
-                {cs.solution.quote}
+            <Reveal delay={0.16}>
+              <p className="mx-auto mt-10 max-w-3xl text-center text-xs leading-relaxed text-ink-faint">
+                {cs.liveOps.footnote}
               </p>
             </Reveal>
           </div>
@@ -264,60 +258,9 @@ export default function CaseStudyPage() {
           </div>
         </section>
 
-        {/* 6.5 — LIVE OPS FEED */}
-        <section className="section border-b border-line/60 bg-surface/30">
-          <div className="container-x">
-            <Reveal>
-              <LiveAgentFeed
-                eyebrow={cs.liveOps.eyebrow}
-                heading={cs.liveOps.heading}
-                body={cs.liveOps.body}
-                stats={cs.liveOps.stats}
-                footnote={cs.liveOps.footnote}
-              />
-            </Reveal>
-          </div>
-        </section>
-
-        {/* 7 — INTERACTIVE DEMO */}
-        <section className="section border-b border-line/60">
-          <div className="container-x">
-            <Reveal>
-              <div className="max-w-4xl">
-                <Eyebrow>{cs.demo.eyebrow}</Eyebrow>
-                <h2 className="text-3xl font-semibold sm:text-4xl">{cs.demo.heading}</h2>
-                <div className="mt-5 space-y-4">
-                  {cs.demo.body.map((p) => (
-                    <p key={p} className="text-base leading-relaxed text-ink-muted">{p}</p>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-            <Reveal delay={0.08}>
-              <a
-                href={cs.links.demo.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Launch the interactive demo in a new tab"
-                className="group relative mt-8 block overflow-hidden rounded-2xl border border-line shadow-elevated"
-              >
-                <Image
-                  src={cs.demo.previewSrc}
-                  alt={cs.demo.previewAlt}
-                  width={1600}
-                  height={1000}
-                  sizes="(min-width: 1024px) 76rem, 100vw"
-                  className="h-auto w-full transition-transform duration-500 group-hover:scale-[1.02]"
-                />
-                <span className="absolute inset-0 grid place-items-center bg-night/30 transition-colors group-hover:bg-night/45">
-                  <span className="inline-flex items-center gap-2 rounded-full bg-accent-gradient px-5 py-3 text-sm font-semibold text-night shadow-glow">
-                    <Play size={16} aria-hidden /> {cs.links.demo.label}
-                  </span>
-                </span>
-              </a>
-            </Reveal>
-          </div>
-        </section>
+        {/* 7 — INTERACTIVE DEMO — removed; the live HQ Cam / War Room views
+            inside the LiveOps tablet (now repositioned right after the org
+            chart) serve as the interactive surface. */}
 
         {/* 8 — ONE ARCHITECTURE, MANY SKINS */}
         <section className="section border-b border-line/60">
