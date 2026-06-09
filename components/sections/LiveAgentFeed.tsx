@@ -709,18 +709,19 @@ export function LiveAgentFeedTablet() {
 
           {view === "hq-cam" && (
             <div
-              className="absolute inset-0 grid place-items-center bg-black/40 p-4"
+              className="absolute inset-0 bg-black/40 p-4"
               aria-label="HQ camera view — apartment floor plan"
             >
-              <Image
-                src="/seinfeld-apartment.png"
-                alt="Top-down pixel-art floor plan of the Seinfeld HQ: Jerry's apartment, George Costanza's office (Yankees Ops), and Monk's Cafe (Field Ops & Intel)."
-                width={1024}
-                height={765}
-                sizes="(min-width: 1024px) 800px, 100vw"
-                className="h-full w-full object-contain"
-                priority={false}
-              />
+              <div className="relative h-full w-full">
+                <Image
+                  src="/seinfeld-apartment.png"
+                  alt="Top-down pixel-art floor plan of the Seinfeld HQ: Jerry's apartment, George Costanza's office (Yankees Ops), and Monk's Cafe (Field Ops & Intel)."
+                  fill
+                  sizes="(min-width: 1024px) 800px, 100vw"
+                  className="object-contain"
+                  priority={false}
+                />
+              </div>
               {/* scanline shimmer to sell the "live camera" read */}
               {!reduced && (
                 <div
