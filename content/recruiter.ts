@@ -11,10 +11,14 @@ export const recruiter = {
   availability: "Open to senior IC, architect/lead, or consulting engagements",
 
   targetRoles: [
+    "Forward Deployed Engineer",
+    "Founding Applied AI Engineer",
+    "AI Agent Engineer",
+    "Senior AI Engineer",
+    "AI Systems Architect",
+    "Revenue Operations & Systems Leader",
     "Marketing Automation Leader",
     "Customer Journey Infrastructure Owner",
-    "Revenue Operations & Systems Leader",
-    "AI Systems Architect",
     "Lifecycle Marketing & Automation Executive",
   ],
 
