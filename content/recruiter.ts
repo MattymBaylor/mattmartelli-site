@@ -157,6 +157,13 @@ export const recruiter = {
     },
   ],
 
+  testimonial: {
+    quote:
+      "Matt is a visionary, yet has his eye on the present. His ideas and creativity are at the pinnacle of his field. I often ask Matt his opinions in business needs outside of his scope, knowing that he will produce an option I would never think of.",
+    name: "Kelly Clark",
+    title: "Sr. Business Development Manager, ACS Group",
+  },
+
   closingCta: {
     heading: "Tell me about the role",
     sub: "Email or a text reaches me fastest — give me the business problem and I'll tell you how I'd architect the system that solves it.",
