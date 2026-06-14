@@ -167,5 +167,6 @@ export const recruiter = {
     linkedin: { label: "LinkedIn", href: "https://www.linkedin.com/in/mattmartelli/" },
     youtube: { label: "YouTube", href: "https://www.youtube.com/@matt_martelli" },
     email: { label: "Email", href: "mailto:mattmartelli@mac.com" },
+    website: { label: "Website", href: "https://growthmindset.ai" },
   },
 } as const;
