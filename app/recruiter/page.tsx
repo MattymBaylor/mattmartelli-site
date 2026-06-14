@@ -109,25 +109,37 @@ export default function RecruiterPage() {
         {/* Featured Flagship Project */}
         <section
           aria-labelledby="flagship"
-          className="mt-8 rounded-2xl border border-accent-cyan/30 bg-surface-elevated/60 p-6 shadow-glow sm:p-8"
+          className="mt-8 overflow-hidden rounded-2xl border border-accent-cyan/30 bg-surface-elevated/60 p-6 shadow-glow sm:p-8"
         >
-          <p className="mb-2 inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-warm">
-            <Star size={11} aria-hidden /> Featured Flagship Project
-          </p>
-          <h2 id="flagship" className="font-display text-2xl font-semibold sm:text-3xl">
-            {recruiter.flagship.title}
-          </h2>
-          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-muted sm:text-base">
-            {recruiter.flagship.description}
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link
-              href={recruiter.flagship.caseStudy.href}
-              className="inline-flex items-center gap-2 rounded-md bg-accent-gradient px-4 py-2.5 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03]"
-            >
-              {recruiter.flagship.caseStudy.label}
-              <ArrowUpRight size={15} aria-hidden />
-            </Link>
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:gap-10">
+            <div className="lg:flex-1">
+              <p className="mb-2 inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-warm">
+                <Star size={11} aria-hidden /> Featured Flagship Project
+              </p>
+              <h2 id="flagship" className="font-display text-2xl font-semibold sm:text-3xl">
+                {recruiter.flagship.title}
+              </h2>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-muted sm:text-base">
+                {recruiter.flagship.description}
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link
+                  href={recruiter.flagship.caseStudy.href}
+                  className="inline-flex items-center gap-2 rounded-md bg-accent-gradient px-4 py-2.5 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03]"
+                >
+                  {recruiter.flagship.caseStudy.label}
+                  <ArrowUpRight size={15} aria-hidden />
+                </Link>
+              </div>
+            </div>
+            <Image
+              src="/flagship-seinfeld.png"
+              alt="A multi-agent system cast as Seinfeld characters"
+              width={520}
+              height={620}
+              className="mx-auto h-auto w-44 shrink-0 sm:w-52 lg:w-64"
+              priority
+            />
           </div>
         </section>
 
