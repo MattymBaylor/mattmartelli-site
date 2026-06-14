@@ -75,10 +75,12 @@ export function Capabilities() {
             </p>
             <h3 className="font-semibold leading-snug">{c.title}</h3>
             <p className="mt-2 text-sm leading-relaxed text-ink-muted">{c.desc}</p>
-            <p
-              className="mt-3 border-t border-line pt-3 text-sm leading-relaxed text-ink-muted [&_strong]:font-semibold [&_strong]:text-accent-cyan"
-              dangerouslySetInnerHTML={{ __html: c.proof }}
-            />
+            <div className="mt-3 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-3">
+              <p
+                className="text-sm leading-relaxed text-white [&_strong]:font-semibold [&_strong]:text-emerald-200"
+                dangerouslySetInnerHTML={{ __html: c.proof }}
+              />
+            </div>
           </div>
         ))}
       </div>
