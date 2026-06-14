@@ -9,6 +9,7 @@ import {
   Youtube,
   ArrowUpRight,
   Star,
+  PlayCircle,
 } from "lucide-react";
 import { recruiter } from "@/content/recruiter";
 import { site } from "@/content/site";
@@ -212,6 +213,31 @@ export default function RecruiterPage() {
             </p>
           </aside>
         </div>
+
+        {/* Interactive Playbook — full-screen, two-pane walkthrough */}
+        <section
+          aria-labelledby="playbook-cta"
+          className="mt-12 overflow-hidden rounded-2xl border border-accent-cyan/30 bg-surface-elevated/60 p-6 shadow-glow sm:p-8"
+        >
+          <p className="mb-2 inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-warm">
+            <PlayCircle size={11} aria-hidden /> {recruiter.playbook.eyebrow}
+          </p>
+          <h2 id="playbook-cta" className="font-display text-2xl font-semibold sm:text-3xl">
+            {recruiter.playbook.title}
+          </h2>
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-muted sm:text-base">
+            {recruiter.playbook.description}
+          </p>
+          <div className="mt-6">
+            <Link
+              href={recruiter.playbook.cta.href}
+              className="inline-flex items-center gap-2 rounded-md bg-accent-gradient px-4 py-2.5 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03]"
+            >
+              {recruiter.playbook.cta.label}
+              <ArrowUpRight size={15} aria-hidden />
+            </Link>
+          </div>
+        </section>
       </div>
     </main>
   );

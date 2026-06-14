@@ -126,3 +126,57 @@
     stroke-dasharray: 0;
   }
 }
+
+/* =========================================================================
+ * /playbook — Strategic Alignment Playbook readability layer.
+ *
+ * The playbook is a self-contained, dark-first interactive panel that scopes
+ * its theme to a wrapper with `.dark` (and `.hc` for extra contrast) instead
+ * of the document root. These overrides lift muted text and borders against
+ * the pure-black background. They only match inside that `.dark` wrapper, so
+ * they have zero effect on the rest of the (token-themed) site.
+ * ========================================================================= */
+.dark .dark\:text-slate-400 {
+  color: rgb(203 213 225);
+} /* slate-300 */
+.dark .dark\:text-slate-500 {
+  color: rgb(148 163 184);
+} /* slate-400 */
+.dark .dark\:text-slate-300 {
+  color: rgb(226 232 240);
+} /* slate-200 */
+.dark .dark\:border-slate-800\/70,
+.dark .dark\:border-slate-800\/80 {
+  border-color: rgb(51 65 85 / 0.9);
+} /* slate-700 */
+.dark .dark\:bg-slate-800\/40 {
+  background-color: rgb(15 23 42 / 0.85);
+} /* slate-900 lift */
+.dark .border-slate-800 {
+  border-color: rgb(51 65 85 / 0.9);
+}
+
+/* Extra Contrast (hc) — maximize legibility further on top of the base. */
+.dark.hc {
+  background-color: rgb(0 0 0);
+}
+.dark.hc .dark\:bg-slate-800\/40 {
+  background-color: rgb(15 23 42) !important;
+}
+.dark.hc .dark\:border-slate-800\/70,
+.dark.hc .dark\:border-slate-800\/80 {
+  border-color: rgb(100 116 139) !important;
+}
+.dark.hc .dark\:text-slate-400 {
+  color: rgb(241 245 249) !important;
+}
+.dark.hc .dark\:text-slate-500 {
+  color: rgb(226 232 240) !important;
+}
+.dark.hc .dark\:text-slate-300 {
+  color: rgb(248 250 252) !important;
+}
+.dark.hc .dark\:text-slate-100,
+.dark.hc .dark\:text-slate-200 {
+  color: rgb(255 255 255) !important;
+}
