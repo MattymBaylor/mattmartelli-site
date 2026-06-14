@@ -7,9 +7,6 @@ export const recruiter = {
   heading: "For hiring managers who want the highlights",
   sub: "Everything that matters in under 60 seconds.",
 
-  location: "Naples, FL · Remote",
-  availability: "Open to senior IC, architect/lead, or consulting engagements",
-
   targetRoles: [
     "Marketing Automation Leader",
     "Customer Journey Infrastructure Owner",
@@ -19,9 +16,9 @@ export const recruiter = {
   ],
 
   flagship: {
-    title: "A Multi-Agent Company, Cast as Seinfeld",
+    title: "Designing Multi-Agent Systems Businesses Actually Understand",
     description:
-      "This is the real operating system that runs my own company — and the clearest proof of how I make complex AI legible. Every specialized agent (planner, router, specialists, critic, memory) is cast as a Seinfeld character with a defined job. The casting is the actual innovation, not set dressing: multi-agent architecture is abstract and easy to tune out, but a familiar ensemble makes it instantly clear who does what and why — for engineers and executives alike. That's why the case study shows a cast of characters instead of boxes labeled \"Agent 1\": they run real workflows end to end — lead capture, qualification, follow-up, QA, and human handoffs.",
+      "A flagship case study in turning complex AI workflows into understandable business systems — orchestration, routing, memory, QA gates, workflow automation, voice AI, CRM integration, and human handoffs. Themed as a Seinfeld cast to make the org chart legible, but the theme is the wrapper; the architecture is the product.",
     caseStudy: { label: "Read the Case Study", href: "/seinfeld-hq" },
     demo: { label: "Launch Interactive Demo", href: "https://growthmindset.ai/seinfeld-hq/" },
   },
@@ -43,40 +40,13 @@ export const recruiter = {
     href: "/resume.pdf",
   },
 
-  experience: [
-    {
-      company: "Home Genius Exteriors",
-      role: "AI Integration Strategist",
-      dates: "2025–Present",
-      note: "Enterprise AI and automation across recruiting, sales, customer experience, and operations.",
-    },
-    {
-      company: "Expo Home Improvement",
-      role: "Marketing Automation Specialist | Business Analyst",
-      dates: "2020–2025",
-      note: "Lifecycle, CRM, and speed-to-lead automation on HubSpot + Salesforce.",
-    },
-    {
-      company: "Flywheel360",
-      role: "Co-Founder & Chief Marketing Officer",
-      dates: "2010–2020",
-      note: "MarTech and automation strategy for clients up to Fortune 400/500.",
-    },
-    {
-      company: "Cambium Learning Group",
-      role: "Email Marketing Manager | Senior Copywriter",
-      dates: "2007–2010",
-      note: "First-of-its-kind personalization pilot that drove $3.1M in six months.",
-    },
-  ],
-
   accomplishments: [
-    "Generate $750K/month in attributed pipeline at Home Genius through AI-driven initiatives and campaigns.",
-    "Drove $3.1M in new revenue within six months with a first-of-its-kind personalization pilot.",
-    "Saved $90K+/year by re-architecting enterprise automation from Zapier to self-hosted n8n — with zero downtime.",
-    "Led CRM and lifecycle transformations across databases of 500,000+ records, with TCPA/CAN-SPAM governance.",
-    "Advised Fortune 400/500 organizations on automation architecture; co-founder and one of the First 100 HubSpot Partners.",
-    "Designed and deployed production AI voice agents and multi-agent systems (Claude, OpenClaw, CrewAI) that run real workflows 24/7.",
+    "Designed and deployed production AI voice agents that answer, qualify, schedule, and recover revenue 24/7.",
+    "Architected multi-agent workflows with coordination, QA validation, and human-in-the-loop execution.",
+    "Led large-scale CRM and lifecycle marketing transformations across enterprise marketing and revenue operations.",
+    "Built lead scoring, segmentation, and revenue-attribution systems that focus sales on the highest-value pipeline.",
+    "Operated across HubSpot, Salesforce, Marketo, Eloqua, and IBM Watson Campaign Automation (Silverpop).",
+    "Framework-agnostic delivery across OpenAI Agents, CrewAI, Microsoft Agent Framework, Claude, Gemini, MCP, n8n, and custom Python systems.",
   ],
 
   expertise: [
@@ -90,18 +60,26 @@ export const recruiter = {
     "Revenue Operations",
   ],
 
+  // Quantified impact for the recruiter right-rail "By the numbers" card.
+  byNumbers: [
+    { value: "25+ yrs", label: "Marketing, automation & systems leadership" },
+    { value: "$90K+/yr", label: "Saved via a zero-downtime Zapier-to-n8n migration" },
+    { value: "$750K+/mo", label: "Attributed pipeline from lifecycle automation" },
+    { value: "500K+", label: "CRM records architected and kept compliant" },
+  ],
+
   // Condensed featured projects (full versions live in projects.ts).
   featured: [
     {
       title: "Multi-Agent Command Center",
-      line: "The system that runs my own company — every agent cast as a Seinfeld character so a complex orchestration reads like an ensemble, not a wiring diagram.",
+      line: "Flagship case study in agent orchestration, routing, memory, QA, and real workflow execution.",
       points: [
-        "Each agent is a named Seinfeld character with one clear job",
-        "Planner, router, specialists, critic, and memory, coordinated as a cast",
-        "Runs real workflows end to end — humans in the loop where judgment matters",
+        "Orchestrator routes each request to the right specialist agent",
+        "Memory + QA gates keep work consistent and inspectable",
+        "Humans stay in the loop where judgment matters",
       ],
       result:
-        "Proof a multi-agent system can run real workflows end to end — and stay legible to everyone.",
+        "Proof a multi-agent system can run real workflows end to end — not a prototype.",
     },
     {
       title: "AI Voice Agent Ecosystem",
@@ -144,12 +122,6 @@ export const recruiter = {
       result: "Clarity instead of complexity — built and deployed.",
     },
   ],
-
-  closingCta: {
-    heading: "Tell me about the role",
-    sub: "Email or a text reaches me fastest — give me the business problem and I'll tell you how I'd architect the system that solves it.",
-    label: "Email Matt",
-  },
 
   links: {
     linkedin: { label: "LinkedIn", href: "https://www.linkedin.com/in/mattmartelli/" },

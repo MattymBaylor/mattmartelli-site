@@ -14,7 +14,6 @@ import {
 import { recruiter } from "@/content/recruiter";
 import { site } from "@/content/site";
 import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
-import { Capabilities } from "@/components/sections/Capabilities";
 
 export const metadata: Metadata = {
   title: "Recruiter Fast Path",
@@ -51,9 +50,6 @@ export default function RecruiterPage() {
           <p className="eyebrow mb-3">Recruiter Fast Path</p>
           <h1 className="text-3xl font-semibold sm:text-4xl">{recruiter.heading}</h1>
           <p className="mt-3 text-ink-muted">{recruiter.sub}</p>
-          <p className="mt-2 text-sm text-ink-faint">
-            {recruiter.location} · {recruiter.availability}
-          </p>
 
           <div className="mt-6 flex flex-wrap gap-3">
             <a
@@ -141,29 +137,6 @@ export default function RecruiterPage() {
               </p>
             </section>
 
-            <section aria-labelledby="experience">
-              <h2 id="experience" className="text-xl font-semibold">
-                Experience
-              </h2>
-              <ul className="mt-4 space-y-4">
-                {recruiter.experience.map((e) => (
-                  <li
-                    key={e.company}
-                    className="border-l-2 border-line pl-4 sm:flex sm:items-baseline sm:justify-between sm:gap-4"
-                  >
-                    <div>
-                      <p className="font-medium">{e.company}</p>
-                      <p className="text-sm text-ink-muted">{e.role}</p>
-                      <p className="mt-0.5 text-sm text-ink-faint">{e.note}</p>
-                    </div>
-                    <p className="mt-1 shrink-0 font-mono text-xs text-ink-faint sm:mt-0">
-                      {e.dates}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            </section>
-
             <section aria-labelledby="accomplishments">
               <h2 id="accomplishments" className="text-xl font-semibold">
                 Key accomplishments
@@ -178,16 +151,6 @@ export default function RecruiterPage() {
               </ul>
             </section>
 
-            <section aria-labelledby="capabilities">
-              <h2 id="capabilities" className="text-xl font-semibold">
-                Capabilities at a glance
-              </h2>
-              <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                What I do across marketing, AI, and revenue operations — and the proof behind each. Framework-agnostic by design; the system and the result come first.
-              </p>
-              <Capabilities />
-            </section>
-
             <section aria-labelledby="featured">
               <h2 id="featured" className="text-xl font-semibold">
                 Featured projects
@@ -200,37 +163,23 @@ export default function RecruiterPage() {
                 Explore the interactive versions <ArrowUpRight size={14} aria-hidden />
               </Link>
             </section>
-
-            <section
-              aria-labelledby="recruiter-cta"
-              className="rounded-2xl border border-accent-cyan/30 bg-surface-elevated/60 p-6 shadow-glow"
-            >
-              <h2 id="recruiter-cta" className="text-lg font-semibold">
-                {recruiter.closingCta.heading}
-              </h2>
-              <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                {recruiter.closingCta.sub}
-              </p>
-              <div className="mt-4 flex flex-wrap gap-3">
-                <a
-                  href={recruiter.links.email.href}
-                  className="inline-flex items-center gap-2 rounded-md bg-accent-gradient px-4 py-2.5 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03]"
-                >
-                  <Mail size={15} aria-hidden /> {recruiter.closingCta.label}
-                </a>
-                <a
-                  href={recruiter.links.linkedin.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-md border border-line-strong px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50"
-                >
-                  <Linkedin size={15} aria-hidden /> LinkedIn
-                </a>
-              </div>
-            </section>
           </div>
 
           <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
+            <div className="surface-card p-5">
+              <p className="eyebrow mb-3">By the numbers</p>
+              <dl className="grid grid-cols-2 gap-x-4 gap-y-5">
+                {recruiter.byNumbers.map((s) => (
+                  <div key={s.label}>
+                    <dt className="accent-text font-display text-2xl font-semibold">
+                      {s.value}
+                    </dt>
+                    <dd className="mt-1 text-xs leading-snug text-ink-muted">{s.label}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+
             <div className="surface-card p-5">
               <p className="eyebrow mb-3">Core expertise</p>
               <ul className="flex flex-wrap gap-2">
