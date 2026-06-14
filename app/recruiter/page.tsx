@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowLeft,
   Download,
@@ -231,6 +232,23 @@ export default function RecruiterPage() {
           </div>
 
           <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
+            <div className="surface-card flex items-center gap-4 p-5">
+              <Image
+                src="/headshot.jpg"
+                alt="Matt Martelli"
+                width={160}
+                height={160}
+                className="h-20 w-20 shrink-0 rounded-2xl object-cover object-top"
+                priority
+              />
+              <div className="min-w-0">
+                <p className="font-display text-base font-semibold text-ink">Matt Martelli</p>
+                <p className="mt-0.5 text-xs leading-snug text-ink-muted">
+                  AI Systems Architect · Marketing Operations
+                </p>
+              </div>
+            </div>
+
             <div className="surface-card p-5">
               <p className="eyebrow mb-3">By the numbers</p>
               <dl className="grid grid-cols-2 gap-x-4 gap-y-5">
