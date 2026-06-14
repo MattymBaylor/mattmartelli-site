@@ -638,7 +638,7 @@ export default function Playbook() {
                         Solution
                       </h4>
                       <p className="mt-2 text-sm leading-[1.7] text-slate-600 dark:text-white">
-                        I led the migration of the company's automation infrastructure from Zapier to a self-hosted n8n environment.
+                        {"I led the migration of the company's automation infrastructure from Zapier to a self-hosted n8n environment."}
                       </p>
                       <p className="mt-2 text-sm font-semibold text-slate-700 dark:text-white">
                         The migration included:
@@ -754,10 +754,11 @@ export default function Playbook() {
                           Unable to embed {active.title}
                         </div>
                         <p className="mt-2 text-xs leading-[1.7] text-slate-600 dark:text-white">
-                          This destination refused to load inside the preview frame — usually due to{" "}
-                          <code className="font-mono">X-Frame-Options</code> or a{" "}
-                          <code className="font-mono">frame-ancestors</code> policy. Open it in a new tab to view the
-                          live system.
+                          {"This destination refused to load inside the preview frame — usually due to "}
+                          <code className="font-mono">X-Frame-Options</code>
+                          {" or a "}
+                          <code className="font-mono">frame-ancestors</code>
+                          {" policy. Open it in a new tab to view the live system."}
                         </p>
                         <div className="mt-4 flex items-center justify-center gap-2">
                           <a
@@ -803,7 +804,7 @@ export default function Playbook() {
                   </p>
 
                   <h4 className="mt-6 text-sm font-bold uppercase tracking-wider leading-none text-slate-900 dark:text-white">
-                    What you'll find here
+                    {"What you'll find here"}
                   </h4>
                   <ul className="mt-2 space-y-3 text-sm leading-[1.7] text-slate-700 dark:text-white">
                     {CARDS.map((card) => (
@@ -825,7 +826,7 @@ export default function Playbook() {
                     How to use this panel
                   </h4>
                   <p className="mt-2 text-sm leading-[1.7] text-slate-600 dark:text-white">
-                    Each card on the left has a button — "View Live …", "View case study", or "View recent blog article". Click any of them and the corresponding system or case study loads right here, replacing this overview. Click "View overview" any time to come back to this page.
+                    {'Each card on the left has a button — "View Live …", "View case study", or "View recent blog article". Click any of them and the corresponding system or case study loads right here, replacing this overview. Click "View overview" any time to come back to this page.'}
                   </p>
 
                   <div className="mt-6 rounded-lg border border-slate-200 bg-slate-50 p-4 dark:border-emerald-800/60 dark:bg-emerald-900/60">
