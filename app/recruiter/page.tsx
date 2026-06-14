@@ -11,6 +11,7 @@ import {
   Globe,
   ArrowUpRight,
   Star,
+  Quote,
   PlayCircle,
 } from "lucide-react";
 import { recruiter } from "@/content/recruiter";
@@ -339,6 +340,18 @@ export default function RecruiterPage() {
             </p>
           </aside>
         </div>
+
+        {/* Testimonial */}
+        <figure className="mt-12 rounded-2xl border border-line bg-surface-elevated/60 p-6 sm:p-8">
+          <Quote size={22} className="text-accent-cyan/50" aria-hidden />
+          <blockquote className="mt-3 max-w-3xl text-lg leading-relaxed text-ink sm:text-xl">
+            {recruiter.testimonial.quote}
+          </blockquote>
+          <figcaption className="mt-4 text-sm">
+            <span className="font-semibold text-ink">{recruiter.testimonial.name}</span>
+            <span className="text-ink-muted"> · {recruiter.testimonial.title}</span>
+          </figcaption>
+        </figure>
 
         {/* Interactive Playbook — full-screen, two-pane walkthrough */}
         <section
