@@ -26,6 +26,15 @@ export const recruiter = {
     demo: { label: "Launch Interactive Demo", href: "https://growthmindset.ai/seinfeld-hq/" },
   },
 
+  // Interactive, full-screen playbook (its own route at /playbook).
+  playbook: {
+    eyebrow: "Interactive",
+    title: "The Strategic Alignment Playbook",
+    description:
+      "A live, two-pane walkthrough of my production systems. Pick any project on the left and its live demo or full case study loads in the panel beside it — the Zapier-to-n8n migration, the real-time operations dashboard, voice AI agents, the multi-agent operating system, and customer-journey automation, all in one interactive view.",
+    cta: { label: "Launch the Interactive Playbook", href: "/playbook" },
+  },
+
   executiveSummary:
     "AI Systems Architect and Marketing Operations leader with 25+ years at the intersection of marketing, technology, operations, and customer experience. I design and build production AI systems — voice agents, multi-agent workflows, CRM and lifecycle automation — that connect data, automation, and human teams to deliver measurable business outcomes. I'm framework-agnostic by design: the system and the result come first, the tooling follows.",
 
