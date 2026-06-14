@@ -2,16 +2,17 @@
  * caseStudy.ts — content for the flagship case study page at /seinfeld-hq.
  *
  * Recruiter-focused: leads with how Matt thinks, designs, and ships business AI
- * systems. The Seinfeld theme is the wrapper; the architecture is the product.
- * Edit copy here; the page reads entirely from this file.
+ * systems. The Seinfeld cast is the engagement/legibility layer up front; the
+ * re-skinnable architecture is the product underneath. Edit copy here; the page
+ * reads entirely from this file.
  */
 
 export const caseStudy = {
   slug: "seinfeld-hq",
   meta: {
-    title: "Designing Multi-Agent Systems Businesses Actually Understand",
+    title: "I Run My Company on a Cast of Seinfeld Characters — a Multi-Agent AI Case Study",
     description:
-      "A flagship case study: how Matt Martelli turns complex AI workflows into understandable business systems — agent architecture, voice AI, automation, CRM integration, human handoffs, and measurable operating outcomes.",
+      "How Matt Martelli casts a real AI operating system as the Seinfeld ensemble — Jerry on the front door, Kramer on integrations, Newman on watch — so a 15-agent system stays legible enough to trust, debug, and run. Architecture, voice AI, automation, CRM integration, and human handoffs underneath.",
   },
 
   links: {
@@ -20,11 +21,11 @@ export const caseStudy = {
 
   hero: {
     eyebrow: "Flagship Case Study",
-    headline: "Designing Multi-Agent Systems Businesses Actually Understand",
-    headlineCoda: "…and employees actually want to use.",
+    headline: "I Run My Whole Company on a Cast of Seinfeld Characters",
+    headlineCoda: "— and the casting is the engineering, not the gimmick.",
     subheadline:
-      "A flagship case study showing how I turn complex AI workflows into understandable business systems — combining agent architecture, voice AI, automation, CRM integration, human handoffs, and measurable operating outcomes.",
-    coreMessage: "The theme is optional. The architecture is the product.",
+      "Every role in my AI operating system is played by a Seinfeld character: Jerry runs the front door, Joe Devola routes the traffic, Kramer builds the integrations, Newman watches the whole thing 24/7. The casting isn't decoration — it's how a 15-agent operation stays legible enough for a team to actually trust, debug, and run. Underneath the cast is a real architecture: an orchestrator, specialized agents, a QA gate, and human handoffs where judgment matters.",
+    coreMessage: "The cast is the part everyone remembers. The architecture is the part that works. You need both.",
   },
 
   problem: {
@@ -41,8 +42,8 @@ export const caseStudy = {
     heading: "Specialized agents, one orchestrator",
     eyebrow: "The Solution",
     body: [
-      "Instead of one assistant that does everything, the work is split across specialized agents that each own a clear responsibility — routed by an orchestrator, checked by QA gates, and handed to a human when judgment is required.",
-      "The theme is just a memorable way to make the org chart legible: each character is a role, each role is an agent. Strip the names away and what's left is a clean, inspectable operating model.",
+      "So instead of one assistant doing everything, the work is split across specialized agents that each own a clear responsibility — routed by an orchestrator, checked by a QA gate, and handed to a human when judgment is required.",
+      "Then I cast the roles. Each agent is a Seinfeld character with one job: Jerry interprets the request, Devola routes it, Elaine writes, Kramer integrates, Mickey signs off. The casting is deliberate — a familiar ensemble makes the org chart instantly legible and genuinely fun to operate, which is exactly why a team adopts and trusts it. Strip the names and the architecture underneath is clean and inspectable; keep them and everyone remembers who does what.",
     ],
     quote: "Two leaders. Nine specialists. One QA gate. Every request routed, executed, and signed off before it ships.",
   },
@@ -322,7 +323,7 @@ export const caseStudy = {
   liveOps: {
     eyebrow: "Live Ops",
     heading: "The war room, in your pocket",
-    body: "What you'd see if you looked over my shoulder right now. Specialized agents posting status, daily ships, pattern observations, and the occasional catch — public-safe slice of the real internal feed. Tap or hover to pause.",
+    body: "What you'd see looking over my shoulder right now — the cast on the job. Jerry routing requests, Kramer wiring integrations, Newman flagging issues, Mickey signing off on QA: specialized agents posting status, daily ships, pattern observations, and the occasional catch. A public-safe slice of the real internal feed. Tap or hover to pause.",
     stats: [
       { value: "120+", label: "SaaS dossiers · 60 days" },
       { value: "24/7", label: "watchdog cadence" },
