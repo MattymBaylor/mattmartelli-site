@@ -50,6 +50,9 @@ export default function RecruiterPage() {
           <p className="eyebrow mb-3">Recruiter Fast Path</p>
           <h1 className="text-3xl font-semibold sm:text-4xl">{recruiter.heading}</h1>
           <p className="mt-3 text-ink-muted">{recruiter.sub}</p>
+          <p className="mt-2 text-sm text-ink-faint">
+            {recruiter.location} · {recruiter.availability}
+          </p>
 
           <div className="mt-6 flex flex-wrap gap-3">
             <a
@@ -137,6 +140,29 @@ export default function RecruiterPage() {
               </p>
             </section>
 
+            <section aria-labelledby="experience">
+              <h2 id="experience" className="text-xl font-semibold">
+                Experience
+              </h2>
+              <ul className="mt-4 space-y-4">
+                {recruiter.experience.map((e) => (
+                  <li
+                    key={e.company}
+                    className="border-l-2 border-line pl-4 sm:flex sm:items-baseline sm:justify-between sm:gap-4"
+                  >
+                    <div>
+                      <p className="font-medium">{e.company}</p>
+                      <p className="text-sm text-ink-muted">{e.role}</p>
+                      <p className="mt-0.5 text-sm text-ink-faint">{e.note}</p>
+                    </div>
+                    <p className="mt-1 shrink-0 font-mono text-xs text-ink-faint sm:mt-0">
+                      {e.dates}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+
             <section aria-labelledby="accomplishments">
               <h2 id="accomplishments" className="text-xl font-semibold">
                 Key accomplishments
@@ -172,6 +198,34 @@ export default function RecruiterPage() {
               >
                 Explore the interactive versions <ArrowUpRight size={14} aria-hidden />
               </Link>
+            </section>
+
+            <section
+              aria-labelledby="recruiter-cta"
+              className="rounded-2xl border border-accent-cyan/30 bg-surface-elevated/60 p-6 shadow-glow"
+            >
+              <h2 id="recruiter-cta" className="text-lg font-semibold">
+                {recruiter.closingCta.heading}
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                {recruiter.closingCta.sub}
+              </p>
+              <div className="mt-4 flex flex-wrap gap-3">
+                <a
+                  href={recruiter.links.email.href}
+                  className="inline-flex items-center gap-2 rounded-md bg-accent-gradient px-4 py-2.5 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03]"
+                >
+                  <Mail size={15} aria-hidden /> {recruiter.closingCta.label}
+                </a>
+                <a
+                  href={recruiter.links.linkedin.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-md border border-line-strong px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50"
+                >
+                  <Linkedin size={15} aria-hidden /> LinkedIn
+                </a>
+              </div>
             </section>
           </div>
 
