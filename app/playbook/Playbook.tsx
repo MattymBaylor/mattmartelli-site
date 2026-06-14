@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
+  ArrowLeft,
   Terminal,
   ExternalLink,
   Mail,
@@ -220,6 +221,14 @@ export default function Playbook() {
       {/* Header */}
       <header className="border-b border-slate-800 bg-black text-white dark:border-slate-800/80 dark:bg-black/80">
         <div className="mx-auto flex max-w-[1600px] items-center gap-4 px-6 py-5 sm:gap-6">
+          <Link
+            href="/"
+            aria-label="Back to mattmartelli.com"
+            className="inline-flex shrink-0 items-center gap-2 rounded-lg border border-slate-600 bg-slate-800 px-3 py-2 text-xs font-semibold text-slate-100 transition hover:bg-slate-700 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+          >
+            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+            <span className="hidden sm:inline">Back to site</span>
+          </Link>
           <Link href="/" className="min-w-0 flex-1 outline-none focus-visible:opacity-80">
             <h1 className="truncate text-2xl font-extrabold uppercase tracking-[0.1em] text-white antialiased sm:text-3xl">
               Matt Martelli
