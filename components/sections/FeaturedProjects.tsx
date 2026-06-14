@@ -62,16 +62,16 @@ export function FeaturedProjects() {
                     transition={{ duration: 0.25, ease: [0.21, 0.47, 0.32, 0.98] }}
                     className="overflow-hidden"
                   >
-                    <div className="border-t border-line/60 px-4 pb-4 pt-3">
+                    <div className="border-t border-emerald-500/30 bg-emerald-500/10 px-4 pb-4 pt-3">
                       {f.points && f.points.length > 0 && (
                         <ul className="space-y-1.5">
                           {f.points.map((point) => (
                             <li
                               key={point}
-                              className="flex items-start gap-2 text-sm leading-relaxed text-ink-muted"
+                              className="flex items-start gap-2 text-sm leading-relaxed text-white/90"
                             >
                               <span
-                                className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent-cyan/60"
+                                className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-emerald-400/80"
                                 aria-hidden
                               />
                               {point}
@@ -80,7 +80,7 @@ export function FeaturedProjects() {
                         </ul>
                       )}
                       {f.result && (
-                        <p className="mt-3 text-xs leading-relaxed text-accent-cyan/80">
+                        <p className="mt-3 text-xs leading-relaxed text-emerald-200">
                           {f.result}
                         </p>
                       )}
