@@ -8,6 +8,7 @@ import {
   Mail,
   Linkedin,
   Youtube,
+  Globe,
   ArrowUpRight,
   Star,
   PlayCircle,
@@ -85,6 +86,14 @@ export default function RecruiterPage() {
               className="inline-flex items-center gap-2 rounded-md border border-line-strong px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50"
             >
               <Youtube size={15} aria-hidden /> YouTube
+            </a>
+            <a
+              href={recruiter.links.website.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-md border border-line-strong px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50"
+            >
+              <Globe size={15} aria-hidden /> Website
             </a>
           </div>
         </header>
@@ -313,6 +322,14 @@ export default function RecruiterPage() {
                   className="flex items-center gap-2 text-ink-muted transition-colors hover:text-accent-cyan"
                 >
                   <Youtube size={15} aria-hidden /> YouTube
+                </a>
+                <a
+                  href={recruiter.links.website.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-ink-muted transition-colors hover:text-accent-cyan"
+                >
+                  <Globe size={15} aria-hidden /> growthmindset.ai
                 </a>
               </div>
             </div>
