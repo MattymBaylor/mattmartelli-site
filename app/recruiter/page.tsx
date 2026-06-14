@@ -13,6 +13,7 @@ import {
 import { recruiter } from "@/content/recruiter";
 import { site } from "@/content/site";
 import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
+import { Capabilities } from "@/components/sections/Capabilities";
 
 export const metadata: Metadata = {
   title: "Recruiter Fast Path",
@@ -148,6 +149,16 @@ export default function RecruiterPage() {
                   </li>
                 ))}
               </ul>
+            </section>
+
+            <section aria-labelledby="capabilities">
+              <h2 id="capabilities" className="text-xl font-semibold">
+                Capabilities at a glance
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                What I do across marketing, AI, and revenue operations — and the proof behind each. Framework-agnostic by design; the system and the result come first.
+              </p>
+              <Capabilities />
             </section>
 
             <section aria-labelledby="featured">
