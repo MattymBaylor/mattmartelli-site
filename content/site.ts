@@ -11,7 +11,7 @@ export const site = {
     name: "Matt Martelli",
     domain: "mattmartelli.com",
     url: "https://mattmartelli.com",
-    title: "Matt Martelli — AI Systems Architect & Marketing Operations Leader",
+    title: "Matt Martelli — AI Automation Architect & Marketing Automation Architect",
     description:
       "Matt Martelli designs and builds production AI systems that connect voice, CRM, marketing automation, data pipelines, and multi-agent workflows to solve real business problems.",
     email: "mattmartelli@mac.com",
@@ -22,7 +22,7 @@ export const site = {
     youtubeLabel: "The 60-Second AI Brief",
     videoId: "6rEDK6LX_AA",
     company: { name: "growthmindset.ai", url: "https://growthmindset.ai" },
-    jobTitle: "AI Systems Architect",
+    jobTitle: "AI Automation Architect",
     location: "United States",
   },
 
@@ -55,11 +55,11 @@ export const site = {
     headlineLine1: "AI is the tool.",
     headlineLine2: "The system is the product.",
     capabilities:
-      "AI Voice Agent & Agentic Workflow Architect • Marketing & Sales Automation • HubSpot Certified",
+      "AI Automation Architect | Marketing Automation Architect | AI Integration Strategist | HubSpot Certified | Remote",
     introduction:
       "I build production AI systems that connect voice agents, automation, CRM platforms, and human teams into measurable revenue engines.",
     experience:
-      "25+ years building the marketing, CRM, and operational infrastructure businesses run on every day.",
+      "25 years in marketing, the last 15+ building the AI, automation, and CRM systems businesses run on.",
     ctas: {
       primary: { label: "Explore the Systems", href: "#proof-of-work" },
       secondary: { label: "Recruiter Fast Path", href: "/recruiter" },

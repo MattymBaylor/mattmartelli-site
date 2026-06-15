@@ -40,7 +40,7 @@ export const recruiter = {
   },
 
   executiveSummary:
-    "AI Systems Architect and Marketing Operations leader with 25+ years at the intersection of marketing, technology, operations, and customer experience. I design and build production AI systems — voice agents, multi-agent workflows, CRM and lifecycle automation — that connect data, automation, and human teams to deliver measurable business outcomes. I'm framework-agnostic by design: the system and the result come first, the tooling follows.",
+    "AI Automation Architect and Marketing Automation Architect — 25 years in marketing, the last 15+ building AI and automation systems at the intersection of technology, operations, and customer experience. I design and build production AI systems — voice agents, multi-agent workflows, CRM and lifecycle automation — that connect data, automation, and human teams to deliver measurable business outcomes. I'm framework-agnostic by design: the system and the result come first, the tooling follows.",
 
   resume: {
     label: "Download Résumé (PDF)",
@@ -96,7 +96,7 @@ export const recruiter = {
 
   // Quantified impact for the recruiter right-rail "By the numbers" card.
   byNumbers: [
-    { value: "25+ yrs", label: "Marketing, automation & systems leadership" },
+    { value: "25 yrs", label: "Marketing — last 15+ in AI & automation" },
     { value: "$90K+/yr", label: "Saved via a zero-downtime Zapier-to-n8n migration" },
     { value: "$750K+/mo", label: "Attributed pipeline from lifecycle automation" },
     { value: "500K+", label: "CRM records architected and kept compliant" },
@@ -143,7 +143,7 @@ export const recruiter = {
         "Lead scoring, segmentation, revenue attribution",
         "Turns fragmented data into measurable, attributable pipeline",
       ],
-      result: "25+ years of marketing-ops depth, applied as a system.",
+      result: "25 years of marketing-ops depth, applied as a system.",
     },
     {
       title: "Interactive Operations Dashboard",

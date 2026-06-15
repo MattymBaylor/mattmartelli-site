@@ -266,7 +266,7 @@ export default function RecruiterPage() {
               <div className="min-w-0">
                 <p className="font-display text-base font-semibold text-ink">Matt Martelli</p>
                 <p className="mt-0.5 text-xs leading-snug text-ink-muted">
-                  AI Systems Architect · Marketing Operations
+                  AI Automation Architect | Marketing Automation Architect
                 </p>
               </div>
             </div>
