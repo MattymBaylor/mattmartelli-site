@@ -340,7 +340,7 @@ export const site = {
   },
 
   marketing: {
-    heading: "Marketing Operations & CRM",
+    heading: "Lifecycle Marketing | RevOps | Data Hygiene",
     copy: "Enterprise-scale lifecycle marketing, lead management, and revenue operations — the marketing-automation ecosystem and customer-journey infrastructure that businesses run on.",
     stack: [
       "HubSpot",
@@ -354,6 +354,35 @@ export const site = {
       "Revenue Attribution",
       "Marketing Automation Strategy",
     ],
+    // Featured "methodology" artifact — the Data Refinery Blueprint deck.
+    // Rendered slides live in /public/blueprints; the lightbox reads this.
+    blueprint: {
+      eyebrow: "Featured methodology",
+      title: "Data Hygiene is critical!",
+      body: "Data hygiene ensures information is accurate, consistent, and up-to-date. It is the critical foundation for eliminating errors, driving strategic decisions, reducing operational costs, and maintaining regulatory compliance. Neglecting it leads to flawed analytics, wasted resources, and serious security vulnerabilities.",
+      cta: "Click to view methodology",
+      cover: "/blueprints/cover.webp",
+      coverAlt: "The Data Refinery Blueprint — title slide",
+      pdf: "/blueprints/data-refinery-blueprint.pdf",
+      deckTitle: "The Data Refinery Blueprint",
+      deckSubtitle: "Architecting the Intelligent RevOps Assembly Line",
+      slides: [
+        { src: "/blueprints/slide-01.webp", title: "The Data Refinery Blueprint" },
+        { src: "/blueprints/slide-02.webp", title: "The Problem: The Silent Tax of Unstructured Data" },
+        { src: "/blueprints/slide-03.webp", title: "The Master Schematic: A Left-to-Right Architecture" },
+        { src: "/blueprints/slide-04.webp", title: "Stage 01 — Pre-Sync Triage & Diagnostic Gating" },
+        { src: "/blueprints/slide-05.webp", title: "Stage 02 — Standardization: From Rules to Reasoning" },
+        { src: "/blueprints/slide-06.webp", title: "Stage 02 — Enrichment: Appending Context" },
+        { src: "/blueprints/slide-07.webp", title: "Stage 03 — The Native Deduplication Divide" },
+        { src: "/blueprints/slide-08.webp", title: "Stage 03 — The Safe Merge Protocol" },
+        { src: "/blueprints/slide-09.webp", title: "Stage 03 — Vector Similarity & Semantic Resolution" },
+        { src: "/blueprints/slide-10.webp", title: "Stage 04 — The Orchestration Engine Matrix" },
+        { src: "/blueprints/slide-11.webp", title: "Stage 04 — Anatomy of a Delegated AI Agent" },
+        { src: "/blueprints/slide-12.webp", title: "Stage 04–05 — The Human-in-the-Loop Safeguard" },
+        { src: "/blueprints/slide-13.webp", title: "Stage 05 — Continuous Maintenance Governance" },
+        { src: "/blueprints/slide-14.webp", title: "The Paradigm Shift: From Rules to Reasoning" },
+      ],
+    },
     diagramRef:
       "See how the pieces connect in the interactive Marketing Operations Engine below.",
   },

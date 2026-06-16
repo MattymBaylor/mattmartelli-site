@@ -10,7 +10,7 @@ export function SectionHeading({
   children,
 }: {
   eyebrow?: string;
-  title: string;
+  title: ReactNode;
   sub?: string;
   align?: "left" | "center";
   /** id for the <h2>, so a section can reference it via aria-labelledby. */

@@ -5,15 +5,29 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { StatCallout } from "@/components/ui/StatCallout";
 import { MarketingOpsDiagram } from "@/components/sections/MarketingOpsDiagram";
+import { DataRefineryBlueprint } from "@/components/sections/DataRefineryBlueprint";
 
 export function MarketingOps() {
   const { marketing } = site;
+
+  // Render the "A | B | C" heading with cyan pipe separators.
+  const headingNode = marketing.heading.split(" | ").map((part, i, arr) => (
+    <span key={part}>
+      {part}
+      {i < arr.length - 1 && (
+        <span className="px-1.5 text-accent-cyan/80" aria-hidden="true">
+          |
+        </span>
+      )}
+    </span>
+  ));
+
   return (
     <section id="marketing-ops" className="section border-t border-line/60">
       <div className="container-x">
         <SectionHeading
           eyebrow="25+ years in market"
-          title={marketing.heading}
+          title={headingNode}
           sub={marketing.copy}
         />
 
@@ -37,6 +51,12 @@ export function MarketingOps() {
         </Reveal>
 
         <Reveal delay={0.12}>
+          <div className="mt-6">
+            <DataRefineryBlueprint />
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.14}>
           <Link
             href="#proof-of-work"
             className="group mt-8 inline-flex items-center gap-2 text-sm font-medium text-accent-cyan"
