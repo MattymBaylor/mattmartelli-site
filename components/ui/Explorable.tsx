@@ -21,9 +21,12 @@ export interface ExplorableItem {
 export function Explorable({
   items,
   ariaLabel,
+  compact = false,
 }: {
   items: readonly ExplorableItem[];
   ariaLabel: string;
+  /** Smaller chips (tighter padding + 11px text). */
+  compact?: boolean;
 }) {
   const [activeId, setActiveId] = useState(items[0]?.id);
   const reduced = usePrefersReducedMotion();
@@ -46,7 +49,7 @@ export function Explorable({
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1.1fr_1fr]">
-      <div role="radiogroup" aria-label={ariaLabel} className="flex flex-wrap gap-2.5">
+      <div role="radiogroup" aria-label={ariaLabel} className={`flex flex-wrap ${compact ? "gap-2" : "gap-2.5"}`}>
         {items.map((item, i) => {
           const selected = item.id === active?.id;
           return (
@@ -57,7 +60,9 @@ export function Explorable({
               tabIndex={selected ? 0 : -1}
               onClick={() => setActiveId(item.id)}
               onKeyDown={(e) => onKeyDown(e, i)}
-              className={`rounded-full border px-4 py-2 font-mono text-xs transition-all ${
+              className={`rounded-full border font-mono transition-all ${
+                compact ? "px-3 py-1 text-[11px]" : "px-4 py-2 text-xs"
+              } ${
                 selected
                   ? "border-accent-cyan/60 bg-accent-cyan/10 text-accent-cyan shadow-glow"
                   : "border-line text-ink-muted hover:border-line-strong hover:text-ink"

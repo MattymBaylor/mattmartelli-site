@@ -107,8 +107,15 @@ export const site = {
   },
 
   agentic: {
-    heading: "Agentic Systems",
+    heading: "Agentic Systems for Every Business Process",
     copy: "AI workers that qualify leads, recover revenue, support customers, and automate operations — coordinated as a single system.",
+    // Visual summary of the end-to-end agentic lead lifecycle (click to expand).
+    lifecycle: {
+      src: "/lead-lifecycle-workflow.webp",
+      alt: "The AI-Powered Lead Lifecycle — an end-to-end agentic journey: ingestion and triage, data hygiene and semantic standardization, enrichment and strategic routing, then final sync and operational action across HubSpot and Salesforce.",
+      caption: "The AI-powered lead lifecycle — an end-to-end agentic journey",
+      hint: "Click to expand",
+    },
     // Explorable chips — selecting one updates the inline description.
     applications: [
       {

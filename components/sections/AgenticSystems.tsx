@@ -2,6 +2,7 @@ import { site } from "@/content/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { Explorable } from "@/components/ui/Explorable";
+import { ExpandableImage } from "@/components/ui/ExpandableImage";
 import { StatCallout } from "@/components/ui/StatCallout";
 import { Footnotes } from "@/components/ui/Footnotes";
 
@@ -20,7 +21,18 @@ export function AgenticSystems() {
             <p className="mb-5 font-mono text-xs uppercase tracking-[0.18em] text-ink-faint">
               Example applications — select to explore
             </p>
-            <Explorable items={agentic.applications} ariaLabel="Agentic system applications" />
+            <Explorable items={agentic.applications} ariaLabel="Agentic system applications" compact />
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <div className="mt-12">
+            <ExpandableImage
+              src={agentic.lifecycle.src}
+              alt={agentic.lifecycle.alt}
+              caption={agentic.lifecycle.caption}
+              hint={agentic.lifecycle.hint}
+            />
           </div>
         </Reveal>
 
