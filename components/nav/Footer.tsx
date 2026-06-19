@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Mail, Phone, Linkedin, Youtube, Globe, FileDown } from "lucide-react";
+import { Mail, Phone, Linkedin, Youtube, Globe, Mic, FileDown } from "lucide-react";
 import { site } from "@/content/site";
 
 export function Footer() {
@@ -57,6 +57,14 @@ export function Footer() {
             className="inline-flex items-center gap-2 text-ink-muted transition-colors hover:text-accent-cyan"
           >
             <Globe size={15} aria-hidden /> {site.meta.company.name}
+          </a>
+          <a
+            href={site.meta.podcast.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-ink-muted transition-colors hover:text-accent-cyan"
+          >
+            <Mic size={15} aria-hidden /> {site.meta.podcast.name}
           </a>
           <Link
             href="/recruiter"

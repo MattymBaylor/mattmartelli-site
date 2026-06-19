@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lead Hygiene Architecture Plan</title>
+  <style>
+    :root{--bg:#0b1020;--card:#121936;--muted:#9fb0d0;--text:#eef4ff;--line:#263159;--a:#73d2de;--b:#b18cff;--c:#ffb86b;--d:#ff7f96;--ok:#66d19e}
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,Arial,sans-serif;background:linear-gradient(180deg,#0b1020,#0f1430);color:var(--text)}
+    .wrap{max-width:1200px;margin:0 auto;padding:32px 20px 80px}
+    h1{font-size:34px;margin:0 0 8px} h2{font-size:24px;margin:32px 0 12px} h3{font-size:18px;margin:18px 0 10px}
+    p,li{color:var(--muted);line-height:1.55} .sub{max-width:900px}
+    .grid{display:grid;gap:16px}.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .card{background:rgba(18,25,54,.82);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 8px 28px rgba(0,0,0,.18)}
+    .pill{display:inline-block;padding:4px 10px;border-radius:999px;background:#1a2248;border:1px solid var(--line);font-size:12px;color:#cfe0ff;margin-right:8px}
+    table{width:100%;border-collapse:collapse;background:rgba(18,25,54,.7);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+    th,td{padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left} th{color:#dce8ff;font-size:13px;background:#121936} td{color:var(--muted);font-size:14px}
+    .arch{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;align-items:start}
+    .col{background:rgba(18,25,54,.78);border:1px solid var(--line);border-radius:14px;padding:12px;min-height:280px}
+    .col h4{margin:0 0 10px;font-size:14px;color:#fff}.node{padding:10px;border-radius:12px;margin:8px 0;font-size:13px;line-height:1.35;color:#08111f;font-weight:600}
+    .s{background:var(--a)} .n{background:#95e1a3} .c{background:#d2b6ff} .r{background:#ffd08a} .h{background:#ff9db0} .o{background:#c9d4ea}
+    .flow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.arrow{color:#8fa2c7}
+    .note{border-left:4px solid var(--ok);padding-left:12px}
+    pre{white-space:pre-wrap;background:#0a1025;border:1px solid var(--line);border-radius:12px;padding:16px;color:#dfe8ff}
+    @media (max-width: 980px){.g2,.g3,.arch{grid-template-columns:1fr}.wrap{padding:20px 14px 60px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="pill">Executive Artifact</div><div class="pill">Architecture</div><div class="pill">Migration</div><div class="pill">Compliance</div>
+    <h1>Lead Hygiene, Migration, and Compliance System</h1>
+    <p class="sub">A client-ready artifact that combines the architecture, operating model, migration roadmap, compliance layer, customer journey, cost model, and hiring plan into one document. Recommended stack: n8n Cloud for orchestration, CrewAI/FastAPI for hygiene logic, Supabase for audit + quarantine + vector storage, and HubSpot as target CRM.</p>
+
+    <h2>Executive Summary</h2>
+    <div class="grid g3">
+      <div class="card"><h3>Recommendation</h3><p>Put a hygiene layer in front of HubSpot so every source passes through validation, enrichment, scoring, and quarantine before CRM write. Use n8n Cloud as the harness, CrewAI/FastAPI for the judgment layer, and Supabase for auditability.</p></div>
+      <div class="card"><h3>Why</h3><p>Dirty data should be stopped before it enters the CRM. This improves routing, sales efficiency, compliance, reporting, and migration quality. Founder-led businesses benefit more from quality than raw speed.</p></div>
+      <div class="card"><h3>Expected Cost</h3><p>Estimated monthly operating cost: <b>$495–$1,555</b>, excluding HubSpot seats. This is typically cheaper than heavy per-lead pricing while offering more control and cleaner audit trails.</p></div>
+    </div>
+
+    <h2>Architecture Visual</h2>
+    <div class="arch">
+      <div class="col"><h4>1. Sources</h4>
+        <div class="node s">Web Forms</div><div class="node s">Landing Pages</div><div class="node s">API Partners</div><div class="node s">CSV Uploads</div><div class="node s">Call Center</div><div class="node s">Referral/Vendors</div>
+      </div>
+      <div class="col"><h4>2. n8n Cloud</h4>
+        <div class="node n">Unified Webhook</div><div class="node n">Schema Validation</div><div class="node n">Deduplication</div><div class="node n">Pre-Enrichment</div>
+      </div>
+      <div class="col"><h4>3. CrewAI Hygiene</h4>
+        <div class="node c">Schema Mapper</div><div class="node c">Hygiene Agent</div><div class="node c">Enrichment Agent</div><div class="node c">Scoring Agent</div><div class="node c">Quality Gate</div>
+      </div>
+      <div class="col"><h4>4. Routing</h4>
+        <div class="node r">Pass → HubSpot Sandbox</div><div class="node r">Fail → Quarantine</div><div class="node r">Human Review UI</div>
+      </div>
+      <div class="col"><h4>5. CRM</h4>
+        <div class="node h">HubSpot Sandbox</div><div class="node h">Parallel Run</div><div class="node h">HubSpot Production</div>
+      </div>
+      <div class="col"><h4>6. Audit/BI</h4>
+        <div class="node o">Supabase Audit Log</div><div class="node o">Quarantine Table</div><div class="node o">Consent Log</div><div class="node o">Metabase</div>
+      </div>
+      <div class="col"><h4>7. Migration Track</h4>
+        <div class="node c">Infusionsoft Export</div><div class="node c">Field Mapping</div><div class="node c">Historical Cleanse</div><div class="node c">Batch Migration</div>
+      </div>
+    </div>
+
+    <h2>How the Stack Works Together</h2>
+    <div class="card">
+      <div class="flow">
+        <span class="pill">OpenClaw = overall product/app shell</span>
+        <span class="arrow">→</span>
+        <span class="pill">n8n = automation harness and orchestration</span>
+        <span class="arrow">→</span>
+        <span class="pill">CrewAI/FastAPI = hygiene and compliance judgment layer</span>
+        <span class="arrow">→</span>
+        <span class="pill">Supabase = storage, logs, quarantine, vectors</span>
+        <span class="arrow">→</span>
+        <span class="pill">HubSpot = clean CRM destination</span>
+      </div>
+      <p class="note">Think of n8n as the traffic controller, CrewAI as the analyst, Supabase as the evidence locker, and HubSpot as the destination system. OpenClaw can remain the shell around this if that is how the client wants to package the experience.</p>
+    </div>
+
+    <h2>Lead Journey Narrative</h2>
+    <div class="card">
+      <p>A lead submits a form at night. The payload hits the n8n webhook, gets normalized into a canonical schema, is deduplicated, and gets basic enrichment. The record is then sent to CrewAI, where one layer maps the fields, another validates phone, email, consent, and suppression, another enriches the record with business and context data, and a scoring layer decides whether it is ready.</p>
+      <p>If the record passes the quality threshold, it is written into HubSpot with clean fields and the right workflow starts immediately. If it fails, it is not allowed into the CRM. It goes to quarantine, a human reviews it, and only approved records are released forward. From the lead’s perspective, the experience feels fast, relevant, and personalized.</p>
+    </div>
+
+    <h2>6-Week Migration Roadmap</h2>
+    <table>
+      <tr><th>Week</th><th>Phase</th><th>Deliverables</th></tr>
+      <tr><td>1</td><td>Audit & Mapping</td><td>Infusionsoft export, field inventory, active record criteria, mapping matrix sign-off.</td></tr>
+      <tr><td>2</td><td>Sandbox Build</td><td>n8n workflows, canonical schema, CrewAI service, Supabase tables, quarantine UI.</td></tr>
+      <tr><td>3</td><td>Validation</td><td>500-record sample through hygiene flow, threshold tuning, edge-case documentation.</td></tr>
+      <tr><td>4</td><td>HubSpot Config</td><td>Custom properties, pipelines, workflows, forms, lifecycle mapping.</td></tr>
+      <tr><td>5</td><td>Parallel Run</td><td>Batch migration to sandbox, dual-write / parallel validation, UAT scenarios.</td></tr>
+      <tr><td>6</td><td>Cutover</td><td>Final delta migration, webhook/DNS flip, Infusionsoft read-only, runbooks.</td></tr>
+    </table>
+
+    <h2>Compliance and Governance</h2>
+    <div class="grid g2">
+      <div class="card">
+        <h3>Governance Model</h3>
+        <ul>
+          <li>Capture proof of consent and compliance checks in an append-only audit log.</li>
+          <li>Enforce non-bypassable rules in n8n before any CRM write or outbound action.</li>
+          <li>Monitor regulatory drift through TCPA / email-compliance feeds and alert on material changes.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Must-Have Compliance Inputs</h3>
+        <ul>
+          <li>TrustedForm or equivalent proof-of-consent capture for TCPA defensibility.</li>
+          <li>National + state DNC and known-litigator suppression scrubs before any outbound action.</li>
+          <li>Regulatory-change feeds for TCPA / FCC / FTC (Telemarketing Sales Rule) and CAN-SPAM email rules.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Cost Model</h2>
+    <table>
+      <tr><th>Component</th><th>Monthly Cost</th><th>Notes</th></tr>
+      <tr><td>n8n Cloud</td><td>$20–$120</td><td>Preferred over self-hosting for reliability and time savings.</td></tr>
+      <tr><td>CrewAI on Cloud Run</td><td>$50–$200</td><td>Scales to zero; Python service for hygiene/compliance.</td></tr>
+      <tr><td>Supabase</td><td>$25–$100</td><td>Audit log, quarantine, vector storage, review tables.</td></tr>
+      <tr><td>Enrichment APIs</td><td>$200–$500</td><td>Apollo, ZoomInfo, verification calls.</td></tr>
+      <tr><td>TCPA / Verification</td><td>$150–$450</td><td>Trestle, TrustedForm, suppression checks depending on usage.</td></tr>
+      <tr><td>Review/BI</td><td>$0–$185</td><td>Retool/Streamlit + Metabase.</td></tr>
+      <tr><td><b>Total</b></td><td><b>$495–$1,555</b></td><td>Excludes HubSpot seats.</td></tr>
+    </table>
+
+    <h2>Hosting Decision</h2>
+    <table>
+      <tr><th>Option</th><th>Cash Cost</th><th>Time Cost</th><th>Recommendation</th></tr>
+      <tr><td>n8n Cloud</td><td>$20–$120/mo</td><td>Near-zero maintenance</td><td>Best fit for a one-man operator.</td></tr>
+      <tr><td>Hostinger / VPS self-hosted</td><td>$10–$40/mo</td><td>4–8 hrs/mo maintenance</td><td>Cheaper cash, worse effective cost if your time matters.</td></tr>
+    </table>
+
+    <h2>Hiring Plan</h2>
+    <div class="card">
+      <h3>Recommended Role: AI Automation Engineer (Backend Focus)</h3>
+      <p>Own Python/FastAPI services, CrewAI production flows, Supabase schema work, deployment, external API integrations, and observability. You remain the strategist/architect in charge of n8n design, client strategy, orchestration, and system direction.</p>
+    </div>
+
+    <h2>Executive Overview (1 Page)</h2>
+    <div class="card">
+      <p><b>Problem:</b> Multi-source lead data enters the business in inconsistent formats, causing dirty CRM records, poor routing, wasted sales effort, and migration risk.</p>
+      <p><b>Solution:</b> Build a pre-CRM hygiene layer in front of HubSpot using n8n Cloud, CrewAI/FastAPI, and Supabase. Every lead is normalized, validated, enriched, scored, and either accepted or quarantined before touching the CRM.</p>
+      <p><b>Business Benefit:</b> Better lead quality, better reporting, safer migration, cleaner compliance posture, lower rep waste, and a repeatable operating model that can survive future CRM changes.</p>
+      <p><b>Timeline:</b> 6 weeks from audit to cutover, with a one-week parallel run before final switch.</p>
+      <p><b>Cost:</b> Roughly $495–$1,555 per month to operate, excluding HubSpot licenses.</p>
+      <p><b>Recommendation:</b> Use n8n Cloud instead of self-hosting. Hire or contract one backend-focused AI Automation Engineer to own Python/FastAPI/CrewAI implementation.</p>
+    </div>
+
+    <h2>Appendix: Prompt for Visual Builder</h2>
+    <pre>Build a clean architecture canvas showing 7 columns from left to right: Sources, n8n Cloud ingestion, CrewAI hygiene flow, routing/quarantine, HubSpot, observability, and migration track. Use color-coded columns, labeled arrows, cost badges on infrastructure, and a dashed migration lane at the bottom. Include audit logging, TCPA/compliance inputs, and a short lead journey callout that explains how a lead moves from submission to acceptance or quarantine.</pre>
+  </div>
+</body>
+</html>

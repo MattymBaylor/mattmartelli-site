@@ -58,7 +58,7 @@ export function MarketingOps() {
 
         <Reveal delay={0.14}>
           <Link
-            href="#proof-of-work"
+            href="#architecture"
             className="group mt-8 inline-flex items-center gap-2 text-sm font-medium text-accent-cyan"
           >
             <ArrowDown size={15} aria-hidden className="transition-transform group-hover:translate-y-0.5" />

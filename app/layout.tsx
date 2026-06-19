@@ -2,8 +2,15 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import Script from "next/script";
 import { site } from "@/content/site";
 import "./globals.css";
+
+// Google Analytics 4 measurement ID. NOTE: this is currently growthmindset.ai's
+// tag (G-K90LREJCJF), reused on mattmartelli.com — traffic pools into that GA
+// property, so split the two sites by hostname in GA. When a dedicated
+// mattmartelli.com data stream exists, just swap its G- id in here.
+const GA_ID = "G-K90LREJCJF";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -123,6 +130,17 @@ export default function RootLayout({
         {children}
         <Analytics />
         <SpeedInsights />
+        {/* Google Analytics 4 */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA_ID}');`}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}

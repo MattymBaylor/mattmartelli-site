@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beacon Home Services AI Recruitment System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f1419 0%, #1a2332 100%);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .container {
+            width: 100%;
+            min-width: 1400px;
+            padding: 40px;
+            position: relative;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .title h1 {
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #00d4ff, #0099ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .title p {
+            color: #8b92a9;
+            font-size: 1.2em;
+        }
+
+        .flowchart {
+            position: relative;
+            width: 100%;
+            height: 800px;
+            margin: 0 auto;
+        }
+
+        .master-coordinator {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, #1e3a5f 0%, #0a1929 100%);
+            border: 3px solid #00d4ff;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.5);
+            animation: pulse 2s infinite;
+            z-index: 10;
+        }
+
+        .master-coordinator h3 {
+            font-size: 1.4em;
+            color: #00d4ff;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .master-coordinator p {
+            font-size: 0.9em;
+            color: #8b92a9;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.5); }
+            50% { box-shadow: 0 0 60px rgba(0, 212, 255, 0.8); }
+        }
+
+        .agent {
+            position: absolute;
+            width: 200px;
+            padding: 20px;
+            background: linear-gradient(135deg, #1e2936 0%, #141a24 100%);
+            border: 2px solid #3a4556;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .agent.active {
+            border-color: #00d4ff;
+            background: linear-gradient(135deg, #1e3a5f 0%, #0a1929 100%);
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .agent.placeholder {
+            border-style: dashed;
+            opacity: 0.7;
+        }
+
+        .agent h4 {
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .agent p {
+            font-size: 0.85em;
+            color: #8b92a9;
+            line-height: 1.4;
+        }
+
+        .agent .status {
+            margin-top: 10px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .status.built {
+            background: #00d4ff;
+            color: #0a1929;
+        }
+
+        .status.placeholder {
+            background: #3a4556;
+            color: #8b92a9;
+        }
+
+        /* Agent Positions */
+        .agent-1 { top: 10%; left: 15%; }
+        .agent-2 { top: 10%; left: 50%; transform: translateX(-50%); }
+        .agent-3 { top: 10%; right: 15%; }
+        .agent-4 { top: 50%; left: 5%; transform: translateY(-50%); }
+        .agent-5 { top: 50%; right: 5%; transform: translateY(-50%); }
+        .agent-6 { bottom: 10%; left: 15%; }
+        .agent-7 { bottom: 10%; left: 50%; transform: translateX(-50%); }
+        .agent-8 { bottom: 10%; right: 15%; }
+
+        .connection {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+            height: 2px;
+            transform-origin: left center;
+            animation: flowData 3s infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes flowData {
+            0% { background-position: -100% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .trigger {
+            position: absolute;
+            top: 50%;
+            width: 150px;
+            padding: 15px;
+            background: linear-gradient(135deg, #2a1a4a 0%, #1a0f2e 100%);
+            border: 2px solid #7c3aed;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .trigger-1 { left: -180px; transform: translateY(-80%); }
+        .trigger-2 { left: -180px; transform: translateY(20%); }
+
+        .trigger h5 {
+            color: #a78bfa;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .trigger p {
+            color: #8b92a9;
+            font-size: 0.75em;
+        }
+
+        .output {
+            position: absolute;
+            top: 50%;
+            right: -180px;
+            width: 150px;
+            padding: 15px;
+            background: linear-gradient(135deg, #1a4a2e 0%, #0f2e1a 100%);
+            border: 2px solid #10b981;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .output-1 { transform: translateY(-80%); }
+        .output-2 { transform: translateY(20%); }
+
+        .output h5 {
+            color: #6ee7b7;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .output p {
+            color: #8b92a9;
+            font-size: 0.75em;
+        }
+
+        .legend {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(20, 26, 36, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #3a4556;
+        }
+
+        .legend h5 {
+            color: #00d4ff;
+            margin-bottom: 10px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        .legend-text {
+            font-size: 0.85em;
+            color: #8b92a9;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .info-panel {
+            position: fixed;
+            top: 50%;
+            right: -400px;
+            transform: translateY(-50%);
+            width: 380px;
+            background: rgba(20, 26, 36, 0.95);
+            border: 1px solid #3a4556;
+            border-radius: 12px;
+            padding: 30px;
+            transition: right 0.3s ease;
+            z-index: 100;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .info-panel.active {
+            right: 20px;
+        }
+
+        .info-panel h3 {
+            color: #00d4ff;
+            margin-bottom: 15px;
+        }
+
+        .info-panel h4 {
+            color: #fff;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .info-panel p, .info-panel li {
+            color: #8b92a9;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .info-panel ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-panel li:before {
+            content: "→ ";
+            color: #00d4ff;
+            font-weight: bold;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #8b92a9;
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <h1>Beacon Home Services AI Recruitment System</h1>
+            <p>24/7 Automated Candidate Processing Pipeline</p>
+        </div>
+
+        <div class="flowchart">
+            <!-- Triggers -->
+            <div class="trigger trigger-1">
+                <h5>Google Drive</h5>
+                <p>Resume Upload</p>
+            </div>
+            <div class="trigger trigger-2">
+                <h5>Gmail</h5>
+                <p>Email Applications</p>
+            </div>
+
+            <!-- Master Coordinator -->
+            <div class="master-coordinator" onclick="showInfo('master')">
+                <h3>Master Coordinator AI</h3>
+                <p>Orchestrates all recruitment agents and manages pipeline flow</p>
+            </div>
+
+            <!-- AI Agents -->
+            <div class="agent agent-1 active" onclick="showInfo('parser')">
+                <h4>Resume Parser</h4>
+                <p>Extracts structured data from resumes</p>
+                <span class="status built">BUILT</span>
+            </div>
+
+            <div class="agent agent-2 active" onclick="showInfo('screening')">
+                <h4>Candidate Screening</h4>
+                <p>Scores candidates against job requirements</p>
+                <span class="status built">BUILT</span>
+            </div>
+
+            <div class="agent agent-3 active" onclick="showInfo('voice')">
+                <h4>AI Voice Interview</h4>
+                <p>Conducts automated phone interviews</p>
+                <span class="status built">BUILT</span>
+            </div>
+
+            <div class="agent agent-4 placeholder" onclick="showInfo('outreach')">
+                <h4>Outreach & Scheduling</h4>
+                <p>Manages candidate communications</p>
+                <span class="status placeholder">PLACEHOLDER</span>
+            </div>
+
+            <div class="agent agent-5 placeholder" onclick="showInfo('background')">
+                <h4>Background Verification</h4>
+                <p>Verifies employment & certifications</p>
+                <span class="status placeholder">PLACEHOLDER</span>
+            </div>
+
+            <div class="agent agent-6 placeholder" onclick="showInfo('analytics')">
+                <h4>Pipeline Analytics</h4>
+                <p>Tracks metrics & generates reports</p>
+                <span class="status placeholder">PLACEHOLDER</span>
+            </div>
+
+            <div class="agent agent-7 placeholder" onclick="showInfo('assessment')">
+                <h4>Role Assessment</h4>
+                <p>Technical & sales assessments</p>
+                <span class="status placeholder">PLACEHOLDER</span>
+            </div>
+
+            <div class="agent agent-8 placeholder" onclick="showInfo('onboarding')">
+                <h4>Onboarding Prep</h4>
+                <p>Prepares new hire documentation</p>
+                <span class="status placeholder">PLACEHOLDER</span>
+            </div>
+
+            <!-- Outputs -->
+            <div class="output output-1">
+                <h5>Google Sheets</h5>
+                <p>Pipeline Tracking</p>
+            </div>
+            <div class="output output-2">
+                <h5>Slack</h5>
+                <p>Real-time Alerts</p>
+            </div>
+
+            <!-- Connections -->
+            <svg style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none;">
+                <!-- Define arrow marker -->
+                <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="#00d4ff" />
+                    </marker>
+                </defs>
+
+                <!-- Trigger connections -->
+                <line x1="130" y1="40%" x2="47%" y2="50%" stroke="#7c3aed" stroke-width="2" opacity="0.6" marker-end="url(#arrowhead)" />
+                <line x1="130" y1="60%" x2="47%" y2="50%" stroke="#7c3aed" stroke-width="2" opacity="0.6" marker-end="url(#arrowhead)" />
+
+                <!-- Agent connections to Master -->
+                <line x1="25%" y1="20%" x2="47%" y2="40%" stroke="#00d4ff" stroke-width="2" opacity="0.6" stroke-dasharray="5,5" />
+                <line x1="50%" y1="20%" x2="50%" y2="40%" stroke="#00d4ff" stroke-width="2" opacity="0.6" stroke-dasharray="5,5" />
+                <line x1="75%" y1="20%" x2="53%" y2="40%" stroke="#00d4ff" stroke-width="2" opacity="0.6" stroke-dasharray="5,5" />
+                <line x1="15%" y1="50%" x2="40%" y2="50%" stroke="#00d4ff" stroke-width="2" opacity="0.6" stroke-dasharray="5,5" />
+                <line x1="85%" y1="50%" x2="60%" y2="50%" stroke="#00d4ff" stroke-width="2" opacity="0.6" stroke-dasharray="5,5" />
+                <line x1="25%" y1="80%" x2="47%" y2="60%" stroke="#00d4ff" stroke-width="2" opacity="0.6" stroke-dasharray="5,5" />
+                <line x1="50%" y1="80%" x2="50%" y2="60%" stroke="#00d4ff" stroke-width="2" opacity="0.6" stroke-dasharray="5,5" />
+                <line x1="75%" y1="80%" x2="53%" y2="60%" stroke="#00d4ff" stroke-width="2" opacity="0.6" stroke-dasharray="5,5" />
+
+                <!-- Output connections -->
+                <line x1="53%" y1="50%" x2="88%" y2="40%" stroke="#10b981" stroke-width="2" opacity="0.6" marker-end="url(#arrowhead)" />
+                <line x1="53%" y1="50%" x2="88%" y2="60%" stroke="#10b981" stroke-width="2" opacity="0.6" marker-end="url(#arrowhead)" />
+            </svg>
+        </div>
+
+        <div class="legend">
+            <h5>System Status</h5>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #00d4ff;"></div>
+                <span class="legend-text">Fully Built Agent</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #3a4556;"></div>
+                <span class="legend-text">Placeholder Agent</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #7c3aed;"></div>
+                <span class="legend-text">Input Triggers</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #10b981;"></div>
+                <span class="legend-text">Output Systems</span>
+            </div>
+        </div>
+
+        <div class="info-panel" id="infoPanel">
+            <button class="close-btn" onclick="closeInfo()">&times;</button>
+            <div id="infoPanelContent"></div>
+        </div>
+    </div>
+
+    <script>
+        const agentInfo = {
+            master: {
+                title: "Master Coordinator AI",
+                description: "The central orchestration agent that manages the entire recruitment pipeline.",
+                features: [
+                    "Routes candidates to appropriate specialized agents",
+                    "Makes intelligent decisions based on candidate scores",
+                    "Monitors pipeline status in real-time",
+                    "Triggers notifications for key events",
+                    "Manages workflow priorities"
+                ],
+                integrations: ["All 8 specialized agents", "Google Sheets tracking", "Slack notifications"]
+            },
+            parser: {
+                title: "Resume Intake & Parser Agent",
+                description: "Processes incoming resumes 24/7 from multiple sources and extracts structured data.",
+                features: [
+                    "Monitors Google Drive and Gmail for new applications",
+                    "Extracts text from PDF/DOC files",
+                    "Uses GPT-4 for intelligent data extraction",
+                    "Identifies construction/home improvement experience",
+                    "Generates unique candidate IDs"
+                ],
+                integrations: ["Google Drive", "Gmail", "OpenAI GPT-4", "Affinda API (backup)"]
+            },
+            screening: {
+                title: "Candidate Screening & Scoring Agent",
+                description: "Analyzes candidates against job requirements and provides detailed scoring.",
+                features: [
+                    "Scores candidates 1-10 based on multiple criteria",
+                    "40% weight on relevant experience match",
+                    "Identifies red flags and exceptional qualifications",
+                    "Auto-alerts for high-scoring candidates (8+)",
+                    "Provides actionable recommendations"
+                ],
+                integrations: ["Google Sheets", "Gmail alerts", "ATS status updates"]
+            },
+            voice: {
+                title: "AI Voice Interview Agent",
+                description: "Conducts automated behavior-based interviews using voice AI technology.",
+                features: [
+                    "STAR method interviewing (Situation, Task, Action, Result)",
+                    "Role-specific question sets",
+                    "Records and transcribes all interviews",
+                    "Scores communication skills and cultural fit",
+                    "Identifies standout moments and quotes"
+                ],
+                integrations: ["ElevenLabs Conversational AI", "Google Drive (recordings)", "Gmail notifications"]
+            },
+            outreach: {
+                title: "Outreach & Scheduling Agent (Placeholder)",
+                description: "Will manage all candidate communications and interview scheduling.",
+                features: [
+                    "Personalized email outreach",
+                    "SMS notifications for urgent communications",
+                    "Automated interview scheduling",
+                    "Follow-up sequences",
+                    "Calendar integration"
+                ],
+                integrations: ["Gmail", "Twilio SMS", "Calendly API", "Google Calendar"]
+            },
+            background: {
+                title: "Background Verification Agent (Placeholder)",
+                description: "Will perform initial verification of candidate claims and credentials.",
+                features: [
+                    "Employment history verification",
+                    "Certification validation",
+                    "LinkedIn profile cross-referencing",
+                    "Reference check automation",
+                    "Risk assessment scoring"
+                ],
+                integrations: ["LinkedIn API", "Verification service APIs", "Google Search API"]
+            },
+            analytics: {
+                title: "Pipeline Analytics Agent (Placeholder)",
+                description: "Will track recruitment metrics and generate insights for management.",
+                features: [
+                    "Real-time pipeline metrics",
+                    "Conversion rate tracking",
+                    "Time-to-hire analysis",
+                    "Source effectiveness reporting",
+                    "Daily/weekly automated reports"
+                ],
+                integrations: ["Google Sheets", "Data visualization tools", "Slack reporting"]
+            },
+            assessment: {
+                title: "Role-Specific Assessment Agent (Placeholder)",
+                description: "Will administer technical and sales assessments based on role requirements.",
+                features: [
+                    "Sales scenario simulations",
+                    "Technical knowledge tests",
+                    "Problem-solving assessments",
+                    "Skill-specific evaluations",
+                    "Automated scoring and feedback"
+                ],
+                integrations: ["Typeform API", "Custom assessment webhooks", "Skills testing platforms"]
+            },
+            onboarding: {
+                title: "Onboarding Preparation Agent (Placeholder)",
+                description: "Will prepare all documentation and initiate onboarding for selected candidates.",
+                features: [
+                    "Document package preparation",
+                    "Digital signature coordination",
+                    "Background check initiation",
+                    "IT account provisioning requests",
+                    "First-day logistics planning"
+                ],
+                integrations: ["DocuSign API", "Google Workspace", "HR systems integration"]
+            }
+        };
+
+        function showInfo(agentKey) {
+            const info = agentInfo[agentKey];
+            const content = `
+                <h3>${info.title}</h3>
+                <p>${info.description}</p>
+
+                <h4>Key Features:</h4>
+                <ul>
+                    ${info.features.map(f => `<li>${f}</li>`).join('')}
+                </ul>
+
+                <h4>Integrations:</h4>
+                <ul>
+                    ${info.integrations.map(i => `<li>${i}</li>`).join('')}
+                </ul>
+            `;
+
+            document.getElementById('infoPanelContent').innerHTML = content;
+            document.getElementById('infoPanel').classList.add('active');
+        }
+
+        function closeInfo() {
+            document.getElementById('infoPanel').classList.remove('active');
+        }
+
+        // Add floating animation to agents
+        document.querySelectorAll('.agent').forEach((agent, index) => {
+            agent.style.animation = `float ${3 + index * 0.5}s ease-in-out infinite`;
+        });
+
+        // Add floating keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-10px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

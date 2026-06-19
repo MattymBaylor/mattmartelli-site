@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Founder-led marketing funnel — the founder-led model</title>
+<style>
+:root{color-scheme:light;
+--bg:#faf9f5;--card:#ffffff;--text:#211f1c;--muted:#6b6a64;--border:#e7e4db;--pill:#f1efe8;--fx:#f5f3ec;--hs:#ff7a59}
+[data-theme="dark"]{color-scheme:dark;
+--bg:#1c1b19;--card:#272623;--text:#f1eee8;--muted:#a7a49c;--border:#3a3833;--pill:#36332e;--fx:#322f2a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;
+-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:28px 22px 48px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:6px}
+h1{font-size:23px;font-weight:600;margin:0}
+h2{font-size:18px;font-weight:600;margin:38px 0 3px}
+.sub{color:var(--muted);font-size:15px;margin:0 0 22px;max-width:690px}
+.h2sub{color:var(--muted);font-size:13.5px;margin:0 0 14px}
+.toggle{font:inherit;font-size:13px;font-weight:600;cursor:pointer;background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:7px 13px;white-space:nowrap}
+.funnel{width:100%;height:auto;display:block;margin:0 auto 4px}
+.cap{color:var(--muted);font-size:12.5px;text-align:center;margin:2px auto 0;max-width:620px}
+.note{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--hs);border-radius:10px;padding:14px 18px;margin:14px 0 4px}
+.note.brand{border-left-color:#7F77DD}
+.note .nt{font-weight:600;font-size:14px;margin-bottom:8px}
+.note p{margin:0 0 7px;font-size:13.5px}
+.note p:last-child{margin-bottom:0}
+.hs{display:inline-block;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10px;font-weight:700;color:#fff;background:var(--hs);padding:1px 5px;border-radius:4px;vertical-align:middle;letter-spacing:.03em}
+.lm-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:6px}
+.chip{display:inline-block;background:var(--pill);border:1px solid var(--border);border-radius:999px;padding:3px 11px;font-size:12.5px;margin:0 5px 7px 0}
+.chip.hot{background:#FAEEDA;border-color:#EF9F27;color:#854F0B;font-weight:600}
+.stages{display:flex;flex-direction:column;gap:12px}
+.stage{background:var(--card);border:1px solid var(--border);border-left-width:4px;border-radius:10px;padding:14px 18px}
+.shead{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:11px}
+.sname{font-size:16px;font-weight:600}
+.zone{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;font-weight:600;padding:2px 8px;border-radius:5px}
+.smetrics{color:var(--muted);font-size:12.5px;margin-left:auto;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.persp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:560px){.persp{grid-template-columns:1fr}.smetrics{margin-left:0;flex-basis:100%}}
+.lbl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:4px}
+.pcol p{margin:0 0 7px;font-size:13.5px}
+.email{font-size:12.5px;color:var(--muted)}
+.email b{color:var(--text);font-weight:600}
+.gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px}
+.cat{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;margin-bottom:12px}
+.dot{width:10px;height:10px;border-radius:50%;flex:none}
+.item{margin-bottom:13px;font-size:14px}
+.item:last-child{margin-bottom:0}
+.ab{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weight:600;background:var(--pill);padding:1px 7px;border-radius:6px;font-size:13px}
+.sp{font-weight:600}
+.df{color:var(--muted);margin-top:2px}
+.fx{display:inline-block;margin-top:6px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;background:var(--fx);border:1px solid var(--border);border-radius:6px;padding:4px 9px}
+.rep{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.rephd{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.rname2{font-size:15px;font-weight:600}
+.aud{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;padding:2px 8px;border-radius:5px}
+.repq{color:var(--muted);font-size:13px;margin:0 0 12px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--border)}
+th{font-weight:600;color:var(--muted);font-size:11.5px;text-transform:uppercase;letter-spacing:.03em}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.sdot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+.take{font-size:12.5px;color:var(--muted);margin-top:11px}
+.take b{color:var(--text)}
+.tw{overflow-x:auto}
+.ptab{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+.ptab th,.ptab td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--border);vertical-align:top}
+.ptab th{font-weight:600;color:var(--muted);font-size:11.5px;text-transform:uppercase;letter-spacing:.03em}
+.ptab td:first-child{font-weight:600}
+.ptab tr.tofu td{background:rgba(127,119,221,.12)}
+.ptab tr.mofu td{background:rgba(29,158,117,.13)}
+.ptab tr.bofu td{background:rgba(216,90,48,.13)}
+.ptab tr.post td{background:rgba(212,83,126,.13)}
+.pz{display:inline-block;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:10px;font-weight:700;padding:1px 6px;border-radius:4px;white-space:nowrap}
+.z-tofu{background:rgba(127,119,221,.10);border-left:4px solid #7F77DD}
+.z-mofu{background:rgba(29,158,117,.11);border-left:4px solid #1D9E75}
+.z-bofu{background:rgba(216,90,48,.12);border-left:4px solid #D85A30}
+.z-post{background:rgba(212,83,126,.11);border-left:4px solid #D4537E}
+.ot{font-size:13px;color:var(--muted);margin:0 0 9px}
+.journey{margin-top:6px}
+.jstep{border:1px solid var(--border);border-left-width:4px;border-radius:8px;padding:11px 15px;margin-bottom:8px}
+.jhead{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+.jname{font-weight:600;font-size:14px}
+.jstat{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;font-weight:700;padding:1px 7px;border-radius:5px;background:#EAF3DE;color:#27500A}
+.jstep p{margin:0;font-size:13.5px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:8px}
+.kpi{background:var(--card);border:1px solid var(--border);border-top:3px solid #BA7517;border-radius:12px;padding:14px 16px}
+.kn{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.knum{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weight:700;font-size:13px;color:#854F0B;background:#FAEEDA;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none}
+.ktitle{font-weight:600;font-size:15px}
+.kfx{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;background:var(--fx);border:1px solid var(--border);border-radius:6px;padding:3px 8px;display:inline-block;margin:2px 0 8px}
+.kwhy{font-size:13px;color:var(--muted)}
+.ktar{font-size:12px;color:var(--text);font-weight:600;margin-top:7px}
+.foot{color:var(--muted);font-size:13px;margin-top:30px;border-top:1px solid var(--border);padding-top:16px}
+@media print{.toggle{display:none}.card,.stage,.rep,.note,.kpi,.jstep{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top">
+<h1>The founder-led funnel — the founder-led model</h1>
+<button id="tg" class="toggle" aria-label="Toggle dark mode">Dark mode</button>
+</div>
+<p class="sub">The same funnel, tailored to a founder-led personal-brand coaching company. Built from a typical founder-led coaching brand's offers; prices, tiers and percentages are illustrative. Sections are tinted by funnel zone — purple = top, teal = middle, coral = bottom, pink = post-purchase. Click "Dark mode" to switch themes.</p>
+
+<div class="note brand">
+<div class="nt">The founder-led difference</div>
+<p>In a founder-led business the <b>founder is the funnel</b> — trust transfers from one person (the founder's story, voice and stage presence), so the top of funnel is mostly <i>their own content</i>, not faceless ads.</p>
+<p>And the bottom isn't a single purchase — it's a <b>value ladder</b>: a buyer ascends from free content to a low-ticket course to deep programs, a live event, and finally high-ticket coaching. Most revenue lives at the top of the ladder; the front end mainly exists to find and warm buyers.</p>
+</div>
+
+<svg class="funnel" viewBox="0 0 680 490" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Marketing funnel from top to bottom with stage acronyms</title>
+<desc>A six-stage funnel: Awareness and Interest at the top of funnel, Consideration and Evaluation in the middle, Purchase at the bottom, and Loyalty and advocacy after purchase, each labeled with the founder's assets.</desc>
+<polygon points="70,20 610,20 570,92 110,92" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1"/>
+<text x="340" y="52" text-anchor="middle" style="font-size:15px;font-weight:600;fill:#26215C">Awareness</text>
+<text x="340" y="72" text-anchor="middle" style="font-size:12px;fill:#3C3489">podcast · YouTube · reels · ads</text>
+<polygon points="110,92 570,92 530,164 150,164" fill="#CECBF6" stroke="#7F77DD" stroke-width="1"/>
+<text x="340" y="124" text-anchor="middle" style="font-size:15px;font-weight:600;fill:#26215C">Interest</text>
+<text x="340" y="144" text-anchor="middle" style="font-size:12px;fill:#3C3489">Mind Hack ebook · webinar opt-in</text>
+<polygon points="150,164 530,164 490,236 190,236" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1"/>
+<text x="340" y="196" text-anchor="middle" style="font-size:15px;font-weight:600;fill:#04342C">Consideration</text>
+<text x="340" y="216" text-anchor="middle" style="font-size:12px;fill:#085041">emails · webinar · testimonials</text>
+<polygon points="190,236 490,236 450,308 230,308" fill="#9FE1CB" stroke="#1D9E75" stroke-width="1"/>
+<text x="340" y="268" text-anchor="middle" style="font-size:15px;font-weight:600;fill:#04342C">Evaluation</text>
+<text x="340" y="288" text-anchor="middle" style="font-size:12px;fill:#085041">webinar pitch · strategy call</text>
+<polygon points="230,308 450,308 430,380 250,380" fill="#F5C4B3" stroke="#D85A30" stroke-width="1"/>
+<text x="340" y="340" text-anchor="middle" style="font-size:15px;font-weight:600;fill:#4A1B0C">Purchase</text>
+<text x="340" y="360" text-anchor="middle" style="font-size:12px;fill:#712B13">Mind Hack Program · bumps</text>
+<rect x="230" y="398" width="220" height="70" rx="12" fill="#FBEAF0" stroke="#D4537E" stroke-width="1"/>
+<text x="340" y="424" text-anchor="middle" style="font-size:15px;font-weight:600;fill:#4B1528">Ascension &amp; advocacy</text>
+<text x="340" y="444" text-anchor="middle" style="font-size:12px;fill:#72243E">WHF · PLE · coaching · referrals</text>
+<path d="M64,22 L56,22 L56,162 L64,162" fill="none" stroke="#7F77DD" stroke-width="1"/>
+<text x="12" y="92" dominant-baseline="middle" style="font-size:12px;font-weight:600;fill:#6f67cf">TOFU</text>
+<path d="M64,166 L56,166 L56,306 L64,306" fill="none" stroke="#1D9E75" stroke-width="1"/>
+<text x="12" y="236" dominant-baseline="middle" style="font-size:12px;font-weight:600;fill:#138a64">MOFU</text>
+<path d="M64,310 L56,310 L56,378 L64,378" fill="none" stroke="#D85A30" stroke-width="1"/>
+<text x="12" y="344" dominant-baseline="middle" style="font-size:12px;font-weight:600;fill:#c44e26">BOFU</text>
+<path d="M64,398 L56,398 L56,466 L64,466" fill="none" stroke="#D4537E" stroke-width="1"/>
+<text x="12" y="432" dominant-baseline="middle" style="font-size:12px;font-weight:600;fill:#c4476f">Post</text>
+</svg>
+<p class="cap">The universal funnel, labeled with the founder's actual assets. Acronyms are defined further down.</p>
+
+<h2>Buyer personas by stage</h2>
+<p class="h2sub">Who the buyer is at each level of the funnel, color-coded to the zone they live in.</p>
+<div class="tw">
+<table class="ptab">
+<thead><tr><th>Persona</th><th>Stage</th><th>Who they are</th><th>What they need next</th></tr></thead>
+<tbody>
+<tr class="tofu"><td>The Stranger <span class="pz" style="background:#CECBF6;color:#26215C">TOFU</span></td><td>Awareness</td><td>Successful but quietly stuck and anxious; senses untapped potential. Doesn't know the founder — just saw a clip.</td><td>A pattern-interrupt that earns 30 seconds of attention.</td></tr>
+<tr class="tofu"><td>The Curious Subscriber <span class="pz" style="background:#CECBF6;color:#26215C">TOFU</span></td><td>Interest</td><td>Resonated with the message and opted in for the ebook or a free masterclass. Learning, not yet committed.</td><td>Quick value and a reason to keep opening emails.</td></tr>
+<tr class="mofu"><td>The Engaged Seeker <span class="pz" style="background:#9FE1CB;color:#04342C">MOFU</span></td><td>Consideration</td><td>On the list, bingeing the podcast, weighing the founder against other teachers. Asking "will this actually work for me?"</td><td>Proof, transformation stories, and a framework to believe in.</td></tr>
+<tr class="mofu"><td>The Hot Evaluator <span class="pz" style="background:#9FE1CB;color:#04342C">MOFU→BOFU</span></td><td>Evaluation</td><td>On the webinar or finishing the challenge; deciding to buy or to book a call. High intent, last doubts.</td><td>A clear offer, real urgency, and risk reversal.</td></tr>
+<tr class="bofu"><td>The First-Time Buyer <span class="pz" style="background:#F5C4B3;color:#712B13">BOFU</span></td><td>Purchase</td><td>Just bought the Mind Hack Program. Excited but wants the decision validated quickly.</td><td>A fast early win and a smooth onboarding.</td></tr>
+<tr class="post"><td>The Ascending Client <span class="pz" style="background:#F4C0D1;color:#4B1528">Post</span></td><td>Ascension</td><td>Got a real shift and is climbing to the Whole Human Framework, the live event, then coaching.</td><td>A deeper transformation and direct access to the founder.</td></tr>
+<tr class="post"><td>The Advocate <span class="pz" style="background:#F4C0D1;color:#4B1528">Post</span></td><td>Advocacy</td><td>Transformed and identifies with the brand; refers friends and gives testimonials.</td><td>Recognition, community, and easy ways to share.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>The founder's value ladder</h2>
+<p class="h2sub">Four price tiers, free to $100k. Green badges show the illustrative share of each tier that climbs to the next.</p>
+<svg class="funnel" viewBox="0 0 680 410" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Founder-led value ladder</title>
+<desc>Seven ascending offers across four price tiers, from free content at the bottom to a hundred-thousand-dollar coaching mastermind at the top, with the illustrative share of each tier that ascends to the next.</desc>
+<path d="M42,372 L42,40" fill="none" stroke="#888780" stroke-width="1.5"/>
+<path d="M36,50 L42,38 L48,50" fill="none" stroke="#888780" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="26" y="42" text-anchor="middle" style="font-size:12px;font-weight:600;fill:#888780">$$$</text>
+<text x="26" y="372" text-anchor="middle" style="font-size:12px;font-weight:600;fill:#888780">free</text>
+<rect x="244" y="24" width="340" height="44" rx="7" fill="#FBEAF0" stroke="#D4537E" stroke-width="1"/>
+<rect x="254" y="36" width="44" height="20" rx="5" fill="#EAF3DE"/>
+<text x="276" y="50" text-anchor="middle" style="font-size:11px;font-weight:700;fill:#27500A">10%</text>
+<text x="306" y="43" style="font-size:14px;font-weight:600;fill:#4B1528">Coaching &amp; mastermind</text>
+<text x="306" y="58" style="font-size:11.5px;fill:#72243E">Founder-led; most revenue</text>
+<text x="518" y="58" text-anchor="end" style="font-size:11px;font-weight:600;fill:#72243E">$100k</text>
+<rect x="526" y="35" width="46" height="22" rx="5" fill="#F4C0D1"/>
+<text x="549" y="50" text-anchor="middle" style="font-size:11px;font-weight:700;fill:#4B1528">$$$</text>
+<rect x="214" y="76" width="340" height="44" rx="7" fill="#FAEEDA" stroke="#EF9F27" stroke-width="1"/>
+<rect x="224" y="88" width="44" height="20" rx="5" fill="#EAF3DE"/>
+<text x="246" y="102" text-anchor="middle" style="font-size:11px;font-weight:700;fill:#27500A">40%</text>
+<text x="276" y="95" style="font-size:14px;font-weight:600;fill:#633806">Powerful Living Experience</text>
+<text x="276" y="110" style="font-size:11.5px;fill:#854F0B">3-day live event</text>
+<text x="488" y="110" text-anchor="end" style="font-size:11px;font-weight:600;fill:#854F0B">$5k</text>
+<rect x="496" y="87" width="46" height="22" rx="5" fill="#FAC775"/>
+<text x="519" y="102" text-anchor="middle" style="font-size:11px;font-weight:700;fill:#412402">$$</text>
+<rect x="184" y="128" width="340" height="44" rx="7" fill="#FAEEDA" stroke="#EF9F27" stroke-width="1"/>
+<rect x="194" y="140" width="44" height="20" rx="5" fill="#EAF3DE"/>
+<text x="216" y="154" text-anchor="middle" style="font-size:11px;font-weight:700;fill:#27500A">25%</text>
+<text x="246" y="147" style="font-size:14px;font-weight:600;fill:#633806">Whole Human Framework</text>
+<text x="246" y="162" style="font-size:11.5px;fill:#854F0B">10-week deep program</text>
+<text x="458" y="162" text-anchor="end" style="font-size:11px;font-weight:600;fill:#854F0B">$5k</text>
+<rect x="466" y="139" width="46" height="22" rx="5" fill="#FAC775"/>
+<text x="489" y="154" text-anchor="middle" style="font-size:11px;font-weight:700;fill:#412402">$$</text>
+<rect x="154" y="180" width="340" height="44" rx="7" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1"/>
+<rect x="164" y="192" width="44" height="20" rx="5" fill="#EAF3DE"/>
+<text x="186" y="206" text-anchor="middle" style="font-size:11px;font-weight:700;fill:#27500A">8%</text>
+<text x="216" y="199" style="font-size:14px;font-weight:600;fill:#04342C">Mind Hack Program</text>
+<text x="216" y="214" style="font-size:11.5px;fill:#085041">7-day entry course (SLO)</text>
+<text x="428" y="214" text-anchor="end" style="font-size:11px;font-weight:600;fill:#085041">$497</text>
+<rect x="436" y="191" width="46" height="22" rx="5" fill="#9FE1CB"/>
+<text x="459" y="206" text-anchor="middle" style="font-size:11px;font-weight:700;fill:#04342C">$</text>
+<rect x="124" y="232" width="340" height="44" rx="7" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1"/>
+<rect x="134" y="244" width="44" height="20" rx="5" fill="#EAF3DE"/>
+<text x="156" y="258" text-anchor="middle" style="font-size:11px;font-weight:700;fill:#27500A">30%</text>
+<text x="186" y="251" style="font-size:14px;font-weight:600;fill:#26215C">Webinar / challenge</text>
+<text x="186" y="266" style="font-size:11.5px;fill:#3C3489">Free training; seeds offer</text>
+<rect x="406" y="243" width="46" height="22" rx="5" fill="#CECBF6"/>
+<text x="429" y="258" text-anchor="middle" style="font-size:11px;font-weight:700;fill:#26215C">Free</text>
+<rect x="94" y="284" width="340" height="44" rx="7" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1"/>
+<rect x="104" y="296" width="44" height="20" rx="5" fill="#EAF3DE"/>
+<text x="126" y="310" text-anchor="middle" style="font-size:11px;font-weight:700;fill:#27500A">5%</text>
+<text x="156" y="303" style="font-size:14px;font-weight:600;fill:#26215C">Mind Hack ebook</text>
+<text x="156" y="318" style="font-size:11.5px;fill:#3C3489">Free opt-in; grows list</text>
+<rect x="376" y="295" width="46" height="22" rx="5" fill="#CECBF6"/>
+<text x="399" y="310" text-anchor="middle" style="font-size:11px;font-weight:700;fill:#26215C">Free</text>
+<rect x="64" y="336" width="340" height="44" rx="7" fill="#EEEDFE" stroke="#7F77DD" stroke-width="1"/>
+<text x="78" y="355" style="font-size:14px;font-weight:600;fill:#26215C">Free content</text>
+<text x="78" y="370" style="font-size:11.5px;fill:#3C3489">Podcast, YouTube, social</text>
+<rect x="346" y="347" width="46" height="22" rx="5" fill="#CECBF6"/>
+<text x="369" y="362" text-anchor="middle" style="font-size:11px;font-weight:700;fill:#26215C">Free</text>
+<line x1="600" y1="20" x2="600" y2="382" stroke="#BBBBBB" stroke-width="1"/>
+<text x="662" y="15" text-anchor="end" style="font-size:10px;font-weight:600;fill:#888780">of all</text>
+<text x="662" y="50" text-anchor="end" style="font-size:11px;font-weight:600;fill:#888780">0.0012%</text>
+<text x="662" y="102" text-anchor="end" style="font-size:11px;font-weight:600;fill:#888780">0.012%</text>
+<text x="662" y="154" text-anchor="end" style="font-size:11px;font-weight:600;fill:#888780">0.03%</text>
+<text x="662" y="206" text-anchor="end" style="font-size:11px;font-weight:600;fill:#888780">0.12%</text>
+<text x="662" y="258" text-anchor="end" style="font-size:11px;font-weight:600;fill:#888780">1.5%</text>
+<text x="662" y="310" text-anchor="end" style="font-size:11px;font-weight:600;fill:#888780">5%</text>
+<text x="662" y="362" text-anchor="end" style="font-size:11px;font-weight:600;fill:#888780">100%</text>
+</svg>
+<p class="cap">Bottom = free entry, top = the $100k mastermind. Green numbers are the step rate — the share of the tier below that ascends to the next. The grey column on the right is the cumulative share of the whole audience that reaches each rung; it compounds fast, so coaching sits near 0.0012% — roughly 1 in 83,000. That is why the high tiers, though tiny, drive most of the revenue.</p>
+<div class="note"><div class="nt">Time basis</div><p>These figures illustrate a single month. The lead and ladder counts are one month's cohort, and the right-hand "of all" percentages are shares of that month's audience. The reports run on different clocks — list growth weekly, ascension and economics monthly, the high-ticket rung quarterly, and the webinar scorecard after each launch.</p></div>
+
+<h2>Lead magnets &amp; lead sources, by stage</h2>
+<p class="h2sub">Concrete entry points for the founder. The highlighted ones are webinar-based — typically the highest-intent leads.</p>
+<div class="lm-grid">
+<div class="card z-tofu">
+<div class="cat"><span class="dot" style="background:#7F77DD"></span>Awareness — attract</div>
+<div><span class="chip">Powerful Living Experience podcast</span><span class="chip">YouTube videos</span><span class="chip">IG / Facebook reels</span><span class="chip">Guest podcast spots</span><span class="chip">Keynotes &amp; speaking</span><span class="chip">Paid social ads</span></div>
+</div>
+<div class="card z-tofu">
+<div class="cat"><span class="dot" style="background:#7F77DD"></span>Interest — capture (lead magnets)</div>
+<div><span class="chip">Mind Hack ebook</span><span class="chip hot">Free masterclass / webinar registration</span><span class="chip">Changed Mind Challenge</span><span class="chip">Quiz / self-assessment</span><span class="chip">Free email training series</span></div>
+</div>
+<div class="card z-mofu">
+<div class="cat"><span class="dot" style="background:#1D9E75"></span>Consideration — nurture</div>
+<div><span class="chip">Daily / weekly emails (the founder's voice)</span><span class="chip">Testimonials (celebrity endorsement, 10k+ alumni)</span><span class="chip">Case studies</span><span class="chip">Podcast back-catalog</span></div>
+</div>
+<div class="card z-mofu">
+<div class="cat"><span class="dot" style="background:#1D9E75"></span>Evaluation — convert</div>
+<div><span class="chip hot">Mind Hack webinar pitch</span><span class="chip">Application + strategy call</span><span class="chip">Replay / deadline page</span></div>
+</div>
+<div class="card z-bofu">
+<div class="cat"><span class="dot" style="background:#D85A30"></span>Purchase — offer</div>
+<div><span class="chip">Mind Hack Program checkout</span><span class="chip">Order bumps</span><span class="chip">Upsell to Whole Human Framework</span></div>
+</div>
+<div class="card z-post">
+<div class="cat"><span class="dot" style="background:#D4537E"></span>Ascension &amp; advocacy</div>
+<div><span class="chip">Powerful Living Experience event</span><span class="chip">Coaching / mastermind</span><span class="chip">Alumni community</span><span class="chip">Referral / affiliate</span><span class="chip">NPS &amp; testimonial requests</span></div>
+</div>
+</div>
+<h2>Offer types: free magnets to high-ticket</h2>
+<p class="h2sub">The kinds of offers that fill each part of the ladder, with examples. Lead magnets capture; SLOs turn leads into buyers; core, event and high-ticket offers carry the revenue.</p>
+<div class="lm-grid">
+<div class="card z-tofu">
+<div class="cat"><span class="dot" style="background:#7F77DD"></span>Lead magnets — free</div>
+<p class="ot">Trade real value for an email. Goal: grow the list.</p>
+<div><span class="chip">Ebook / guide (Mind Hack)</span><span class="chip hot">Free masterclass / webinar</span><span class="chip">Challenge (Changed Mind)</span><span class="chip">Quiz / assessment</span><span class="chip">Free email course</span><span class="chip">Checklist / cheat sheet</span><span class="chip">Free chapter</span></div>
+</div>
+<div class="card z-mofu">
+<div class="cat"><span class="dot" style="background:#1D9E75"></span>Self-liquidating offers — $7–$97</div>
+<p class="ot">Low-ticket "tripwires" that turn a lead into a buyer and recoup ad spend. Example: spend $1,000 on ads for 100 leads; if 12 buy a $97 offer ($1,164), the ads have paid for themselves and every lead is effectively free.</p>
+<div><span class="chip">$7 ebook / mini-course</span><span class="chip">$27 workshop replay</span><span class="chip">$47 mini-program</span><span class="chip">Free + shipping book</span><span class="chip">$27 paid challenge</span><span class="chip">Mind Hack Program (as SLO)</span></div>
+</div>
+<div class="card z-bofu">
+<div class="cat"><span class="dot" style="background:#D85A30"></span>Core offers + bumps — $$</div>
+<p class="ot">The main transformation, plus order bumps and one-time upsells (OTOs) at checkout.</p>
+<div><span class="chip">Whole Human Framework</span><span class="chip">Order bump (+$37)</span><span class="chip">Upsell / OTO</span><span class="chip">Bundle</span></div>
+</div>
+<div class="card z-post">
+<div class="cat"><span class="dot" style="background:#D4537E"></span>Events, continuity &amp; high-ticket — $$–$$$</div>
+<p class="ot">Deepen the relationship and carry most of the revenue.</p>
+<div><span class="chip">Powerful Living Experience (live)</span><span class="chip">Monthly membership</span><span class="chip">Coaching / mastermind ($100k)</span><span class="chip">Done-with-you</span><span class="chip">Application + call</span></div>
+</div>
+</div>
+
+<div class="note">
+<div class="nt">Why the webinar is the big one</div>
+<p>A <b>webinar lead</b> has done two things — handed over an email <i>and</i> committed 60–90 minutes of attention. That makes it far higher-intent than a cold ebook download, so it converts to a sale at a much higher rate. For the founder, the <b>Mind Hack webinar → Mind Hack Program</b> is the core acquisition engine: it captures the lead, teaches the framework, builds trust in their voice, and pitches the entry offer all in one sitting. Scale registrations and you scale revenue.</p>
+</div>
+
+<h2>Stage by stage: customer view vs the founder's side</h2>
+<p class="h2sub">What the buyer is doing at each level, and the assets, lead magnets and emails used to move them down.</p>
+<div class="stages">
+
+<div class="stage z-tofu">
+<div class="shead"><span class="sname">1 · Awareness</span><span class="zone" style="background:#EEEDFE;color:#3C3489">TOFU</span><span class="smetrics">CPM · CTR · reach</span></div>
+<div class="persp">
+<div class="pcol"><div class="lbl">Customer</div><p>A successful but stuck entrepreneur feels anxious and capped. They hear the founder guesting on a podcast, catch a YouTube clip on "unintelligent thinking," or a reel stops their scroll.</p></div>
+<div class="pcol"><div class="lbl">Founder / brand</div><p>The founder's own content engine: the Powerful Living Experience podcast (250+ episodes), YouTube, daily reels, guest spots, and stages. Paid social amplifies the best organic. Their story is the hook.</p><p class="email"><b>Email:</b> none yet — a soft "grab my free Mind Hack ebook" inside the content.</p></div>
+</div>
+</div>
+
+<div class="stage z-tofu">
+<div class="shead"><span class="sname">2 · Interest</span><span class="zone" style="background:#EEEDFE;color:#3C3489">TOFU</span><span class="smetrics">CPC · CTR · sign-ups</span></div>
+<div class="persp">
+<div class="pcol"><div class="lbl">Customer</div><p>Resonates with the message. Opts in for the free Mind Hack ebook — or registers for a free masterclass — to start "reprogramming their brain."</p></div>
+<div class="pcol"><div class="lbl">Founder / brand</div><p>The lead magnet is the founder's ebook plus webinar registration. This grows the email list, the business's core asset.</p><p class="email"><b>Email:</b> welcome sequence in the founder's first-person voice; weekly tools, tips and trainings begin.</p></div>
+</div>
+</div>
+
+<div class="stage z-mofu">
+<div class="shead"><span class="sname">3 · Consideration</span><span class="zone" style="background:#E1F5EE;color:#085041">MOFU</span><span class="smetrics">MQL · CPL · opens</span></div>
+<div class="persp">
+<div class="pcol"><div class="lbl">Customer</div><p>Bingeing the podcast and reading the emails. Sees the social proof (celebrity endorsement, 10,000+ alumni) and registers for the free webinar or Changed Mind Challenge.</p></div>
+<div class="pcol"><div class="lbl">Founder / brand</div><p>Nurture in the founder's voice and route engaged leads into a free masterclass or challenge that teaches a framework and seeds the paid offer.</p><p class="email"><b>Email:</b> value-driven nurture plus webinar invitations and reminders.</p></div>
+</div>
+</div>
+
+<div class="stage z-mofu">
+<div class="shead"><span class="sname">4 · Evaluation</span><span class="zone" style="background:#E1F5EE;color:#085041">MOFU → BOFU</span><span class="smetrics">SQL · PQL · CPA</span></div>
+<div class="persp">
+<div class="pcol"><div class="lbl">Customer</div><p>On the webinar, or finishing the challenge. Deciding whether to buy the Mind Hack Program — or, for a deeper program, booking a strategy call.</p></div>
+<div class="pcol"><div class="lbl">Founder / brand</div><p>The webinar pitch presents the entry offer; an application + strategy call qualifies higher-ticket prospects. Their authority does the closing.</p><p class="email"><b>Email:</b> cart-open and replay emails, deadline reminders, call confirmations.</p></div>
+</div>
+</div>
+
+<div class="stage z-bofu">
+<div class="shead"><span class="sname">5 · Purchase</span><span class="zone" style="background:#F5C4B3;color:#712B13">BOFU</span><span class="smetrics">CAC · CVR · ROAS</span></div>
+<div class="persp">
+<div class="pcol"><div class="lbl">Customer</div><p>Buys the Mind Hack Program at self-serve checkout, or enrols in a program on the call.</p></div>
+<div class="pcol"><div class="lbl">Founder / brand</div><p>Frictionless checkout with order bumps and an upsell to the Whole Human Framework. The entry offer is often a self-liquidating offer that covers ad spend.</p><p class="email"><b>Email:</b> purchase confirmation, program onboarding, abandonment recovery.</p></div>
+</div>
+</div>
+
+<div class="stage z-post">
+<div class="shead"><span class="sname">6 · Ascension &amp; advocacy</span><span class="zone" style="background:#FBEAF0;color:#72243E">Post-purchase</span><span class="smetrics">LTV · NRR · NPS</span></div>
+<div class="persp">
+<div class="pcol"><div class="lbl">Customer</div><p>Gets a real shift, then climbs the ladder — Mind Hack Program → Whole Human Framework → Powerful Living Experience → coaching. Becomes a testimonial and refers friends.</p></div>
+<div class="pcol"><div class="lbl">Founder / brand</div><p>Where founder-led businesses earn most: ascension up the value ladder, live events that bond the community, mastermind, and referrals.</p><p class="email"><b>Email:</b> post-program nurture, event and ascension invitations, alumni community, referral and testimonial requests.</p></div>
+</div>
+</div>
+
+</div>
+
+<h2>One buyer's journey: a prospective client</h2>
+<p class="h2sub">The same funnel as a single story — one entrepreneur's path, with the illustrative share of people who make it each step.</p>
+<div class="journey">
+<div class="jstep z-tofu"><div class="jhead"><span class="jname">Hears the podcast</span><span class="pz" style="background:#CECBF6;color:#26215C">Awareness</span></div><p>A prospective client, an entrepreneur, is between meetings when a friend shares a Powerful Living Experience episode. The founder's take on "unintelligent thinking" lands — she's successful but stuck. She subscribes and starts listening on her commute.</p></div>
+<div class="jstep z-tofu"><div class="jhead"><span class="jname">Opts in for the Mind Hack ebook</span><span class="jstat">5% opt in</span><span class="pz" style="background:#CECBF6;color:#26215C">Interest</span></div><p>An episode points to a free Mind Hack ebook. She trades her email for it — now one of the ~5% of listeners who opt in. A welcome email arrives in the founder's voice, and the weekly trainings begin.</p></div>
+<div class="jstep z-mofu"><div class="jhead"><span class="jname">Registers for the free webinar</span><span class="jstat">30% register</span><span class="pz" style="background:#9FE1CB;color:#04342C">Consideration</span></div><p>Two weeks of emails and a few binged episodes later, she trusts him. When he invites the list to a free masterclass, she registers — among the ~30% who do — and blocks 90 minutes on her calendar.</p></div>
+<div class="jstep z-mofu"><div class="jhead"><span class="jname">Shows up live and stays to the end</span><span class="jstat">40% show</span><span class="pz" style="background:#9FE1CB;color:#04342C">Evaluation</span></div><p>She's one of the ~40% who attend live (most register and ghost). The framework clicks; by the close she wants the next step and is watching for the offer.</p></div>
+<div class="jstep z-bofu"><div class="jhead"><span class="jname">Buys the Mind Hack Program</span><span class="jstat">8% buy</span><span class="pz" style="background:#F5C4B3;color:#712B13">Purchase</span></div><p>He offers the 7-day Mind Hack Program for $497. She buys — in the ~8% who convert — and adds the order bump on her way to checkout.</p></div>
+<div class="jstep z-post"><div class="jhead"><span class="jname">Ascends to the deep program + live event</span><span class="jstat">25% → 40%</span><span class="pz" style="background:#F4C0D1;color:#4B1528">Ascension</span></div><p>The 7 days give her a real win, so she enrolls in the Whole Human Framework ($5k — about 25% of buyers do), then flies out for the 3-day Powerful Living Experience (~40% of those attend). The room changes her.</p></div>
+<div class="jstep z-post"><div class="jhead"><span class="jname">Joins the coaching mastermind &amp; refers a friend</span><span class="jstat">10% reach the top</span><span class="pz" style="background:#F4C0D1;color:#4B1528">Advocacy</span></div><p>At the event she applies for the coaching mastermind ($100k) — one of the ~10% who reach the top of the ladder. A year after a single podcast clip, she's a client and an advocate, sending two fellow founders the founder's way.</p></div>
+</div>
+
+<h2>Acronyms, definitions &amp; formulas</h2>
+<p class="h2sub">Cost and performance metrics include the calculation. The <span class="hs">HS</span> badge marks terms that are HubSpot-popularized, not universal.</p>
+
+<div class="note">
+<div class="nt">Ecosystem jargon — what's universal vs tool-specific</div>
+<p>Most terms here are universal across every platform: MQL, SQL, SAL, PQL, ICP, CPM, CPC, CPL, CPA, CAC, CTR, CVR, ROAS, ROI, LTV, NRR, NPS, AIDA, CTA, KPI.</p>
+<p><span class="hs">HS</span> <b>HubSpot / B2B-CRM jargon:</b> TOFU / MOFU / BOFU (HubSpot popularized these), plus lifecycle stage and the labels Subscriber and Evangelist, and Marketing Contacts (a billing tier).</p>
+<p><b>Funnel-builder / info-product jargon</b> — the founder's actual world (ClickFunnels-style): value ladder, SLO, VSL, EPC, show rate, ascension. Powerful here, but don't assume a corporate B2B team uses them.</p>
+</div>
+
+<div class="gloss">
+<div class="card">
+<div class="cat"><span class="dot" style="background:#888780"></span>Funnel zones</div>
+<div class="item"><span class="ab">TOFU</span> <span class="hs">HS</span> <span class="sp">Top of funnel</span><div class="df">Awareness and discovery — the widest part, the largest and least-qualified audience.</div></div>
+<div class="item"><span class="ab">MOFU</span> <span class="hs">HS</span> <span class="sp">Middle of funnel</span><div class="df">Consideration and nurture — leads are evaluating you against alternatives.</div></div>
+<div class="item"><span class="ab">BOFU</span> <span class="hs">HS</span> <span class="sp">Bottom of funnel</span><div class="df">Decision and purchase — high-intent prospects ready to buy.</div></div>
+<div class="item"><span class="ab">Post</span> <span class="sp">Post-purchase</span><div class="df">Retention, ascension and advocacy — customers who buy again and refer.</div></div>
+</div>
+<div class="card">
+<div class="cat"><span class="dot" style="background:#7F77DD"></span>Lead &amp; audience stages</div>
+<div class="item"><span class="ab">ICP</span> <span class="sp">Ideal customer profile</span><div class="df">Your best-fit buyer — for the founder, the stuck-but-driven entrepreneur or high performer.</div></div>
+<div class="item"><span class="ab">MQL</span> <span class="sp">Marketing qualified lead</span><div class="df">Engaged enough (opened emails, registered for the webinar) to be worth a real offer.</div></div>
+<div class="item"><span class="ab">SQL</span> <span class="sp">Sales qualified lead</span><div class="df">Vetted as a real opportunity — e.g. booked a strategy call for a high-ticket program.</div></div>
+<div class="item"><span class="ab">PQL</span> <span class="sp">Product qualified lead</span><div class="df">Already bought something small (the Mind Hack Program) and shows signs of ascending.</div></div>
+<div class="item"><span class="ab">SAL</span> <span class="sp">Sales accepted lead</span><div class="df">A lead the sales/enrolment team has accepted to work.</div></div>
+<div class="item"><span class="ab">Stage rate</span> <span class="sp">Stage conversion rate</span><div class="df">Progress between any two stages above.</div><span class="fx">leads advancing ÷ leads in prior stage × 100</span></div>
+</div>
+<div class="card">
+<div class="cat"><span class="dot" style="background:#D85A30"></span>Cost metrics</div>
+<div class="item"><span class="ab">CPM</span> <span class="sp">Cost per mille</span><div class="df">Cost per 1,000 ad impressions.</div><span class="fx">(cost ÷ impressions) × 1,000</span></div>
+<div class="item"><span class="ab">CPC</span> <span class="sp">Cost per click</span><div class="df">Average cost for each click.</div><span class="fx">total cost ÷ total clicks</span></div>
+<div class="item"><span class="ab">CPL</span> <span class="sp">Cost per lead</span><div class="df">Spend to add one email subscriber or webinar registrant.</div><span class="fx">total spend ÷ number of leads</span></div>
+<div class="item"><span class="ab">CPA</span> <span class="sp">Cost per acquisition</span><div class="df">Cost per defined conversion (e.g. a Mind Hack Program buyer).</div><span class="fx">total cost ÷ number of conversions</span></div>
+<div class="item"><span class="ab">CAC</span> <span class="sp">Customer acquisition cost</span><div class="df">Fully-loaded cost to win one paying customer.</div><span class="fx">(sales + marketing spend) ÷ new customers</span></div>
+</div>
+<div class="card">
+<div class="cat"><span class="dot" style="background:#1D9E75"></span>Performance &amp; value</div>
+<div class="item"><span class="ab">CTR</span> <span class="sp">Click-through rate</span><div class="df">Share of viewers who clicked.</div><span class="fx">(clicks ÷ impressions) × 100</span></div>
+<div class="item"><span class="ab">CVR</span> <span class="sp">Conversion rate</span><div class="df">Share who took the desired action.</div><span class="fx">(conversions ÷ visitors or leads) × 100</span></div>
+<div class="item"><span class="ab">ROAS</span> <span class="sp">Return on ad spend</span><div class="df">Revenue per dollar of ads (a multiple, e.g. 4×).</div><span class="fx">revenue from ads ÷ ad spend</span></div>
+<div class="item"><span class="ab">ROI</span> <span class="sp">Return on investment</span><div class="df">Profit relative to cost.</div><span class="fx">((revenue − cost) ÷ cost) × 100</span></div>
+<div class="item"><span class="ab">LTV / CLV</span> <span class="sp">(Customer) lifetime value</span><div class="df">Total value a customer brings as they ascend the ladder (× margin for profit-based LTV).</div><span class="fx">avg order value × orders per year × lifespan (yrs)</span></div>
+<div class="item"><span class="ab">LTV:CAC</span> <span class="sp">Lifetime value to CAC ratio</span><div class="df">Unit-economics health check; 3:1 is a common benchmark.</div><span class="fx">LTV ÷ CAC</span></div>
+<div class="item"><span class="ab">NPS</span> <span class="sp">Net promoter score</span><div class="df">Loyalty score from −100 to +100 (9–10 promoters, 0–6 detractors).</div><span class="fx">% promoters − % detractors</span></div>
+<div class="item"><span class="ab">NRR</span> <span class="sp">Net revenue retention</span><div class="df">Revenue kept plus expansion from existing customers; MRR = monthly recurring revenue.</div><span class="fx">(start MRR + expansion − contraction − churn) ÷ start MRR × 100</span></div>
+</div>
+<div class="card">
+<div class="cat"><span class="dot" style="background:#EF9F27"></span>Founder-led &amp; funnel-builder terms</div>
+<div class="item"><span class="ab">Value ladder</span> <span class="sp">Value ladder</span><div class="df">An ascending series of offers from free to high-ticket; the spine of the founder-led model.</div></div>
+<div class="item"><span class="ab">SLO</span> <span class="sp">Self-liquidating offer</span><div class="df">A low-ticket front-end priced to recover ad spend, so leads come in effectively free.</div></div>
+<div class="item"><span class="ab">VSL</span> <span class="sp">Video sales letter</span><div class="df">A recorded video that pitches an offer (a webinar is a long-form cousin).</div></div>
+<div class="item"><span class="ab">EPC</span> <span class="sp">Earnings per click</span><div class="df">Launch/webinar efficiency — revenue per click or per registrant.</div><span class="fx">revenue ÷ clicks (or registrants)</span></div>
+<div class="item"><span class="ab">Show rate</span> <span class="sp">Webinar show-up rate</span><div class="df">How many registrants actually attend live.</div><span class="fx">live attendees ÷ registrants × 100</span></div>
+<div class="item"><span class="ab">AOV</span> <span class="sp">Average order value</span><div class="df">Average spend per order; rises with bumps and upsells.</div><span class="fx">revenue ÷ number of orders</span></div>
+</div>
+<div class="card">
+<div class="cat"><span class="dot" style="background:#D4537E"></span>Frameworks &amp; terms</div>
+<div class="item"><span class="ab">AIDA</span> <span class="sp">Attention, interest, desire, action</span><div class="df">The classic four-step funnel model, mapping awareness through purchase.</div></div>
+<div class="item"><span class="ab">CTA</span> <span class="sp">Call to action</span><div class="df">The prompt for the next step — "download the ebook", "register for the masterclass".</div></div>
+<div class="item"><span class="ab">KPI</span> <span class="sp">Key performance indicator</span><div class="df">Any metric above, tracked against a target.</div></div>
+</div>
+</div>
+
+<h2>The big five KPIs</h2>
+<p class="h2sub">Of every metric above, these are the five to watch — ranked most important (1) to least (5). The rest are diagnostics that explain these.</p>
+<div class="kpis">
+<div class="kpi"><div class="kn"><span class="knum">1</span><span class="ktitle">LTV : CAC</span></div><span class="kfx">LTV ÷ CAC</span><div class="kwhy">The master ratio — what a customer is worth across the whole ladder vs. what they cost to acquire. If this is healthy, the business is sound.</div><div class="ktar">Aim ≥ 3 : 1</div></div>
+<div class="kpi"><div class="kn"><span class="knum">2</span><span class="ktitle">Ascension / retention</span></div><span class="kfx">% of buyers who climb a tier</span><div class="kwhy">In a founder-led model most of the revenue is the back end, so the share who move up to high-ticket and stay is the second lever.</div><div class="ktar">Protect &amp; grow it</div></div>
+<div class="kpi"><div class="kn"><span class="knum">3</span><span class="ktitle">Conversion rate</span></div><span class="kfx">buyers ÷ leads (or attendees)</span><div class="kwhy">The engine that creates buyers in the first place — the webinar → sale rate moves the most front-end money.</div><div class="ktar">Webinar 10–20% to offer</div></div>
+<div class="kpi"><div class="kn"><span class="knum">4</span><span class="ktitle">CAC / CPL</span></div><span class="kfx">spend ÷ new customers (or leads)</span><div class="kwhy">Acquisition cost — the main input you control inside ratio #1. Keep a lead and a customer cheap enough that the ladder stays profitable.</div><div class="ktar">CPL &lt; $15 · CAC falling</div></div>
+<div class="kpi"><div class="kn"><span class="knum">5</span><span class="ktitle">AOV / value per lead</span></div><span class="kfx">revenue ÷ orders (or ÷ leads)</span><div class="kwhy">What each buyer and lead is worth — the most downstream of the five, lifted by bumps, upsells and ascension.</div><div class="ktar">Rising month over month</div></div>
+</div>
+
+<p class="h2sub" style="margin-top:18px">Rough industry benchmarks, and the first move if you fall below one. Ranges are typical public marketing figures, not any specific founder's actuals.</p>
+<div class="tw"><table>
+<thead><tr><th>KPI</th><th>Healthy benchmark</th><th>If you're below, do this first</th></tr></thead>
+<tbody>
+<tr><td>1 · LTV:CAC</td><td>3:1 or better (under 1:1 loses money; pay CAC back inside 12 months)</td><td>Sell existing buyers more — raising LTV is faster and cheaper than chasing cheaper ads.</td></tr>
+<tr><td>2 · Ascension / retention</td><td>Keep ~70%+ of customers; 10–30% climb a tier; NRR over 100%</td><td>Deliver a fast early win, then end every program with one clear next-step offer.</td></tr>
+<tr><td>3 · Conversion rate</td><td>Opt-in 20–40%; webinar show-up ~40–50%; attendee→sale 5–10% high-ticket, 15–25% low</td><td>Sharpen the offer and headline; add a deadline, a guarantee, and more reminder emails.</td></tr>
+<tr><td>4 · CAC / CPL</td><td>Cheap cold lead ~$3–$30; high-ticket call leads cost more but pay back under a year</td><td>Tighten targeting, lift opt-in %, and let an SLO cover the ad spend; lean on referrals.</td></tr>
+<tr><td>5 · AOV / value per lead</td><td>Order bumps convert ~30%, upsells ~20% — each lifts AOV 10–30%</td><td>Add a checkout order bump (easiest win), a one-click upsell, and a premium bundle.</td></tr>
+</tbody>
+</table></div>
+
+<h2>Reports you'd hand to leadership</h2>
+<p class="h2sub">Cadence at a glance: list growth weekly, ascension and economics monthly, the high-ticket rung quarterly, the webinar scorecard per launch. Numbers are illustrative.</p>
+
+<div class="rep">
+<div class="rephd"><span class="rname2">1 · Value-ladder ascension report</span><span class="aud" style="background:#EEEDFE;color:#3C3489">Founder &amp; integrator</span></div>
+<p class="repq"><b>Cadence: monthly</b> (review the high-ticket rung quarterly too). Answers: "How are buyers climbing the ladder, and where does the revenue actually come from?"</p>
+<div class="tw"><table>
+<thead><tr><th>Offer</th><th class="n">Buyers</th><th class="n">Price</th><th class="n">Revenue</th><th class="n">% from prior</th></tr></thead>
+<tbody>
+<tr><td>New email leads</td><td class="n">4,200</td><td class="n">free</td><td class="n">—</td><td class="n">—</td></tr>
+<tr><td>Mind Hack Program</td><td class="n">336</td><td class="n">$497</td><td class="n">$167,000</td><td class="n">8%</td></tr>
+<tr><td>Whole Human Framework</td><td class="n">84</td><td class="n">$5,000</td><td class="n">$420,000</td><td class="n">25%</td></tr>
+<tr><td>Powerful Living Experience</td><td class="n">34</td><td class="n">$5,000</td><td class="n">$170,000</td><td class="n">40%</td></tr>
+<tr><td>Coaching / mastermind</td><td class="n">3</td><td class="n">$100,000</td><td class="n">$300,000</td><td class="n">10%</td></tr>
+</tbody>
+</table></div>
+<p class="take"><b>Takeaway:</b> The $497 front end brings $167k, but the real money is the deep programs plus 3 high-ticket clients at $100k (≈$1.06M total). The funnel's true job is to surface those few — guard the ascension path, don't over-discount the front end.</p>
+</div>
+
+<div class="rep">
+<div class="rephd"><span class="rname2">2 · List growth &amp; front-end economics</span><span class="aud" style="background:#E1F5EE;color:#085041">Marketing lead</span></div>
+<p class="repq"><b>Cadence: weekly or monthly.</b> Answers: "Is acquisition paying for itself, and is the list growing fast enough?"</p>
+<div class="tw"><table>
+<thead><tr><th>Metric</th><th class="n">This mo</th><th class="n">Last mo</th><th class="n">Target</th></tr></thead>
+<tbody>
+<tr><td>New email subscribers</td><td class="n">4,200</td><td class="n">3,600</td><td class="n">4,000</td></tr>
+<tr><td>Cost per lead (CPL)</td><td class="n">$14.30</td><td class="n">$16.10</td><td class="n">&lt; $15</td></tr>
+<tr><td>Front-end buyers (Mind Hack)</td><td class="n">336</td><td class="n">300</td><td class="n">350</td></tr>
+<tr><td>Front-end ROAS</td><td class="n">2.8×</td><td class="n">2.3×</td><td class="n">≥ 1.0×</td></tr>
+<tr><td>90-day value per lead</td><td class="n">$52</td><td class="n">$46</td><td class="n">$50</td></tr>
+</tbody>
+</table></div>
+<p class="take"><b>Takeaway:</b> The front end runs at 2.8× — well past the self-liquidating floor — so acquisition is profitable on its own. Green light to scale ad spend.</p>
+</div>
+
+<div class="rep">
+<div class="rephd"><span class="rname2">3 · Webinar launch scorecard</span><span class="aud" style="background:#F1EFE8;color:#444441">Founder &amp; launch team</span></div>
+<p class="repq"><b>Cadence: after each webinar or launch</b> (not calendar-monthly). Answers: "How did the Mind Hack webinar funnel perform end to end?"</p>
+<div class="tw"><table>
+<thead><tr><th>Step</th><th class="n">Number</th><th class="n">Rate</th></tr></thead>
+<tbody>
+<tr><td>Registrants</td><td class="n">6,500</td><td class="n">—</td></tr>
+<tr><td>Showed up live</td><td class="n">2,600</td><td class="n">40% show rate</td></tr>
+<tr><td>Stayed to the offer</td><td class="n">1,560</td><td class="n">60% of attendees</td></tr>
+<tr><td>Bought Mind Hack Program</td><td class="n">280</td><td class="n">18% of attendees</td></tr>
+<tr><td>Revenue</td><td class="n">$139,160</td><td class="n">EPC $21.41</td></tr>
+</tbody>
+</table></div>
+<p class="take"><b>Takeaway:</b> 40% show rate and 18% offer-conversion are both strong; the lever is registration volume — more registrants at the same rates scales revenue linearly.</p>
+</div>
+
+<p class="foot">Read it top to bottom: the founder's own content casts the widest net, the Mind Hack ebook and webinar convert attention into email leads, and the value ladder turns a small front-end buyer into a high-ticket client over time. The webinar is the engine — it captures the lead and makes the sale in one sitting. The number that ties it together is LTV:CAC: as long as a buyer's lifetime value across the ladder beats the cost to acquire them, every new lead is worth getting.</p>
+</div>
+<script>
+(function(){var b=document.getElementById('tg');if(!b)return;b.addEventListener('click',function(){var d=document.documentElement;var dark=d.getAttribute('data-theme')==='dark';d.setAttribute('data-theme',dark?'light':'dark');b.textContent=dark?'Dark mode':'Light mode';});})();
+</script>
+</body>
+</html>

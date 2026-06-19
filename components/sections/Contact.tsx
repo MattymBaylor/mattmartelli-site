@@ -1,4 +1,4 @@
-import { Mail, Linkedin, Youtube, Phone, Globe } from "lucide-react";
+import { Mail, Linkedin, Youtube, Phone, Globe, Mic } from "lucide-react";
 import { site } from "@/content/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
@@ -66,6 +66,18 @@ export function Contact() {
                 <span className="text-sm text-ink">
                   {meta.company.name}
                   <span className="text-ink-faint"> · my company</span>
+                </span>
+              </a>
+              <a
+                href={meta.podcast.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={channelClass}
+              >
+                <Mic size={18} className="text-accent-cyan" aria-hidden />
+                <span className="text-sm text-ink">
+                  {meta.podcast.name}
+                  <span className="text-ink-faint"> · my podcast</span>
                 </span>
               </a>
             </div>

@@ -18,6 +18,7 @@ import {
   LiveAgentFeedPhone,
   LiveAgentFeedTablet,
 } from "@/components/sections/LiveAgentFeed";
+import { AgentOrgChart } from "@/components/flow/AgentOrgChart";
 import { StatCallout } from "@/components/ui/StatCallout";
 import { caseStudy as cs } from "@/content/caseStudy";
 import { site } from "@/content/site";
@@ -138,6 +139,28 @@ export default function CaseStudyPage() {
               <p className="mx-auto mt-10 max-w-3xl text-center text-xs leading-relaxed text-ink-faint">
                 {cs.liveOps.footnote}
               </p>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* 3.6 — THE OPERATING MODEL — the interactive agent org chart, surfaced
+            as its own always-visible section right under Live Ops (previously only
+            reachable via the tablet's "Operating Model" view toggle). */}
+        <section className="section relative overflow-x-clip border-b border-line/60">
+          <div className="container-x">
+            <Reveal>
+              <div className="mx-auto max-w-3xl text-center">
+                <p className="eyebrow mb-3">{cs.orgChart.eyebrow}</p>
+                <h2 className="text-3xl font-semibold sm:text-4xl">{cs.orgChart.heading}</h2>
+                <p className="mt-5 text-base leading-relaxed text-ink-muted">
+                  {cs.orgChart.intro}
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={0.12}>
+              <div className="mt-12">
+                <AgentOrgChart />
+              </div>
             </Reveal>
           </div>
         </section>

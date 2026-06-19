@@ -16,6 +16,14 @@ const nextConfig = {
       { protocol: "https", hostname: "img.youtube.com" },
     ],
   },
+  // Vanity route: mattmartelli.com/tcpa → the Lead Hygiene & Compliance canvas.
+  // A memorable link for the TCPA question Matt fields constantly ("go look at /tcpa").
+  // Rewrite (not redirect) so the clean /tcpa URL stays in the address bar.
+  async rewrites() {
+    return [
+      { source: "/tcpa", destination: "/architecture/lead-hygiene-canvas.html" },
+    ];
+  },
 };
 
 export default nextConfig;

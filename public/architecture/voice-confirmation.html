@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BHS Voice AI Confirmation System</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#fafaf8;--sf:#fff;--sf2:#f4f3ef;--tx:#1a1a18;--tx2:#5a5a56;--tx3:#8a8a84;
+--bd:#e2e1db;--blue:#1860a5;--blue-bg:#e6f1fb;--blue-tx:#0c447c;
+--purple:#534ab7;--purple-bg:#eeedfe;--purple-tx:#3c3489;
+--teal:#0f6e56;--teal-bg:#e1f5ee;--teal-tx:#085041;
+--coral:#d85a30;--coral-bg:#faece7;--coral-tx:#712b13;
+--amber:#ba7517;--amber-bg:#faeeda;--amber-tx:#633806;
+--green:#3b6d11;--green-bg:#eaf3de;--green-tx:#27500a;
+--red:#a32d2d;--red-bg:#fcebeb;--red-tx:#791f1f;
+--gray:#5f5e5a;--gray-bg:#f1efe8;--gray-tx:#444441;
+--pink:#993556;--pink-bg:#fbeaf0;--pink-tx:#72243e;
+--r:10px;--rl:14px;
+}
+@media(prefers-color-scheme:dark){:root{
+--bg:#141413;--sf:#1e1e1c;--sf2:#262624;--tx:#e8e6de;--tx2:#a8a79f;--tx3:#6e6d68;--bd:#333330;
+--blue-bg:#0c447c;--blue-tx:#b5d4f4;--purple-bg:#3c3489;--purple-tx:#cecbf6;
+--teal-bg:#085041;--teal-tx:#9fe1cb;--coral-bg:#712b13;--coral-tx:#f5c4b3;
+--amber-bg:#633806;--amber-tx:#fac775;--green-bg:#27500a;--green-tx:#c0dd97;
+--red-bg:#791f1f;--red-tx:#f7c1c1;--gray-bg:#444441;--gray-tx:#d3d1c7;
+--pink-bg:#72243e;--pink-tx:#f4c0d1;
+}}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);line-height:1.6;min-height:100vh}
+.hdr{padding:32px 32px 20px;max-width:1200px;margin:0 auto}
+.hdr h1{font-size:26px;font-weight:700;letter-spacing:-.5px}
+.hdr h1 span{color:var(--purple)}
+.hdr p{font-size:14px;color:var(--tx2);margin-top:4px;max-width:700px}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.leg{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--tx3)}
+.leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+.roi-bar{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;max-width:1200px;margin:0 auto;padding:0 32px 16px}
+.roi{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:12px 14px;text-align:center}
+.roi-v{font-size:22px;font-weight:700;font-family:'JetBrains Mono',monospace}
+.roi-l{font-size:11px;color:var(--tx3);margin-top:2px}
+
+.main{display:grid;grid-template-columns:340px minmax(0,1fr);gap:16px;max-width:1200px;margin:0 auto;padding:0 32px 20px;align-items:start}
+@media(max-width:860px){.main{grid-template-columns:1fr}.roi-bar{grid-template-columns:repeat(2,1fr)}.hdr{padding:20px 16px 16px}.main{padding:0 16px 20px}.roi-bar{padding:0 16px 12px}}
+
+.steps{display:flex;flex-direction:column;gap:3px}
+.sc{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:10px 12px;cursor:pointer;transition:all .15s;position:relative}
+.sc:hover{border-color:var(--tx3);background:var(--sf2)}
+.sc.on{border-color:var(--purple);border-width:2px;background:var(--purple-bg)}
+.sc.on .st{color:var(--purple-tx)}
+.st{font-size:12px;font-weight:600;color:var(--tx)}
+.ss{font-size:10px;color:var(--tx3);margin:1px 0 0 28px}
+.sn{width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;margin-right:6px}
+.bg{display:inline-block;font-size:9px;font-weight:600;padding:2px 7px;border-radius:20px;margin-left:auto;flex-shrink:0}
+.cn{text-align:center;color:var(--bd);font-size:10px;line-height:1;padding:0}
+
+.dp{background:var(--sf2);border-radius:var(--rl);padding:24px;min-height:260px;position:sticky;top:16px}
+.dt{font-size:18px;font-weight:700;color:var(--tx);margin-bottom:3px}
+.ds{font-size:12px;color:var(--tx3);margin-bottom:14px}
+.db{font-size:13px;color:var(--tx2);line-height:1.7}
+.db p{margin-bottom:10px}
+.mg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:14px 0}
+.m{background:var(--sf);border-radius:var(--r);padding:10px 8px;text-align:center}
+.mv{font-size:18px;font-weight:700;color:var(--tx);font-family:'JetBrains Mono',monospace}
+.ml{font-size:10px;color:var(--tx3);margin-top:2px}
+.tr{display:flex;flex-wrap:wrap;gap:4px;margin:10px 0}
+.tc{font-size:10px;font-weight:600;padding:3px 9px;border-radius:20px;background:var(--sf);color:var(--tx2);border:0.5px solid var(--bd)}
+
+.nb{border-radius:var(--r);padding:11px 13px;margin:12px 0}
+.nt{font-size:12px;font-weight:600;margin-bottom:3px}
+.nn{font-size:12px;line-height:1.6;opacity:.85}
+
+.wire-section{margin:14px 0}
+.wire-title{font-size:12px;font-weight:600;color:var(--tx);margin-bottom:8px}
+.wire{display:flex;align-items:center;gap:6px;padding:5px 0;font-size:11px;color:var(--tx2)}
+.wire-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.wire-line{width:24px;height:2px;flex-shrink:0;border-radius:1px}
+.wire-arrow{color:var(--tx3);flex-shrink:0;font-size:10px}
+
+.cd-on{border-radius:var(--r);padding:8px 6px;text-align:center}
+.oc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0}
+.ox{border-radius:var(--r);padding:10px;text-align:center}
+.ox .ot{font-size:12px;font-weight:600;margin-bottom:3px}
+.ox .ob{font-size:11px;line-height:1.4;opacity:.85}
+.opt-flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0}
+.of{border-radius:var(--r);padding:10px;text-align:center;border:1px solid var(--bd)}
+.of .of-t{font-size:12px;font-weight:600;color:var(--tx);margin-bottom:2px}
+.of .of-b{font-size:10px;color:var(--tx3)}
+.sent-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:10px 0}
+.sent{border-radius:var(--r);padding:7px 6px;text-align:center;font-size:11px;font-weight:600}
+.sl-msg{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:10px 12px;margin:6px 0}
+.sl-hd{display:flex;align-items:center;gap:6px;margin-bottom:5px}
+.sl-icon{width:16px;height:16px;border-radius:3px;background:#4A154B}
+.sl-ch{font-size:11px;font-weight:600;color:var(--tx)}
+.sl-body{font-size:11px;color:var(--tx2);line-height:1.5}
+.sl-btns{display:flex;gap:6px;margin-top:6px}
+.sl-btn{font-size:10px;font-weight:600;padding:3px 10px;border-radius:var(--r)}
+.hc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:10px 0}
+.hc-item{border-radius:var(--r);padding:8px;border:1px solid var(--bd);display:flex;align-items:center;gap:6px}
+.hc-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;background:#639922}
+.hc-name{font-size:11px;font-weight:600;color:var(--tx)}
+.ab-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0}
+.ab{border-radius:var(--r);padding:10px;text-align:center;border:1px solid var(--bd)}
+.ab .ab-ch{font-size:12px;font-weight:600;color:var(--tx);margin-bottom:2px}
+.ab .ab-d{font-size:10px;color:var(--tx3)}
+.vec-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:6px;align-items:center;margin:12px 0}
+.vec-box{border-radius:var(--r);padding:10px;text-align:center;border:1px solid var(--bd)}
+.vec-box .vt{font-size:12px;font-weight:600;color:var(--tx);margin-bottom:2px}
+.vec-box .vb{font-size:10px;color:var(--tx3)}
+.vec-arr{font-size:14px;color:var(--tx3);text-align:center}
+.learn-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r);padding:9px 11px;margin:5px 0}
+.lc-t{font-size:11px;font-weight:600;color:var(--tx);margin-bottom:3px}
+.lc-b{font-size:11px;color:var(--tx2);line-height:1.5}
+.lc-tag{display:inline-block;font-size:9px;font-weight:600;padding:1px 6px;border-radius:10px;margin-right:4px}
+.kpi-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0}
+.kpi{border-radius:var(--r);padding:10px;text-align:center;border:1px solid var(--bd)}
+.kpi .kpi-v{font-size:20px;font-weight:700;font-family:'JetBrains Mono',monospace}
+.kpi .kpi-l{font-size:10px;color:var(--tx3);margin-top:2px}
+.kpi .kpi-t{font-size:10px;margin-top:4px;font-weight:600}
+.cap-bar{height:8px;border-radius:4px;background:var(--bd);position:relative;overflow:hidden;margin:6px 0}
+
+.footer{max-width:1200px;margin:0 auto;padding:8px 32px 28px;text-align:center}
+.footer p{font-size:16px;color:var(--tx3)}
+</style>
+</head>
+<body>
+<div class="hdr">
+<h1><span>BHS</span> Voice AI Confirmation System</h1>
+<p>Autonomous appointment confirmation engine — HubSpot, Five9, Retell AI, CrewAI, Qdrant — with sub-3-second speed to lead and continuous learning from every interaction.</p>
+<div class="legend">
+<div class="leg"><div class="leg-dot" style="background:var(--blue)"></div> System / infrastructure</div>
+<div class="leg"><div class="leg-dot" style="background:var(--purple)"></div> AI agents</div>
+<div class="leg"><div class="leg-dot" style="background:var(--coral)"></div> Voice</div>
+<div class="leg"><div class="leg-dot" style="background:var(--amber)"></div> Cadence</div>
+<div class="leg"><div class="leg-dot" style="background:var(--red)"></div> Compliance</div>
+<div class="leg"><div class="leg-dot" style="background:var(--teal)"></div> Learning / data</div>
+<div class="leg"><div class="leg-dot" style="background:var(--pink)"></div> Human-in-the-loop</div>
+<div class="leg"><div class="leg-dot" style="background:var(--green)"></div> Outcomes</div>
+</div>
+</div>
+
+<div class="roi-bar">
+<div class="roi"><div class="roi-v" style="color:var(--red)">40% &rarr; 30%</div><div class="roi-l">Cancellation rate goal</div></div>
+<div class="roi"><div class="roi-v" style="color:var(--green)">$22,000</div><div class="roi-l">Avg job value</div></div>
+<div class="roi"><div class="roi-v" style="color:var(--purple)">&lt;3 sec</div><div class="roi-l">Speed to lead target</div></div>
+<div class="roi"><div class="roi-v" style="color:var(--blue)">20</div><div class="roi-l">Concurrent conversations</div></div>
+</div>
+
+<div class="main">
+<div class="steps" id="sc"></div>
+<div class="dp" id="dp"></div>
+</div>
+
+<div class="footer"><p>Developed by Matt Martelli &middot; Growth Mindset AI</p></div>
+
+<script>
+var W={
+blue:"var(--blue)",purple:"var(--purple)",teal:"var(--teal)",coral:"var(--coral)",
+amber:"var(--amber)",green:"var(--green)",red:"var(--red)",pink:"var(--pink)",gray:"var(--gray)"
+};
+
+function wires(arr){
+var h='<div class="wire-section"><div class="wire-title">System connections:</div>';
+arr.forEach(function(w){
+h+='<div class="wire"><div class="wire-dot" style="background:'+W[w.c1]+'"></div><span style="font-weight:600">'+w.from+'</span><div class="wire-line" style="background:'+W[w.c2]+'"></div><div class="wire-arrow">&rarr;</div><div class="wire-dot" style="background:'+W[w.c2]+'"></div><span style="font-weight:600">'+w.to+'</span><span style="color:var(--tx3);font-size:10px;margin-left:4px">'+w.desc+'</span></div>';
+});
+h+='</div>';return h;
+}
+
+var S=[
+{n:"1",t:"Speed to lead engine",s:"Sub-3-second response on inbound",bg:"red",
+d:{t:"Speed to lead engine",s:"First contact in under 3 seconds — non-negotiable",b:"<p>When a lead comes in from Google, a form fill, or any high-intent source, the speed to lead system fires immediately. The goal: phone ringing in under 3 seconds. At $22K average job value, every second of delay costs real money — customers move to the next contractor instantly.</p><p>n8n monitors inbound webhooks from HubSpot and triggers Retell via Five9 the moment a lead is created. No queue, no batch processing, no human latency.</p>",
+m:[{v:"<3s",l:"Response target"},{v:"$22K",l:"Avg job at stake"},{v:"Instant",l:"Webhook trigger"}],
+tech:["HubSpot webhook","n8n instant trigger","Five9 API","Retell API","Real-time routing"],
+w:[{from:"HubSpot",to:"n8n",c1:"blue",c2:"purple",desc:"Lead created webhook"},{from:"n8n",to:"Five9",c1:"purple",c2:"blue",desc:"Instant campaign push"},{from:"Five9",to:"Retell",c1:"blue",c2:"coral",desc:"SIP connect < 3s"}],
+note:{cls:"nb-r",title:"Why speed to lead matters",body:"Google leads have a 5-second decision window. After that, they’re calling the next result. At $22K per job, even a 1% improvement in contact rate from faster response pays for the entire system. This isn’t optimization — it’s table stakes."}}},
+
+{n:"2",t:"HubSpot lead trigger",s:"Source of truth + Retell webhook data",bg:"blue",
+d:{t:"HubSpot lead trigger",s:"Source of truth — all roads lead back here",b:"<p>HubSpot is the single source of truth for contacts, appointments, opt-outs, and Retell feedback webhook data. Contacts enter the confirmation pipeline based on disposition or age. Appointment date determines cadence entry.</p>",
+m:[{v:"HubSpot",l:"Source of truth"},{v:"Auto",l:"Qualification"},{v:"4-step",l:"Cadence entry"}],
+tech:["HubSpot Enterprise","Active lists","Workflows","Retell webhook data","Central opt-out"],
+w:[{from:"HubSpot",to:"n8n",c1:"blue",c2:"purple",desc:"Qualified contacts out"},{from:"Retell",to:"HubSpot",c1:"coral",c2:"blue",desc:"Feedback webhook in"},{from:"Hatch",to:"HubSpot",c1:"amber",c2:"blue",desc:"SMS/email opt-outs"},{from:"Five9",to:"HubSpot",c1:"blue",c2:"blue",desc:"Phone DNC + dispositions"}]}},
+
+{n:"3",t:"n8n orchestration engine",s:"Central nervous system",bg:"purple",
+d:{t:"n8n orchestration engine",s:"Moves data between every system in real-time",b:"<p>n8n is the wiring. It connects HubSpot, Five9, Retell, Hatch, Qdrant, CrewAI, Supabase, and Slack. Handles cadence logic, opt-out routing, transcript forwarding, and disposition logging.</p>",
+m:[{v:"n8n",l:"Orchestration"},{v:"8+",l:"System connections"},{v:"Real-time",l:"Event processing"}],
+tech:["n8n workflows","REST APIs","Webhooks","HubSpot","Five9","Retell","Hatch","Qdrant","Slack"],
+w:[{from:"n8n",to:"Five9",c1:"purple",c2:"blue",desc:"Campaign push"},{from:"n8n",to:"Qdrant",c1:"purple",c2:"teal",desc:"Transcript storage"},{from:"n8n",to:"Slack",c1:"purple",c2:"pink",desc:"Alerts + approvals"},{from:"n8n",to:"Hatch",c1:"purple",c2:"amber",desc:"SMS campaigns"},{from:"n8n",to:"HubSpot",c1:"purple",c2:"blue",desc:"Disposition logging"},{from:"n8n",to:"CrewAI",c1:"purple",c2:"purple",desc:"Agent coordination"}]}},
+
+{n:"4",t:"Master orchestrator + CrewAI",s:"Operations brain + database consistency",bg:"purple",
+d:{t:"Master orchestrator agent",s:"CrewAI + Claude — capacity management + data gatekeeper",b:"<p>The master orchestrator monitors call volume targets, manages the 20-conversation capacity, validates data consistency across all systems, and triggers Slack approvals. CrewAI ensures all data going into Qdrant and Supabase is correctly formatted and chunked.</p>",
+m:[{v:"20",l:"Max concurrent"},{v:"CrewAI",l:"Framework"},{v:"Claude",l:"Database brain"}],
+tech:["CrewAI","Claude","OpenAI","Supabase","Qdrant","Worker agents"],
+cap:true,
+w:[{from:"Orchestrator",to:"Qdrant",c1:"purple",c2:"teal",desc:"Chunked data writes"},{from:"Orchestrator",to:"Supabase",c1:"purple",c2:"teal",desc:"State management"},{from:"Orchestrator",to:"Slack",c1:"purple",c2:"pink",desc:"Approval requests"},{from:"Orchestrator",to:"n8n",c1:"purple",c2:"purple",desc:"Campaign triggers"}]}},
+
+{n:"5",t:"Qdrant vector database",s:"Semantic memory for all agents",bg:"teal",
+d:{t:"Qdrant vector database",s:"Knowledge backbone — agents query before every action",b:"<p>Call transcripts, winning objection scripts, negative language patterns, A/B test results, and lead persona profiles — all chunked by CrewAI and stored as vector embeddings. Agents query Qdrant before every call for relevant context.</p>",
+m:[{v:"Qdrant",l:"Vector DB"},{v:"CrewAI",l:"Chunking"},{v:"Semantic",l:"Search"}],
+tech:["Qdrant","Vector embeddings","CrewAI chunking","Cosine similarity"],
+vecflow:true,
+w:[{from:"CrewAI",to:"Qdrant",c1:"purple",c2:"teal",desc:"Chunk + embed"},{from:"Qdrant",to:"Retell agents",c1:"teal",c2:"coral",desc:"Context retrieval"},{from:"Learning agent",to:"Qdrant",c1:"teal",c2:"teal",desc:"Pattern storage"},{from:"Transcripts",to:"CrewAI",c1:"gray",c2:"purple",desc:"Raw data in"}]}},
+
+{n:"6",t:"Five9 outbound dialer",s:"Dual DC — Atlanta + Santa Clara",bg:"blue",
+d:{t:"Five9 outbound dialer",s:"Call engine with redundant SIP TLS trunks",b:"<p>Five9 handles outbound dialing with campaigns segmented by cadence step. Dual data centers (Atlanta + Santa Clara) with redundant SIP TLS trunks. Retell AI embedded via SIP — connected calls are handled by the AI voice agent.</p>",
+m:[{v:"Atlanta",l:"Primary DC"},{v:"Santa Clara",l:"Secondary DC"},{v:"SIP TLS",l:"Encrypted"}],
+tech:["Five9 VCC","SIP TLS","Dual DC","Campaign engine","Web2Campaign","DNC"],
+w:[{from:"n8n",to:"Five9",c1:"purple",c2:"blue",desc:"Contact push"},{from:"Five9",to:"Retell",c1:"blue",c2:"coral",desc:"SIP handoff"},{from:"Five9",to:"HubSpot",c1:"blue",c2:"blue",desc:"DNC + dispositions"},{from:"Five9",to:"Live agents",c1:"blue",c2:"green",desc:"Warm transfers"}],
+note:{cls:"nb-g",title:"Inbound + outbound",body:"Outbound confirmation via campaigns. Inbound via Retell number on SMS — connects to Five9 live agent over SIP when needed."}}},
+
+{n:"7",t:"Retell AI + ElevenLabs",s:"Dual voice personas + feedback webhook",bg:"coral",
+d:{t:"Retell AI + ElevenLabs voice agents",s:"Voice AI — dual voice personas",b:"<p>When Five9 connects, Retell takes over. Two distinct voice personas (ElevenLabs voice + OpenAI conversation) confirm appointments, overcome objections using Qdrant-sourced scripts, and warm transfer when needed. Real-time sentiment analysis on every call.</p><p>Retell’s feedback webhook pushes conversation data to HubSpot: outcomes, duration, sentiment, key moments.</p>",
+m:[{v:"Retell AI",l:"Voice"},{v:"ElevenLabs",l:"TTS"},{v:"Webhook",l:"Feedback to HS"}],
+tech:["Retell AI","ElevenLabs","OpenAI","Feedback webhook","Qdrant queries","Sentiment"],
+cadence:true,
+capabilities:["Confirms appointment date/time","Overcomes objections (Qdrant scripts)","Warm transfers to live Five9 agent","Real-time sentiment analysis","Feedback webhook to HubSpot"],
+w:[{from:"Five9",to:"Retell",c1:"blue",c2:"coral",desc:"SIP connect"},{from:"Retell",to:"HubSpot",c1:"coral",c2:"blue",desc:"Feedback webhook"},{from:"Qdrant",to:"Retell",c1:"teal",c2:"coral",desc:"Context retrieval"},{from:"Retell",to:"n8n",c1:"coral",c2:"purple",desc:"Transcript + disposition"}]}},
+
+{n:"8",t:"4-day confirmation cadence",s:"Escalating urgency per attempt",bg:"amber",
+d:{t:"4-day confirmation cadence",s:"4 attempts — increasing urgency toward appointment",b:"",
+m:[{v:"4",l:"Max attempts"},{v:"Escalating",l:"Urgency"},{v:"~40%→30%",l:"Cancel reduction"}],
+cadenceDetail:[
+{day:"4-day out",desc:"Friendly confirmation. Light touch. Easiest objections."},
+{day:"3-day out",desc:"Follow-up. More direct. Scheduling flexibility."},
+{day:"2-day out",desc:"Urgency up. Pricing and competitor objections."},
+{day:"Day of",desc:"Final attempt. Last chance to confirm or reschedule."}
+],
+w:[{from:"n8n",to:"Five9",c1:"purple",c2:"blue",desc:"Cadence step routing"},{from:"Disposition",to:"n8n",c1:"gray",c2:"purple",desc:"Next step logic"},{from:"Analytics",to:"Cadence",c1:"teal",c2:"amber",desc:"Step weighting adjustments"}]}},
+
+{n:"9",t:"Compliance agent",s:"Opt-outs, DNC, sentiment guardrails",bg:"red",
+d:{t:"Compliance agent",s:"Enforces all opt-outs and safety guardrails",b:"<p>Watches every channel. Any opt-out (SMS/email via Hatch, phone DNC via Five9) triggers an immediate hard stop across all systems, synced to HubSpot’s central record.</p>",
+m:[{v:"3",l:"Opt-out channels"},{v:"Real-time",l:"Enforcement"},{v:"HubSpot",l:"Central record"}],
+optout:true,sentiment:true,
+w:[{from:"Hatch",to:"HubSpot",c1:"amber",c2:"blue",desc:"SMS/email opt-outs"},{from:"Five9",to:"HubSpot",c1:"blue",c2:"blue",desc:"Phone DNC"},{from:"Sentiment",to:"Compliance",c1:"coral",c2:"red",desc:"Trigger alerts"},{from:"Compliance",to:"All systems",c1:"red",c2:"red",desc:"Hard stop broadcast"}]}},
+
+{n:"10",t:"Call analytics agent",s:"KPIs: cancellation, connect, sentiment",bg:"teal",
+d:{t:"Call analytics agent",s:"Monitors every KPI across calls, texts, and emails",b:"<p>A dedicated AI agent monitors performance metrics across all channels with specific percentage thresholds. Primary KPI: cancellation rate. Every percentage point from 40% to 30% represents massive revenue at $22K per job.</p>",
+m:[{v:"40%→30%",l:"Cancel rate goal"},{v:"$22K",l:"Per job value"},{v:"All channels",l:"Monitoring"}],
+kpis:true,
+w:[{from:"HubSpot",to:"Analytics",c1:"blue",c2:"teal",desc:"Appointment outcomes"},{from:"Retell",to:"Analytics",c1:"coral",c2:"teal",desc:"Call metrics"},{from:"Hatch",to:"Analytics",c1:"amber",c2:"teal",desc:"SMS/email metrics"},{from:"Analytics",to:"Learning agent",c1:"teal",c2:"teal",desc:"Pattern insights"},{from:"Analytics",to:"Orchestrator",c1:"teal",c2:"purple",desc:"Threshold alerts"}],
+note:{cls:"nb-t",title:"The math on 1%",body:"If you run 1,000 appointments/month at $22K average: reducing cancellation from 40% to 39% = 10 more completed jobs = $220K additional revenue. 40% to 30% = 100 more jobs = $2.2M. Small percentages, massive impact."}}},
+
+{n:"11",t:"Learning agent + A/B testing",s:"Transcripts, patterns, split tests",bg:"teal",
+d:{t:"Learning agent + A/B testing",s:"Continuous improvement — every conversation makes the next one better",b:"<p>Analyzes every transcript, SMS, and email for positive/negative language patterns. Feeds learnings into Qdrant for agent retrieval. A dedicated AI agent runs single-point A/B split tests across all channels and promotes winners.</p>",
+m:[{v:"All channels",l:"Analysis"},{v:"A/B",l:"Split testing"},{v:"AI agent",l:"Test monitor"}],
+tech:["Transcript NLP","Qdrant embeddings","A/B engine","n8n workflows"],
+learning:true,abtesting:true,
+w:[{from:"Transcripts",to:"Learning agent",c1:"gray",c2:"teal",desc:"Raw analysis"},{from:"Learning agent",to:"Qdrant",c1:"teal",c2:"teal",desc:"Pattern storage"},{from:"Qdrant",to:"Voice agents",c1:"teal",c2:"coral",desc:"Updated scripts"},{from:"A/B results",to:"Slack",c1:"teal",c2:"pink",desc:"Winner approval"}]}},
+
+{n:"12",t:"Human-in-the-loop (Slack)",s:"Manager approvals + escalations",bg:"pink",
+d:{t:"Human-in-the-loop (Slack)",s:"Manager approval gate — campaigns, promotions, A/B winners",b:"<p>The orchestrator sends Slack notifications for campaign proposals, A/B test winners ready for deployment, promotion rollouts, and compliance escalations. No approval = no rollout. SMS fallback available.</p>",
+m:[{v:"Slack",l:"Primary"},{v:"SMS",l:"Fallback"},{v:"Required",l:"Approval gate"}],
+tech:["Slack API","SMS fallback","n8n webhook","Approval workflow"],
+slack:true,
+w:[{from:"Orchestrator",to:"Slack",c1:"purple",c2:"pink",desc:"Campaign proposals"},{from:"A/B agent",to:"Slack",c1:"teal",c2:"pink",desc:"Winner approvals"},{from:"Compliance",to:"Slack",c1:"red",c2:"pink",desc:"Escalations"},{from:"Health agent",to:"Slack",c1:"red",c2:"pink",desc:"System alerts"}]}},
+
+{n:"13",t:"Health monitoring agent",s:"Connection watchdog — alerts via Slack",bg:"red",
+d:{t:"Health monitoring agent",s:"24/7 watchdog — catches problems before they break",b:"<p>Continuously checks every system: HubSpot API, Five9 SIP trunks, Retell AI, Hatch webhooks, Qdrant, n8n workflows, Supabase. Reports anomalies to Slack immediately.</p>",
+m:[{v:"24/7",l:"Monitoring"},{v:"Slack",l:"Alerts"},{v:"<5 min",l:"Detection"}],
+health:true,
+w:[{from:"Health agent",to:"HubSpot API",c1:"red",c2:"blue",desc:"Ping"},{from:"Health agent",to:"Five9 SIP",c1:"red",c2:"blue",desc:"Latency check"},{from:"Health agent",to:"Retell AI",c1:"red",c2:"coral",desc:"Availability"},{from:"Health agent",to:"Qdrant",c1:"red",c2:"teal",desc:"Query health"},{from:"Health agent",to:"Slack",c1:"red",c2:"pink",desc:"Anomaly alerts"}]}},
+
+{n:"14",t:"Call outcomes + routing",s:"Confirmed, rehash, or live agent",bg:"green",
+d:{t:"Call outcomes + routing",s:"Every call ends in one of three paths",b:"",
+m:[{v:"3",l:"Outcome paths"},{v:"Auto",l:"Routing"},{v:"HubSpot",l:"Sync"}],
+outcomes:true,
+w:[{from:"Disposition",to:"HubSpot",c1:"green",c2:"blue",desc:"Status update"},{from:"Confirmed",to:"Appointment",c1:"green",c2:"green",desc:"Locked in"},{from:"Rehash",to:"Aged campaign",c1:"amber",c2:"amber",desc:"Re-engagement"},{from:"Transfer",to:"Five9 agent",c1:"blue",c2:"blue",desc:"Warm handoff"}],
+note:{cls:"nb-g",title:"Full-circle flywheel",body:"Every outcome logs to HubSpot. Transcripts feed the learning agent and Qdrant. Contacts in aged/rehash campaigns can re-enter this flow. Analytics tracks everything. The system gets smarter with every single conversation."}}},
+];
+
+var el=document.getElementById("sc"),dp=document.getElementById("dp");
+var bgMap={blue:"var(--blue-bg)",purple:"var(--purple-bg)",teal:"var(--teal-bg)",coral:"var(--coral-bg)",amber:"var(--amber-bg)",green:"var(--green-bg)",red:"var(--red-bg)",pink:"var(--pink-bg)",gray:"var(--gray-bg)"};
+var txMap={blue:"var(--blue-tx)",purple:"var(--purple-tx)",teal:"var(--teal-tx)",coral:"var(--coral-tx)",amber:"var(--amber-tx)",green:"var(--green-tx)",red:"var(--red-tx)",pink:"var(--pink-tx)",gray:"var(--gray-tx)"};
+var labMap={blue:"system",purple:"AI",teal:"learning",coral:"voice",amber:"cadence",green:"outcome",red:"compliance",pink:"human",gray:"data"};
+var nbCls={purple:"nb-p",teal:"nb-t",green:"nb-g",red:"nb-r",amber:"nb-a",pink:"nb-k",blue:"nb-b"};
+
+function build(){
+S.forEach(function(s,i){
+if(i>0){var c=document.createElement("div");c.className="cn";c.textContent="|";el.appendChild(c)}
+var d=document.createElement("div");
+d.className="sc"+(i===0?" on":"");
+d.innerHTML='<div style="display:flex;align-items:center"><span class="sn" style="background:'+bgMap[s.bg]+';color:'+txMap[s.bg]+'">'+s.n+'</span><span class="st">'+s.t+'</span><span class="bg" style="background:'+bgMap[s.bg]+';color:'+txMap[s.bg]+'">'+labMap[s.bg]+'</span></div><div class="ss">'+s.s+'</div>';
+d.onclick=(function(idx){return function(){show(idx)}})(i);
+el.appendChild(d);
+});
+}
+
+function nbClass(s){
+var map={purple:"background:var(--purple-bg);",teal:"background:var(--teal-bg);",green:"background:var(--green-bg);",red:"background:var(--red-bg);",amber:"background:var(--amber-bg);",pink:"background:var(--pink-bg);",blue:"background:var(--blue-bg);"};
+return map[s]||"background:var(--sf2);";
+}
+
+function show(i){
+document.querySelectorAll(".sc").forEach(function(e,j){e.classList.toggle("on",j===i)});
+var s=S[i].d,h='<div class="dt">'+s.t+'</div><div class="ds">'+s.s+'</div>';
+if(s.b)h+='<div class="db">'+s.b+'</div>';
+if(s.m){h+='<div class="mg">';s.m.forEach(function(m){h+='<div class="m"><div class="mv">'+m.v+'</div><div class="ml">'+m.l+'</div></div>'});h+='</div>'}
+if(s.tech){h+='<div class="tr">';s.tech.forEach(function(t){h+='<span class="tc">'+t+'</span>'});h+='</div>'}
+
+if(s.cap){
+h+='<div style="margin:12px 0"><div style="font-size:12px;font-weight:600;color:var(--tx);margin-bottom:4px">Capacity: 20 simultaneous conversations</div>';
+h+='<div class="cap-bar"><div style="position:absolute;top:0;left:0;height:100%;width:60%;background:var(--purple);border-radius:4px 0 0 4px"></div><div style="position:absolute;top:0;left:60%;height:100%;width:40%;background:var(--blue);border-radius:0 4px 4px 0"></div></div>';
+h+='<div style="display:flex;justify-content:space-between;font-size:10px;margin-top:3px"><span style="color:var(--purple);font-weight:600">Retell AI</span><span style="color:var(--blue);font-weight:600">Live Five9</span></div></div>';
+}
+if(s.vecflow){
+h+='<div style="margin:12px 0"><div style="font-size:12px;font-weight:600;color:var(--tx);margin-bottom:6px">Data flow:</div>';
+h+='<div class="vec-flow"><div class="vec-box"><div class="vt">Transcripts</div><div class="vb">Calls, SMS, email</div></div><div class="vec-arr">→</div><div class="vec-box" style="border-color:var(--teal);background:var(--teal-bg)"><div class="vt" style="color:var(--teal-tx)">CrewAI</div><div class="vb" style="color:var(--teal-tx)">Chunk + embed</div></div><div class="vec-arr">→</div><div class="vec-box" style="border-color:var(--teal);background:var(--teal-bg)"><div class="vt" style="color:var(--teal-tx)">Qdrant</div><div class="vb" style="color:var(--teal-tx)">Vector store</div></div></div></div>';
+}
+if(s.cadence){
+h+='<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:12px 0">';
+["4-day","3-day","2-day","Day of"].forEach(function(d){h+='<div class="cd-on" style="background:var(--purple-bg);color:var(--purple-tx);border:1px solid var(--purple)"><div style="font-size:15px;font-weight:600">'+d+'</div><div style="font-size:10px;margin-top:2px">attempt</div></div>'});
+h+='</div>';
+}
+if(s.capabilities){
+h+='<div style="margin:10px 0">';
+s.capabilities.forEach(function(c){h+='<div style="font-size:12px;color:var(--tx2);padding:3px 0 3px 10px;border-left:2px solid var(--bd);margin-bottom:3px;border-radius:0">'+c+'</div>'});
+h+='</div>';
+}
+if(s.cadenceDetail){
+s.cadenceDetail.forEach(function(c){
+h+='<div style="background:var(--sf);padding:8px 10px;margin:6px 0;border-left:3px solid var(--amber);border-radius:0"><div style="font-size:12px;font-weight:600;color:var(--tx)">'+c.day+'</div><div style="font-size:11px;color:var(--tx2);margin-top:2px;line-height:1.5">'+c.desc+'</div></div>';
+});
+}
+if(s.optout){
+h+='<div style="margin:12px 0"><div style="font-size:12px;font-weight:600;color:var(--tx);margin-bottom:6px">Opt-out flow:</div>';
+h+='<div class="opt-flow"><div class="of"><div class="of-t">Hatch</div><div class="of-b">SMS + email</div></div><div class="of"><div class="of-t">Five9</div><div class="of-b">Phone DNC</div></div><div class="of" style="border-color:var(--blue);background:var(--blue-bg)"><div class="of-t" style="color:var(--blue-tx)">HubSpot</div><div class="of-b" style="color:var(--blue-tx)">Central record</div></div></div></div>';
+}
+if(s.sentiment){
+h+='<div style="margin:12px 0"><div style="font-size:12px;font-weight:600;color:var(--tx);margin-bottom:6px">Sentiment triggers:</div>';
+h+='<div class="sent-row">';
+[{l:"Frustration",b:"var(--red-bg)",t:"var(--red-tx)"},{l:"Hesitation",b:"var(--amber-bg)",t:"var(--amber-tx)"},{l:"Interest",b:"var(--green-bg)",t:"var(--green-tx)"},{l:"Objection",b:"var(--coral-bg)",t:"var(--coral-tx)"}].forEach(function(x){h+='<div class="sent" style="background:'+x.b+';color:'+x.t+'">'+x.l+'</div>'});
+h+='</div></div>';
+}
+if(s.kpis){
+h+='<div style="margin:12px 0"><div style="font-size:12px;font-weight:600;color:var(--tx);margin-bottom:6px">Monitored KPIs:</div>';
+h+='<div class="kpi-grid">';
+h+='<div class="kpi"><div class="kpi-v" style="color:var(--red)">40%→30%</div><div class="kpi-l">Cancellation rate</div><div class="kpi-t" style="color:var(--red-tx)">Primary target</div></div>';
+h+='<div class="kpi"><div class="kpi-v" style="color:var(--purple)"><3s</div><div class="kpi-l">Speed to lead</div><div class="kpi-t" style="color:var(--purple-tx)">Response time</div></div>';
+h+='<div class="kpi"><div class="kpi-v" style="color:var(--blue)">Connect %</div><div class="kpi-l">Call connect rate</div><div class="kpi-t" style="color:var(--blue-tx)">Per cadence step</div></div>';
+h+='<div class="kpi"><div class="kpi-v" style="color:var(--teal)">Sentiment</div><div class="kpi-l">Call quality score</div><div class="kpi-t" style="color:var(--teal-tx)">Positive vs negative</div></div>';
+h+='<div class="kpi"><div class="kpi-v" style="color:var(--amber)">SMS open</div><div class="kpi-l">Text engagement</div><div class="kpi-t" style="color:var(--amber-tx)">Response rate</div></div>';
+h+='<div class="kpi"><div class="kpi-v" style="color:var(--coral)">Email CTR</div><div class="kpi-l">Email performance</div><div class="kpi-t" style="color:var(--coral-tx)">Open + click</div></div>';
+h+='</div></div>';
+}
+if(s.learning){
+h+='<div style="margin:12px 0"><div style="font-size:12px;font-weight:600;color:var(--tx);margin-bottom:6px">Transcript learnings:</div>';
+h+='<div class="learn-card"><div class="lc-t"><span class="lc-tag" style="background:var(--green-bg);color:var(--green-tx)">positive</span> High-confirm pattern</div><div class="lc-b">“I understand the timing concern. Let me check if we can shift to a day that works better.” — 78% confirm rate</div></div>';
+h+='<div class="learn-card"><div class="lc-t"><span class="lc-tag" style="background:var(--red-bg);color:var(--red-tx)">negative</span> Flagged pattern</div><div class="lc-b">“Your appointment is tomorrow and we need confirmation now.” — 2.3x higher cancellation.</div></div></div>';
+}
+if(s.abtesting){
+h+='<div style="margin:12px 0"><div style="font-size:12px;font-weight:600;color:var(--tx);margin-bottom:6px">A/B split testing (all channels):</div>';
+h+='<div class="ab-row"><div class="ab"><div class="ab-ch">Calls</div><div class="ab-d">Hooks, scripts, tone</div></div><div class="ab"><div class="ab-ch">SMS</div><div class="ab-d">Copy, timing, CTA</div></div><div class="ab"><div class="ab-ch">Email</div><div class="ab-d">Subject, body, send time</div></div></div>';
+h+='<div style="font-size:10px;color:var(--tx3);margin-top:4px">Single-point split tests. AI monitors, promotes winners, kills losers.</div></div>';
+}
+if(s.slack){
+h+='<div style="margin:12px 0"><div style="font-size:12px;font-weight:600;color:var(--tx);margin-bottom:6px">Example Slack approval:</div>';
+h+='<div class="sl-msg"><div class="sl-hd"><div class="sl-icon"></div><span class="sl-ch">#ai-campaigns</span></div>';
+h+='<div class="sl-body"><span style="font-weight:600">Orchestrator:</span> A/B winner — new opening hook: 31% → 44% confirm rate over 200 calls. Deploy to production?</div>';
+h+='<div class="sl-btns"><div class="sl-btn" style="background:var(--green-bg);color:var(--green-tx);border:1px solid var(--green)">Approve</div><div class="sl-btn" style="background:var(--red-bg);color:var(--red-tx);border:1px solid var(--red)">Reject</div></div></div></div>';
+}
+if(s.health){
+h+='<div style="margin:12px 0"><div style="font-size:12px;font-weight:600;color:var(--tx);margin-bottom:6px">System health:</div>';
+h+='<div class="hc">';
+["HubSpot API","Five9 SIP","Retell AI","Hatch","Qdrant","n8n","Supabase"].forEach(function(x){
+h+='<div class="hc-item"><div class="hc-dot"></div><div><div class="hc-name">'+x+'</div></div></div>';
+});
+h+='</div></div>';
+}
+if(s.outcomes){
+h+='<div class="oc"><div class="ox" style="background:var(--green-bg);color:var(--green-tx);border:1px solid var(--green)"><div class="ot">Confirmed</div><div class="ob">Locked in. HubSpot updated.</div></div><div class="ox" style="background:var(--amber-bg);color:var(--amber-tx);border:1px solid var(--amber)"><div class="ot">Aged / rehash</div><div class="ob">Re-engagement campaign.</div></div><div class="ox" style="background:var(--blue-bg);color:var(--blue-tx);border:1px solid var(--blue)"><div class="ot">Live agent</div><div class="ob">Warm transfer to Five9.</div></div></div>';
+}
+if(s.w){h+=wires(s.w)}
+if(s.note){
+var nc=S[i].bg;
+h+='<div class="nb" style="'+nbClass(nc)+'"><div class="nt" style="color:'+txMap[nc]+'">'+s.note.title+'</div><div class="nn" style="color:'+txMap[nc]+'">'+s.note.body+'</div></div>';
+}
+dp.innerHTML=h;
+}
+
+build();show(0);
+</script>
+</body>
+</html>

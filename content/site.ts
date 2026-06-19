@@ -22,6 +22,7 @@ export const site = {
     youtubeLabel: "The 60-Second AI Brief",
     videoId: "6rEDK6LX_AA",
     company: { name: "growthmindset.ai", url: "https://growthmindset.ai" },
+    podcast: { name: "The Matt & Maya Show", url: "https://mattandmayashow.com" },
     jobTitle: "AI Automation Architect",
     location: "United States",
   },
@@ -37,7 +38,7 @@ export const site = {
           { label: "Voice AI", href: "#voice-ai" },
           { label: "Marketing Ops & CRM", href: "#marketing-ops" },
           { label: "AI Orchestration", href: "#orchestration" },
-          { label: "Proof of Work", href: "#proof-of-work" },
+          { label: "Architecture", href: "#architecture" },
         ],
       },
       { label: "Projects", href: "#projects" },
@@ -61,7 +62,7 @@ export const site = {
     experience:
       "25 years in marketing, the last 15+ building the AI, automation, and CRM systems businesses run on.",
     ctas: {
-      primary: { label: "Explore the Systems", href: "#proof-of-work" },
+      primary: { label: "Explore the Architecture", href: "#architecture" },
       secondary: { label: "Recruiter Fast Path", href: "/recruiter" },
     },
     // Single flagship teaser — the one artifact that demonstrates the whole
@@ -216,10 +217,10 @@ export const site = {
     // Priority order the site emphasizes — surfaced as a visible, clickable
     // hierarchy. Each links to the section that best demonstrates it.
     emphasis: [
-      { label: "System design", href: "#proof-of-work" },
+      { label: "System design", href: "#architecture" },
       { label: "Business outcomes", href: "#projects" },
       { label: "Agent orchestration", href: "#agentic-systems" },
-      { label: "Workflow architecture", href: "#proof-of-work" },
+      { label: "Workflow architecture", href: "#architecture" },
       { label: "Voice AI", href: "#voice-ai" },
       { label: "Marketing operations", href: "#marketing-ops" },
       { label: "Revenue operations", href: "#projects" },
@@ -395,7 +396,7 @@ export const site = {
   },
 
   proofOfWork: {
-    heading: "Explore the Systems",
+    heading: "Explore the Architecture",
     sub: "Rather than reading a resume, explore interactive visualizations of real-world AI systems.",
     hint: "Select a node to see what happens at each stage — what the system does, why it matters, and the business outcome.",
   },

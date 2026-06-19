@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BHS Flight Ops — Mission Control</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@500;600;700&family=Inconsolata:wght@400;500&display=swap');
+
+:root {
+  --bg: #0a0e0c;
+  --panel: #0f1614;
+  --panel-2: #131b18;
+  --border: #1f2d27;
+  --amber: #ffb627;
+  --amber-dim: #8a6418;
+  --green: #38d97c;
+  --green-dim: #1f6b3e;
+  --red: #ff4f4f;
+  --cyan: #4fd1ff;
+  --white: #d8e0dc;
+  --muted: #5a6b65;
+  --grid: rgba(56, 217, 124, 0.04);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  font-family: 'Inconsolata', monospace;
+  color: var(--white);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* CRT scanline overlay */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0,0,0,0) 0px,
+    rgba(0,0,0,0) 2px,
+    rgba(56,217,124,0.015) 3px,
+    rgba(56,217,124,0.015) 4px
+  );
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Grid background */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 18px 60px;
+}
+
+/* TOP STATUS BAR */
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: var(--green);
+  border: 1px solid var(--border);
+  background: var(--panel);
+  padding: 8px 14px;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+.status-bar .dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+  margin-right: 6px;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* HEADER */
+.header {
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--panel) 0%, var(--bg) 100%);
+  padding: 40px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--amber), transparent);
+  animation: scan 3s linear infinite;
+}
+@keyframes scan {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.classification {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--amber);
+  margin-bottom: 18px;
+  border: 1px solid var(--amber-dim);
+  display: inline-block;
+  padding: 4px 10px;
+}
+
+.mission-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(2.6rem, 8vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  line-height: 0.95;
+  margin-bottom: 8px;
+}
+.mission-title em {
+  font-style: normal;
+  color: var(--amber);
+}
+
+.mission-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  margin-bottom: 28px;
+}
+
+.intro {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--white);
+  max-width: 700px;
+  border-left: 2px solid var(--green);
+  padding-left: 16px;
+  margin-top: 24px;
+}
+
+/* SECTION LABEL */
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: var(--amber);
+  text-transform: uppercase;
+  margin: 56px 0 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-label::before,
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* CONSOLE CARDS */
+.console-card {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  padding: 20px;
+  margin-bottom: 14px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+.console-card:hover {
+  border-color: var(--green-dim);
+  background: var(--panel-2);
+}
+.console-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--accent, var(--green));
+}
+.console-card.flight-director { --accent: var(--amber); }
+.console-card.capcom { --accent: var(--cyan); }
+.console-card.priority { --accent: var(--green); }
+.console-card.standard { --accent: var(--muted); }
+
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+.callsign {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--amber);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.console-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--white);
+}
+.role {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--cyan);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+.console-status {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  padding: 4px 8px;
+  border: 1px solid;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.console-status.go { color: var(--green); border-color: var(--green-dim); }
+.console-status.standby { color: var(--amber); border-color: var(--amber-dim); }
+.console-status.priority {
+  color: var(--bg);
+  background: var(--green);
+  border-color: var(--green);
+}
+
+.card-body {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--white);
+}
+.card-body .person {
+  color: var(--amber);
+  font-weight: 500;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* MISSION TIMELINE */
+.timeline {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  margin-top: 14px;
+}
+.timeline-header {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 20px;
+}
+.timeline-header .tag {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--red);
+  border: 1px solid var(--red);
+  padding: 3px 8px;
+  margin-bottom: 12px;
+  animation: blink 1.5s infinite;
+}
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0.4; }
+}
+.timeline-header h2 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 26px;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+.timeline-header p {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.timeline-steps { padding: 8px 0; }
+.step {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  padding: 14px 20px;
+  border-bottom: 1px dashed var(--border);
+  align-items: start;
+}
+.step:last-child { border-bottom: none; }
+.step .ts {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--amber);
+  letter-spacing: 1px;
+}
+.step .body strong {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--cyan);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 4px;
+}
+.step .body span {
+  font-size: 14px;
+  color: var(--white);
+  line-height: 1.5;
+}
+
+.result-bar {
+  background: linear-gradient(90deg, rgba(56,217,124,0.08), transparent);
+  border-left: 3px solid var(--green);
+  padding: 16px 20px;
+  margin: 8px 20px 20px;
+}
+.result-bar strong {
+  color: var(--green);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 4px;
+}
+.result-bar p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--white);
+}
+
+/* PHASES — countdown style */
+.phases { margin-top: 14px; }
+.phase {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  padding: 22px 20px;
+  margin-bottom: 12px;
+  display: grid;
+  grid-template-columns: 90px 1fr auto;
+  gap: 18px;
+  align-items: center;
+}
+.phase .tminus {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--amber);
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+.phase.live { border-color: var(--green-dim); background: var(--panel-2); }
+.phase.live .tminus { color: var(--green); }
+.phase h3 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.phase .meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.phase p {
+  font-size: 13px;
+  color: var(--white);
+  line-height: 1.5;
+}
+.phase .stat {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  padding: 4px 8px;
+  border: 1px solid;
+  white-space: nowrap;
+}
+.phase .stat.live { color: var(--green); border-color: var(--green); animation: pulse 1.5s infinite; }
+.phase .stat.queued { color: var(--muted); border-color: var(--border); }
+
+/* FOOTER */
+.footer-strip {
+  margin-top: 48px;
+  padding: 32px 20px;
+  border: 1px solid var(--amber-dim);
+  background: linear-gradient(180deg, rgba(255,182,39,0.04), transparent);
+  text-align: center;
+}
+.footer-strip .quote {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(1.2rem, 4vw, 1.7rem);
+  letter-spacing: 0.04em;
+  color: var(--amber);
+  line-height: 1.3;
+  margin-bottom: 14px;
+}
+.footer-strip .meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+  .phase { grid-template-columns: 70px 1fr; }
+  .phase .stat { grid-column: 2; justify-self: start; margin-top: 4px; }
+}
+
+/* Reveal */
+.fade-up {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeUp 0.6s ease forwards;
+}
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- STATUS BAR -->
+  <div class="status-bar fade-up" style="animation-delay:0s">
+    <span><span class="dot"></span>FLIGHT OPS // ALL SYSTEMS GO</span>
+    <span>MET T+00:00:00 // DEMO</span>
+  </div>
+
+  <!-- HEADER -->
+  <div class="header fade-up" style="animation-delay:.1s">
+    <div class="classification">◆ FLIGHT DIRECTOR'S BRIEF ◆ SAMPLE</div>
+    <div class="mission-title">MISSION<br><em>BEACON HOME SERVICES</em></div>
+    <div class="mission-sub">// BHS FLIGHT OPS — AGENTIC MESH v3.0</div>
+    <div class="intro">
+      Our crew is already in the field. These are the flight consoles that keep them coordinated — one shared control room across Roofing, Siding, Windows, Doors, Gutters, and Attic Insulation.
+    </div>
+  </div>
+
+  <!-- COMMAND -->
+  <div class="section-label">// Flight Command</div>
+
+  <div class="console-card flight-director fade-up" style="animation-delay:.2s">
+    <div class="card-head">
+      <div>
+        <div class="callsign">CONSOLE — FLIGHT</div>
+        <div class="console-name">FLIGHT DIRECTOR</div>
+        <div class="role">Mission Authority</div>
+      </div>
+      <div class="console-status go">● GO</div>
+    </div>
+    <div class="card-body">
+      <span class="person">CHIEF GROWTH OFFICER</span>
+      Calls the mission. Approves go/no-go on every burn. The crew flies because Flight signed off.
+    </div>
+  </div>
+
+  <div class="console-card capcom fade-up" style="animation-delay:.25s">
+    <div class="card-head">
+      <div>
+        <div class="callsign">CONSOLE — CAPCOM</div>
+        <div class="console-name">CAPCOM</div>
+        <div class="role">AI Orchestration Layer</div>
+      </div>
+      <div class="console-status priority">◆ PRIMARY</div>
+    </div>
+    <div class="card-body">
+      <span class="person">ORCHESTRATOR AI // Reports to Flight</span>
+      The voice every console hears. Reads telemetry across the mesh, routes work, never sleeps. Flight gives the call — CAPCOM relays it.
+    </div>
+  </div>
+
+  <!-- CREW -->
+  <div class="section-label">// Crew Consoles</div>
+
+  <div class="console-card priority fade-up" style="animation-delay:.3s">
+    <div class="card-head">
+      <div>
+        <div class="callsign">CONSOLE — RETRO</div>
+        <div class="console-name">RETRO</div>
+        <div class="role">Inside Sales / Confirmations</div>
+      </div>
+      <div class="console-status priority">◆ PRIORITY</div>
+    </div>
+    <div class="card-body">
+      Outbound voice confirmation. Catches cancellations before they hit the schedule. Reschedules in seconds. Flags anomalies up to Surgeon.
+    </div>
+  </div>
+
+  <div class="console-card priority fade-up" style="animation-delay:.35s">
+    <div class="card-head">
+      <div>
+        <div class="callsign">CONSOLE — BOOSTER</div>
+        <div class="console-name">BOOSTER</div>
+        <div class="role">Inside Sales / Aged Leads</div>
+      </div>
+      <div class="console-status priority">◆ PRIORITY</div>
+    </div>
+    <div class="card-body">
+      Reworks 30/60/90-day leads. Speed is thrust. Surfaces warm-back signals so the closer crew strikes first.
+    </div>
+  </div>
+
+  <div class="console-card priority fade-up" style="animation-delay:.4s">
+    <div class="card-head">
+      <div>
+        <div class="callsign">CONSOLE — INCO</div>
+        <div class="console-name">INCO</div>
+        <div class="role">Recruiting / Voice Avatar</div>
+      </div>
+      <div class="console-status priority">◆ PRIORITY</div>
+    </div>
+    <div class="card-body">
+      Conducts initial candidate interviews. Standardized. Disclosed. Tireless. Hands top picks to human recruiters.
+    </div>
+  </div>
+
+  <div class="console-card standard fade-up" style="animation-delay:.45s">
+    <div class="card-head">
+      <div>
+        <div class="callsign">CONSOLE — GUIDO</div>
+        <div class="console-name">GUIDO</div>
+        <div class="role">Analytics / Vertical Sensing</div>
+      </div>
+      <div class="console-status standby">● STANDBY</div>
+    </div>
+    <div class="card-body">
+      Sees patterns humans can't. Detects vertical dips across all 6 service lines and triggers CAPCOM before revenue slips.
+    </div>
+  </div>
+
+  <div class="console-card standard fade-up" style="animation-delay:.5s">
+    <div class="card-head">
+      <div>
+        <div class="callsign">CONSOLE — PAO</div>
+        <div class="console-name">PAO</div>
+        <div class="role">Marketing / Comms & Intel</div>
+      </div>
+      <div class="console-status standby">● STANDBY</div>
+    </div>
+    <div class="card-body">
+      Public affairs. Runs campaigns, social, content, and audience intel. Surges spend the moment GUIDO flags opportunity.
+    </div>
+  </div>
+
+  <div class="console-card standard fade-up" style="animation-delay:.55s">
+    <div class="card-head">
+      <div>
+        <div class="callsign">CONSOLE — EECOM</div>
+        <div class="console-name">EECOM</div>
+        <div class="role">IT / Workflow Builder</div>
+      </div>
+      <div class="console-status standby">● STANDBY</div>
+    </div>
+    <div class="card-body">
+      Electrical & comms systems. Builds and maintains every workflow the crew runs on. Keeps the pipes clean.
+    </div>
+  </div>
+
+  <div class="console-card flight-director fade-up" style="animation-delay:.6s">
+    <div class="card-head">
+      <div>
+        <div class="callsign">CONSOLE — SURGEON</div>
+        <div class="console-name">SURGEON</div>
+        <div class="role">Governance / Observability</div>
+      </div>
+      <div class="console-status priority">◆ PRIORITY</div>
+    </div>
+    <div class="card-body">
+      Watches every vital across every console. Audits every decision. Flags drift. Holds the abort switch. Flight-sanctioned.
+    </div>
+  </div>
+
+  <!-- LIVE MISSION TIMELINE -->
+  <div class="section-label">// Live Mission Telemetry</div>
+
+  <div class="timeline fade-up" style="animation-delay:.65s">
+    <div class="timeline-header">
+      <span class="tag">● LIVE BURN</span>
+      <h2>THE STORM SURGE BURN</h2>
+      <p>How the consoles coordinate when weather hits the Northeast.</p>
+    </div>
+    <div class="timeline-steps">
+      <div class="step">
+        <div class="ts">T+00:00</div>
+        <div class="body"><strong>GUIDO</strong><span>Detects hurricane forecast across 3 verticals in regional zip codes.</span></div>
+      </div>
+      <div class="step">
+        <div class="ts">T+00:02</div>
+        <div class="body"><strong>CAPCOM</strong><span>Briefs Flight. Assembles consoles. Issues assignments.</span></div>
+      </div>
+      <div class="step">
+        <div class="ts">T+00:04</div>
+        <div class="body"><strong>PAO</strong><span>Surges storm-damage campaigns. Social amplifies in minutes.</span></div>
+      </div>
+      <div class="step">
+        <div class="ts">T+00:06</div>
+        <div class="body"><strong>INCO</strong><span>Fast-tracks 30 inspector candidates from standing pool.</span></div>
+      </div>
+      <div class="step">
+        <div class="ts">T+00:08</div>
+        <div class="body"><strong>RETRO</strong><span>Locks down 200 confirmations and shifts capacity cadence.</span></div>
+      </div>
+    </div>
+    <div class="result-bar">
+      <strong>// Result</strong>
+      <p>Roofing vertical capacity up 40% before the first claim phone call rings. Cross-team. Auto-coordinated. No meeting called. Surgeon logged every move.</p>
+    </div>
+  </div>
+
+  <!-- PHASES -->
+  <div class="section-label">// Mission Phases</div>
+  <div class="phases">
+    <div class="phase live fade-up" style="animation-delay:.7s">
+      <div class="tminus">T-090</div>
+      <div>
+        <h3>FOUNDATION</h3>
+        <div class="meta">Months 1–3 // Pre-Launch</div>
+        <p>Establish governance. Stand up Surgeon. Lock the shared data schema. Onboard first three priority consoles. Flight signs every charter.</p>
+      </div>
+      <div class="stat live">● LIVE</div>
+    </div>
+    <div class="phase fade-up" style="animation-delay:.75s">
+      <div class="tminus">T+090</div>
+      <div>
+        <h3>WORKFLOW</h3>
+        <div class="meta">Months 3–9 // Cross-Coupling</div>
+        <p>Consoles run live burns with human hand-offs. Cross-team coordination begins. The shared bus goes live. Voice avatars enter recruiting.</p>
+      </div>
+      <div class="stat queued">QUEUED</div>
+    </div>
+    <div class="phase fade-up" style="animation-delay:.8s">
+      <div class="tminus">T+270</div>
+      <div>
+        <h3>AUTONOMOUS</h3>
+        <div class="meta">Months 9–18 // Full Ops</div>
+        <p>The consoles learn from every burn. Reward signals shape behavior. Cross-vertical sensing becomes real-time. The crew moves as one.</p>
+      </div>
+      <div class="stat queued">QUEUED</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-strip fade-up" style="animation-delay:.85s">
+    <div class="quote">"THE CREW STILL GETS THE GLORY.<br>THE CONSOLES NEVER SLEEP."</div>
+    <div class="meta">FLIGHT-AUTHORIZED // v3.0 // SAMPLE</div>
+  </div>
+
+</div>
+</body>
+</html>
