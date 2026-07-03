@@ -3,7 +3,9 @@ import { Reveal } from "@/components/ui/Reveal";
 
 const SHOW = {
   apple: "https://podcasts.apple.com/us/podcast/matt-maya-show/id1896938560",
-  spotify: "https://open.spotify.com/show/033eA9NTuNMrGo6Wt6NjGl",
+  // Canonical Buzzsprout-distributed listing ("Matt & Maya Show"). A duplicate
+  // show exists at 033eA9NTuNMrGo6Wt6NjGl ("Matt and Maya Show") — don't link it.
+  spotify: "https://open.spotify.com/show/033Ah8biairbAIrgFI0A6O",
   amazon: "https://music.amazon.com/podcasts/2d5f5247-5798-4070-9b00-6ee01cb124bc/matt-maya-show",
 };
 
