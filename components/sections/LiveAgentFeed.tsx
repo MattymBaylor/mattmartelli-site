@@ -602,8 +602,10 @@ export function LiveAgentFeedTablet() {
   const { reduced, setPaused, head, visible, newestId } =
     useAgentFeedRotation(LAPTOP_VISIBLE_COUNT, WAR_ROOM_EVENTS);
   const [view, setView] = useState<LaptopView>("war-room");
-  // HQ Cam facade: the interactive HQ (iframe) only mounts after an explicit
-  // click — it captures wheel/touch for map pan-zoom and weighs ~4.4 MB.
+  // Selecting the HQ Cam tab goes straight to the interactive HQ (iframe) on
+  // ≥sm screens — the tab click is the opt-in for the ~4.4 MB demo and its
+  // wheel/touch capture. Below sm the tablet screen is too short to chat in,
+  // so the tab keeps the static plan with a full-page link-out instead.
   const [hqLive, setHqLive] = useState(false);
   const channel = VIEWS[view].channel;
 
@@ -760,27 +762,10 @@ export function LiveAgentFeedTablet() {
                 <span className="h-1.5 w-1.5 rounded-full bg-rose-500" />
                 REC · CAM 01
               </div>
-              {/* Go-live facade: ≥sm embeds the interactive HQ in place;
-                  below sm the tablet screen is too short — open /hq full-page. */}
+              {/* Below sm the tablet screen is too short for the live demo —
+                  offer the full-page HQ instead. (≥sm never shows this branch:
+                  selecting the tab goes straight to the iframe.) */}
               <div className="absolute inset-x-0 bottom-6 z-10 flex justify-center">
-                <button
-                  type="button"
-                  onClick={() => {
-                    trackHqGoLive();
-                    setHqLive(true);
-                  }}
-                  className="hidden items-center gap-2 rounded bg-black/70 px-4 py-2.5 font-mono text-[11px] uppercase tracking-[0.18em] text-accent-cyan ring-1 ring-accent-cyan/50 backdrop-blur transition hover:bg-black/90 hover:text-white sm:flex"
-                >
-                  <span className="relative inline-block h-2 w-2 rounded-full bg-accent-cyan">
-                    {!reduced && (
-                      <span
-                        className="absolute inset-0 animate-ping rounded-full bg-accent-cyan/60"
-                        aria-hidden
-                      />
-                    )}
-                  </span>
-                  Go live — talk to the agents
-                </button>
                 <a
                   href="/hq"
                   target="_blank"
@@ -838,7 +823,11 @@ export function LiveAgentFeedTablet() {
                 aria-selected={active}
                 onClick={() => {
                   setView(key);
-                  setHqLive(false);
+                  const live =
+                    key === "hq-cam" &&
+                    window.matchMedia("(min-width: 640px)").matches;
+                  setHqLive(live);
+                  if (live) trackHqGoLive();
                 }}
                 className={[
                   "flex items-center justify-center gap-1.5 rounded-full px-4 py-2 text-xs font-medium transition-all",
