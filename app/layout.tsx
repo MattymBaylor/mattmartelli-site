@@ -91,6 +91,7 @@ const personSchema = {
   "@type": "Person",
   name: site.meta.name,
   url: site.meta.url,
+  image: `${site.meta.url}/headshot.jpg`,
   jobTitle: site.meta.jobTitle,
   email: `mailto:${site.meta.email}`,
   telephone: site.meta.phone,
