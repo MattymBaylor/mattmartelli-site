@@ -20,7 +20,7 @@ export const site = {
     linkedin: "https://www.linkedin.com/in/mattmartelli/",
     youtube: "https://www.youtube.com/@matt_martelli",
     youtubeLabel: "The 60-Second AI Brief",
-    videoId: "6rEDK6LX_AA",
+    videoId: "bF7DsaHtUcQ",
     company: { name: "growthmindset.ai", url: "https://growthmindset.ai" },
     podcast: { name: "The Matt & Maya Show", url: "https://mattandmayashow.com" },
     jobTitle: "AI Automation Architect",
