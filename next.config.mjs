@@ -22,6 +22,9 @@ const nextConfig = {
   async rewrites() {
     return [
       { source: "/tcpa", destination: "/architecture/lead-hygiene-canvas.html" },
+      // /hq → the interactive Seinfeld HQ demo (full-page escape hatch for the
+      // HQ Cam facade on small screens; also a memorable share link).
+      { source: "/hq", destination: "/seinfeld-hq/index.html" },
     ];
   },
 };
