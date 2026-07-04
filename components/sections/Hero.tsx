@@ -61,24 +61,15 @@ export function Hero() {
             {hero.headlineLine1} {hero.headlineLine2}
           </motion.p>
 
-          {/* Headline — Tiger finds faults; Sentinel ships fixes. */}
-          <motion.h1
-            id="hero-heading"
-            variants={item}
-            className="text-balance font-semibold leading-[1.1] tracking-tight text-4xl sm:text-5xl lg:text-[3.5rem]"
-          >
-            <span className="block">
-              <span className="text-[#ffb020]">Tiger Team</span> <span className="text-ink">finds faults.</span>
-            </span>
-            <span className="block">
-              <span className="text-[#5fd39b]">Sentinel Team</span> <span className="text-ink">ships fixes.</span>
-            </span>
-          </motion.h1>
+          {/* ── TOP HEADER SLOT ─────────────────────────────────────────
+              The Tiger/Sentinel H1 was moved DOWN to caption the film
+              (see the film block below). New top headline copy from Matt
+              drops in right here. ──────────────────────────────────────── */}
 
           {/* Capabilities line — the three pillars */}
           <motion.p
             variants={item}
-            className="mt-6 font-display text-lg leading-snug text-ink sm:text-xl"
+            className="mt-4 font-display text-lg leading-snug text-ink sm:text-xl"
           >
             {hero.capabilities}
           </motion.p>
@@ -138,13 +129,34 @@ export function Hero() {
             </Link>
           </motion.div>
 
-          {/* The film — contained 16:9 card below the copy (chrome cropped so it
-              reads as a clean clip; click opens YouTube). */}
-          <motion.div variants={item} className="mt-14 max-w-4xl">
-            <div className="mb-3 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-faint">
+          {/* ── Section 2: Tiger Team film ──────────────────────────────
+              Headed by the H1 that moved down from the top. Extra top
+              margin (mt-24 sm:mt-32) creates clear separation from the
+              copy/CTAs above. The film now fills its 16:9 card exactly
+              (no overscan) so nothing is cropped and it scales cleanly to
+              mobile. ──────────────────────────────────────────────────── */}
+          <motion.div variants={item} className="mt-24 max-w-4xl sm:mt-32">
+            <div className="mb-4 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-faint">
               <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent-cyan" aria-hidden />
               Tiger Team — the film
             </div>
+
+            {/* Headline — moved here from the top to caption the film. */}
+            <motion.h1
+              id="hero-heading"
+              variants={item}
+              className="mb-6 text-balance font-semibold leading-[1.1] tracking-tight text-4xl sm:text-5xl lg:text-[3.5rem]"
+            >
+              <span className="block">
+                <span className="text-[#ffb020]">Tiger Team</span>{" "}
+                <span className="text-ink">finds faults.</span>
+              </span>
+              <span className="block">
+                <span className="text-[#5fd39b]">Sentinel Team</span>{" "}
+                <span className="text-ink">ships fixes.</span>
+              </span>
+            </motion.h1>
+
             <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-line bg-black shadow-glow">
               {reduced ? (
                 <a
@@ -171,7 +183,7 @@ export function Hero() {
                     title="Tiger Team — the film"
                     src={TIGER_EMBED}
                     allow="autoplay; encrypted-media; picture-in-picture"
-                    className="pointer-events-none absolute left-1/2 top-1/2 h-[116%] w-[116%] -translate-x-1/2 -translate-y-1/2 border-0"
+                    className="pointer-events-none absolute inset-0 h-full w-full border-0"
                   />
                   <a
                     href="https://youtu.be/1oojonDDqek"
