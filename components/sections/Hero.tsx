@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { site } from "@/content/site";
 import { ConstellationBackground } from "@/components/hero/ConstellationBackground";
 import { usePrefersReducedMotion } from "@/lib/useReducedMotion";
@@ -10,6 +10,12 @@ import { usePrefersReducedMotion } from "@/lib/useReducedMotion";
 const { hero } = site;
 const TIGER_VIDEO_ID = "1oojonDDqek";
 const TIGER_EMBED = `https://www.youtube-nocookie.com/embed/${TIGER_VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${TIGER_VIDEO_ID}&controls=0&modestbranding=1&rel=0&playsinline=1&disablekb=1&fs=0`;
+
+const leadPoints = [
+  "Designs AI, automation, and CRM systems for real operating environments.",
+  "Builds in validation, scoring, and failure detection from the start.",
+  "Turns audit findings into practical, reviewable fixes.",
+];
 
 export function Hero() {
   const reduced = usePrefersReducedMotion();
@@ -62,9 +68,8 @@ export function Hero() {
           </motion.p>
 
           {/* ── TOP HEADER SLOT ─────────────────────────────────────────
-              The Tiger/Sentinel H1 was moved DOWN to caption the film
-              (see the film block below). New top headline copy from Matt
-              drops in right here. ──────────────────────────────────────── */}
+              New top headline copy from Matt drops in right here (still
+              pending). The lead-in headline + film sit below. ──────────── */}
 
           {/* Capabilities line — the three pillars */}
           <motion.p
@@ -129,33 +134,55 @@ export function Hero() {
             </Link>
           </motion.div>
 
-          {/* ── Section 2: Tiger Team film ──────────────────────────────
-              Headed by the H1 that moved down from the top. Extra top
-              margin (mt-24 sm:mt-32) creates clear separation from the
-              copy/CTAs above. The film now fills its 16:9 card exactly
-              (no overscan) so nothing is cropped and it scales cleanly to
-              mobile. ──────────────────────────────────────────────────── */}
-          <motion.div variants={item} className="mt-24 max-w-4xl sm:mt-32">
-            <div className="mb-4 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-faint">
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent-cyan" aria-hidden />
-              Tiger Team — the film
-            </div>
-
-            {/* Headline — moved here from the top to caption the film. */}
+          {/* ── Lead-in explainer ───────────────────────────────────────
+              Sits below the header/copy section and above the film.
+              This is now the page's single H1. ──────────────────────────── */}
+          <motion.div variants={item} className="mt-20 max-w-3xl sm:mt-24">
             <motion.h1
               id="hero-heading"
               variants={item}
-              className="mb-6 text-balance font-semibold leading-[1.1] tracking-tight text-4xl sm:text-5xl lg:text-[3.5rem]"
+              className="text-balance font-semibold leading-[1.12] tracking-tight text-3xl sm:text-4xl lg:text-[2.75rem]"
             >
-              <span className="block">
-                <span className="text-[#ffb020]">Tiger Team</span>{" "}
-                <span className="text-ink">finds faults.</span>
-              </span>
-              <span className="block">
-                <span className="text-[#5fd39b]">Sentinel Team</span>{" "}
-                <span className="text-ink">ships fixes.</span>
-              </span>
+              A system builder who pressure-tests AI before it ships.
             </motion.h1>
+
+            <motion.p
+              variants={item}
+              className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg"
+            >
+              Here&rsquo;s how I design production AI systems with real safeguards,
+              not just prompts and demos. Three independent auditors attack the
+              same workflow, a reward engine filters weak or fabricated claims,
+              and confirmed findings come out as ranked, ready-to-run fixes.
+            </motion.p>
+
+            <motion.ul variants={item} className="mt-6 space-y-2.5">
+              {leadPoints.map((point) => (
+                <li
+                  key={point}
+                  className="flex items-start gap-2.5 text-base leading-relaxed text-ink sm:text-lg"
+                >
+                  <Check
+                    size={18}
+                    className="mt-1 shrink-0 text-accent-cyan"
+                    aria-hidden
+                  />
+                  <span>{point}</span>
+                </li>
+              ))}
+            </motion.ul>
+          </motion.div>
+
+          {/* ── The film — captioned by the Tiger/Sentinel tagline that moved
+              down from the top. Fills its 16:9 card exactly (no overscan) so
+              nothing is cropped; scales cleanly to mobile. ─────────────────── */}
+          <motion.div variants={item} className="mt-12 max-w-4xl sm:mt-14">
+            <p className="mb-4 font-semibold tracking-tight text-xl sm:text-2xl">
+              <span className="text-[#ffb020]">Tiger Team</span>{" "}
+              <span className="text-ink">finds faults.</span>{" "}
+              <span className="text-[#5fd39b]">Sentinel Team</span>{" "}
+              <span className="text-ink">ships fixes.</span>
+            </p>
 
             <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-line bg-black shadow-glow">
               {reduced ? (
