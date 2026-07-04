@@ -563,6 +563,13 @@ input,textarea{font:inherit;color:inherit}
   .splash-chars{gap:.75rem}
   .splash-char img{height:56px}
 }
+.try-prompt{
+  margin:6px 10px 0;padding:6px 10px;display:block;width:calc(100% - 20px);
+  font-family:var(--pixel-font);font-size:7px;letter-spacing:.5px;text-align:left;
+  color:var(--teal);background:rgba(0,212,170,.08);
+  border:1px dashed rgba(0,212,170,.4);border-radius:6px;cursor:pointer;
+}
+.try-prompt:hover{background:rgba(0,212,170,.16)}
 </style>
 </head>
 <body>
@@ -813,6 +820,7 @@ input,textarea{font:inherit;color:inherit}
     <div class="chat-window" id="chat-window">
       <!-- messages injected here -->
     </div>
+    <button class="try-prompt" id="try-penske" type="button">TRY: &quot;WHAT&#39;S THE STATUS ON THE PENSKE FILE?&quot;</button>
     <div class="chat-input-row">
       <input type="text" class="chat-input" id="chat-input" placeholder="Say something..."/>
       <button class="btn-send" id="chat-send">
@@ -1433,6 +1441,10 @@ document.getElementById('chat-send').addEventListener('click', sendChat);
 document.getElementById('chat-input').addEventListener('keydown', e => {
   if (e.key === 'Enter') sendChat();
 });
+document.getElementById('try-penske').addEventListener('click', () => {
+  document.getElementById('chat-input').value = "What's the status on the Penske file?";
+  sendChat();
+});
 
 // ── AI CHAT CONFIG ────────────────────────────────────────
 const PROXY_URL = 'https://n8n.growthmindsetai.tech/webhook/seinfeld-chat';
@@ -1447,6 +1459,11 @@ const SYSTEM_PROMPTS = {
   newman: `You are Newman — US Postal Service mail carrier, Jerry's arch-nemesis. Always working an angle. You understand that the mail is power. Simmering intensity when Jerry is mentioned, warmth and scheming energy otherwise. 2-4 sentences. End with something slightly ominous or self-satisfied.`,
   steinbrenner: `You are George Steinbrenner — owner of the NY Yankees. You speak loudly, reference Mickey Mantle and Billy Martin constantly, and always somehow bring up George Costanza. Easily distracted by food (calzones). Large, blustery, full of non-sequiturs about 70s Yankees history. 2-4 sentences. Always mention George at least once.`
 };
+
+// Shared in-universe operation — every agent carries the same brief, so
+// stories corroborate when a visitor asks different characters.
+const PENSKE_FILE = ` CURRENT OPERATION — THE PENSKE FILE (shared team brief; an in-universe demo project, not a real client — never claim otherwise): the crew is mid-flight migrating Penske's inbound-lead pipeline onto the multi-agent stack. Go-live is Friday. Cutover is "80% complete." Assignments: Jerry qualifies inbound at the front door; Elaine owns the nurture copy and tone pass; Kramer is wiring the CRM integration (three connectors, one of them unauthorized); Newman monitors the cutover 24/7 and files incident reports nobody asked for; Puddy is on infrastructure; Peterman is narrating the case study like a safari; Steinbrenner is executive sponsor and demands hourly updates; George has been "restructuring the file" for three weeks — the box has moved rooms twice, and downstairs, they know nothing. If asked what you're working on, or anything about the Penske file, answer in character with YOUR assignment, and feel free to reference what the others are doing — keep details consistent with this brief.`;
+Object.keys(SYSTEM_PROMPTS).forEach(k => { SYSTEM_PROMPTS[k] += PENSKE_FILE; });
 
 const chatHistories = {};
 
