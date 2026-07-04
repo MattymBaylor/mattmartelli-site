@@ -9,7 +9,12 @@ import { usePrefersReducedMotion } from "@/lib/useReducedMotion";
 
 const { hero } = site;
 const TIGER_VIDEO_ID = "1oojonDDqek";
-const TIGER_EMBED = `https://www.youtube-nocookie.com/embed/${TIGER_VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${TIGER_VIDEO_ID}&controls=0&modestbranding=1&rel=0&playsinline=1&disablekb=1&fs=0`;
+// Ambient clip — muted, looped, chromeless, and INTERACTIVE (a click plays /
+// pauses in place; it never navigates away to YouTube).
+const TIGER_EMBED = `https://www.youtube-nocookie.com/embed/${TIGER_VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${TIGER_VIDEO_ID}&controls=0&modestbranding=1&rel=0&playsinline=1`;
+// Reduced motion — no autoplay; shows the thumbnail + play button and plays
+// inline on click (still on-page), with controls.
+const TIGER_EMBED_STATIC = `https://www.youtube-nocookie.com/embed/${TIGER_VIDEO_ID}?controls=1&modestbranding=1&rel=0&playsinline=1`;
 
 const leadPoints = [
   "Designs AI, automation, and CRM systems for real operating environments.",
@@ -43,8 +48,7 @@ export function Hero() {
       className="relative isolate overflow-hidden"
       aria-labelledby="hero-heading"
     >
-      {/* Layered background — clean constellation field (the film lives in a
-          contained card below, not as a full-bleed background). */}
+      {/* Layered background — spans both hero sub-sections. */}
       <div className="absolute inset-0 -z-10">
         <ConstellationBackground />
         <div className="absolute inset-0 bg-grid-faint [background-size:64px_64px] opacity-40" />
@@ -52,6 +56,7 @@ export function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-night" />
       </div>
 
+      {/* ══ SECTION 1 — the top: brand headline, role, intro, CTAs ══════════ */}
       <div className="container-x scroll-mt-24 pb-20 pt-28 text-left sm:pb-28 sm:pt-36">
         <motion.div
           variants={container}
@@ -59,22 +64,20 @@ export function Hero() {
           animate="show"
           className="w-full"
         >
-          {/* Kicker keeps the original positioning line. */}
-          <motion.p
+          {/* Brand headline (promoted from the old kicker). */}
+          <motion.h1
+            id="hero-heading"
             variants={item}
-            className="mb-3 font-mono text-[11px] uppercase tracking-[0.2em] text-accent-cyan/85"
+            className="text-balance font-semibold leading-[1.06] tracking-tight text-4xl sm:text-5xl lg:text-[3.5rem]"
           >
-            {hero.headlineLine1} {hero.headlineLine2}
-          </motion.p>
+            <span className="block text-accent-cyan">{hero.headlineLine1}</span>
+            <span className="block text-ink">{hero.headlineLine2}</span>
+          </motion.h1>
 
-          {/* ── TOP HEADER SLOT ─────────────────────────────────────────
-              New top headline copy from Matt drops in right here (still
-              pending). The lead-in headline + film sit below. ──────────── */}
-
-          {/* Capabilities line — the three pillars */}
+          {/* Capabilities line — the pillars */}
           <motion.p
             variants={item}
-            className="mt-4 font-display text-lg leading-snug text-ink sm:text-xl"
+            className="mt-6 font-display text-lg leading-snug text-ink sm:text-xl"
           >
             {hero.capabilities}
           </motion.p>
@@ -133,18 +136,28 @@ export function Hero() {
               />
             </Link>
           </motion.div>
+        </motion.div>
+      </div>
 
-          {/* ── Lead-in explainer ───────────────────────────────────────
-              Sits below the header/copy section and above the film.
-              This is now the page's single H1. ──────────────────────────── */}
-          <motion.div variants={item} className="mt-20 max-w-3xl sm:mt-24">
-            <motion.h1
-              id="hero-heading"
+      {/* ══ SECTION 2 — the header + the film ═══════════════════════════════
+          Uses the site .section rhythm (border-t + py-20 sm:py-28) so the gap
+          above it (from Section 1) and below it (into the Agentic section) are
+          equal. */}
+      <div className="section border-t border-line/60">
+        <div className="container-x">
+          <motion.div
+            variants={container}
+            initial="hidden"
+            animate="show"
+            className="w-full"
+          >
+            {/* Header (Matt's copy) — the page's section-2 heading. */}
+            <motion.h2
               variants={item}
-              className="text-balance font-semibold leading-[1.12] tracking-tight text-3xl sm:text-4xl lg:text-[2.75rem]"
+              className="max-w-3xl text-balance font-semibold leading-[1.12] tracking-tight text-3xl sm:text-4xl lg:text-[2.75rem]"
             >
               A system builder who pressure-tests AI before it ships.
-            </motion.h1>
+            </motion.h2>
 
             <motion.p
               variants={item}
@@ -171,59 +184,22 @@ export function Hero() {
                 </li>
               ))}
             </motion.ul>
-          </motion.div>
 
-          {/* ── The film — captioned by the Tiger/Sentinel tagline that moved
-              down from the top. Fills its 16:9 card exactly (no overscan) so
-              nothing is cropped; scales cleanly to mobile. ─────────────────── */}
-          <motion.div variants={item} className="mt-12 max-w-4xl sm:mt-14">
-            <p className="mb-4 font-semibold tracking-tight text-xl sm:text-2xl">
-              <span className="text-[#ffb020]">Tiger Team</span>{" "}
-              <span className="text-ink">finds faults.</span>{" "}
-              <span className="text-[#5fd39b]">Sentinel Team</span>{" "}
-              <span className="text-ink">ships fixes.</span>
-            </p>
-
-            <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-line bg-black shadow-glow">
-              {reduced ? (
-                <a
-                  href="https://youtu.be/1oojonDDqek"
-                  target="_blank"
-                  rel="noopener"
-                  className="relative block h-full w-full"
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="https://img.youtube.com/vi/1oojonDDqek/maxresdefault.jpg"
-                    alt="Tiger Team — watch the film"
-                    className="h-full w-full object-cover"
-                  />
-                  <span className="absolute inset-0 grid place-items-center bg-black/30">
-                    <span className="rounded-full bg-black/70 px-4 py-2 text-sm font-semibold text-white ring-1 ring-white/20">
-                      ▶ Play on YouTube
-                    </span>
-                  </span>
-                </a>
-              ) : (
-                <>
-                  <iframe
-                    title="Tiger Team — the film"
-                    src={TIGER_EMBED}
-                    allow="autoplay; encrypted-media; picture-in-picture"
-                    className="pointer-events-none absolute inset-0 h-full w-full border-0"
-                  />
-                  <a
-                    href="https://youtu.be/1oojonDDqek"
-                    target="_blank"
-                    rel="noopener"
-                    aria-label="Watch the Tiger Team film on YouTube"
-                    className="absolute inset-0 z-10"
-                  />
-                </>
-              )}
-            </div>
+            {/* The film — plays inline; a click never leaves the page. Fills
+                its 16:9 card exactly (no overscan) so nothing is cropped. */}
+            <motion.div variants={item} className="mt-10 max-w-4xl">
+              <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-line bg-black shadow-glow">
+                <iframe
+                  title="Tiger Team — the film"
+                  src={reduced ? TIGER_EMBED_STATIC : TIGER_EMBED}
+                  allow="autoplay; encrypted-media; picture-in-picture"
+                  allowFullScreen
+                  className="absolute inset-0 h-full w-full border-0"
+                />
+              </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
