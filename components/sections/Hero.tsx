@@ -7,6 +7,7 @@ import { ArrowRight, ArrowUpRight, Check, CheckCircle2, Mail } from "lucide-reac
 import { site } from "@/content/site";
 import { ConstellationBackground } from "@/components/hero/ConstellationBackground";
 import { usePrefersReducedMotion } from "@/lib/useReducedMotion";
+import { LiteYouTube } from "@/components/ui/LiteYouTube";
 
 const { hero } = site;
 const TIGER_VIDEO_ID = "1oojonDDqek";
@@ -17,10 +18,13 @@ const TIGER_EMBED = `https://www.youtube-nocookie.com/embed/${TIGER_VIDEO_ID}?au
 // inline on click (still on-page), with controls.
 const TIGER_EMBED_STATIC = `https://www.youtube-nocookie.com/embed/${TIGER_VIDEO_ID}?controls=1&modestbranding=1&rel=0&playsinline=1`;
 
+// Live demo (vertical YouTube Short) shown on the left of the hero.
+const DEMO_VIDEO_ID = "chaXY24gZpA";
+
 const leadPoints = [
-  "Designs AI, automation, and CRM systems for real operating environments.",
-  "Builds in validation, scoring, and failure detection from the start.",
-  "Turns audit findings into practical, reviewable fixes.",
+  "Reward engineering makes AI fight for truth instead of gaming the metric.",
+  "Rival auditors from different labs collide to uncover failure modes most teams never see.",
+  "Cross-verified findings become ranked fixes, not vague AI opinions.",
 ];
 
 export function Hero() {
@@ -93,95 +97,118 @@ export function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-night" />
       </div>
 
-      {/* ══ SECTION 1 — the top: brand headline, promise, credentials, CTAs ══ */}
-      <div className="container-x scroll-mt-24 pb-20 pt-28 text-left sm:pb-28 sm:pt-36">
-        <motion.div
-          variants={container}
-          initial="hidden"
-          animate="show"
-          className="w-full"
-        >
-          {/* Brand headline */}
-          <motion.h1
-            id="hero-heading"
-            variants={item}
-            className="text-balance font-semibold leading-[1.06] tracking-tight text-4xl sm:text-5xl lg:text-[3.5rem]"
-          >
-            <span className="block text-accent-cyan">AI is the tool.</span>
-            <span className="block text-ink">The system is the product.</span>
-          </motion.h1>
-
-          {/* Promise line */}
-          <motion.p
-            variants={item}
-            className="mt-5 font-display text-xl leading-snug text-ink sm:text-2xl"
-          >
-            I build AI systems that find flaws, fix fast, and scale revenue.
-          </motion.p>
-
-          {/* Credentials line */}
-          <motion.p
-            variants={item}
-            className="mt-4 text-base font-medium text-ink-muted sm:text-lg"
-          >
-            AI Automation Architect | RevOps &amp; CRM Systems | Marketing
-            Automation | HubSpot Certified | Remote
-          </motion.p>
-
-          {/* Body paragraph */}
-          <motion.p
-            variants={item}
-            className="mt-6 text-base leading-relaxed text-ink-muted sm:text-lg"
-          >
-            I design production AI systems that connect voice agents, automation,
-            CRM platforms, and human teams into measurable operating systems for
-            growth. My work is built for the real world: pressure-tested,
-            failure-aware, and designed to turn weak spots into fix-ready
-            execution.
-          </motion.p>
-
+      {/* ══ SECTION 1 — hero: live demo (left) + headline & CTAs pushed to the
+          right margin (right). ════════════════════ */}
+      <div className="container-x scroll-mt-24 pb-20 pt-28 sm:pb-28 sm:pt-36">
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,300px)_minmax(0,1fr)] lg:gap-14">
+          {/* LEFT — the live demo (vertical Short). Click-to-play with sound. */}
           <motion.div
             variants={item}
-            className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
+            initial="hidden"
+            animate="show"
+            className="order-2 mx-auto w-full max-w-[300px] lg:order-1 lg:mx-0"
           >
-            <Link
-              href={hero.ctas.primary.href}
-              className="group inline-flex items-center justify-center gap-2 rounded-md bg-accent-gradient px-5 py-3 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03]"
-            >
-              {hero.ctas.primary.label}
-              <ArrowRight
-                size={16}
-                className="transition-transform group-hover:translate-x-0.5"
-                aria-hidden
-              />
-            </Link>
-            <Link
-              href={hero.ctas.secondary.href}
-              className="group inline-flex items-center justify-center gap-2 rounded-md border border-line-strong px-5 py-3 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan"
-            >
-              {hero.ctas.secondary.label}
-              <ArrowUpRight
-                size={16}
-                className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                aria-hidden
-              />
-            </Link>
-            <Link
-              href="/seinfeld-hq"
-              className="group inline-flex items-center justify-center gap-2 rounded-md bg-[#FACC15] px-5 py-3 text-sm font-semibold text-night shadow-[0_0_0_1px_rgba(250,204,21,0.35),0_0_16px_-8px_rgba(250,204,21,0.4)] transition-transform hover:scale-[1.03]"
-            >
-              Read the Flagship Case Study
-              <ArrowUpRight
-                size={16}
-                className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                aria-hidden
-              />
-            </Link>
+            <LiteYouTube
+              id={DEMO_VIDEO_ID}
+              title="Live system demo"
+              aspectClassName="aspect-[9/16]"
+              className="shadow-glow"
+            />
+            <p className="mt-3 text-center font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint">
+              Live demo
+            </p>
           </motion.div>
-        </motion.div>
+
+          {/* RIGHT — headline, promise, credentials, body, CTAs; aligned to the
+              right margin on desktop. */}
+          <motion.div
+            variants={container}
+            initial="hidden"
+            animate="show"
+            className="order-1 lg:order-2 lg:text-right"
+          >
+            {/* Brand headline */}
+            <motion.h1
+              id="hero-heading"
+              variants={item}
+              className="text-balance font-semibold leading-[1.06] tracking-tight text-4xl sm:text-5xl lg:text-[3.5rem]"
+            >
+              <span className="block text-accent-cyan">AI is the tool.</span>
+              <span className="block text-ink">The system is the product.</span>
+            </motion.h1>
+
+            {/* Promise line */}
+            <motion.p
+              variants={item}
+              className="mt-5 font-display text-xl leading-snug text-ink sm:text-2xl"
+            >
+              I build AI systems that find flaws, fix fast, and scale revenue.
+            </motion.p>
+
+            {/* Credentials line */}
+            <motion.p
+              variants={item}
+              className="mt-4 text-base font-medium text-ink-muted sm:text-lg"
+            >
+              AI Automation Architect | RevOps &amp; CRM Systems | Marketing
+              Automation | HubSpot Certified | Remote
+            </motion.p>
+
+            {/* Body paragraph */}
+            <motion.p
+              variants={item}
+              className="mt-6 text-base leading-relaxed text-ink-muted sm:text-lg lg:ml-auto lg:max-w-2xl"
+            >
+              I design production AI systems that connect voice agents, automation,
+              CRM platforms, and human teams into measurable operating systems for
+              growth. My work is built for the real world: pressure-tested,
+              failure-aware, and designed to turn weak spots into fix-ready
+              execution.
+            </motion.p>
+
+            <motion.div
+              variants={item}
+              className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center lg:justify-end"
+            >
+              <Link
+                href={hero.ctas.primary.href}
+                className="group inline-flex items-center justify-center gap-2 rounded-md bg-accent-gradient px-5 py-3 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03]"
+              >
+                {hero.ctas.primary.label}
+                <ArrowRight
+                  size={16}
+                  className="transition-transform group-hover:translate-x-0.5"
+                  aria-hidden
+                />
+              </Link>
+              <Link
+                href={hero.ctas.secondary.href}
+                className="group inline-flex items-center justify-center gap-2 rounded-md border border-line-strong px-5 py-3 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan"
+              >
+                {hero.ctas.secondary.label}
+                <ArrowUpRight
+                  size={16}
+                  className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  aria-hidden
+                />
+              </Link>
+              <Link
+                href="/seinfeld-hq"
+                className="group inline-flex items-center justify-center gap-2 rounded-md bg-[#FACC15] px-5 py-3 text-sm font-semibold text-night shadow-[0_0_0_1px_rgba(250,204,21,0.35),0_0_16px_-8px_rgba(250,204,21,0.4)] transition-transform hover:scale-[1.03]"
+              >
+                Read the Flagship Case Study
+                <ArrowUpRight
+                  size={16}
+                  className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  aria-hidden
+                />
+              </Link>
+            </motion.div>
+          </motion.div>
+        </div>
       </div>
 
-      {/* ══ SECTION 2 — the header + the film ═══════════════════════════════
+      {/* ══ SECTION 2 — the header + the film ═════════════════════════════════
           Header matches the shared SectionHeading pattern (blue eyebrow +
           text-3xl sm:text-4xl h2 + mt-4 sub) so it's consistent with the rest
           of the page's sections. */}
@@ -216,21 +243,42 @@ export function Hero() {
               and confirmed findings come out as ranked, ready-to-run fixes.
             </motion.p>
 
-            <motion.ul variants={item} className="mt-6 space-y-2.5">
-              {leadPoints.map((point) => (
-                <li
-                  key={point}
-                  className="flex items-start gap-2.5 text-base leading-relaxed text-ink sm:text-lg"
-                >
-                  <Check
-                    size={18}
-                    className="mt-1 shrink-0 text-accent-cyan"
-                    aria-hidden
-                  />
-                  <span>{point}</span>
-                </li>
-              ))}
-            </motion.ul>
+            <motion.div
+              variants={item}
+              className="mt-6 flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between"
+            >
+              <ul className="space-y-2.5">
+                {leadPoints.map((point) => (
+                  <li
+                    key={point}
+                    className="flex items-start gap-2.5 text-base leading-relaxed text-ink sm:text-lg"
+                  >
+                    <Check
+                      size={18}
+                      className="mt-1 shrink-0 text-accent-cyan"
+                      aria-hidden
+                    />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Learn-more CTA — links to the "Who Audits the Robots?" blog
+                  post explaining what a Tiger Team is and how it works. */}
+              <a
+                href="https://growthmindset.ai/blog/who-audits-the-robots"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex shrink-0 items-center gap-2 self-start rounded-md border border-line-strong px-5 py-3 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan"
+              >
+                What is a Tiger Team?
+                <ArrowUpRight
+                  size={16}
+                  className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  aria-hidden
+                />
+              </a>
+            </motion.div>
 
             {/* The film — plays inline; a click never leaves the page. Fills
                 its 16:9 card exactly (no overscan) so nothing is cropped. */}

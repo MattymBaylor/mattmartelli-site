@@ -15,16 +15,20 @@ export function LiteYouTube({
   id,
   title,
   poster = "hqdefault",
+  aspectClassName = "aspect-video",
+  className = "",
 }: {
   id: string;
   title: string;
   poster?: "hqdefault" | "maxresdefault" | "sddefault";
+  aspectClassName?: string;
+  className?: string;
 }) {
   const [active, setActive] = useState(false);
   const thumb = `https://i.ytimg.com/vi/${id}/${poster}.jpg`;
 
   return (
-    <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-line bg-surface-elevated">
+    <div className={`relative ${aspectClassName} w-full overflow-hidden rounded-xl border border-line bg-surface-elevated ${className}`}>
       {active ? (
         <iframe
           className="absolute inset-0 h-full w-full"
