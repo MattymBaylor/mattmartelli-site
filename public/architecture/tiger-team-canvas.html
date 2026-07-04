@@ -225,6 +225,13 @@
     .conn{flex:0 0 auto; flex-direction:row; align-items:center; justify-content:center; gap:12px; padding:14px 0}
     .conn .ar{font-size:32px; transform:rotate(90deg)}
     .conn .lab{font-size:11px; color:#a9b8dd}
+
+    /* Slow-pulsing ordered step badge; brightens when you hover its stage. */
+    @keyframes stepPulse{0%,100%{box-shadow:0 0 0 0 rgba(34,211,238,0)}50%{box-shadow:0 0 0 5px rgba(34,211,238,.16), 0 0 18px -2px rgba(34,211,238,.55)}}
+    .col-n{animation:stepPulse 2.6s ease-in-out infinite; transition:transform .18s ease, box-shadow .18s ease, background .18s ease}
+    .col:hover .col-n,.col-n:hover{transform:scale(1.14); background:#7fe6f7; box-shadow:0 0 0 4px rgba(34,211,238,.30), 0 0 22px -2px rgba(34,211,238,.75); animation-play-state:paused}
+    @media (prefers-reduced-motion:reduce){ .col-n{animation:none} }
+
     @media (max-width:680px){ .hero-title{font-size:clamp(28px,7vw,34px)} }
   </style>
 </head>
