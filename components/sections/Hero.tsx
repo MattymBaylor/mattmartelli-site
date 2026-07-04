@@ -182,9 +182,9 @@ export function Hero() {
       </div>
 
       {/* ══ SECTION 2 — the header + the film ═══════════════════════════════
-          Uses the site .section rhythm (border-t + py-20 sm:py-28) so the gap
-          above it (from Section 1) and below it (into the Agentic section) are
-          equal. */}
+          Header matches the shared SectionHeading pattern (blue eyebrow +
+          text-3xl sm:text-4xl h2 + mt-4 sub) so it's consistent with the rest
+          of the page's sections. */}
       <div className="section border-t border-line/60">
         <div className="container-x">
           <motion.div
@@ -193,17 +193,22 @@ export function Hero() {
             animate="show"
             className="w-full"
           >
-            {/* Header (Matt's copy) — the page's section-2 heading. */}
+            {/* Blue eyebrow — matches the other sections. */}
+            <motion.p variants={item} className="eyebrow mb-3">
+              AI Evaluation · Reward Engineering
+            </motion.p>
+
+            {/* Header (Matt's copy) — consistent section-h2 size. */}
             <motion.h2
               variants={item}
-              className="text-balance font-semibold leading-[1.12] tracking-tight text-3xl sm:text-4xl lg:text-[2.75rem]"
+              className="text-3xl font-semibold leading-tight sm:text-4xl"
             >
               A system builder who pressure-tests AI before it ships.
             </motion.h2>
 
             <motion.p
               variants={item}
-              className="mt-5 text-base leading-relaxed text-ink-muted sm:text-lg"
+              className="mt-4 text-base leading-relaxed text-ink-muted sm:text-lg"
             >
               Here&rsquo;s how I design production AI systems with real safeguards,
               not just prompts and demos. Three independent auditors attack the
