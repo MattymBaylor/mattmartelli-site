@@ -7,6 +7,7 @@ import { ArchitectureShowcase } from "@/components/sections/ArchitectureShowcase
 import { VoiceAI } from "@/components/sections/VoiceAI";
 import { MarketingOps } from "@/components/sections/MarketingOps";
 import { Projects } from "@/components/sections/Projects";
+import { AiBriefSection } from "@/components/sections/AiBriefSection";
 import { PodcastSection } from "@/components/sections/PodcastSection";
 import { RecruiterSummary } from "@/components/sections/RecruiterSummary";
 import { Contact } from "@/components/sections/Contact";
@@ -23,6 +24,7 @@ export default function HomePage() {
         <VoiceAI />
         <MarketingOps />
         <Projects />
+        <AiBriefSection />
         <PodcastSection />
         <RecruiterSummary />
         <Contact />
