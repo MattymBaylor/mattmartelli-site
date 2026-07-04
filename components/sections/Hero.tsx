@@ -114,7 +114,7 @@ export function Hero() {
           {/* Promise line */}
           <motion.p
             variants={item}
-            className="mt-5 max-w-3xl font-display text-xl leading-snug text-ink sm:text-2xl"
+            className="mt-5 font-display text-xl leading-snug text-ink sm:text-2xl"
           >
             I build AI systems that find flaws, fix fast, and scale revenue.
           </motion.p>
@@ -122,7 +122,7 @@ export function Hero() {
           {/* Credentials line */}
           <motion.p
             variants={item}
-            className="mt-4 max-w-3xl text-base font-medium text-ink-muted sm:text-lg"
+            className="mt-4 text-base font-medium text-ink-muted sm:text-lg"
           >
             AI Automation Architect | RevOps &amp; CRM Systems | Marketing
             Automation | HubSpot Certified | Remote
@@ -131,7 +131,7 @@ export function Hero() {
           {/* Body paragraph */}
           <motion.p
             variants={item}
-            className="mt-6 max-w-3xl text-base leading-relaxed text-ink-muted sm:text-lg"
+            className="mt-6 text-base leading-relaxed text-ink-muted sm:text-lg"
           >
             I design production AI systems that connect voice agents, automation,
             CRM platforms, and human teams into measurable operating systems for
@@ -196,14 +196,14 @@ export function Hero() {
             {/* Header (Matt's copy) — the page's section-2 heading. */}
             <motion.h2
               variants={item}
-              className="max-w-3xl text-balance font-semibold leading-[1.12] tracking-tight text-3xl sm:text-4xl lg:text-[2.75rem]"
+              className="text-balance font-semibold leading-[1.12] tracking-tight text-3xl sm:text-4xl lg:text-[2.75rem]"
             >
               A system builder who pressure-tests AI before it ships.
             </motion.h2>
 
             <motion.p
               variants={item}
-              className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg"
+              className="mt-5 text-base leading-relaxed text-ink-muted sm:text-lg"
             >
               Here&rsquo;s how I design production AI systems with real safeguards,
               not just prompts and demos. Three independent auditors attack the
@@ -229,7 +229,7 @@ export function Hero() {
 
             {/* The film — plays inline; a click never leaves the page. Fills
                 its 16:9 card exactly (no overscan) so nothing is cropped. */}
-            <motion.div variants={item} className="mt-10 max-w-4xl">
+            <motion.div variants={item} className="mt-10">
               <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-line bg-black shadow-glow">
                 <iframe
                   title="Tiger Team — the film"
@@ -244,7 +244,7 @@ export function Hero() {
             {/* Takeaway line (bright blue). */}
             <motion.p
               variants={item}
-              className="mt-8 max-w-3xl font-display text-xl font-semibold leading-snug text-accent-cyan sm:text-2xl"
+              className="mt-8 font-display text-xl font-semibold leading-snug text-accent-cyan sm:text-2xl"
             >
               Reward engineering is how you make AI tell the truth instead of
               game the score.
