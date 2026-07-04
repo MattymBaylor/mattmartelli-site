@@ -3,8 +3,12 @@ import { ArrowUpRight, Youtube } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 
 const CHANNEL_URL = "https://www.youtube.com/@matt_martelli";
+// YouTube auto-maintains a hidden "popular uploads" playlist per channel
+// (channel id with UC swapped for PU). Its feed is the channel's all-time
+// top 15 by views — unlike the channel feed, which is just the latest 15
+// uploads and made "most popular" meaningless after a bulk-upload day.
 const FEED_URL =
-  "https://www.youtube.com/feeds/videos.xml?channel_id=UCjPtaVFOrWxpVL8vptcD6Ug";
+  "https://www.youtube.com/feeds/videos.xml?playlist_id=PUjPtaVFOrWxpVL8vptcD6Ug";
 
 // How many briefs ride the ticker. The set is duplicated in the DOM for a
 // seamless -50% translate loop, so the visible strip never runs dry.
