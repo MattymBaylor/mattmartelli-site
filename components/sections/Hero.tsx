@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Check, Download } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, CheckCircle2, Mail } from "lucide-react";
 import { site } from "@/content/site";
 import { ConstellationBackground } from "@/components/hero/ConstellationBackground";
 import { usePrefersReducedMotion } from "@/lib/useReducedMotion";
@@ -24,6 +25,42 @@ const leadPoints = [
 
 export function Hero() {
   const reduced = usePrefersReducedMotion();
+
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "submitting" | "ok" | "error">(
+    "idle",
+  );
+  const [formError, setFormError] = useState<string | null>(null);
+
+  const onSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setFormError(null);
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setFormError("Please enter a valid email address.");
+      return;
+    }
+    setStatus("submitting");
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          email,
+          source: "reward-engineering-framework",
+        }),
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => null);
+        setStatus("error");
+        setFormError(body?.error || "Something went wrong. Try again.");
+        return;
+      }
+      setStatus("ok");
+    } catch {
+      setStatus("error");
+      setFormError("Something went wrong. Try again.");
+    }
+  };
 
   const container = {
     hidden: {},
@@ -204,8 +241,7 @@ export function Hero() {
               </div>
             </motion.div>
 
-            {/* Takeaway line (bright blue) + framework CTA (matches the yellow
-                flagship button above). */}
+            {/* Takeaway line (bright blue). */}
             <motion.p
               variants={item}
               className="mt-8 max-w-3xl font-display text-xl font-semibold leading-snug text-accent-cyan sm:text-2xl"
@@ -214,18 +250,60 @@ export function Hero() {
               game the score.
             </motion.p>
 
-            <motion.div variants={item} className="mt-5">
-              <Link
-                href="/tiger"
-                className="group inline-flex items-center justify-center gap-2 rounded-md bg-[#FACC15] px-5 py-3 text-sm font-semibold text-night shadow-[0_0_0_1px_rgba(250,204,21,0.35),0_0_16px_-8px_rgba(250,204,21,0.4)] transition-transform hover:scale-[1.03]"
-              >
-                Download the Framework
-                <Download
-                  size={16}
-                  className="transition-transform group-hover:translate-y-0.5"
-                  aria-hidden
-                />
-              </Link>
+            {/* Email capture — we email the framework (no instant download) so
+                only deliverable addresses get captured. Mirrors the
+                growthmindset.ai mechanism: POST /api/subscribe -> n8n. */}
+            <motion.div variants={item} className="mt-5 max-w-xl">
+              {status === "ok" ? (
+                <div
+                  className="flex items-center gap-2 rounded-md bg-accent-cyan/10 px-4 py-3 text-accent-cyan"
+                  role="status"
+                >
+                  <CheckCircle2 size={18} aria-hidden />
+                  <span className="text-sm font-medium">
+                    You&rsquo;re in — check your inbox. The framework is on its
+                    way.
+                  </span>
+                </div>
+              ) : (
+                <form
+                  onSubmit={onSubmit}
+                  className="flex flex-col gap-3 sm:flex-row"
+                  noValidate
+                >
+                  <label htmlFor="framework-email" className="sr-only">
+                    Email address
+                  </label>
+                  <input
+                    id="framework-email"
+                    type="email"
+                    inputMode="email"
+                    autoComplete="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="you@company.com"
+                    required
+                    className="flex-1 rounded-md border border-line-strong bg-surface-elevated px-4 py-3 text-sm text-ink outline-none transition-colors placeholder:text-ink-faint hover:border-accent-cyan/50 focus-visible:ring-2 focus-visible:ring-accent-cyan/70"
+                  />
+                  <button
+                    type="submit"
+                    disabled={status === "submitting"}
+                    className="group inline-flex items-center justify-center gap-2 rounded-md bg-[#FACC15] px-5 py-3 text-sm font-semibold text-night shadow-[0_0_0_1px_rgba(250,204,21,0.35),0_0_16px_-8px_rgba(250,204,21,0.4)] transition-transform hover:scale-[1.03] disabled:opacity-60"
+                  >
+                    {status === "submitting" ? "Sending…" : "Email Me the Framework"}
+                    <Mail
+                      size={16}
+                      className="transition-transform group-hover:translate-x-0.5"
+                      aria-hidden
+                    />
+                  </button>
+                </form>
+              )}
+              {formError && (
+                <p role="alert" className="mt-3 text-sm text-red-400">
+                  {formError}
+                </p>
+              )}
             </motion.div>
           </motion.div>
         </div>
