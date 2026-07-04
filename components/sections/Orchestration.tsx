@@ -3,6 +3,7 @@ import { Boxes, ArrowRight } from "lucide-react";
 import { site } from "@/content/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { OrchestrationToolGrid } from "@/components/sections/OrchestrationToolGrid";
 
 export function Orchestration() {
   const { orchestration } = site;
@@ -72,17 +73,7 @@ export function Orchestration() {
                 </div>
               </div>
 
-              <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-                {orchestration.tools.map((t) => (
-                  <li
-                    key={t.name}
-                    className="flex flex-col rounded-md border border-line/70 bg-surface-elevated/40 px-3 py-2.5"
-                  >
-                    <span className="font-mono text-xs text-ink-muted">{t.name}</span>
-                    <span className="text-[11px] text-ink-faint">{t.note}</span>
-                  </li>
-                ))}
-              </ul>
+              <OrchestrationToolGrid tools={orchestration.tools} />
             </div>
           </Reveal>
         </div>
