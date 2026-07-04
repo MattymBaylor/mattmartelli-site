@@ -330,7 +330,7 @@ export const caseStudy = {
       { value: "11", label: "specialist agents" },
     ],
     footnote:
-      "Names, dollar figures, client identifiers, and file paths are stripped at the source. What you see is the operating pattern, not the operational specifics.",
+      "Names, dollar figures, client identifiers, and file paths are stripped at the source. What you see is the operating pattern, not the operational specifics. One more thing: on the HQ Cam, the crew is mid-flight on The Penske File — a fully fictional client engagement, staged so you can watch a multi-agent team share context. Go live, click any character, and ask how it's going. Their stories line up.",
   },
 
   demo: {
