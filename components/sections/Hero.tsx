@@ -241,10 +241,10 @@ export function Hero() {
               </div>
             </motion.div>
 
-            {/* Takeaway line (bright blue). */}
+            {/* Takeaway line — white, H3 scale, semibold. */}
             <motion.p
               variants={item}
-              className="mt-8 font-display text-xl font-semibold leading-snug text-accent-cyan sm:text-2xl"
+              className="mt-8 font-display text-lg font-semibold leading-snug text-ink sm:text-xl"
             >
               Reward engineering is how you make AI tell the truth instead of
               game the score.
