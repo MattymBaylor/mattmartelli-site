@@ -56,7 +56,7 @@ export function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-night" />
       </div>
 
-      {/* ══ SECTION 1 — the top: brand headline, role, intro, CTAs ══════════ */}
+      {/* ══ SECTION 1 — the top: brand headline, promise, credentials, CTAs ══ */}
       <div className="container-x scroll-mt-24 pb-20 pt-28 text-left sm:pb-28 sm:pt-36">
         <motion.div
           variants={container}
@@ -64,38 +64,43 @@ export function Hero() {
           animate="show"
           className="w-full"
         >
-          {/* Brand headline (promoted from the old kicker). */}
+          {/* Brand headline */}
           <motion.h1
             id="hero-heading"
             variants={item}
             className="text-balance font-semibold leading-[1.06] tracking-tight text-4xl sm:text-5xl lg:text-[3.5rem]"
           >
-            <span className="block text-accent-cyan">{hero.headlineLine1}</span>
-            <span className="block text-ink">{hero.headlineLine2}</span>
+            <span className="block text-accent-cyan">AI is the tool.</span>
+            <span className="block text-ink">The system is the product.</span>
           </motion.h1>
 
-          {/* Capabilities line — the pillars */}
+          {/* Promise line */}
           <motion.p
             variants={item}
-            className="mt-6 font-display text-lg leading-snug text-ink sm:text-xl"
+            className="mt-5 max-w-3xl font-display text-xl leading-snug text-ink sm:text-2xl"
           >
-            {hero.capabilities}
+            I build AI systems that find flaws, fix fast, and scale revenue.
           </motion.p>
 
-          {/* Body — the supporting detail */}
+          {/* Credentials line */}
+          <motion.p
+            variants={item}
+            className="mt-4 max-w-3xl text-base font-medium text-ink-muted sm:text-lg"
+          >
+            AI Automation Architect | RevOps &amp; CRM Systems | Marketing
+            Automation | HubSpot Certified | Remote
+          </motion.p>
+
+          {/* Body paragraph */}
           <motion.p
             variants={item}
             className="mt-6 max-w-3xl text-base leading-relaxed text-ink-muted sm:text-lg"
           >
-            {hero.introduction}
-          </motion.p>
-
-          {/* Experience line */}
-          <motion.p
-            variants={item}
-            className="mt-4 max-w-3xl text-base leading-relaxed text-ink-muted sm:text-lg"
-          >
-            {hero.experience}
+            I design production AI systems that connect voice agents, automation,
+            CRM platforms, and human teams into measurable operating systems for
+            growth. My work is built for the real world: pressure-tested,
+            failure-aware, and designed to turn weak spots into fix-ready
+            execution.
           </motion.p>
 
           <motion.div
