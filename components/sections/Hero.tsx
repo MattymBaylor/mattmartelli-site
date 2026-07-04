@@ -37,32 +37,13 @@ export function Hero() {
       className="relative isolate overflow-hidden"
       aria-labelledby="hero-heading"
     >
-      {/* Layered background — the Tiger Team film (muted, looping) behind a scrim.
-          The video sits in a container-relative 16:9 wrapper so it always COVERS
-          the hero band (viewport-unit sizing only covers a full-height hero).
-          Reduced-motion users get the calm constellation instead. */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        {reduced ? (
-          <ConstellationBackground />
-        ) : (
-          <div className="absolute left-1/2 top-1/2 aspect-video w-full min-h-full -translate-x-1/2 -translate-y-1/2">
-            <iframe
-              aria-hidden
-              tabIndex={-1}
-              title="Tiger Team — ambient background"
-              src={TIGER_EMBED}
-              allow="autoplay; encrypted-media; picture-in-picture"
-              className="pointer-events-none h-full w-full"
-            />
-          </div>
-        )}
-        {/* scrims — overall dim + a left-weighted wash so the headline/body stay
-            crisp while the film shows through on the right. */}
-        <div className="absolute inset-0 bg-night/55" />
-        <div className="absolute inset-0 bg-gradient-to-r from-night via-night/75 to-transparent" />
+      {/* Layered background — clean constellation field (the film lives in a
+          contained card below, not as a full-bleed background). */}
+      <div className="absolute inset-0 -z-10">
+        <ConstellationBackground />
+        <div className="absolute inset-0 bg-grid-faint [background-size:64px_64px] opacity-40" />
         <div className="absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(34,211,238,0.10),transparent_70%)]" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-night" />
-        <div className="absolute inset-0 bg-grid-faint [background-size:64px_64px] opacity-25" />
       </div>
 
       <div className="container-x scroll-mt-24 pb-20 pt-28 text-left sm:pb-28 sm:pt-36">
@@ -84,7 +65,7 @@ export function Hero() {
           <motion.h1
             id="hero-heading"
             variants={item}
-            className="max-w-4xl text-balance font-semibold leading-[1.1] tracking-tight text-4xl sm:text-5xl lg:text-[3.5rem] [text-shadow:0_2px_22px_rgba(2,4,10,0.7)]"
+            className="text-balance font-semibold leading-[1.1] tracking-tight text-4xl sm:text-5xl lg:text-[3.5rem]"
           >
             <span className="block">
               <span className="text-[#ffb020]">Tiger Team</span> <span className="text-ink">finds faults.</span>
@@ -97,7 +78,7 @@ export function Hero() {
           {/* Capabilities line — the three pillars */}
           <motion.p
             variants={item}
-            className="mt-6 max-w-3xl font-display text-lg leading-snug text-ink sm:text-xl [text-shadow:0_1px_12px_rgba(2,4,10,0.6)]"
+            className="mt-6 font-display text-lg leading-snug text-ink sm:text-xl"
           >
             {hero.capabilities}
           </motion.p>
@@ -105,7 +86,7 @@ export function Hero() {
           {/* Body — the supporting detail */}
           <motion.p
             variants={item}
-            className="mt-6 max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg [text-shadow:0_1px_12px_rgba(2,4,10,0.6)]"
+            className="mt-6 max-w-3xl text-base leading-relaxed text-ink-muted sm:text-lg"
           >
             {hero.introduction}
           </motion.p>
@@ -113,7 +94,7 @@ export function Hero() {
           {/* Experience line */}
           <motion.p
             variants={item}
-            className="mt-4 max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg [text-shadow:0_1px_12px_rgba(2,4,10,0.6)]"
+            className="mt-4 max-w-3xl text-base leading-relaxed text-ink-muted sm:text-lg"
           >
             {hero.experience}
           </motion.p>
@@ -135,7 +116,7 @@ export function Hero() {
             </Link>
             <Link
               href={hero.ctas.secondary.href}
-              className="group inline-flex items-center justify-center gap-2 rounded-md border border-line-strong bg-night/40 px-5 py-3 text-sm font-medium text-ink backdrop-blur-sm transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan"
+              className="group inline-flex items-center justify-center gap-2 rounded-md border border-line-strong px-5 py-3 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan"
             >
               {hero.ctas.secondary.label}
               <ArrowUpRight
@@ -155,6 +136,53 @@ export function Hero() {
                 aria-hidden
               />
             </Link>
+          </motion.div>
+
+          {/* The film — contained 16:9 card below the copy (chrome cropped so it
+              reads as a clean clip; click opens YouTube). */}
+          <motion.div variants={item} className="mt-14 max-w-4xl">
+            <div className="mb-3 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-faint">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent-cyan" aria-hidden />
+              Tiger Team — the film
+            </div>
+            <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-line bg-black shadow-glow">
+              {reduced ? (
+                <a
+                  href="https://youtu.be/1oojonDDqek"
+                  target="_blank"
+                  rel="noopener"
+                  className="relative block h-full w-full"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="https://img.youtube.com/vi/1oojonDDqek/maxresdefault.jpg"
+                    alt="Tiger Team — watch the film"
+                    className="h-full w-full object-cover"
+                  />
+                  <span className="absolute inset-0 grid place-items-center bg-black/30">
+                    <span className="rounded-full bg-black/70 px-4 py-2 text-sm font-semibold text-white ring-1 ring-white/20">
+                      ▶ Play on YouTube
+                    </span>
+                  </span>
+                </a>
+              ) : (
+                <>
+                  <iframe
+                    title="Tiger Team — the film"
+                    src={TIGER_EMBED}
+                    allow="autoplay; encrypted-media; picture-in-picture"
+                    className="pointer-events-none absolute left-1/2 top-1/2 h-[116%] w-[116%] -translate-x-1/2 -translate-y-1/2 border-0"
+                  />
+                  <a
+                    href="https://youtu.be/1oojonDDqek"
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Watch the Tiger Team film on YouTube"
+                    className="absolute inset-0 z-10"
+                  />
+                </>
+              )}
+            </div>
           </motion.div>
         </motion.div>
       </div>
