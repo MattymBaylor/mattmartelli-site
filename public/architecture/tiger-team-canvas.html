@@ -204,6 +204,28 @@
       .hero-video{max-height:none}
     }
     @media (max-width:680px){ .wrap{padding:16px 13px 46px} .hero-title{font-size:23px} }
+
+    /* ── Canvas readability overrides ─────────────────────────────────────
+       Bigger blue/white header; vertical, full-width flow with large down
+       arrows so the last stage is never cut off; prominent ordered step
+       badges. CSS only — the interactive JS below is untouched. ──────────── */
+    .hero-title{margin:8px 0 12px; font-size:clamp(34px,5vw,54px); line-height:1.07; letter-spacing:-.02em}
+    .hero-title .tiger,.hero-title .sentinel{color:var(--cyan)}
+    .sub{font-size:15.5px; line-height:1.55; max-width:1180px}
+
+    .flow{flex-direction:column; overflow-x:visible}
+    .col{flex:0 0 auto; width:100%; min-width:0; padding:16px 16px 18px}
+    .col-h{margin-bottom:6px}
+    .col-t{font-size:17px}
+    .col-sub{font-size:12.5px}
+    .col-n{font-size:14px; font-weight:800; color:#04060d; background:var(--cyan); border-radius:8px; padding:3px 11px; letter-spacing:0; align-self:center}
+    .node{padding:11px 30px 11px 12px}
+    .node .nt{font-size:14px}
+    .chal{font-size:12px; line-height:1.45}
+    .conn{flex:0 0 auto; flex-direction:row; align-items:center; justify-content:center; gap:12px; padding:14px 0}
+    .conn .ar{font-size:32px; transform:rotate(90deg)}
+    .conn .lab{font-size:11px; color:#a9b8dd}
+    @media (max-width:680px){ .hero-title{font-size:clamp(28px,7vw,34px)} }
   </style>
 </head>
 <body>
