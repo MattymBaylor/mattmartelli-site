@@ -206,12 +206,14 @@
     @media (max-width:680px){ .wrap{padding:16px 13px 46px} .hero-title{font-size:23px} }
 
     /* ── Canvas readability overrides ─────────────────────────────────────
-       Bigger blue/white header; vertical, full-width flow with large down
-       arrows so the last stage is never cut off; prominent ordered step
-       badges. CSS only — the interactive JS below is untouched. ──────────── */
-    .hero-title{margin:8px 0 12px; font-size:clamp(34px,5vw,54px); line-height:1.07; letter-spacing:-.02em}
+       Bigger blue/white header that runs full-width and balances against the
+       description; vertical, full-width flow with large down arrows so the
+       last stage is never cut off; prominent ordered step badges. CSS only —
+       the interactive JS below is untouched. ──────────────────────────────── */
+    .hero-head > div{flex:1 1 auto; min-width:0}
+    .hero-title{margin:10px 0 16px; font-size:clamp(38px,5.8vw,92px); line-height:1.04; letter-spacing:-.028em}
     .hero-title .tiger,.hero-title .sentinel{color:var(--cyan)}
-    .sub{font-size:15.5px; line-height:1.55; max-width:1180px}
+    .sub{font-size:16px; line-height:1.55; max-width:1180px}
 
     .flow{flex-direction:column; overflow-x:visible}
     .col{flex:0 0 auto; width:100%; min-width:0; padding:16px 16px 18px}
@@ -232,7 +234,7 @@
     .col:hover .col-n,.col-n:hover{transform:scale(1.14); background:#7fe6f7; box-shadow:0 0 0 4px rgba(34,211,238,.30), 0 0 22px -2px rgba(34,211,238,.75); animation-play-state:paused}
     @media (prefers-reduced-motion:reduce){ .col-n{animation:none} }
 
-    @media (max-width:680px){ .hero-title{font-size:clamp(28px,7vw,34px)} }
+    @media (max-width:680px){ .hero-title{font-size:clamp(30px,8vw,44px)} }
   </style>
 </head>
 <body>
