@@ -85,6 +85,21 @@
   }
 }
 
+/* Auto-scrolling shorts row in AiBriefSection. The track holds two copies of
+ * the tile set, so translating -50% loops seamlessly. Pauses on hover; under
+ * reduced motion the global override freezes it as a static row. */
+.ticker-track {
+  animation: ticker-scroll 45s linear infinite;
+}
+.ticker-hover:hover .ticker-track {
+  animation-play-state: paused;
+}
+@keyframes ticker-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 /* React Flow controls/attribution restyle for dark theme */
 .react-flow__attribution {
   background: transparent !important;
