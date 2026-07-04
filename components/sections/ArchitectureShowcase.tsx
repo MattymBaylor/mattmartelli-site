@@ -20,6 +20,13 @@ type Diagram = {
  */
 const DIAGRAMS: Diagram[] = [
   {
+    id: "tiger-team",
+    title: "Tiger Team — Adversarial Org Audit",
+    industry: "AI evaluation · reward engineering",
+    blurb: "A model-diverse red-team that audits my own agent org — three rival LLMs attack the design, a reward engine pays only for verified, cited findings (and docks fabrication -5), then emits a ready-to-run fix. Evaluation rigor, built as a system.",
+    file: "/architecture/tiger-team-canvas.html",
+  },
+  {
     id: "lead-hygiene-canvas",
     title: "Lead Hygiene & Compliance Pipeline",
     industry: "RevOps · TCPA compliance",
