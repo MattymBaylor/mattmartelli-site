@@ -38,26 +38,31 @@ export function Hero() {
       aria-labelledby="hero-heading"
     >
       {/* Layered background — the Tiger Team film (muted, looping) behind a scrim.
-          Reduced-motion users get the calm constellation instead of the video. */}
+          The video sits in a container-relative 16:9 wrapper so it always COVERS
+          the hero band (viewport-unit sizing only covers a full-height hero).
+          Reduced-motion users get the calm constellation instead. */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         {reduced ? (
           <ConstellationBackground />
         ) : (
-          <iframe
-            aria-hidden
-            tabIndex={-1}
-            title="Tiger Team — ambient background"
-            src={TIGER_EMBED}
-            allow="autoplay; encrypted-media; picture-in-picture"
-            className="pointer-events-none absolute left-1/2 top-1/2 h-[56.25vw] min-h-full w-[177.78vh] min-w-full -translate-x-1/2 -translate-y-1/2"
-          />
+          <div className="absolute left-1/2 top-1/2 aspect-video w-full min-h-full -translate-x-1/2 -translate-y-1/2">
+            <iframe
+              aria-hidden
+              tabIndex={-1}
+              title="Tiger Team — ambient background"
+              src={TIGER_EMBED}
+              allow="autoplay; encrypted-media; picture-in-picture"
+              className="pointer-events-none h-full w-full"
+            />
+          </div>
         )}
-        {/* scrims keep the headline legible over the video */}
-        <div className="absolute inset-0 bg-night/65" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-night/35 to-night" />
-        <div className="absolute inset-0 bg-grid-faint [background-size:64px_64px] opacity-30" />
+        {/* scrims — overall dim + a left-weighted wash so the headline/body stay
+            crisp while the film shows through on the right. */}
+        <div className="absolute inset-0 bg-night/55" />
+        <div className="absolute inset-0 bg-gradient-to-r from-night via-night/75 to-transparent" />
         <div className="absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(60%_60%_at_50%_0%,rgba(34,211,238,0.10),transparent_70%)]" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-night" />
+        <div className="absolute inset-0 bg-grid-faint [background-size:64px_64px] opacity-25" />
       </div>
 
       <div className="container-x scroll-mt-24 pb-20 pt-28 text-left sm:pb-28 sm:pt-36">
@@ -79,7 +84,7 @@ export function Hero() {
           <motion.h1
             id="hero-heading"
             variants={item}
-            className="text-balance font-semibold leading-[1.1] tracking-tight text-4xl sm:text-5xl lg:text-[3.5rem] [text-shadow:0_2px_22px_rgba(2,4,10,0.55)]"
+            className="max-w-4xl text-balance font-semibold leading-[1.1] tracking-tight text-4xl sm:text-5xl lg:text-[3.5rem] [text-shadow:0_2px_22px_rgba(2,4,10,0.7)]"
           >
             <span className="block">
               <span className="text-[#ffb020]">Tiger Team</span> <span className="text-ink">finds faults.</span>
@@ -92,7 +97,7 @@ export function Hero() {
           {/* Capabilities line — the three pillars */}
           <motion.p
             variants={item}
-            className="mt-6 font-display text-lg leading-snug text-ink sm:text-xl"
+            className="mt-6 max-w-3xl font-display text-lg leading-snug text-ink sm:text-xl [text-shadow:0_1px_12px_rgba(2,4,10,0.6)]"
           >
             {hero.capabilities}
           </motion.p>
@@ -100,7 +105,7 @@ export function Hero() {
           {/* Body — the supporting detail */}
           <motion.p
             variants={item}
-            className="mt-6 max-w-3xl text-base leading-relaxed text-ink-muted sm:text-lg"
+            className="mt-6 max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg [text-shadow:0_1px_12px_rgba(2,4,10,0.6)]"
           >
             {hero.introduction}
           </motion.p>
@@ -108,7 +113,7 @@ export function Hero() {
           {/* Experience line */}
           <motion.p
             variants={item}
-            className="mt-4 max-w-3xl text-base leading-relaxed text-ink-muted sm:text-lg"
+            className="mt-4 max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg [text-shadow:0_1px_12px_rgba(2,4,10,0.6)]"
           >
             {hero.experience}
           </motion.p>
@@ -130,7 +135,7 @@ export function Hero() {
             </Link>
             <Link
               href={hero.ctas.secondary.href}
-              className="group inline-flex items-center justify-center gap-2 rounded-md border border-line-strong px-5 py-3 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan"
+              className="group inline-flex items-center justify-center gap-2 rounded-md border border-line-strong bg-night/40 px-5 py-3 text-sm font-medium text-ink backdrop-blur-sm transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan"
             >
               {hero.ctas.secondary.label}
               <ArrowUpRight
