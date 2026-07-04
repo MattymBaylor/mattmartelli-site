@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check, Download } from "lucide-react";
 import { site } from "@/content/site";
 import { ConstellationBackground } from "@/components/hero/ConstellationBackground";
 import { usePrefersReducedMotion } from "@/lib/useReducedMotion";
@@ -197,6 +197,30 @@ export function Hero() {
                   className="absolute inset-0 h-full w-full border-0"
                 />
               </div>
+            </motion.div>
+
+            {/* Takeaway line (bright blue) + framework CTA (matches the yellow
+                flagship button above). */}
+            <motion.p
+              variants={item}
+              className="mt-8 max-w-3xl font-display text-xl font-semibold leading-snug text-accent-cyan sm:text-2xl"
+            >
+              Reward engineering is how you make AI tell the truth instead of
+              game the score.
+            </motion.p>
+
+            <motion.div variants={item} className="mt-5">
+              <Link
+                href="/tiger"
+                className="group inline-flex items-center justify-center gap-2 rounded-md bg-[#FACC15] px-5 py-3 text-sm font-semibold text-night shadow-[0_0_0_1px_rgba(250,204,21,0.35),0_0_16px_-8px_rgba(250,204,21,0.4)] transition-transform hover:scale-[1.03]"
+              >
+                Download the Framework
+                <Download
+                  size={16}
+                  className="transition-transform group-hover:translate-y-0.5"
+                  aria-hidden
+                />
+              </Link>
             </motion.div>
           </motion.div>
         </div>
