@@ -16,12 +16,12 @@ const nextConfig = {
       { protocol: "https", hostname: "img.youtube.com" },
     ],
   },
-  // Vanity route: mattmartelli.com/tcpa → the Lead Hygiene & Compliance canvas.
-  // A memorable link for the TCPA question Matt fields constantly ("go look at /tcpa").
-  // Rewrite (not redirect) so the clean /tcpa URL stays in the address bar.
+  // Vanity routes → self-contained architecture canvases. Memorable share links
+  // ("go look at /tcpa", "/tiger"). Rewrite (not redirect) so the clean URL stays.
   async rewrites() {
     return [
       { source: "/tcpa", destination: "/architecture/lead-hygiene-canvas.html" },
+      { source: "/tiger", destination: "/architecture/tiger-team-canvas.html" },
       // /hq → the interactive Seinfeld HQ demo (full-page escape hatch for the
       // HQ Cam facade on small screens; also a memorable share link).
       { source: "/hq", destination: "/seinfeld-hq/index.html" },

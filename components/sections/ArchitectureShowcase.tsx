@@ -141,6 +141,7 @@ export function ArchitectureShowcase() {
                 title={active.title}
                 className="h-[72vh] min-h-[540px] w-full"
                 loading="lazy"
+                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
               />
             </div>
 
