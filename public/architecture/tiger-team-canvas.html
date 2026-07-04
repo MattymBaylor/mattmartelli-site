@@ -208,8 +208,9 @@
     /* ── Canvas readability overrides ─────────────────────────────────────
        Bigger blue/white header that runs full-width and balances against the
        description; vertical, full-width flow with large down arrows so the
-       last stage is never cut off; prominent ordered step badges. CSS only —
-       the interactive JS below is untouched. ──────────────────────────────── */
+       last stage is never cut off; prominent ordered step badges; inviting
+       gauntlet buttons + a back-to-home link. CSS only — the interactive JS
+       below is untouched. ──────────────────────────────────────────────── */
     .hero-head > div{flex:1 1 auto; min-width:0}
     .hero-title{margin:10px 0 16px; font-size:clamp(38px,5.8vw,92px); line-height:1.04; letter-spacing:-.028em}
     .hero-title .tiger,.hero-title .sentinel{color:var(--cyan)}
@@ -234,11 +235,41 @@
     .col:hover .col-n,.col-n:hover{transform:scale(1.14); background:#7fe6f7; box-shadow:0 0 0 4px rgba(34,211,238,.30), 0 0 22px -2px rgba(34,211,238,.75); animation-play-state:paused}
     @media (prefers-reduced-motion:reduce){ .col-n{animation:none} }
 
+    /* Inviting gauntlet run buttons — green (verified) / yellow (fabricated),
+       gently pulsing so they read as pressable. */
+    .runbtn{background:rgba(102,209,158,.15); border:1px solid rgba(102,209,158,.6); color:#eafff6; font-size:12px; padding:11px 13px}
+    .runbtn small{color:#a5e9c8; font-size:10px}
+    .runbtn:hover{border-color:#66d19e; background:rgba(102,209,158,.24); transform:translateY(-2px); animation-play-state:paused}
+    .runbtn.bad{background:rgba(255,206,107,.15); border:1px solid rgba(255,206,107,.6); color:#fff7e6}
+    .runbtn.bad small{color:#ffdf9e}
+    .runbtn.bad:hover{border-color:#ffce6b; background:rgba(255,206,107,.24); transform:translateY(-2px); animation-play-state:paused}
+    .runbtn:disabled{opacity:.45; animation:none!important}
+    @keyframes btnInviteGood{0%,100%{box-shadow:0 0 0 1px rgba(102,209,158,.22), 0 6px 20px -8px rgba(102,209,158,.4)}50%{box-shadow:0 0 0 1px rgba(102,209,158,.55), 0 10px 28px -6px rgba(102,209,158,.75)}}
+    @keyframes btnInviteBad{0%,100%{box-shadow:0 0 0 1px rgba(255,206,107,.22), 0 6px 20px -8px rgba(255,206,107,.4)}50%{box-shadow:0 0 0 1px rgba(255,206,107,.55), 0 10px 28px -6px rgba(255,206,107,.75)}}
+    .runbtn:not(:disabled){animation:btnInviteGood 2.4s ease-in-out infinite}
+    .runbtn.bad:not(:disabled){animation:btnInviteBad 2.4s ease-in-out infinite}
+
+    /* Punchier results. */
+    .gate.pass{box-shadow:0 0 0 1px rgba(102,209,158,.55), 0 6px 20px -6px rgba(102,209,158,.5)}
+    .gate.veto{animation:vetoPop .5s ease}
+    @keyframes vetoPop{0%{transform:scale(1)}32%{transform:scale(1.07)}100%{transform:scale(1)}}
+    .score.good,.score.bad{animation:scorePop .5s ease}
+    @keyframes scorePop{0%{transform:scale(.96)}45%{transform:scale(1.06)}100%{transform:scale(1)}}
+    @media (prefers-reduced-motion:reduce){ .runbtn:not(:disabled),.runbtn.bad:not(:disabled),.gate.veto,.score.good,.score.bad{animation:none} }
+
+    /* Back-to-home link. */
+    .backlink{display:inline-flex; align-items:center; gap:7px; font-size:13px; color:#9fb0d0; text-decoration:none; margin:0 0 14px; padding:5px 12px 5px 9px; border-radius:9px; border:1px solid transparent; transition:color .15s, background .15s, border-color .15s}
+    .backlink:hover{color:var(--cyan); background:rgba(34,211,238,.06); border-color:rgba(34,211,238,.3)}
+    .backlink .bk-ar{font-size:16px; line-height:1; transition:transform .15s}
+    .backlink:hover .bk-ar{transform:translateX(-2px)}
+
     @media (max-width:680px){ .hero-title{font-size:clamp(30px,8vw,44px)} }
   </style>
 </head>
 <body>
 <div class="wrap">
+
+  <a class="backlink" href="/"><span class="bk-ar">←</span> Back to home</a>
 
   <!-- HERO -->
   <div class="hero-head">
