@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Voice Agent — Call Visualizer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     Call Visualizer — GrowthMindset.ai
+     Standalone, dependency-free. Drop-in reference for production.
+     Palette + type follow the GrowthMindset.ai design system.
+     ============================================================ */
+  :root{
+    --accent:#00D4FF;        /* brand cyan signal */
+    --accent-bright:#5CE1FF;
+    --warm:#F5A524;          /* amber = the human / caller */
+    --ink:#E6EDF3; --muted:#9BA7B4; --dim:#697586; --faint:#3B424E;
+    --hairline:rgba(148,163,184,0.20);
+    --font-display:'Space Grotesk',system-ui,sans-serif;
+    --font-body:'Inter',system-ui,sans-serif;
+    --font-mono:'JetBrains Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+       padding:40px 32px;background:radial-gradient(90% 70% at 50% -10%,#0D1117 0%,#0A0A0F 70%);
+       font-family:var(--font-body);}
+
+  .cv-card{position:relative;display:flex;flex-direction:column;width:100%;max-width:760px;
+       aspect-ratio:16/9;padding:22px 26px 20px;border-radius:24px;
+       background:radial-gradient(130% 110% at 50% -8%,#1A1E29 0%,#12141C 52%,#0C0E15 100%);
+       border:1px solid var(--hairline);
+       box-shadow:inset 0 1px 0 rgba(255,255,255,0.06),0 30px 70px -26px rgba(0,0,0,0.8);
+       overflow:hidden;cursor:pointer;color:var(--ink);outline:none;-webkit-tap-highlight-color:transparent;}
+  .cv-card:focus-visible{border-color:rgba(0,212,255,0.55);
+       box-shadow:inset 0 1px 0 rgba(255,255,255,0.06),0 0 0 3px rgba(0,212,255,0.28),0 30px 70px -26px rgba(0,0,0,0.8);}
+
+  .cv-media{position:absolute;top:0;left:0;width:1px;height:1px;opacity:.01;pointer-events:none;}
+
+  .cv-hdr{position:relative;z-index:6;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .cv-hdr-l{display:flex;align-items:center;gap:9px;min-width:0;}
+  .cv-phone{display:inline-flex;color:var(--accent);}
+  .cv-kicker{font-family:var(--font-mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);white-space:nowrap;}
+  .cv-kicker .sep{color:var(--faint);margin:0 7px;}
+  .cv-kicker .hi{color:var(--accent);}
+  .cv-status{display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;flex-shrink:0;}
+  .cv-live{display:none;align-items:center;gap:8px;color:var(--accent);}
+  .cv-rec{display:flex;align-items:center;gap:8px;color:var(--dim);}
+  .cv-dot{width:7px;height:7px;border-radius:50%;}
+  .cv-dot.live{background:var(--accent);animation:cvDot 1.8s ease-in-out infinite;}
+  .cv-dot.rec{background:var(--faint);}
+
+  .cv-viz{position:relative;flex:1;display:flex;align-items:center;justify-content:center;margin:14px 0 6px;min-height:0;}
+  .cv-glow{position:absolute;width:62%;height:74%;left:19%;top:13%;
+       background:radial-gradient(closest-side,var(--accent),transparent 74%);filter:blur(40px);opacity:.16;z-index:0;pointer-events:none;will-change:opacity,transform;}
+  .cv-glow-warm{position:absolute;width:50%;height:64%;left:25%;top:18%;
+       background:radial-gradient(closest-side,var(--warm),transparent 72%);filter:blur(44px);opacity:0;z-index:0;pointer-events:none;will-change:opacity;}
+  .cv-bars{position:relative;z-index:1;width:100%;height:100%;max-height:184px;display:flex;align-items:center;justify-content:center;gap:4px;}
+  .cv-bar{flex:1 1 0;min-width:2px;max-width:9px;height:100%;border-radius:6px;transform-origin:center;
+       background:linear-gradient(180deg,var(--accent-bright) 0%,var(--accent) 50%,var(--accent-bright) 100%);
+       transform:scaleY(var(--sy,.055));will-change:transform;}
+
+  .cv-overlay{position:absolute;inset:-16px -26px;z-index:4;display:flex;flex-direction:column;align-items:center;justify-content:center;
+       gap:15px;text-align:center;padding:20px 28px;
+       background:radial-gradient(62% 82% at 50% 50%,rgba(10,11,16,.32) 0%,rgba(10,11,16,.72) 100%);
+       backdrop-filter:blur(1.5px);-webkit-backdrop-filter:blur(1.5px);}
+  .cv-ring{width:66px;height:66px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+       background:rgba(0,212,255,.10);border:1.5px solid var(--accent);animation:cvRing 3.4s ease-in-out infinite;}
+  .cv-prompt{font-family:var(--font-display);font-size:19px;font-weight:600;letter-spacing:-.01em;color:var(--ink);max-width:430px;line-height:1.32;text-wrap:balance;}
+  .cv-sub{font-size:12.5px;color:var(--muted);max-width:380px;line-height:1.45;}
+
+  .cv-caps{position:relative;z-index:5;display:none;flex-direction:column;gap:7px;height:92px;overflow:hidden;margin:2px 0 10px;justify-content:flex-end;
+       -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 24px);mask-image:linear-gradient(to bottom,transparent 0,#000 24px);}
+  .cap-row{display:flex;}
+  .cap-bubble{max-width:80%;padding:8px 12px;border-radius:12px;border:1px solid transparent;}
+  .cap-label{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px;}
+  .cap-text{font-size:13.5px;line-height:1.4;color:var(--ink);}
+
+  .cv-controls{position:relative;z-index:6;display:none;align-items:center;gap:14px;margin-top:auto;}
+  .cv-btn{flex-shrink:0;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+       border:1px solid rgba(148,163,184,.28);background:rgba(148,163,184,.08);color:var(--ink);cursor:pointer;padding:0;}
+  .cv-btn:hover{background:rgba(0,212,255,.12);border-color:rgba(0,212,255,.4);}
+  .cv-track{flex:1;height:4px;border-radius:999px;background:rgba(148,163,184,.16);overflow:hidden;}
+  .cv-fill{height:100%;width:0%;border-radius:999px;background:var(--accent);box-shadow:0 0 12px var(--accent);}
+  .cv-time{flex-shrink:0;font-family:var(--font-mono);font-size:12px;color:var(--muted);letter-spacing:.03em;}
+  .cv-time .now{color:var(--ink);}
+
+  @keyframes cvDot{0%,100%{box-shadow:0 0 0 0 rgba(0,212,255,.45),0 0 10px var(--accent);}50%{box-shadow:0 0 0 5px rgba(0,212,255,0);}}
+  @keyframes cvRing{0%,100%{box-shadow:0 0 0 6px rgba(0,212,255,.05),0 0 34px rgba(0,212,255,.22);}50%{box-shadow:0 0 0 9px rgba(0,212,255,.02),0 0 46px rgba(0,212,255,.34);}}
+  @keyframes cvCapIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+  .anim{animation:cvCapIn .28s ease-out both;}
+  @media (prefers-reduced-motion:reduce){.cv-ring,.cv-dot.live{animation:none!important;}}
+</style>
+</head>
+<body>
+  <div class="cv-card" id="card" role="button" tabindex="0" aria-label="Play an actual outbound call recorded by an AI voice agent">
+    <!-- Interactive playback source. Plain <audio> — reliable, no video power-saving heuristics. -->
+    <audio class="cv-media" id="media" src="assets/call.mp3" preload="auto"></audio>
+
+    <div class="cv-hdr">
+      <div class="cv-hdr-l">
+        <span class="cv-phone"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.74-1.74a2 2 0 0 1 2.11-.45c.74.34 1.53.57 2.34.7A2 2 0 0 1 22 16.92z"></path></svg></span>
+        <span class="cv-kicker">Outbound call<span class="sep">/</span><span class="hi">AI voice agent</span></span>
+      </div>
+      <div class="cv-status">
+        <span class="cv-live" id="live"><span class="cv-dot live"></span><span>Live</span></span>
+        <span class="cv-rec" id="rec"><span class="cv-dot rec"></span><span>Recording</span></span>
+      </div>
+    </div>
+
+    <div class="cv-viz">
+      <div class="cv-glow" id="glow"></div>
+      <div class="cv-glow-warm" id="glowWarm"></div>
+      <div class="cv-bars" id="bars"></div>
+
+      <div class="cv-overlay" id="overlay">
+        <div class="cv-ring"><svg width="24" height="24" viewBox="0 0 24 24" fill="var(--accent)" style="margin-left:3px"><path d="M8 5v14l11-7z"></path></svg></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:7px">
+          <div class="cv-prompt">Click to play an actual outbound call with an AI voice agent</div>
+          <div class="cv-sub">A real recording&nbsp;&middot;&nbsp;<span id="totalTop">1:16</span>&nbsp;&middot;&nbsp;hear how human the agent sounds</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cv-caps" id="caps"><div id="capList"></div></div>
+
+    <div class="cv-controls" id="controls">
+      <button type="button" class="cv-btn" id="btn" aria-label="Play or pause">
+        <svg id="pauseIco" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect></svg>
+        <svg id="playIco" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-left:2px"><path d="M8 5v14l11-7z"></path></svg>
+      </button>
+      <div class="cv-track"><div class="cv-fill" id="fill"></div></div>
+      <div class="cv-time"><span class="now" id="elapsed">0:00</span> / <span id="totalFoot">1:16</span></div>
+    </div>
+  </div>
+
+<script>
+(function(){
+  // ---- Config (mirror of the design tweaks) ----
+  var BAR_COUNT = 56, ACCENT = '#00D4FF', WARM = '#F5A524';
+  var IDLE_SHIMMER = true, PEAK_WARMTH = true, GLOW = true;
+
+  // ---- Waveform data: normalized loudness (RMS 0..1) of the real call, 480 evenly-spaced samples ----
+  var ENV = [0.441,0.28,0.165,0.001,0.001,0.048,0.049,0.482,1,0.362,0.238,0.306,0.286,0.488,0.397,0.408,0.315,0.27,0.16,0.235,0.277,0.123,0.027,0.048,0.476,0.746,0.422,0.36,0.353,0.453,0.454,0.529,0.236,0.273,0.274,0.354,0.452,0.025,0.054,0.433,0.372,0.413,0.521,0.326,0.22,0.5,0.458,0.171,0.34,0.234,0.264,0.277,0.176,0.057,0.046,0.016,0.001,0.001,0.001,0.001,0.001,0.14,0.074,0.39,0.514,0.098,0.145,0.204,0.382,0.331,0.073,0.315,0.391,0.527,0.484,0.129,0.212,0.256,0.119,0.417,0.349,0.385,0.35,0.012,0.002,0.121,0.812,0.67,0.594,0.612,0.491,0.404,0.359,0.573,0.448,0.429,0.28,0.288,0.438,0.369,0.23,0.248,0.294,0.36,0.46,0.289,0.433,0.595,0.462,0.227,0.221,0.328,0.504,0.434,0.478,0.56,0.375,0.128,0.101,0.326,0.353,0.611,0.367,0.034,0.031,0.298,0.005,0.001,0.001,0.05,0.269,0.006,0.001,0.001,0.002,0.002,0.002,0.002,0.002,0.002,0.002,0.002,0.341,0.183,0.205,0.178,0.375,0.217,0.002,0.001,0.001,0.001,0.001,0.002,0.397,0.729,0.553,0.554,0.356,0.381,0.429,0.194,0.524,0.48,0.226,0.008,0.001,0.001,0.001,0.001,0.001,0.001,0.375,0.521,0.003,0.003,0.003,0.002,0.015,0.227,0.62,0.261,0.541,0.423,0.433,0.234,0.446,0.518,0.383,0.246,0.306,0.305,0.283,0.215,0.239,0.008,0.001,0.005,0.005,0.008,0.003,0.054,0.208,0.007,0.004,0.001,0.001,0.001,0.001,0.708,0.18,0.228,0.279,0.245,0.308,0.369,0.407,0.4,0.013,0.006,0,0,0,0,0.004,0.454,0.467,0.702,0.501,0.475,0.211,0.447,0.504,0.419,0.376,0.294,0.372,0.336,0.491,0.109,0.372,0.227,0.365,0.261,0.465,0.291,0.302,0.175,0.365,0.425,0.451,0.411,0.593,0.483,0.391,0.191,0.402,0.43,0.267,0.545,0.372,0.255,0.214,0.155,0.122,0.006,0.007,0.005,0.009,0.011,0.007,0.01,0.016,0.003,0.109,0.21,0.233,0.219,0.204,0.199,0.2,0.276,0.206,0.001,0,0,0.008,0.273,0.357,0.224,0.087,0.003,0.016,0.232,0.182,0.038,0.001,0.001,0.001,0,0.001,0.165,0.25,0.343,0.364,0.313,0.4,0.421,0.307,0.392,0.524,0.695,0.028,0.011,0.375,0.335,0.642,0.315,0.73,0.471,0.287,0.338,0.508,0.486,0.564,0.573,0.252,0.222,0.562,0.443,0.488,0.393,0.34,0.363,0.293,0.147,0.594,0.341,0.576,0.463,0.444,0.37,0.602,0.217,0.495,0.406,0.419,0.386,0.237,0.378,0.289,0.005,0.001,0,0,0.001,0.001,0.001,0.004,0.004,0.176,0.066,0.244,0.124,0.003,0.002,0.012,0.001,0.001,0.543,0.553,0.321,0.385,0.347,0.016,0.111,0.585,0.748,0.629,0.572,0.425,0.534,0.52,0.499,0.437,0.59,0.107,0.385,0.27,0.577,0.518,0.576,0.368,0.612,0.442,0.336,0.34,0.526,0.155,0.362,0.461,0.205,0.472,0.439,0.521,0.386,0.447,0.311,0.002,0.001,0.001,0.001,0.001,0.329,0.352,0.001,0.004,0.146,0.37,0.406,0.326,0.352,0.471,0.261,0.515,0.499,0.338,0.43,0.272,0.213,0.243,0.5,0.428,0.331,0.318,0.241,0.37,0.155,0.529,0.174,0.571,0.677,0.365,0.033,0.351,0.156,0.326,0.298,0.211,0.284,0.234,0.495,0.421,0.677,0.365,0.263,0.255,0.246,0.229,0.155,0.145,0.014,0.218,0.316,0.282,0.448,0.321,0.349,0.267,0.307,0.211,0.244,0.197,0.206,0.156,0.007,0.004,0.001,0,0.001];
+  var ENV_DUR = 76.09; // seconds spanned by ENV (matches assets/call.mp3)
+
+  // ---- Transcript cues, time-aligned to the audio. speaker: 'agent' | 'caller' ----
+  var captions = [
+  {
+    "t": 1.01,
+    "speaker": "agent",
+    "text": "Hi, this is Kristina with Home Genius Exteriors. I'm calling to confirm your upcoming appointment. With whom do I have the pleasure of speaking to?"
+  },
+  {
+    "t": 9.73,
+    "speaker": "caller",
+    "text": "It's Matt Martelli, M-A-R-T-E-L-L-I."
+  },
+  {
+    "t": 13.57,
+    "speaker": "agent",
+    "text": "So just to double check, I have your name as M-A-T-T M-A-R-T-E-L-L-I. Is that correct?"
+  },
+  {
+    "t": 19.73,
+    "speaker": "caller",
+    "text": "Yes. Yeah."
+  },
+  {
+    "t": 22.45,
+    "speaker": "agent",
+    "text": "Perfect. Thanks. Is now a good time to chat for a minute?"
+  },
+  {
+    "t": 27.25,
+    "speaker": "caller",
+    "text": "Sure."
+  },
+  {
+    "t": 28.37,
+    "speaker": "agent",
+    "text": "Are you still planning to be available for your scheduled time?"
+  },
+  {
+    "t": 31.89,
+    "speaker": "caller",
+    "text": "Yeah."
+  },
+  {
+    "t": 33.09,
+    "speaker": "agent",
+    "text": "Awesome. Thanks for confirming. Just to double check, do you have any questions about how to prepare for your appointment, or is there anything you'd like us to know before our team arrives?"
+  },
+  {
+    "t": 43.49,
+    "speaker": "caller",
+    "text": "Uh, no. I have a dog. I have a dog."
+  },
+  {
+    "t": 47.73,
+    "speaker": "agent",
+    "text": "Thanks for letting me know about your dog. If possible, just make sure your dog is secured during the appointment so our team can work safely and comfortably."
+  },
+  {
+    "t": 55.57,
+    "speaker": "caller",
+    "text": "Oh, thank you."
+  },
+  {
+    "t": 58.45,
+    "speaker": "agent",
+    "text": "You're welcome. Would you like me to send you a quick text with a summary of our call and some tips on how to prep for your appointment?"
+  },
+  {
+    "t": 66.13,
+    "speaker": "caller",
+    "text": "Sure."
+  },
+  {
+    "t": 66.5,
+    "speaker": "agent",
+    "text": "If anything comes up or you have questions before your appointment, just give us a call at 866-875-1816. Thanks again, and we look forward to seeing you soon."
+  }
+];
+
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function(id){ return document.getElementById(id); };
+  var card=$('card'), audio=$('media'), barsWrap=$('bars'), glow=$('glow'), glowWarm=$('glowWarm'),
+      overlay=$('overlay'), caps=$('caps'), capList=$('capList'), controls=$('controls'),
+      live=$('live'), rec=$('rec'), btn=$('btn'), pauseIco=$('pauseIco'), playIco=$('playIco'),
+      fill=$('fill'), elapsed=$('elapsed');
+  var totals=[ $('totalTop'), $('totalFoot') ];
+
+  // build bars
+  var barEls=[], cur=new Float32Array(BAR_COUNT);
+  for(var i=0;i<BAR_COUNT;i++){ var b=document.createElement('div'); b.className='cv-bar'; barsWrap.appendChild(b); barEls.push(b); }
+
+  var mode='idle', capIdx=-1, playhead=0, lastSec=-1, durKnown=0;
+
+  function fmt(t){ if(!isFinite(t)||t<0)t=0; t=Math.floor(t); return Math.floor(t/60)+':'+String(t%60).padStart(2,'0'); }
+  function setDur(){ var d=audio.duration; if(isFinite(d)&&d>0) durKnown=d; var s=fmt(durKnown||ENV_DUR); totals.forEach(function(e){ if(e) e.textContent=s; }); }
+
+  // ---- waveform maths (identical to the design) ----
+  function envAt(t){
+    var n=ENV.length; if(!n) return 0;
+    var x=(t/ENV_DUR)*(n-1); if(x<0)x=0; else if(x>n-1)x=n-1;
+    var i=Math.floor(x), f=x-i, a=ENV[i], b=ENV[Math.min(n-1,i+1)];
+    return a+(b-a)*f;
+  }
+  function barTarget(i,N,t,amp){
+    var p=N>1?i/(N-1):0.5;
+    var shape=Math.pow(Math.sin(Math.PI*p),0.65);           // tall centre, tapered edges
+    var detail=0.5+0.3*Math.sin(t*8.5+i*0.6)+0.22*Math.sin(t*15.3+i*1.9)+0.12*Math.sin(t*4.2+i*0.31);
+    if(detail<0)detail=0; else if(detail>1)detail=1;
+    return amp*(0.14+0.86*shape)*(0.28+0.72*detail);
+  }
+  function applyGlow(overall,active){
+    if(glow){ var g=GLOW?Math.min(0.6,0.12+overall*1.1):0; glow.style.opacity=g.toFixed(3); glow.style.transform='scale('+(1+overall*0.25).toFixed(3)+')'; }
+    if(glowWarm){ var w=0; if(PEAK_WARMTH&&active&&overall>0.4)w=Math.min(0.5,(overall-0.4)*1.25); glowWarm.style.opacity=w.toFixed(3); }
+  }
+  function renderBars(){
+    var N=barEls.length, t=playhead, amp=envAt(t), overall=0;
+    for(var i=0;i<N;i++){
+      var target=barTarget(i,N,t,amp);
+      var c0=cur[i]||0, c=c0+(target-c0)*(target>c0?0.5:0.2);
+      cur[i]=c;
+      var sy=Math.max(0.05,Math.min(0.98,0.05+c*1.5));
+      barEls[i].style.setProperty('--sy',sy.toFixed(3));
+      overall+=c;
+    }
+    overall/=N; applyGlow(overall,true);
+  }
+  function renderIdle(){
+    var N=barEls.length, now=performance.now(), overall=0;
+    for(var i=0;i<N;i++){
+      var lvl=(IDLE_SHIMMER&&!reduced)?(0.05+0.045*(0.5+0.5*Math.sin(now/660+i*0.38))+0.014*Math.sin(now/240+i*1.3)):0.06;
+      var c0=cur[i]||0, c=c0+(lvl-c0)*0.1;
+      cur[i]=c;
+      barEls[i].style.setProperty('--sy',Math.max(0.04,c).toFixed(3));
+      overall+=c;
+    }
+    overall/=N; applyGlow(overall,false);
+  }
+
+  function updateTime(t){
+    var d=durKnown||ENV_DUR;
+    fill.style.width=(Math.min(1,t/d)*100).toFixed(2)+'%';
+    var sec=Math.floor(t);
+    if(sec!==lastSec){ lastSec=sec; elapsed.textContent=fmt(t); }
+    var idx=-1;
+    for(var i=0;i<captions.length;i++){ if(captions[i].t<=t) idx=i; else break; }
+    if(idx!==capIdx){ capIdx=idx; renderCaptions(); }
+  }
+
+  function renderCaptions(){
+    if(capIdx<0){ capList.innerHTML=''; caps.style.display='none'; return; }
+    var start=Math.max(0,capIdx-1), html='';
+    for(var k=start;k<=capIdx;k++){
+      var c=captions[k], isCaller=c.speaker==='caller';
+      var fg=isCaller?WARM:ACCENT;
+      var bg=isCaller?'rgba(245,165,36,0.10)':'rgba(0,212,255,0.09)';
+      var bd=isCaller?'rgba(245,165,36,0.28)':'rgba(0,212,255,0.24)';
+      var side=isCaller?'flex-end':'flex-start';
+      var label=isCaller?'Caller':'AI Agent';
+      html+='<div class="cap-row anim" style="justify-content:'+side+'">'
+          +'<div class="cap-bubble" style="background:'+bg+';border-color:'+bd+'">'
+          +'<div class="cap-label" style="color:'+fg+'">'+label+'</div>'
+          +'<div class="cap-text">'+c.text+'</div></div></div>';
+    }
+    capList.innerHTML=html; caps.style.display='flex';
+  }
+
+  function setMode(m){
+    mode=m;
+    var idle=(m==='idle'||m==='ended'), playing=(m==='playing');
+    overlay.style.display=idle?'flex':'none';
+    controls.style.display=idle?'none':'flex';
+    live.style.display=playing?'inline-flex':'none';
+    rec.style.display=playing?'none':'inline-flex';
+    pauseIco.style.display=playing?'block':'none';
+    playIco.style.display=playing?'none':'block';
+    if(idle){ caps.style.display='none'; }
+  }
+
+  // ---- rAF loop: state is derived from the media element, so it never desyncs ----
+  function frame(){
+    var playing=!audio.paused && !audio.ended;
+    if(playing){ playhead=audio.currentTime; renderBars(); updateTime(playhead); }
+    else { renderIdle(); }
+    requestAnimationFrame(frame);
+  }
+
+  function activate(){
+    if(mode==='idle'||mode==='ended'){ try{audio.currentTime=0;}catch(e){} lastSec=-1; playhead=0; }
+    if(!audio.paused) return;
+    var p=audio.play(); if(p&&p.catch) p.catch(function(){});
+  }
+  function toggle(e){ if(e) e.stopPropagation(); if(audio.paused){ var p=audio.play(); if(p&&p.catch)p.catch(function(){}); } else { audio.pause(); } }
+
+  card.addEventListener('click', activate);
+  card.addEventListener('keydown', function(e){ if(e.key===' '||e.key==='Enter'){ e.preventDefault(); activate(); } });
+  btn.addEventListener('click', toggle);
+  audio.addEventListener('play', function(){ setMode('playing'); });
+  audio.addEventListener('playing', function(){ setMode('playing'); });
+  audio.addEventListener('pause', function(){ if(!audio.ended && mode==='playing') setMode('paused'); });
+  audio.addEventListener('ended', function(){ playhead=0; try{audio.currentTime=0;}catch(e){} lastSec=-1; fill.style.width='0%'; elapsed.textContent='0:00'; capIdx=-1; renderCaptions(); setMode('ended'); });
+  audio.addEventListener('loadedmetadata', setDur);
+  audio.addEventListener('durationchange', setDur);
+
+  setDur(); setMode('idle'); try{ audio.load(); }catch(e){}
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

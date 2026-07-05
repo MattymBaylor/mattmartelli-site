@@ -85,7 +85,7 @@
   }
 }
 
-/* Auto-scrolling shorts row in AiBriefSection. The track holds two copies of
+/* Auto-scrolling shorts row in AiBrief. The track holds two copies of
  * the tile set, so translating -50% loops seamlessly. Pauses on hover; under
  * reduced motion the global override freezes it as a static row. */
 .ticker-track {

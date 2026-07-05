@@ -20,7 +20,7 @@ type Brief = { id: string; views: number };
  * The RSS feed needs no API key and carries the latest 15 uploads with a
  * per-video view count, so the row is sorted most-popular-first and
  * refreshes itself on the revalidate interval — same zero-maintenance
- * pattern as the Buzzsprout iframe in PodcastSection. On any fetch failure
+ * pattern as the Buzzsprout iframe in Podcast. On any fetch failure
  * the section renders copy + CTA without the ticker rather than erroring
  * the homepage.
  */
@@ -78,7 +78,7 @@ function TickerTile({ brief, hidden }: { brief: Brief; hidden?: boolean }) {
   );
 }
 
-export async function AiBriefSection() {
+export async function AiBrief() {
   const briefs = await getBriefs();
 
   return (

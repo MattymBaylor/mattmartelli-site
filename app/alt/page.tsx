@@ -20,7 +20,7 @@ import { Contact } from "@/components/sections/Contact";
  *   Hero → ProofBar → AgenticSystems → AuditFramework →
  *   ArchitectureShowcase → Projects → RecruiterSummary → Contact
  *
- * Orchestration, VoiceAI, MarketingOps, AiBriefSection, and PodcastSection
+ * Orchestration, VoiceAI, MarketingOps, AiBrief, and Podcast
  * are intentionally absent (see alt-homepage/IMPLEMENTATION-NOTES.md). If this
  * version is chosen, it graduates into `/` and this route is retired.
  */

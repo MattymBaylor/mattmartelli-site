@@ -38,7 +38,7 @@ export const site = {
           { label: "Voice AI", href: "#voice-ai" },
           { label: "Marketing Ops & CRM", href: "#marketing-ops" },
           { label: "AI Orchestration", href: "#orchestration" },
-          { label: "Architecture", href: "#architecture" },
+          { label: "System Blueprints", href: "#architecture" },
         ],
       },
       { label: "Projects", href: "#projects" },

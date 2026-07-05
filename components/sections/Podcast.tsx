@@ -1,7 +1,10 @@
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { ArrowUpRight } from "lucide-react";
+import { Reveal } from "@/components/ui/Reveal";
 
 const SHOW = {
   apple: "https://podcasts.apple.com/us/podcast/matt-maya-show/id1896938560",
+  // Canonical Buzzsprout-distributed listing ("Matt & Maya Show"). A duplicate
+  // show exists at 033eA9NTuNMrGo6Wt6NjGl ("Matt and Maya Show") — don't link it.
   spotify: "https://open.spotify.com/show/033Ah8biairbAIrgFI0A6O",
   amazon: "https://music.amazon.com/podcasts/2d5f5247-5798-4070-9b00-6ee01cb124bc/matt-maya-show",
 };
@@ -49,38 +52,81 @@ const PLATFORMS = [
   { name: "Amazon Music", href: SHOW.amazon, Logo: AmazonLogo },
 ];
 
+/**
+ * The Matt & Maya Show — Buzzsprout "large player" (feed 2625238) embedded as a
+ * plain iframe (client_source=large_player), NOT the JS loader embed.
+ *
+ * Why the iframe: the JS embed injects the player via a one-time loader script.
+ * On client-side (SPA) navigation back to the page, Next re-renders an empty
+ * container but the loader doesn't re-run, so the player shows collapsed. A plain
+ * iframe re-mounts and reloads cleanly on every navigation. RSS-backed, so new
+ * episodes appear automatically with no redeploy.
+ */
 export function Podcast() {
   return (
-    <section id="podcast" className="section border-t border-line/60 bg-surface/30">
+    <section id="podcast" className="section border-b border-line/60">
       <div className="container-x">
-        <SectionHeading
-          eyebrow="Now Live · Podcast"
-          title="The Matt & Maya Show"
-          sub="People, patterns, and the collision between human instinct and machine intelligence — every episode is a conversation between Matt and Maya, an AI co-host."
-        />
-        <div className="mt-8 flex flex-wrap items-center gap-3">
-          {PLATFORMS.map(({ name, href, Logo }) => (
-            <a
-              key={name}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Listen to the Matt & Maya Show on ${name}`}
-              className="inline-flex items-center gap-2.5 rounded-xl px-4 py-2.5 transition hover:-translate-y-px"
-              style={{ background: "#121216", border: "1px solid rgba(255,255,255,0.14)" }}
-            >
-              <Logo />
-              <span className="flex flex-col leading-tight text-left">
-                <span className="text-[10px] uppercase tracking-wide" style={{ color: "rgba(255,255,255,0.6)" }}>
-                  Listen on
-                </span>
-                <span className="text-sm font-semibold" style={{ color: "#fff" }}>
-                  {name}
-                </span>
-              </span>
-            </a>
-          ))}
-        </div>
+        <Reveal>
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="eyebrow mb-3">Listen</p>
+            <h2 className="text-3xl font-semibold sm:text-4xl">The Matt &amp; Maya Show</h2>
+            <p className="mt-5 text-base leading-relaxed text-ink-muted">
+              Human instinct meets elegant logic. I co-host a podcast with Maya — an AI —
+              about people, patterns, and the collision between human intuition and machine
+              intelligence. New episodes land in the player below.
+            </p>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <div className="mx-auto mt-10 max-w-3xl">
+            <div className="overflow-hidden rounded-xl border border-line shadow-glow">
+              <iframe
+                src="https://www.buzzsprout.com/2625238?client_source=large_player&iframe=true"
+                title="The Matt & Maya Show"
+                loading="lazy"
+                className="block h-[380px] w-full"
+                style={{ border: "none" }}
+              />
+            </div>
+
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              {PLATFORMS.map(({ name, href, Logo }) => (
+                <a
+                  key={name}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Listen to the Matt & Maya Show on ${name}`}
+                  className="inline-flex items-center gap-2.5 rounded-xl px-4 py-2.5 transition hover:-translate-y-px"
+                  style={{ background: "#121216", border: "1px solid rgba(255,255,255,0.14)" }}
+                >
+                  <Logo />
+                  <span className="flex flex-col leading-tight text-left">
+                    <span className="text-[10px] uppercase tracking-wide" style={{ color: "rgba(255,255,255,0.6)" }}>
+                      Listen on
+                    </span>
+                    <span className="text-sm font-semibold" style={{ color: "#fff" }}>
+                      {name}
+                    </span>
+                  </span>
+                </a>
+              ))}
+            </div>
+
+            <p className="mt-6 text-center text-sm text-ink-faint">
+              <a
+                href="https://mattandmayashow.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-accent-cyan transition-colors hover:text-accent-cyan/80"
+              >
+                Follow the show at mattandmayashow.com
+                <ArrowUpRight size={14} aria-hidden />
+              </a>
+            </p>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

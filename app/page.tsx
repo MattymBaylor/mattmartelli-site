@@ -6,8 +6,8 @@ import { Orchestration } from "@/components/sections/Orchestration";
 import { VoiceAI } from "@/components/sections/VoiceAI";
 import { MarketingOps } from "@/components/sections/MarketingOps";
 import { Projects } from "@/components/sections/Projects";
-import { AiBriefSection } from "@/components/sections/AiBriefSection";
-import { PodcastSection } from "@/components/sections/PodcastSection";
+import { AiBrief } from "@/components/sections/AiBrief";
+import { Podcast } from "@/components/sections/Podcast";
 import { RecruiterSummary } from "@/components/sections/RecruiterSummary";
 import { Contact } from "@/components/sections/Contact";
 
@@ -22,8 +22,8 @@ export default function HomePage() {
         <VoiceAI />
         <MarketingOps />
         <Projects />
-        <AiBriefSection />
-        <PodcastSection />
+        <AiBrief />
+        <Podcast />
         <RecruiterSummary />
         <Contact />
       </main>
