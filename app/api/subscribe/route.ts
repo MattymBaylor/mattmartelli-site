@@ -8,15 +8,18 @@ import { NextRequest, NextResponse } from "next/server";
  *   - Validates + sanitizes the email and source.
  *   - Logs every capture to the function output (visible in the Vercel
  *     function logs) so captures are never lost, even before a webhook is set.
- *   - Best-effort forwards to N8N_SUBSCRIBE_WEBHOOK_URL if it's set in env.
- *     A failed forward DOES NOT block the response — UX shouldn't depend on
- *     downstream plumbing. The n8n workflow stores the lead + emails the guide.
+ *   - Forwards to the n8n subscribe webhook (env override, else the hardcoded
+ *     default below). A failed forward DOES NOT block the response — UX
+ *     shouldn't depend on downstream plumbing. The n8n workflow stores the
+ *     lead + emails the guide once it's activated.
  */
 
 export const runtime = "nodejs";
 export const maxDuration = 10;
 
-const WEBHOOK_URL = process.env.N8N_SUBSCRIBE_WEBHOOK_URL || "";
+const WEBHOOK_URL =
+  process.env.N8N_SUBSCRIBE_WEBHOOK_URL ||
+  "https://n8n.growthmindsetai.tech/webhook/mattmartelli-framework-subscribe";
 
 function sanitize(s: unknown, max: number): string {
   if (typeof s !== "string") return "";
