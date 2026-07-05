@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Check, CheckCircle2, Mail } from "lucide-react";
+import { ArrowUpRight, Check, CheckCircle2, Mail } from "lucide-react";
 import { site } from "@/content/site";
 import { ConstellationBackground } from "@/components/hero/ConstellationBackground";
 import { usePrefersReducedMotion } from "@/lib/useReducedMotion";
@@ -177,17 +177,6 @@ export function Hero() {
               variants={item}
               className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center lg:justify-end"
             >
-              <Link
-                href={hero.ctas.primary.href}
-                className="group inline-flex items-center justify-center gap-2 rounded-md bg-accent-gradient px-5 py-3 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03]"
-              >
-                {hero.ctas.primary.label}
-                <ArrowRight
-                  size={16}
-                  className="transition-transform group-hover:translate-x-0.5"
-                  aria-hidden
-                />
-              </Link>
               <Link
                 href={hero.ctas.secondary.href}
                 className="group inline-flex items-center justify-center gap-2 rounded-md bg-[#FACC15] px-5 py-3 text-sm font-semibold text-night shadow-[0_0_0_1px_rgba(250,204,21,0.35),0_0_16px_-8px_rgba(250,204,21,0.4)] transition-transform hover:scale-[1.03]"
