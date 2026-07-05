@@ -20,14 +20,6 @@ type Diagram = {
  */
 const DIAGRAMS: Diagram[] = [
   {
-    id: "playbook",
-    title: "Agentic Playbook",
-    industry: "Interactive · live demos",
-    blurb:
-      "The interactive playbook — load a live demo on one side and the full case study on the other. Every production system I've shipped, explorable side by side.",
-    file: "/playbook",
-  },
-  {
     id: "lead-hygiene-canvas",
     title: "Lead Hygiene & Compliance Pipeline",
     industry: "RevOps · TCPA compliance",
