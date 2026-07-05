@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inside Sales Dashboard - Call Log Analytics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #05070d;
+            --panel: #0d1220;
+            --panel-2: #111828;
+            --border: #1e2740;
+            --text: #eef2fb;
+            --muted: #8a95ad;
+            --blue: #3d9bff;
+            --blue-glow: #1f6fff;
+            --yellow: #ffd23f;
+            --green: #34d399;
+            --green-glow: #10b981;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background:
+                radial-gradient(1200px 600px at 15% -10%, rgba(31,111,255,0.12), transparent 60%),
+                var(--bg);
+            padding: 24px;
+            color: var(--text);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            letter-spacing: -0.011em;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            overflow: hidden;
+        }
+
+        .header {
+            background:
+                linear-gradient(135deg, rgba(31,111,255,0.16) 0%, rgba(5,7,13,0.2) 60%),
+                var(--panel-2);
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+            padding: 52px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::after {
+            content: "";
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--blue), var(--yellow), transparent);
+            opacity: 0.6;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 10px;
+        }
+
+        .header h1 .accent { color: var(--blue); }
+
+        .header p {
+            font-size: 0.95em;
+            color: var(--muted);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 40px;
+            background: var(--bg);
+        }
+
+        .metric-card {
+            background: var(--panel-2);
+            border: 1px solid var(--border);
+            padding: 26px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--blue);
+            box-shadow: 0 8px 26px rgba(31,111,255,0.2);
+        }
+
+        .metric-card .label {
+            color: var(--muted);
+            font-size: 0.8em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 12px;
+        }
+
+        .metric-card .value {
+            font-size: 2.6em;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--blue);
+        }
+
+        .metric-card .subvalue {
+            font-size: 0.9em;
+            color: var(--muted);
+            margin-top: 6px;
+            font-weight: 400;
+        }
+
+        /* green highlight for the Connection Rate card to break up the blue */
+        .metric-card.green {
+            background: linear-gradient(180deg, rgba(52,211,153,0.12), rgba(52,211,153,0.03)), var(--panel-2);
+            border-color: rgba(52,211,153,0.45);
+        }
+        .metric-card.green:hover {
+            border-color: var(--green);
+            box-shadow: 0 8px 26px rgba(16,185,129,0.28);
+        }
+        .metric-card.green .value { color: var(--green); }
+        .metric-card.green .label { color: #7fe3c0; }
+
+        .section {
+            padding: 40px;
+        }
+
+        .section.alt { background: var(--bg); }
+
+        .section h2 {
+            color: var(--text);
+            font-size: 1.5em;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 22px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section h2 .bar-accent { color: var(--blue); }
+
+        .chart-container {
+            background: var(--panel-2);
+            border: 1px solid var(--border);
+            padding: 26px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+        }
+
+        .bar-chart { margin: 10px 0; }
+        .bar-item { margin-bottom: 18px; }
+
+        .bar-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 7px;
+            font-size: 0.92em;
+        }
+
+        .bar-label .name { font-weight: 600; color: var(--text); }
+        .bar-label .value { color: var(--muted); font-weight: 600; }
+
+        .bar-background {
+            background: #0a0f1c;
+            border: 1px solid var(--border);
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            width: 0;
+            background: linear-gradient(90deg, var(--blue-glow) 0%, var(--blue) 100%);
+            height: 100%;
+            border-radius: 15px;
+            transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            color: #fff;
+            font-size: 0.82em;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* single yellow accent for the one figure worth flagging */
+        .bar-fill.accent {
+            background: linear-gradient(90deg, #c9a417 0%, var(--yellow) 100%);
+            color: #1a1400;
+        }
+
+        .bar-background { position: relative; }
+
+        .bar-value {
+            position: absolute;
+            top: 0; left: 0; height: 100%;
+            display: flex; align-items: center;
+            font-size: 0.82em; font-weight: 600;
+            white-space: nowrap;
+            color: #fff; opacity: 0;
+            pointer-events: none;
+            transition: left 1.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+        }
+        .bar-value.outside { color: var(--text); }
+        .bar-fill.accent + .bar-value.inside { color: #1a1400; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 6px 0;
+            background: var(--panel-2);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th {
+            background: #0a1120;
+            color: var(--muted);
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75em;
+            letter-spacing: 0.08em;
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            padding: 14px 15px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+            font-size: 0.95em;
+        }
+
+        tr:hover td { background: #0a1120; }
+
+        .interpretation {
+            background: var(--panel-2);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--blue);
+            padding: 28px 30px;
+            border-radius: 12px;
+        }
+
+        .interpretation h3 {
+            color: var(--text);
+            margin-bottom: 14px;
+            font-size: 1.1em;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .interpretation p {
+            color: var(--muted);
+            line-height: 1.75;
+            margin-bottom: 18px;
+            font-size: 0.98em;
+        }
+
+        .interpretation p strong { color: var(--text); font-weight: 600; }
+
+        .interpretation ul { list-style: none; margin: 0; }
+
+        .interpretation li {
+            position: relative;
+            padding-left: 24px;
+            margin: 13px 0;
+            color: var(--muted);
+            line-height: 1.6;
+            font-size: 0.98em;
+        }
+
+        .interpretation li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.6em;
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: var(--blue);
+        }
+
+        .interpretation li strong { color: var(--text); font-weight: 600; }
+
+        .insight-box {
+            background: var(--panel-2);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--border);
+            padding: 22px 24px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .insight-box h3 {
+            color: var(--text);
+            margin-bottom: 12px;
+            font-weight: 700;
+            font-size: 1.05em;
+        }
+        .insight-box ul { margin-left: 20px; color: var(--muted); }
+        .insight-box li { margin: 9px 0; line-height: 1.55; font-size: 0.95em; }
+        .insight-box li strong { color: var(--text); }
+        .insight-box.accent { border-left-color: var(--blue); }
+        .insight-box.accent h3 { color: var(--blue); }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+        }
+
+        .status-good { background: rgba(61,155,255,0.12); color: var(--blue); border: 1px solid rgba(61,155,255,0.3); }
+        .status-warning { background: rgba(138,149,173,0.12); color: var(--muted); border: 1px solid rgba(138,149,173,0.3); }
+
+        .footer {
+            background: var(--panel-2);
+            border-top: 1px solid var(--border);
+            padding: 32px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer .brand { display: flex; align-items: center; gap: 14px; }
+
+        .footer .brand .logo-mark {
+            width: 42px; height: 42px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-glow) 100%);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .footer .brand .logo-mark svg { width: 26px; height: 26px; }
+
+        .footer .brand .brand-text .name { font-weight: 700; font-size: 1.05em; }
+        .footer .brand .brand-text .name .gm-blue { color: var(--blue); }
+        .footer .brand .brand-text .url { color: var(--muted); font-size: 0.85em; }
+
+        .footer .meta { color: var(--muted); font-size: 0.85em; text-align: right; line-height: 1.5; }
+
+        @media print {
+            body { background: var(--bg); padding: 0; }
+            .container { box-shadow: none; }
+            .bar-fill { transition: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><span class="accent">Inside Sales</span> Dashboard</h1>
+            <p>Call Log Analytics</p>
+        </div>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="label">Total Calls</div>
+                <div class="value">1,047</div>
+                <div class="subvalue">2-day campaign</div>
+            </div>
+            <div class="metric-card">
+                <div class="label">Total Cost</div>
+                <div class="value">$1.29</div>
+                <div class="subvalue">$0.0012 per call</div>
+            </div>
+            <div class="metric-card">
+                <div class="label">Talk Time</div>
+                <div class="value">1.7 hrs</div>
+                <div class="subvalue">101 minutes total</div>
+            </div>
+            <div class="metric-card green">
+                <div class="label">Connection Rate</div>
+                <div class="value">53.9%</div>
+                <div class="subvalue">564 productive calls</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>What This Is Really Telling You</h2>
+            <div class="interpretation">
+                <h3>The read on this campaign</h3>
+                <p>
+                    On the surface the numbers look healthy &mdash; over a thousand dials in two days
+                    at almost no cost. But volume is masking the real story. This was a
+                    <strong>dialing exercise, not a selling exercise</strong>. More than eight in ten
+                    calls never reached a live, interested human: they landed in voicemail, hit a dead
+                    number, or bounced off a busy signal. The low cost isn't a win to celebrate; it's a
+                    symptom of how few real conversations actually happened.
+                </p>
+                <ul>
+                    <li><strong>Reach, not conversion, is the bottleneck.</strong> A 53.9% "connection" rate is really a voicemail-drop rate &mdash; average talk time of ~5.8s means almost no one is being spoken to. The list and the dialing strategy, not the pitch, are where value is leaking.</li>
+                    <li><strong>List quality is quietly draining the campaign.</strong> 18.3% bad numbers means roughly 1 in every 5 dials was dead on arrival. Scrubbing the list is the single highest-leverage fix before spending another hour on the phones.</li>
+                    <li><strong>Effort is going to overhead, not selling.</strong> After-call work (2.92 hrs) is outrunning actual talk time (1.69 hrs). Reps are spending more time logging calls than talking to prospects &mdash; a process problem worth automating away.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section alt">
+            <h2>Disposition <span class="bar-accent">Breakdown</span></h2>
+            <div class="chart-container">
+                <div class="bar-chart">
+                    <div class="bar-item">
+                        <div class="bar-label"><span class="name">Voicemail</span><span class="value">684 (65.3%)</span></div>
+                        <div class="bar-background"><div class="bar-fill" data-width="65.3"></div><span class="bar-value">65.3%</span></div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label"><span class="name">Bad Number</span><span class="value">192 (18.3%)</span></div>
+                        <div class="bar-background"><div class="bar-fill accent" data-width="18.3"></div><span class="bar-value">18.3%</span></div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label"><span class="name">Busy Signal</span><span class="value">68 (6.5%)</span></div>
+                        <div class="bar-background"><div class="bar-fill" data-width="6.5"></div><span class="bar-value">6.5%</span></div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label"><span class="name">No Answer No VM</span><span class="value">50 (4.8%)</span></div>
+                        <div class="bar-background"><div class="bar-fill" data-width="4.8"></div><span class="bar-value">4.8%</span></div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label"><span class="name">Not Interested</span><span class="value">22 (2.1%)</span></div>
+                        <div class="bar-background"><div class="bar-fill" data-width="2.1"></div><span class="bar-value">2.1%</span></div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label"><span class="name">Other</span><span class="value">31 (3.0%)</span></div>
+                        <div class="bar-background"><div class="bar-fill" data-width="3.0"></div><span class="bar-value">3.0%</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Agent <span class="bar-accent">Performance</span></h2>
+            <div class="chart-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Agent Name</th>
+                            <th>Total Calls</th>
+                            <th>Voicemails</th>
+                            <th>Avg Talk Time</th>
+                            <th>Total Cost</th>
+                            <th>Efficiency</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Rep A</strong></td>
+                            <td>264</td><td>222</td><td>5.0s</td><td>$0.29</td>
+                            <td><span class="status-badge status-good">Top Performer</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rep B</strong></td>
+                            <td>259</td><td>134</td><td>7.0s</td><td>$0.38</td>
+                            <td><span class="status-badge status-good">High Volume</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rep C</strong></td>
+                            <td>209</td><td>161</td><td>5.7s</td><td>$0.25</td>
+                            <td><span class="status-badge status-good">Efficient</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rep D</strong></td>
+                            <td>176</td><td>88</td><td>7.2s</td><td>$0.27</td>
+                            <td><span class="status-badge status-good">Solid</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rep E</strong></td>
+                            <td>32</td><td>11</td><td>2.9s</td><td>$0.02</td>
+                            <td><span class="status-badge status-warning">Lower Volume</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rep F</strong></td>
+                            <td>30</td><td>29</td><td>5.4s</td><td>$0.03</td>
+                            <td><span class="status-badge status-warning">Lower Volume</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Others</strong></td>
+                            <td>77</td><td>39</td><td>3.4s</td><td>$0.05</td>
+                            <td><span class="status-badge status-warning">Part-Time</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section alt">
+            <h2>Call Activity <span class="bar-accent">by Hour</span></h2>
+            <div class="chart-container">
+                <div class="bar-chart">
+                    <div class="bar-item">
+                        <div class="bar-label"><span class="name">12:00 PM</span><span class="value">54 calls</span></div>
+                        <div class="bar-background"><div class="bar-fill" data-width="15.5"></div><span class="bar-value">5.2%</span></div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label"><span class="name">1:00 PM</span><span class="value">226 calls</span></div>
+                        <div class="bar-background"><div class="bar-fill" data-width="64.8"></div><span class="bar-value">21.6%</span></div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label"><span class="name">2:00 PM</span><span class="value">349 calls</span></div>
+                        <div class="bar-background"><div class="bar-fill" data-width="100"></div><span class="bar-value">33.3%</span></div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label"><span class="name">3:00 PM</span><span class="value">237 calls</span></div>
+                        <div class="bar-background"><div class="bar-fill" data-width="67.9"></div><span class="bar-value">22.6%</span></div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label"><span class="name">4:00 PM</span><span class="value">150 calls</span></div>
+                        <div class="bar-background"><div class="bar-fill" data-width="43.0"></div><span class="bar-value">14.3%</span></div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label"><span class="name">5:00 PM</span><span class="value">31 calls</span></div>
+                        <div class="bar-background"><div class="bar-fill" data-width="8.9"></div><span class="bar-value">3.0%</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Key Insights &amp; <span class="bar-accent">Recommendations</span></h2>
+
+            <div class="insight-box accent">
+                <h3>Strengths</h3>
+                <ul>
+                    <li><strong>Cost Efficiency:</strong> Extremely low cost per call ($0.0012) indicates an efficient dialing system</li>
+                    <li><strong>High Activity:</strong> 1,047 calls in 2 days shows strong campaign momentum</li>
+                    <li><strong>Top Performers:</strong> Rep A and Rep B driving majority of volume (50%)</li>
+                    <li><strong>Peak Performance:</strong> 2:00 PM shows highest activity (349 calls)</li>
+                </ul>
+            </div>
+
+            <div class="insight-box">
+                <h3>Areas for Improvement</h3>
+                <ul>
+                    <li><strong>Data Quality:</strong> 18.3% bad numbers (192 calls) &mdash; clean list needed to improve efficiency</li>
+                    <li><strong>Low Talk Time:</strong> Average 5.8s suggests quick voicemail drops &mdash; consider longer messages</li>
+                    <li><strong>Connection Rate:</strong> 53.9% productive calls &mdash; could improve with callback strategies</li>
+                    <li><strong>Low Conversion:</strong> Only 1 appointment set from 1,047 calls (0.1%)</li>
+                    <li><strong>After Call Work:</strong> 2.92 hrs ACW vs 1.69 hrs talk time &mdash; streamline processes</li>
+                </ul>
+            </div>
+
+            <div class="insight-box accent">
+                <h3>Action Items</h3>
+                <ul>
+                    <li><strong>List Hygiene:</strong> Scrub contact list to remove bad numbers before next campaign</li>
+                    <li><strong>Script Review:</strong> Evaluate voicemail script &mdash; extremely low conversion suggests poor messaging</li>
+                    <li><strong>Training:</strong> Focus on agents with lower volume (Rep E, Rep F) to match top performers</li>
+                    <li><strong>Timing:</strong> Concentrate efforts during the 1&ndash;3 PM window for maximum reach</li>
+                    <li><strong>Process Efficiency:</strong> Reduce ACW time through automation or simplified logging</li>
+                    <li><strong>Follow-up Strategy:</strong> Implement callback strategy for voicemails and no-answers</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section alt">
+            <h2>Campaign <span class="bar-accent">Summary</span></h2>
+            <div class="metrics-grid" style="padding: 6px 0; background: transparent;">
+                <div class="metric-card">
+                    <div class="label">Conversion Rate</div>
+                    <div class="value" style="color: var(--yellow);">0.1%</div>
+                    <div class="subvalue">1 appointment / 1,047 calls</div>
+                </div>
+                <div class="metric-card">
+                    <div class="label">Cost Per Appointment</div>
+                    <div class="value">$1.29</div>
+                    <div class="subvalue">Based on 1 appointment</div>
+                </div>
+                <div class="metric-card">
+                    <div class="label">Avg Handle Time</div>
+                    <div class="value">15.8s</div>
+                    <div class="subvalue">Talk + ACW time</div>
+                </div>
+                <div class="metric-card">
+                    <div class="label">Data Quality Score</div>
+                    <div class="value">81.7%</div>
+                    <div class="subvalue">Valid numbers</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">
+                <img src="data:image/png;base64,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" alt="growthmindset.ai" style="height:34px; width:auto; display:block;" />
+            </div>
+            <div class="meta">
+                Inside Sales &mdash; Call Log Analytics
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            function place(item) {
+                var track = item.querySelector('.bar-background');
+                var fill  = item.querySelector('.bar-fill');
+                var val   = item.querySelector('.bar-value');
+                if (!track || !fill || !val) return;
+                var pct = parseFloat(fill.getAttribute('data-width')) || 0;
+                var trackW = track.clientWidth;
+                var fillW = trackW * pct / 100;
+                var textW = val.offsetWidth;
+                var PAD = 12;
+                if (fillW >= textW + PAD * 2) {
+                    val.classList.remove('outside'); val.classList.add('inside');
+                    val.style.left = Math.max(PAD, fillW - textW - PAD) + 'px';
+                } else {
+                    val.classList.remove('inside'); val.classList.add('outside');
+                    var left = fillW + PAD;
+                    if (left + textW > trackW) left = Math.max(0, trackW - textW);
+                    val.style.left = left + 'px';
+                }
+                val.style.opacity = '1';
+            }
+            var items = document.querySelectorAll('.bar-item');
+            var bars = document.querySelectorAll('.bar-fill');
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        var fill = entry.target;
+                        var item = fill.closest('.bar-item');
+                        var target = fill.getAttribute('data-width');
+                        setTimeout(function () { fill.style.width = target + '%'; place(item); }, 80);
+                        observer.unobserve(fill);
+                    }
+                });
+            }, { threshold: 0.35 });
+            bars.forEach(function (bar) { observer.observe(bar); });
+            window.addEventListener('resize', function () { items.forEach(place); });
+            window.addEventListener('load', function () { setTimeout(function () { items.forEach(place); }, 1600); });
+        })();
+    </script>
+</body>
+</html>
