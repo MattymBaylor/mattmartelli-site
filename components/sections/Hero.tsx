@@ -7,7 +7,6 @@ import { ArrowRight, ArrowUpRight, Check, CheckCircle2, Mail } from "lucide-reac
 import { site } from "@/content/site";
 import { ConstellationBackground } from "@/components/hero/ConstellationBackground";
 import { usePrefersReducedMotion } from "@/lib/useReducedMotion";
-import { LiteYouTube } from "@/components/ui/LiteYouTube";
 
 const { hero } = site;
 const TIGER_VIDEO_ID = "1oojonDDqek";
@@ -19,7 +18,11 @@ const TIGER_EMBED = `https://www.youtube-nocookie.com/embed/${TIGER_VIDEO_ID}?au
 const TIGER_EMBED_STATIC = `https://www.youtube-nocookie.com/embed/${TIGER_VIDEO_ID}?controls=1&modestbranding=1&rel=0&playsinline=1`;
 
 // Live demo (vertical YouTube Short) shown on the left of the hero.
+// Chromeless autoplay loop (muted) — matches the Tiger film treatment: no
+// click-to-play, no YouTube UI. Reduced motion falls back to click-to-play.
 const DEMO_VIDEO_ID = "chaXY24gZpA";
+const DEMO_EMBED = `https://www.youtube-nocookie.com/embed/${DEMO_VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${DEMO_VIDEO_ID}&controls=0&modestbranding=1&rel=0&playsinline=1`;
+const DEMO_EMBED_STATIC = `https://www.youtube-nocookie.com/embed/${DEMO_VIDEO_ID}?controls=1&modestbranding=1&rel=0&playsinline=1`;
 
 const leadPoints = [
   "Reward engineering makes AI fight for truth instead of gaming the metric.",
@@ -101,21 +104,25 @@ export function Hero() {
           right margin (right). ════════════════════ */}
       <div className="container-x scroll-mt-24 pb-20 pt-28 sm:pb-28 sm:pt-36">
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,300px)_minmax(0,1fr)] lg:gap-14">
-          {/* LEFT — the live demo (vertical Short). Click-to-play with sound. */}
+          {/* LEFT — the live demo (vertical Short). Chromeless autoplay loop;
+              never navigates to YouTube. Reduced motion → click-to-play. */}
           <motion.div
             variants={item}
             initial="hidden"
             animate="show"
             className="order-2 mx-auto w-full max-w-[300px] lg:order-1 lg:mx-0"
           >
-            <LiteYouTube
-              id={DEMO_VIDEO_ID}
-              title="Live system demo"
-              aspectClassName="aspect-[9/16]"
-              className="shadow-glow"
-            />
+            <div className="relative aspect-[9/16] w-full overflow-hidden rounded-2xl border border-line bg-black shadow-glow">
+              <iframe
+                title="Live system demo"
+                src={reduced ? DEMO_EMBED_STATIC : DEMO_EMBED}
+                allow="autoplay; encrypted-media; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 h-full w-full border-0"
+              />
+            </div>
             <p className="mt-3 text-center font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint">
-              Live demo
+              Live demo of an AI powered estimator app
             </p>
           </motion.div>
 
