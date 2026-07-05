@@ -2,7 +2,6 @@ import { Header } from "@/components/nav/Header";
 import { Footer } from "@/components/nav/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { AgenticSystems } from "@/components/sections/AgenticSystems";
-import { ArchitectureShowcase } from "@/components/sections/ArchitectureShowcase";
 import { Orchestration } from "@/components/sections/Orchestration";
 import { VoiceAI } from "@/components/sections/VoiceAI";
 import { MarketingOps } from "@/components/sections/MarketingOps";
@@ -19,7 +18,6 @@ export default function HomePage() {
       <main id="main">
         <Hero />
         <AgenticSystems />
-        <ArchitectureShowcase />
         <Orchestration />
         <VoiceAI />
         <MarketingOps />
