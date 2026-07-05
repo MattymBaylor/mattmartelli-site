@@ -248,31 +248,47 @@ export function Hero() {
                 ))}
               </ul>
 
-              {/* Two stacked CTAs using the site's canonical button styles:
-                  blue (accent-gradient, black text) → the interactive "Tiger &
-                  Sentinel" Field Notes; yellow (#FACC15, black text) → the
-                  "Who Audits the Robots?" article. Consistent with the other
-                  homepage buttons. */}
-              <div className="mt-1 flex flex-col items-start gap-3">
+              {/* Three stacked CTAs — same size/style, colored yellow → blue →
+                  teal. Yellow: Tiger (offense) → the article. Blue: Sentinel
+                  (defense) — article still being written. Teal (hero cyan):
+                  the head-to-head field note. */}
+              <div className="mt-1 flex w-full flex-col gap-3 sm:w-80">
                 <a
-                  href="/field-notes/tiger-sentinel"
-                  className="group inline-flex items-center gap-2 rounded-md bg-accent-gradient px-5 py-3 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03]"
+                  href="/who-audits-the-robots"
+                  className="group flex min-h-[3.75rem] w-full items-center justify-between gap-3 rounded-md bg-[#FACC15] px-5 py-3 text-night shadow-[0_0_0_1px_rgba(250,204,21,0.35),0_0_18px_-8px_rgba(250,204,21,0.5)] transition-transform hover:scale-[1.02]"
                 >
-                  What is a Tiger Team?
+                  <span className="flex flex-col">
+                    <span className="text-sm font-bold leading-tight">Tiger Team Plays Offense</span>
+                    <span className="mt-0.5 text-xs font-medium text-night/70">Learn how</span>
+                  </span>
                   <ArrowUpRight
-                    size={16}
-                    className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    size={18}
+                    className="shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                     aria-hidden
                   />
                 </a>
-                <a
-                  href="/who-audits-the-robots"
-                  className="group inline-flex items-center gap-2 rounded-md bg-[#FACC15] px-5 py-3 text-sm font-semibold text-night shadow-[0_0_0_1px_rgba(250,204,21,0.35),0_0_16px_-8px_rgba(250,204,21,0.4)] transition-transform hover:scale-[1.03]"
+
+                <span
+                  aria-disabled="true"
+                  className="flex min-h-[3.75rem] w-full cursor-default items-center justify-between gap-3 rounded-md bg-accent-gradient px-5 py-3 text-night shadow-glow"
                 >
-                  Read the Article
+                  <span className="flex flex-col">
+                    <span className="text-sm font-bold leading-tight">Sentinel Team Plays Defense</span>
+                    <span className="mt-0.5 text-xs font-medium text-night/70">Coming soon</span>
+                  </span>
+                </span>
+
+                <a
+                  href="/field-notes/tiger-sentinel"
+                  className="group flex min-h-[3.75rem] w-full items-center justify-between gap-3 rounded-md bg-accent-cyan px-5 py-3 text-night shadow-[0_0_0_1px_rgba(34,211,238,0.35),0_0_18px_-8px_rgba(34,211,238,0.55)] transition-transform hover:scale-[1.02]"
+                >
+                  <span className="flex flex-col">
+                    <span className="text-sm font-bold leading-tight">Tiger vs. Sentinel</span>
+                    <span className="mt-0.5 text-xs font-medium text-night/70">Learn why</span>
+                  </span>
                   <ArrowUpRight
-                    size={16}
-                    className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    size={18}
+                    className="shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                     aria-hidden
                   />
                 </a>

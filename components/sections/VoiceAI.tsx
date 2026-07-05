@@ -1,3 +1,4 @@
+import { ArrowLeft } from "lucide-react";
 import { site } from "@/content/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
@@ -45,7 +46,7 @@ export function VoiceAI() {
         </Reveal>
 
         <Reveal delay={0.12}>
-          <div className="mt-12 grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-center">
+          <div className="mt-12 mb-28 grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-center">
             <div>
               <p className="mb-3 font-mono text-xs uppercase tracking-[0.18em] text-ink-faint">
                 Hear it in action
@@ -66,14 +67,23 @@ export function VoiceAI() {
               </div>
             </div>
             <div>
-              <p className="font-display text-xl font-semibold text-ink">
+              <p className="font-display text-xl font-semibold text-ink sm:text-2xl">
                 Productized voice AI, in plain English
               </p>
               <p className="mt-4 text-base leading-relaxed text-ink-muted">
-                The Voice AI used here was created with n8n, Retell AI, OpenAI, Claude
-                Code, ElevenLabs, and HeyGen, and the vector database was managed by
-                Crew AI. Please play and hear a live interaction. The workflow on this
-                was so streamlined that our agent didn&apos;t miss a beat.
+                Built end-to-end with{" "}
+                <span className="font-medium text-ink">
+                  n8n, Retell AI, OpenAI, Claude Code, ElevenLabs, and HeyGen
+                </span>{" "}
+                &mdash; with the vector database managed by{" "}
+                <span className="font-medium text-ink">Crew AI</span>.
+              </p>
+              <p className="mt-3 text-base leading-relaxed text-ink-muted">
+                The workflow was so streamlined the agent didn&apos;t miss a beat.
+              </p>
+              <p className="mt-6 flex items-center gap-2.5 text-sm font-semibold uppercase tracking-[0.14em] text-accent-cyan">
+                <ArrowLeft size={18} aria-hidden className="shrink-0 animate-pulse" />
+                Push play &mdash; hear a live interaction
               </p>
             </div>
           </div>

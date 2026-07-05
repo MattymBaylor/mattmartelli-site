@@ -14,14 +14,14 @@ export function Orchestration() {
         />
 
         <Reveal>
-          <div className="mt-5 max-w-5xl space-y-3">
-            <p className="text-base leading-relaxed text-ink">
+          <div className="mt-5 max-w-4xl space-y-4">
+            <p className="text-base leading-relaxed text-ink-muted sm:text-lg">
               {orchestration.framing}
             </p>
-            <p className="text-base leading-relaxed text-ink-muted">
+            <p className="text-base leading-relaxed text-ink-muted sm:text-lg">
               {orchestration.body}
             </p>
-            <p className="text-base font-medium text-ink">
+            <p className="text-base leading-relaxed text-ink-muted sm:text-lg">
               {orchestration.cue}
             </p>
           </div>
