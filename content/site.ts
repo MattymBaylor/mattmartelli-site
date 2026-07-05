@@ -212,8 +212,12 @@ export const site = {
 
   orchestration: {
     heading: "AI Orchestration & Frameworks",
-    framing: "The framework is never the product. The system is the product.",
-    body: "Frameworks are interchangeable parts. I choose them to fit the system and the business outcome — never the reverse.",
+    framing:
+      "I've built 100+ custom agent workflows and harnesses over the last few years, and no two are alike. That's the point — each one is architected around your specific business, not a template.",
+    body: "Once you realize one size never fits all, you get the flexibility to build something streamlined and genuinely custom. Every build brings a new challenge.",
+    // Points the reader up to the interactive diagram dropdown (Architecture
+    // section sits directly above this one).
+    cue: "Select from the dropdown menu to explore different ways to architect a fully functional multi-agent harness or workflow.",
     // Priority order the site emphasizes — surfaced as a visible, clickable
     // hierarchy. Each links to the section that best demonstrates it.
     emphasis: [

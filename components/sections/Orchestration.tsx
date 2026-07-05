@@ -20,6 +20,9 @@ export function Orchestration() {
           <p className="mt-4 text-base leading-relaxed text-ink-muted">
             {orchestration.body}
           </p>
+          <p className="mt-5 text-base font-medium text-ink">
+            {orchestration.cue}
+          </p>
         </SectionHeading>
 
         <div className="mt-10 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
