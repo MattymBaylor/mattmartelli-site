@@ -12,6 +12,7 @@ import {
   Loader2,
   Contrast,
   AlertTriangle,
+  X,
 } from "lucide-react";
 
 type MatrixCard = {
@@ -158,6 +159,7 @@ export default function Playbook() {
   const [loadError, setLoadError] = useState(false);
   const [caseStudyId, setCaseStudyId] = useState<string | null>(null);
   const [progress, setProgress] = useState(0);
+  const [panelOpen, setPanelOpen] = useState(false);
   const { theme, toggle, highContrast, toggleContrast } = useTheme();
 
   const handleSelect = (card: MatrixCard) => {
@@ -166,6 +168,7 @@ export default function Playbook() {
     setLoadError(false);
     setProgress(0);
     setActive(card);
+    setPanelOpen(true);
   };
 
   const handleShowOverview = () => {
@@ -173,6 +176,7 @@ export default function Playbook() {
     setLoading(false);
     setLoadError(false);
     setCaseStudyId(null);
+    setPanelOpen(true);
   };
 
   const handleViewCaseStudy = (card: MatrixCard) => {
@@ -180,6 +184,7 @@ export default function Playbook() {
     setLoading(false);
     setLoadError(false);
     setCaseStudyId(card.id);
+    setPanelOpen(true);
   };
 
   // If the iframe never fires onLoad (e.g. blocked by X-Frame-Options /
@@ -207,6 +212,27 @@ export default function Playbook() {
     }, 180);
     return () => window.clearInterval(interval);
   }, [active, loading, loadError]);
+
+  // Mobile: when the viewer opens as a pop-up, lock body scroll and allow Esc to
+  // close it. Guarded to small screens so the desktop side-by-side pane is
+  // completely untouched.
+  useEffect(() => {
+    if (!panelOpen) return;
+    const isMobile =
+      typeof window !== "undefined" &&
+      window.matchMedia("(max-width: 1023px)").matches;
+    if (!isMobile) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setPanelOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [panelOpen]);
 
   const rootClass = [
     "flex min-h-screen flex-col bg-black",
@@ -438,8 +464,20 @@ export default function Playbook() {
           })}
         </section>
 
-        {/* Right column */}
-        <aside className="flex flex-col lg:h-[calc(100vh-140px)] lg:w-2/5">
+        {/* Right column — desktop: inline side-by-side pane (unchanged).
+            Mobile: pops up as a full-screen modal when a button is clicked
+            (otherwise hidden), so the loaded content is never lost at the
+            bottom of the page. */}
+        <aside
+          className={`flex flex-col lg:h-[calc(100vh-140px)] lg:w-2/5 ${
+            panelOpen
+              ? "max-lg:fixed max-lg:inset-0 max-lg:z-[60] max-lg:bg-black/80 max-lg:p-3 max-lg:backdrop-blur-sm"
+              : "max-lg:hidden"
+          }`}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setPanelOpen(false);
+          }}
+        >
           <div className="flex h-full min-h-[60vh] flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-emerald-900/70 dark:bg-emerald-900/40">
             <div className="flex items-center gap-3 border-b border-slate-200 bg-slate-100 px-4 py-2.5 dark:border-emerald-900/70 dark:bg-emerald-950/60">
               <div className="flex gap-1.5">
@@ -461,6 +499,14 @@ export default function Playbook() {
                         : "overview://matt-martelli"}
                 </div>
               </div>
+              <button
+                type="button"
+                onClick={() => setPanelOpen(false)}
+                aria-label="Close panel"
+                className="ml-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-slate-300 bg-white text-slate-700 transition hover:bg-slate-100 lg:hidden dark:border-emerald-900/70 dark:bg-emerald-950/60 dark:text-white dark:hover:bg-emerald-900/60"
+              >
+                <X className="h-4 w-4" aria-hidden="true" />
+              </button>
             </div>
 
             <div className="relative flex-1 bg-slate-50 dark:bg-emerald-950">
