@@ -252,13 +252,12 @@ export function Hero() {
                 ))}
               </ul>
 
-              {/* Learn-more CTA — links to the "Who Audits the Robots?" blog
-                  post explaining what a Tiger Team is and how it works. */}
+              {/* Learn-more CTA — links to the interactive "Tiger & Sentinel"
+                  Field Notes landing page (/field-notes/tiger-sentinel).
+                  Solid blue to match that page's Sentinel palette. */}
               <a
-                href="https://growthmindset.ai/blog/who-audits-the-robots"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex shrink-0 items-center gap-2 self-start rounded-md border border-line-strong px-5 py-3 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan"
+                href="/field-notes/tiger-sentinel"
+                className="group inline-flex shrink-0 items-center gap-2 self-start rounded-md bg-[#2E7BC4] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(74,158,232,0.65)] transition-colors hover:bg-[#4A9EE8]"
               >
                 What is a Tiger Team?
                 <ArrowUpRight

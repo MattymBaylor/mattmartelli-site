@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Tiger &amp; The Sentinel — Field Notes · Matt Martelli</title>
+<meta name="description" content="Two rival AIs paid to win opposite victories — the Tiger, an audit team rewarded only for provable findings, and the Sentinel, a guardian that keeps production honest between audits. A Field Notes companion to “Who Audits the Robots?”">
+<meta name="author" content="Matt Martelli">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" href="/favicons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicons/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png">
+<link rel="canonical" href="https://mattmartelli.com/field-notes/tiger-sentinel">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Matt Martelli">
+<meta property="og:title" content="The Tiger &amp; The Sentinel — Field Notes">
+<meta property="og:description" content="Two rival AIs paid to win opposite victories: the Tiger (offense, paid to break things) and the Sentinel (defense, paid for nothing breaking).">
+<meta property="og:url" content="https://mattmartelli.com/field-notes/tiger-sentinel">
+<meta property="og:image" content="https://mattmartelli.com/field-notes/tiger-sentinel/hero-tiger.png">
+<meta property="og:image:alt" content="The Tiger and The Sentinel — two rival AI auditors.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Tiger &amp; The Sentinel — Field Notes">
+<meta name="twitter:description" content="Two rival AIs paid to win opposite victories — offense vs. defense — auditing the robots.">
+<meta name="twitter:image" content="https://mattmartelli.com/field-notes/tiger-sentinel/hero-tiger.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","name":"The Tiger & The Sentinel — Field Notes","description":'Two rival AIs paid to win opposite victories — the Tiger, an audit team rewarded only for provable findings, and the Sentinel, a guardian that keeps production honest between audits. A Field Notes companion to “Who Audits the Robots?”',"url":"https://mattmartelli.com/field-notes/tiger-sentinel","image":"https://mattmartelli.com/field-notes/tiger-sentinel/hero-tiger.png","author":{"@type":"Person","name":"Matt Martelli","url":"https://mattmartelli.com"},"publisher":{"@type":"Organization","name":"growthmindset.ai","url":"https://growthmindset.ai"},"isPartOf":{"@type":"Article","name":"Who Audits the Robots?","url":"https://mattmartelli.com"}}</script>
+<link rel="stylesheet" href="lib/page-flip.css">
+<style>
+  :root{
+    --bg:#0A0A0A; --ink:#F4F1EA; --mut:#9A968C; --line:#26241f;
+    --amber:#F5B841; --orange:#E8632A; --gold:#E3A02C;
+    --blue:#4A9EE8; --blue2:#2E7BC4; --hi:#8FC4F2;
+    --mono:'SF Mono',ui-monospace,Menlo,Consolas,monospace;
+    --sans:-apple-system,'Segoe UI',system-ui,sans-serif;
+    --serif:'Iowan Old Style',Georgia,'Times New Roman',serif;
+
+    /* ---- SEAM STYLE TOGGLE: 'blend' | 'hard' | 'glow' ---- */
+    --seam:blend;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  body{min-height:100vh;overflow-x:hidden}
+  a{color:inherit}
+
+  /* =========================================================
+     SPLIT DIPTYCH HERO
+     ========================================================= */
+  .hero{position:relative;min-height:96vh;display:flex;flex-direction:column}
+  .hero-top{padding:30px 24px 6px;text-align:center;position:relative;z-index:5}
+  .kick{font-family:var(--mono);font-size:11px;letter-spacing:.30em;text-transform:uppercase;color:var(--mut)}
+  .kick .t{color:var(--amber)} .kick .s{color:var(--blue)}
+  .series{font-family:var(--mono);font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:#6E6A62;margin-top:8px}
+
+  /* the two facing panels */
+  .diptych{position:relative;flex:1;display:grid;grid-template-columns:1fr 1fr;min-height:640px}
+  .side{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+    padding:36px 26px 40px;overflow:hidden}
+
+  /* side color washes */
+  .side.tiger{
+    background:
+      radial-gradient(120% 90% at 100% 20%, rgba(232,99,42,.16), transparent 62%),
+      radial-gradient(90% 80% at 20% 90%, rgba(245,184,65,.10), transparent 70%);
+  }
+  .side.sentinel{
+    background:
+      radial-gradient(120% 90% at 0% 20%, rgba(74,158,232,.17), transparent 62%),
+      radial-gradient(90% 80% at 80% 90%, rgba(46,123,196,.11), transparent 70%);
+  }
+
+  /* ---- SEAM: soft gradient blend (default) ---- */
+  .diptych::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;
+    background:linear-gradient(90deg,
+      transparent 0%, transparent 38%,
+      rgba(10,10,10,.55) 50%,
+      transparent 62%, transparent 100%);}
+  .diptych::after{content:"";position:absolute;top:8%;bottom:8%;left:50%;width:1px;transform:translateX(-.5px);
+    z-index:3;pointer-events:none;
+    background:linear-gradient(180deg, transparent, rgba(245,184,65,.5) 25%, rgba(74,158,232,.5) 75%, transparent);
+    box-shadow:0 0 14px rgba(140,196,242,.25);}
+
+  /* hard-edge variant */
+  :root[style*="--seam:hard"] .diptych::before,
+  .hero[data-seam="hard"] .diptych::before{
+    background:linear-gradient(90deg, transparent 49.6%, rgba(10,10,10,.9) 50%, transparent 50.4%);}
+  .hero[data-seam="hard"] .diptych::after{box-shadow:none;background:rgba(38,36,31,.9)}
+
+  /* glow-line variant: kill the dark blend, keep only luminous line */
+  .hero[data-seam="glow"] .diptych::before{background:none}
+  .hero[data-seam="glow"] .diptych::after{width:2px;
+    background:linear-gradient(180deg, transparent, var(--amber) 30%, var(--hi) 50%, var(--blue) 70%, transparent);
+    box-shadow:0 0 26px rgba(140,196,242,.5), 0 0 12px rgba(245,184,65,.4);}
+
+  .side-label{position:relative;z-index:4;text-align:center;margin-bottom:8px}
+  .side-title{font-family:var(--serif);font-weight:800;font-size:clamp(24px,3.4vw,40px);line-height:1.02;letter-spacing:-.01em}
+  .side.tiger .side-title{background:linear-gradient(90deg,#F5B841,#E8632A);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .side.sentinel .side-title{background:linear-gradient(90deg,#8FC4F2,#2E7BC4);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .side-role{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--mut);margin-top:9px}
+  .side.tiger .side-role b{color:var(--gold)} .side.sentinel .side-role b{color:var(--hi)}
+  .side-line{font-family:var(--serif);font-size:14.5px;line-height:1.5;color:#C9C4B8;max-width:340px;margin:12px auto 0}
+
+  /* facing art / video */
+  .figure{position:relative;z-index:4;margin-top:18px;width:100%;max-width:440px;aspect-ratio:16/10;
+    display:flex;align-items:flex-end;justify-content:center}
+  .figure video, .figure img{width:100%;height:100%;object-fit:contain;display:block;filter:drop-shadow(0 24px 40px rgba(0,0,0,.6))}
+  .side.tiger .figure{justify-content:flex-start}   /* tiger anchored toward seam (right) via transform below */
+  .side.sentinel .figure{justify-content:flex-end}
+  .side.tiger .figure > *{transform:scaleX(1)}       /* tiger art already faces right */
+  .side.sentinel .figure > *{}                       /* knight faces left natively */
+  /* portrait knight is tall — cap it */
+  .side.sentinel .figure{aspect-ratio:auto;max-width:300px;height:300px}
+  .side.tiger .figure{max-width:460px;height:300px}
+
+  /* open button */
+  .open-btn{position:relative;z-index:4;margin-top:22px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--ink);background:rgba(24,22,19,.7);border:1px solid var(--line);
+    border-radius:999px;padding:11px 20px;cursor:pointer;transition:.16s;backdrop-filter:blur(3px)}
+  .side.tiger .open-btn:hover{border-color:var(--orange);box-shadow:0 0 22px rgba(232,99,42,.25)}
+  .side.sentinel .open-btn:hover{border-color:var(--blue2);box-shadow:0 0 22px rgba(74,158,232,.25)}
+  .open-btn .arw{opacity:.6;margin-left:6px}
+
+  /* =========================================================
+     INLINE PREVIEW STRIP (thumbnails under hero, optional)
+     ========================================================= */
+  .scroll-cue{text-align:center;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+    color:#5c584f;padding:14px 0 26px;position:relative;z-index:5}
+
+  /* =========================================================
+     LIGHTBOX
+     ========================================================= */
+  .lightbox{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;
+    background:rgba(4,4,4,.86);backdrop-filter:blur(6px);padding:24px}
+  .lightbox.open{display:flex}
+  .lb-inner{position:relative;display:flex;flex-direction:column;align-items:center;max-width:100%;max-height:100%}
+  .lb-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .lb-badge{width:44px;height:44px;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#050505;flex:0 0 auto}
+  .lb-badge video{width:100%;height:100%;object-fit:cover}
+  .lb-title{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+  .lb-title .big{font-weight:700;font-size:13px}
+  #lb-tiger-title .big{color:var(--amber)} #lb-sentinel-title .big{color:var(--blue)}
+  .lb-title .role{color:var(--mut);font-size:10px}
+
+  .lb-stage{position:relative;display:flex;justify-content:center}
+  .flipbook{margin:0 auto;touch-action:pan-y}
+  .flipbook .page{background:#0A0A0A;overflow:hidden}
+  .flipbook .page img{width:100%;height:100%;display:block;object-fit:cover}
+
+  .lb-controls{display:flex;gap:8px;align-items:center;justify-content:center;margin-top:18px;flex-wrap:wrap}
+  .btn{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink);background:#181613;border:1px solid var(--line);border-radius:999px;
+    padding:9px 16px;cursor:pointer;transition:.15s;user-select:none}
+  .btn:hover{border-color:#4a453c;background:#201d18}
+  .btn:active{transform:translateY(1px)}
+  .pageno{font-family:var(--mono);font-size:11px;color:var(--mut);letter-spacing:.14em;min-width:74px;text-align:center}
+  .lb-close{position:absolute;top:-6px;right:-6px;width:38px;height:38px;border-radius:999px;
+    background:#181613;border:1px solid var(--line);color:var(--ink);font-size:18px;cursor:pointer;line-height:1;
+    display:flex;align-items:center;justify-content:center;transition:.15s}
+  .lb-close:hover{border-color:#4a453c;background:#201d18}
+  .lb-hint{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#6E6A62;text-align:center;margin-top:12px}
+
+  /* =========================================================
+     FOOTER
+     ========================================================= */
+  footer.site{margin-top:10px;padding:22px 24px 40px;border-top:1px solid var(--line);max-width:1180px;
+    margin-left:auto;margin-right:auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer .fl,footer .fr{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+  footer .gm{height:15px;width:auto;opacity:.6}
+
+  /* =========================================================
+     RESPONSIVE — stack the split on mobile
+     ========================================================= */
+  @media (max-width:760px){
+    .diptych{grid-template-columns:1fr;min-height:0}
+    .diptych::after{display:none}
+    .diptych::before{display:none}
+    .side{padding:30px 22px 34px;border-bottom:1px solid var(--line)}
+    .side.tiger{border-top:2px solid rgba(232,99,42,.4)}
+    .side.sentinel{border-top:2px solid rgba(74,158,232,.4)}
+    .side.sentinel .figure,.side.tiger .figure{height:240px}
+  }
+  @media (max-width:560px){
+    .btn{padding:8px 12px;font-size:10px}
+    .lightbox{padding:12px}
+  }
+
+  /* Back to site */
+  .back-link{position:fixed;top:16px;left:16px;z-index:60;display:inline-flex;align-items:center;gap:7px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;
+    color:var(--mut);background:rgba(24,22,19,.72);border:1px solid var(--line);border-radius:999px;
+    padding:8px 14px;backdrop-filter:blur(3px);transition:.15s}
+  .back-link:hover{color:var(--ink);border-color:var(--blue2);box-shadow:0 0 20px rgba(74,158,232,.22)}
+  .back-link .ar{opacity:.7}
+  @media (max-width:560px){.back-link span.lbl{display:none}}
+</style>
+</head>
+<body>
+
+  <a class="back-link" href="/" aria-label="Back to mattmartelli.com"><span class="ar">←</span> <span class="lbl">Back to mattmartelli.com</span></a>
+
+  <!-- ===================== HERO ===================== -->
+  <div class="hero" id="hero" data-seam="glow">
+    <div class="hero-top">
+      <div class="kick">Field Notes &nbsp;·&nbsp; <span class="t">The Tiger</span> &amp; <span class="s">The Sentinel</span></div>
+      <div class="series">Who Audits the Robots? &nbsp;·&nbsp; Matt Martelli</div>
+    </div>
+
+    <div class="diptych">
+      <!-- TIGER SIDE (left, faces right) -->
+      <section class="side tiger">
+        <div class="side-label">
+          <div class="side-title">Paying Agents<br>to Find Truth</div>
+          <div class="side-role"><b>Offense</b> · paid to break things</div>
+        </div>
+        <div class="side-line">A team of AI auditors rewarded only for provable findings — hunting a system for flaws on a schedule.</div>
+        <div class="figure" data-mode="video">
+          <video src="video/tiger-loop.mp4" poster="video/tiger-poster.jpg" muted loop autoplay playsinline></video>
+        </div>
+        <button class="open-btn" data-open="tiger">Open Field Notes <span class="arw">↗</span></button>
+      </section>
+
+      <!-- SENTINEL SIDE (right, faces left) -->
+      <section class="side sentinel">
+        <div class="side-label">
+          <div class="side-title">Standing<br>Watch</div>
+          <div class="side-role"><b>Defense</b> · paid for nothing breaking</div>
+        </div>
+        <div class="side-line">A guardian AI paid to keep production honest between audits — catching drift before anything breaks.</div>
+        <div class="figure" data-mode="video">
+          <video src="video/knight-loop.mp4" poster="video/knight-poster.jpg" muted loop autoplay playsinline></video>
+        </div>
+        <button class="open-btn" data-open="sentinel">Open Field Notes <span class="arw">↗</span></button>
+      </section>
+    </div>
+
+    <div class="scroll-cue">Two AIs · paid to win opposite victories · open either to read</div>
+  </div>
+
+  <footer class="site">
+    <span class="fl">Who Audits the Robots?</span>
+    <img class="gm" src="logo_light.png" alt="growthmindset.ai">
+    <span class="fr">The system is the product.</span>
+  </footer>
+
+  <!-- ===================== LIGHTBOX ===================== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <div class="lb-inner">
+      <button class="lb-close" id="lb-close" aria-label="Close">✕</button>
+
+      <div class="lb-head">
+        <div class="lb-badge" id="lb-badge"></div>
+        <div class="lb-title" id="lb-title"><span class="big"></span><br><span class="role"></span></div>
+      </div>
+
+      <div class="lb-stage"><div class="flipbook" id="lb-book"></div></div>
+
+      <div class="lb-controls">
+        <button class="btn" id="lb-prev">‹ Prev</button>
+        <span class="pageno" id="lb-pageno">1 / 5</span>
+        <button class="btn" id="lb-next">Next ›</button>
+      </div>
+      <div class="lb-hint">Drag a corner · swipe · arrow keys · click edges · Esc to close</div>
+    </div>
+  </div>
+
+  <script src="lib/page-flip.browser.js"></script>
+  <script>
+    // Swallow a benign StPageFlip internal race that can throw after a flip
+    window.addEventListener('error', function(ev){
+      var m = (ev && ev.message) || '';
+      if (m.indexOf('parentElement') !== -1){ ev.preventDefault(); return true; }
+    });
+
+    const PAGES = {
+      tiger:    ['pages/tiger-1.png','pages/tiger-2.png','pages/tiger-3.png','pages/tiger-4.png','pages/tiger-5.png'],
+      sentinel: ['pages/sentinel-1.png','pages/sentinel-2.png','pages/sentinel-3.png','pages/sentinel-4.png','pages/sentinel-5.png'],
+    };
+    const META = {
+      tiger:    {big:'Paying Agents to Find Truth', role:'Offense · paid to break things', vid:'video/tiger-loop.mp4', poster:'video/tiger-poster.jpg'},
+      sentinel: {big:'Standing Watch', role:'Defense · paid for nothing breaking', vid:'video/knight-loop.mp4', poster:'video/knight-poster.jpg'},
+    };
+    const RATIO = 2200/1700;
+
+    const lb = document.getElementById('lightbox');
+    const lbBook = document.getElementById('lb-book');
+    const lbBadge = document.getElementById('lb-badge');
+    const lbTitle = document.getElementById('lb-title');
+    const lbPageno = document.getElementById('lb-pageno');
+    let pf = null, curKey = null;
+
+    function sizeFor(){
+      const availW = Math.min(window.innerWidth - 48, 1100);
+      const availH = window.innerHeight - 210;
+      const wide = window.innerWidth > 820;
+      // page height limited by viewport; derive width from ratio
+      let pageH = Math.min(availH, 760);
+      let pageW = Math.round(pageH / RATIO);
+      const maxPageW = wide ? Math.floor(availW/2) : availW;
+      if (pageW > maxPageW){ pageW = maxPageW; pageH = Math.round(pageW * RATIO); }
+      pageW = Math.max(pageW, 220);
+      return { pageW, pageH, portrait: !wide };
+    }
+
+    function buildBook(key){
+      if (pf){ try{ pf.destroy(); }catch(e){} pf = null; }
+      lbBook.innerHTML = '';
+      const { pageW, pageH, portrait } = sizeFor();
+      lbBook.style.width = (portrait ? pageW : pageW*2) + 'px';
+
+      pf = new St.PageFlip(lbBook, {
+        width: pageW, height: pageH,
+        size: 'fixed',
+        maxShadowOpacity: 0.6,
+        showCover: false,
+        usePortrait: portrait,
+        mobileScrollSupport: true,
+        drawShadow: true,
+        flippingTime: 650,
+      });
+      const items = PAGES[key].map((src,i)=>{
+        const d = document.createElement('div');
+        d.className = 'page';
+        d.setAttribute('data-density','soft');
+        d.innerHTML = '<img src="'+src+'" alt="page '+(i+1)+'">';
+        return d;
+      });
+      pf.loadFromHTML(items);
+      const total = PAGES[key].length;
+      const upd = ()=>{ lbPageno.textContent = (pf.getCurrentPageIndex()+1)+' / '+total; };
+      pf.on('flip', upd); upd();
+    }
+
+    function openBook(key){
+      curKey = key;
+      const m = META[key];
+      lbTitle.querySelector('.big').textContent = m.big;
+      lbTitle.querySelector('.role').textContent = m.role;
+      lbTitle.id = 'lb-'+key+'-title';
+      lbBadge.innerHTML = '<video src="'+m.vid+'" poster="'+m.poster+'" muted loop autoplay playsinline></video>';
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      // build after paint so viewport sizes are correct
+      requestAnimationFrame(()=>requestAnimationFrame(()=>buildBook(key)));
+    }
+    function closeBook(){
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+      if (pf){ try{ pf.destroy(); }catch(e){} pf = null; }
+      lbBook.innerHTML = '';
+    }
+
+    document.querySelectorAll('[data-open]').forEach(b=>{
+      b.addEventListener('click',()=>openBook(b.dataset.open));
+    });
+    document.getElementById('lb-close').addEventListener('click', closeBook);
+    lb.addEventListener('click', e=>{ if(e.target === lb) closeBook(); });
+
+    function safeFlip(dir){ if(!pf) return; try{ dir==='next'?pf.flipNext():pf.flipPrev(); }catch(e){} }
+    document.getElementById('lb-next').addEventListener('click',()=>safeFlip('next'));
+    document.getElementById('lb-prev').addEventListener('click',()=>safeFlip('prev'));
+
+    document.addEventListener('keydown',e=>{
+      if(!lb.classList.contains('open')) return;
+      if(e.key==='Escape') closeBook();
+      if(e.key==='ArrowRight') safeFlip('next');
+      if(e.key==='ArrowLeft')  safeFlip('prev');
+    });
+
+    let rt; window.addEventListener('resize',()=>{
+      if(!lb.classList.contains('open') || !curKey) return;
+      clearTimeout(rt); rt=setTimeout(()=>buildBook(curKey),250);
+    });
+  </script>
+</body>
+</html>
