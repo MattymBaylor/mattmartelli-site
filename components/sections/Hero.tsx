@@ -252,45 +252,43 @@ export function Hero() {
                   teal. Yellow: Tiger (offense) → the article. Blue: Sentinel
                   (defense) — article still being written. Teal (hero cyan):
                   the head-to-head field note. */}
-              <div className="mt-1 flex w-full flex-col gap-3 sm:w-80">
+              <div className="mt-1 flex w-full flex-col gap-3 sm:w-72">
                 <a
                   href="/who-audits-the-robots"
-                  className="group flex min-h-[3.75rem] w-full items-center justify-between gap-3 rounded-md bg-[#FACC15] px-5 py-3 text-night shadow-[0_0_0_1px_rgba(250,204,21,0.35),0_0_18px_-8px_rgba(250,204,21,0.5)] transition-transform hover:scale-[1.02]"
+                  className="group flex w-full flex-col items-start rounded-md bg-[#FACC15] px-5 py-2.5 text-night shadow-[0_0_0_1px_rgba(250,204,21,0.35),0_0_18px_-8px_rgba(250,204,21,0.5)] transition-transform hover:scale-[1.02]"
                 >
-                  <span className="flex flex-col">
-                    <span className="text-sm font-bold leading-tight">Tiger Team Plays Offense</span>
-                    <span className="mt-0.5 text-xs font-medium text-night/70">Learn how</span>
+                  <span className="text-sm font-bold leading-tight">Tiger Team Plays Offense</span>
+                  <span className="mt-1 inline-flex items-center gap-1 text-sm font-semibold [text-shadow:0_0_10px_rgba(255,255,255,0.35)]">
+                    Learn how
+                    <ArrowUpRight
+                      size={15}
+                      className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      aria-hidden
+                    />
                   </span>
-                  <ArrowUpRight
-                    size={18}
-                    className="shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    aria-hidden
-                  />
                 </a>
 
                 <span
                   aria-disabled="true"
-                  className="flex min-h-[3.75rem] w-full cursor-default items-center justify-between gap-3 rounded-md bg-accent-gradient px-5 py-3 text-night shadow-glow"
+                  className="flex w-full cursor-default flex-col items-start rounded-md bg-accent-gradient px-5 py-2.5 text-night shadow-glow"
                 >
-                  <span className="flex flex-col">
-                    <span className="text-sm font-bold leading-tight">Sentinel Team Plays Defense</span>
-                    <span className="mt-0.5 text-xs font-medium text-night/70">Coming soon</span>
-                  </span>
+                  <span className="text-sm font-bold leading-tight">Sentinel Team Plays Defense</span>
+                  <span className="mt-1 text-sm font-semibold text-night/75">Coming soon</span>
                 </span>
 
                 <a
                   href="/field-notes/tiger-sentinel"
-                  className="group flex min-h-[3.75rem] w-full items-center justify-between gap-3 rounded-md bg-accent-cyan px-5 py-3 text-night shadow-[0_0_0_1px_rgba(34,211,238,0.35),0_0_18px_-8px_rgba(34,211,238,0.55)] transition-transform hover:scale-[1.02]"
+                  className="group flex w-full flex-col items-start rounded-md bg-accent-cyan px-5 py-2.5 text-night shadow-[0_0_0_1px_rgba(34,211,238,0.35),0_0_18px_-8px_rgba(34,211,238,0.55)] transition-transform hover:scale-[1.02]"
                 >
-                  <span className="flex flex-col">
-                    <span className="text-sm font-bold leading-tight">Tiger vs. Sentinel</span>
-                    <span className="mt-0.5 text-xs font-medium text-night/70">Learn why</span>
+                  <span className="text-sm font-bold leading-tight">Tiger vs. Sentinel</span>
+                  <span className="mt-1 inline-flex items-center gap-1 text-sm font-semibold [text-shadow:0_0_10px_rgba(255,255,255,0.35)]">
+                    Learn why
+                    <ArrowUpRight
+                      size={15}
+                      className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      aria-hidden
+                    />
                   </span>
-                  <ArrowUpRight
-                    size={18}
-                    className="shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    aria-hidden
-                  />
                 </a>
               </div>
             </motion.div>
