@@ -1,5 +1,3 @@
-import Link from "next/link";
-import { ArrowDown, Youtube } from "lucide-react";
 import { site } from "@/content/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
@@ -68,38 +66,17 @@ export function VoiceAI() {
               </div>
             </div>
             <div>
-              <p className="font-display text-lg font-semibold text-ink">
+              <p className="font-display text-xl font-semibold text-ink">
                 Productized voice AI, in plain English
               </p>
-              <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                The explainer that fronts my company&apos;s live voice-agent offering — the
-                same architecture shown above, told as the business case: every call
-                answered, qualified, booked, and followed up automatically.
-              </p>
-              <a
-                href={site.meta.youtube}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group mt-5 inline-flex items-center gap-2 rounded-md border border-line-strong px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50"
-              >
-                <Youtube size={16} className="text-accent-cyan" aria-hidden />
-                More on {site.meta.youtubeLabel}
-              </a>
-              <p className="mt-3 text-xs leading-relaxed text-ink-faint">
-                Part of my channel — daily, plain-English AI briefings for business leaders.
+              <p className="mt-4 text-base leading-relaxed text-ink-muted">
+                The Voice AI used here was created with n8n, Retell AI, OpenAI, Claude
+                Code, ElevenLabs, and HeyGen, and the vector database was managed by
+                Crew AI. Please play and hear a live interaction. The workflow on this
+                was so streamlined that our agent didn&apos;t miss a beat.
               </p>
             </div>
           </div>
-        </Reveal>
-
-        <Reveal delay={0.16}>
-          <Link
-            href="#architecture"
-            className="group mt-10 inline-flex items-center gap-2 text-sm font-medium text-accent-cyan"
-          >
-            <ArrowDown size={15} aria-hidden className="transition-transform group-hover:translate-y-0.5" />
-            {voice.diagramRef}
-          </Link>
         </Reveal>
 
         <Footnotes numbers={[1, 3, 4, 5, 6]} />
