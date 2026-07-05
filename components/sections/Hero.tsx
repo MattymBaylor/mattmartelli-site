@@ -259,20 +259,35 @@ export function Hero() {
                 ))}
               </ul>
 
-              {/* Learn-more CTA — links to the interactive "Tiger & Sentinel"
-                  Field Notes landing page (/field-notes/tiger-sentinel).
-                  Solid blue to match that page's Sentinel palette. */}
-              <a
-                href="/field-notes/tiger-sentinel"
-                className="group inline-flex shrink-0 items-center gap-2 self-start rounded-md bg-[#2E7BC4] px-5 py-3 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(74,158,232,0.65)] transition-colors hover:bg-[#4A9EE8]"
-              >
-                What is a Tiger Team?
-                <ArrowUpRight
-                  size={16}
-                  className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                  aria-hidden
-                />
-              </a>
+              {/* Two stacked CTAs using the site's canonical button styles:
+                  blue (accent-gradient, black text) → the interactive "Tiger &
+                  Sentinel" Field Notes; yellow (#FACC15, black text) → the
+                  "Who Audits the Robots?" article. Consistent with the other
+                  homepage buttons. */}
+              <div className="mt-1 flex flex-col items-start gap-3">
+                <a
+                  href="/field-notes/tiger-sentinel"
+                  className="group inline-flex items-center gap-2 rounded-md bg-accent-gradient px-5 py-3 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03]"
+                >
+                  What is a Tiger Team?
+                  <ArrowUpRight
+                    size={16}
+                    className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    aria-hidden
+                  />
+                </a>
+                <a
+                  href="/who-audits-the-robots"
+                  className="group inline-flex items-center gap-2 rounded-md bg-[#FACC15] px-5 py-3 text-sm font-semibold text-night shadow-[0_0_0_1px_rgba(250,204,21,0.35),0_0_16px_-8px_rgba(250,204,21,0.4)] transition-transform hover:scale-[1.03]"
+                >
+                  Read the Article
+                  <ArrowUpRight
+                    size={16}
+                    className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    aria-hidden
+                  />
+                </a>
+              </div>
             </motion.div>
 
             {/* The film — plays inline; a click never leaves the page. Fills
