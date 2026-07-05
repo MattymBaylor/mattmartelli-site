@@ -31,3 +31,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local agent tooling (not repo material)
+/.claude/
+/.playwright-mcp/
+
+# nested dependencies
+node_modules/
+__pycache__/
+*.pyc

@@ -25,6 +25,8 @@ const nextConfig = {
       // /hq → the interactive Seinfeld HQ demo (full-page escape hatch for the
       // HQ Cam facade on small screens; also a memorable share link).
       { source: "/hq", destination: "/seinfeld-hq/index.html" },
+      // /who-audits-the-robots → the "Who Audits the Robots?" Field Notes post.
+      { source: "/who-audits-the-robots", destination: "/blog/who-audits-the-robots.html" },
     ];
   },
 };
