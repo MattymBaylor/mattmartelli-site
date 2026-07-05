@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 
 type Diagram = {
@@ -94,13 +93,13 @@ const DIAGRAMS: Diagram[] = [
   },
 ];
 
-export function ArchitectureShowcase() {
+export function ArchitectureShowcase({ className = "mx-auto mt-10 max-w-5xl" }: { className?: string }) {
   const [activeId, setActiveId] = useState(DIAGRAMS[0].id);
   const active = DIAGRAMS.find((d) => d.id === activeId) ?? DIAGRAMS[0];
 
   return (
     <Reveal delay={0.1}>
-      <div id="architecture" className="mx-auto mt-10 max-w-5xl scroll-mt-24">
+      <div id="architecture" className={`scroll-mt-24 ${className}`}>
         {/* selector */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <label className="flex items-center gap-3">
@@ -139,17 +138,6 @@ export function ArchitectureShowcase() {
             allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
           />
         </div>
-
-        <p className="mt-5 text-center text-sm text-ink-faint">
-          And my own operation:{" "}
-          <a
-            href="/seinfeld-hq"
-            className="inline-flex items-center gap-1 text-accent-cyan transition-colors hover:text-accent-cyan/80"
-          >
-            the Seinfeld HQ agent org chart
-            <ArrowUpRight size={14} aria-hidden />
-          </a>
-        </p>
       </div>
     </Reveal>
   );
