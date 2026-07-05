@@ -4,7 +4,6 @@ import { site } from "@/content/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { Explorable } from "@/components/ui/Explorable";
-import { LiteYouTube } from "@/components/ui/LiteYouTube";
 import { StatCallout } from "@/components/ui/StatCallout";
 import { Footnotes } from "@/components/ui/Footnotes";
 
@@ -51,12 +50,22 @@ export function VoiceAI() {
           <div className="mt-12 grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-center">
             <div>
               <p className="mb-3 font-mono text-xs uppercase tracking-[0.18em] text-ink-faint">
-                See it in action
+                Hear it in action
               </p>
-              <LiteYouTube
-                id={site.meta.videoId}
-                title="Never Miss Another Call: How AI Books Jobs While You Sleep"
-              />
+              {/* Interactive call visualizer — plays a real recorded AI voice-agent
+                  call with a loudness-driven waveform + synced transcript. Served as
+                  a self-contained page from /public/voice. */}
+              <div className="mx-auto w-full max-w-[760px]">
+                <div className="relative aspect-video w-full">
+                  <iframe
+                    src="/voice/call-visualizer.html"
+                    title="Interactive AI voice-agent call — play a real recorded outbound call"
+                    className="absolute inset-0 h-full w-full border-0"
+                    allow="autoplay"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
             </div>
             <div>
               <p className="font-display text-lg font-semibold text-ink">
