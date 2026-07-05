@@ -4,6 +4,7 @@ import { site } from "@/content/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { OrchestrationToolGrid } from "@/components/sections/OrchestrationToolGrid";
+import { ArchitectureShowcase } from "@/components/sections/ArchitectureShowcase";
 
 export function Orchestration() {
   const { orchestration } = site;
@@ -25,7 +26,11 @@ export function Orchestration() {
           </p>
         </SectionHeading>
 
-        <div className="mt-10 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
+        {/* Interactive system-blueprint viewer — the dropdown + diagram, merged
+            in from the old standalone Architecture section. */}
+        <ArchitectureShowcase />
+
+        <div className="mt-12 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
           {/* What the site emphasizes — the actual story */}
           <Reveal>
             <div className="surface-card h-full p-6">
