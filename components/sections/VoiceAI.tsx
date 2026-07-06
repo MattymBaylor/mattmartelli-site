@@ -56,11 +56,12 @@ export function VoiceAI() {
                   a self-contained page from /public/voice. */}
               <div className="relative min-h-[220px] flex-1 overflow-hidden rounded-2xl border border-line bg-black shadow-glow">
                 <iframe
-                  src="/voice/call-visualizer.html"
+                  src="/voice/call-visualizer.html?embed=1"
                   title="Interactive AI voice-agent call — play a real recorded outbound call"
-                  className="absolute inset-0 h-full w-full border-0"
+                  className="pointer-events-auto absolute inset-0 h-full w-full border-0"
                   allow="autoplay"
                   loading="lazy"
+                  scrolling="no"
                 />
               </div>
             </div>
