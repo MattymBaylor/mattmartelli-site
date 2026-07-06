@@ -50,10 +50,16 @@ export const recruiter = {
 
   experience: [
     {
-      company: "National home services enterprise",
+      company: "growthmindset.ai",
+      role: "Founder & AI Systems Architect",
+      dates: "2026–Present",
+      note: "Production voice AI, multi-agent operating systems, and revenue automation — designed, built, and shipped as the growthmindset.ai platform.",
+    },
+    {
+      company: "Home Genius Exteriors",
       role: "AI Integration Strategist",
-      dates: "2025–Present",
-      note: "Enterprise AI and automation across recruiting, sales, customer experience, and operations.",
+      dates: "2025–2026",
+      note: "Enterprise AI and automation across recruiting, sales, customer experience, and operations — production voice agents, multi-agent workflows, and a zero-downtime Zapier-to-n8n migration.",
     },
     {
       company: "Expo Home Improvement",
