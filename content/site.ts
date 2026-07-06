@@ -59,7 +59,7 @@ export const site = {
     secondaryRole: "Production AI · Voice · RevOps",
     availability: "Naples, FL · Remote · Open to senior IC, architect/lead, or consulting",
     oneLiner:
-      "I design and ship production AI systems — voice agents, multi-agent workflows, and CRM automation — that connect data, automation, and human teams to measurable business outcomes.",
+      "Voice agents that book the call. Multi-agent systems that run real operations. CRM automation that turns speed-to-lead into attributed pipeline — built as one operating system your team can actually run.",
     targetRoles: [
       "AI Systems Architect",
       "Forward Deployed Engineer",
@@ -79,7 +79,8 @@ export const site = {
     // Headline renders as two stacked lines; line 2 carries the emphasis.
     headlineLine1: "AI is the tool.",
     headlineLine2: "The system is the product.",
-    promise: "I build AI systems that find flaws, fix fast, and scale revenue.",
+    promise:
+      "I ship production AI that stress-tests weak spots, fixes them fast, and scales revenue.",
     capabilities:
       "AI Automation Architect | RevOps & CRM Systems | Marketing Automation | HubSpot Certified | Remote",
     introduction:

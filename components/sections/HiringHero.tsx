@@ -98,11 +98,17 @@ export function HiringHero() {
               <span>{hero.headlineLine2}</span>
             </motion.p>
 
-            <motion.p variants={item} className="mt-4 font-display text-lg leading-snug text-ink-muted">
+            <motion.p
+              variants={item}
+              className="mt-4 font-display text-lg font-medium leading-snug text-ink sm:text-xl"
+            >
               {hero.promise}
             </motion.p>
 
-            <motion.p variants={item} className="mt-4 max-w-2xl text-base leading-relaxed text-ink-muted">
+            <motion.p
+              variants={item}
+              className="mt-3 max-w-2xl text-base leading-relaxed text-ink-muted sm:text-[1.05rem]"
+            >
               {hiring.oneLiner}
             </motion.p>
 
