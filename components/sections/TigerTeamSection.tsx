@@ -4,10 +4,9 @@ import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { ArrowUpRight, Check, CheckCircle2, Mail } from "lucide-react";
 import { usePrefersReducedMotion } from "@/lib/useReducedMotion";
+import { DeferredYouTubeEmbed } from "@/components/ui/DeferredYouTubeEmbed";
 
 const TIGER_VIDEO_ID = "1oojonDDqek";
-const TIGER_EMBED = `https://www.youtube-nocookie.com/embed/${TIGER_VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${TIGER_VIDEO_ID}&controls=0&modestbranding=1&rel=0&playsinline=1`;
-const TIGER_EMBED_STATIC = `https://www.youtube-nocookie.com/embed/${TIGER_VIDEO_ID}?controls=1&modestbranding=1&rel=0&playsinline=1`;
 
 const leadPoints = [
   "Reward engineering makes AI fight for truth instead of gaming the metric.",
@@ -105,15 +104,12 @@ export function TigerTeamSection() {
           </div>
         </div>
 
-        <div className="relative mt-10 aspect-video overflow-hidden rounded-2xl border border-line bg-black shadow-glow">
-          <iframe
-            title="Tiger Team — the film"
-            src={reduced ? TIGER_EMBED_STATIC : TIGER_EMBED}
-            allow="autoplay; encrypted-media; picture-in-picture"
-            allowFullScreen
-            className="absolute inset-0 h-full w-full border-0"
-          />
-        </div>
+        <DeferredYouTubeEmbed
+          id={TIGER_VIDEO_ID}
+          title="Tiger Team — the film"
+          autoplay={!reduced}
+          className="mt-10"
+        />
 
         <div className="mt-8 max-w-xl">
           <p className="text-sm font-medium text-ink">Want the reward-engineering framework?</p>
