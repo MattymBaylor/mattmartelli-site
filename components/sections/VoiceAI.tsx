@@ -46,27 +46,25 @@ export function VoiceAI() {
         </Reveal>
 
         <Reveal delay={0.12}>
-          <div className="mt-12 mb-28 grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-center">
-            <div>
+          <div className="mt-12 mb-28 grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-stretch">
+            <div className="flex h-full flex-col">
               <p className="mb-3 font-mono text-xs uppercase tracking-[0.18em] text-ink-faint">
                 {voice.demo.eyebrow}
               </p>
               {/* Interactive call visualizer — plays a real recorded AI voice-agent
                   call with a loudness-driven waveform + synced transcript. Served as
                   a self-contained page from /public/voice. */}
-              <div className="mx-auto w-full max-w-[760px]">
-                <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-line bg-black shadow-glow">
-                  <iframe
-                    src="/voice/call-visualizer.html"
-                    title="Interactive AI voice-agent call — play a real recorded outbound call"
-                    className="absolute inset-0 h-full w-full border-0"
-                    allow="autoplay"
-                    loading="lazy"
-                  />
-                </div>
+              <div className="relative min-h-[220px] flex-1 overflow-hidden rounded-2xl border border-line bg-black shadow-glow">
+                <iframe
+                  src="/voice/call-visualizer.html"
+                  title="Interactive AI voice-agent call — play a real recorded outbound call"
+                  className="absolute inset-0 h-full w-full border-0"
+                  allow="autoplay"
+                  loading="lazy"
+                />
               </div>
             </div>
-            <div>
+            <div className="flex flex-col justify-center">
               <p className="font-display text-xl font-semibold leading-snug text-ink sm:text-2xl lg:text-[1.65rem]">
                 {voice.demo.headline}
               </p>

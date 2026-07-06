@@ -89,9 +89,9 @@ export function Projects() {
           sub="Every card leads with the business outcome. Click for architecture detail, tech stack, and live links."
         />
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:items-stretch xl:grid-cols-5">
           {projects.map((p, i) => (
-            <Reveal key={p.id} delay={(i % 3) * 0.06}>
+            <Reveal key={p.id} className="h-full" delay={(i % 3) * 0.06}>
               <button
                 type="button"
                 onClick={(e) => {
@@ -113,9 +113,11 @@ export function Projects() {
                   </span>
                 </div>
                 <div className="flex flex-1 flex-col p-5">
-                  <h3 className="font-display text-base font-semibold text-ink">{p.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">{p.outcome}</p>
-                  <span className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-accent-cyan">
+                  <h3 className="min-h-[2.75rem] font-display text-base font-semibold leading-snug text-ink">
+                    {p.title}
+                  </h3>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-muted">{p.outcome}</p>
+                  <span className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-accent-cyan lg:mt-auto lg:pt-4">
                     View details
                     <ChevronRight
                       size={13}

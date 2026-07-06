@@ -26,15 +26,15 @@ export function ProofHighlights() {
           live demos in the portfolio section.
         </p>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-3 lg:gap-5">
+        <div className="mt-10 grid gap-6 lg:grid-cols-3 lg:items-stretch lg:gap-5">
           {items.map((project, i) => (
-            <div key={project.id} className="relative">
+            <div key={project.id} className="relative flex h-full flex-col">
               {/* Soft ambient halo — separates cards from the section background */}
               <div
                 aria-hidden
                 className="pointer-events-none absolute -inset-2 rounded-2xl bg-[radial-gradient(ellipse_at_50%_30%,rgba(34,211,238,0.20)_0%,rgba(99,102,241,0.10)_42%,transparent_72%)] opacity-95 blur-md"
               />
-              <article className="group relative flex flex-col overflow-hidden rounded-xl border border-line/90 bg-surface-elevated/85 shadow-glow transition-all duration-300 hover:-translate-y-0.5 hover:border-accent-cyan/35 hover:shadow-lift-hover">
+              <article className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-line/90 bg-surface-elevated/85 shadow-glow transition-all duration-300 hover:-translate-y-0.5 hover:border-accent-cyan/35 hover:shadow-lift-hover">
               <div className="relative aspect-[16/10] border-b border-line">
                 <Image
                   src={project.image.src}
@@ -54,7 +54,9 @@ export function ProofHighlights() {
                 )}
               </div>
               <div className="flex flex-1 flex-col p-5">
-                <h3 className="font-display text-base font-semibold text-ink">{project.title}</h3>
+                <h3 className="min-h-[2.75rem] font-display text-base font-semibold leading-snug text-ink">
+                  {project.title}
+                </h3>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-ink-muted">{project.outcome}</p>
                 <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.12em] text-warm">
                   {RESULTS[project.id as keyof typeof RESULTS]}
@@ -64,7 +66,7 @@ export function ProofHighlights() {
                     href={project.link.href}
                     target={project.link.href.startsWith("http") ? "_blank" : undefined}
                     rel={project.link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-accent-cyan transition-colors hover:text-ink"
+                    className="mt-4 inline-flex items-center gap-1 text-xs font-medium text-accent-cyan transition-colors hover:text-ink lg:mt-auto lg:pt-4"
                   >
                     {project.link.label}
                     <ArrowUpRight size={13} aria-hidden />
