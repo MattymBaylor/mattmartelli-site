@@ -519,6 +519,15 @@ export const site = {
     ],
     diagramRef:
       "Explore the full Voice AI architecture in the interactive diagram below.",
+    demo: {
+      eyebrow: "Hear it in action",
+      headline: "Most voice AI still sounds like a robot. Listen to one that doesn't.",
+      craft:
+        "That natural tone is engineered — not defaulted. I spent weeks tuning persona, pacing, turn-taking, objection handling, and voice selection until callers stay on the line and actually book. Every hesitation, every interruption, every \"uh-huh\" moment was deliberate.",
+      stack:
+        "Under the hood: n8n orchestration, Retell AI realtime voice, OpenAI and Claude for reasoning, ElevenLabs and HeyGen for synthesis, CrewAI on the vector memory layer. The stack runs production. The sound is what proves it works.",
+      cta: "Push play — real outbound call, zero edits",
+    },
   },
 
   marketing: {

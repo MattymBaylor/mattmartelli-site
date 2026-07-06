@@ -49,7 +49,7 @@ export function VoiceAI() {
           <div className="mt-12 mb-28 grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-center">
             <div>
               <p className="mb-3 font-mono text-xs uppercase tracking-[0.18em] text-ink-faint">
-                Hear it in action
+                {voice.demo.eyebrow}
               </p>
               {/* Interactive call visualizer — plays a real recorded AI voice-agent
                   call with a loudness-driven waveform + synced transcript. Served as
@@ -67,23 +67,18 @@ export function VoiceAI() {
               </div>
             </div>
             <div>
-              <p className="font-display text-xl font-semibold text-ink sm:text-2xl">
-                Productized voice AI, in plain English
+              <p className="font-display text-xl font-semibold leading-snug text-ink sm:text-2xl lg:text-[1.65rem]">
+                {voice.demo.headline}
               </p>
               <p className="mt-4 text-base leading-relaxed text-ink-muted">
-                Built end-to-end with{" "}
-                <span className="font-medium text-ink">
-                  n8n, Retell AI, OpenAI, Claude Code, ElevenLabs, and HeyGen
-                </span>{" "}
-                &mdash; with the vector database managed by{" "}
-                <span className="font-medium text-ink">Crew AI</span>.
+                {voice.demo.craft}
               </p>
-              <p className="mt-3 text-base leading-relaxed text-ink-muted">
-                The workflow was so streamlined the agent didn&apos;t miss a beat.
+              <p className="mt-4 text-base leading-relaxed text-ink-muted">
+                {voice.demo.stack}
               </p>
               <p className="mt-6 flex items-center gap-2.5 text-sm font-semibold uppercase tracking-[0.14em] text-accent-cyan">
                 <ArrowLeft size={18} aria-hidden className="shrink-0 animate-pulse" />
-                Push play &mdash; hear a live interaction
+                {voice.demo.cta}
               </p>
             </div>
           </div>
