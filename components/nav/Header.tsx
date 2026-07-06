@@ -135,7 +135,7 @@ export function Header() {
           </Link>
           <a
             href={site.nav.cta.resume.href}
-            download="Matt_Martelli_Resume.pdf"
+            download={site.nav.cta.resume.filename}
             className="hidden rounded-md bg-accent-gradient px-4 py-2 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03] sm:inline-flex"
           >
             {site.nav.cta.resume.label}
@@ -227,7 +227,7 @@ export function Header() {
             <li className="mt-2 flex flex-col gap-2">
               <a
                 href={site.nav.cta.resume.href}
-                download="Matt_Martelli_Resume.pdf"
+                download={site.nav.cta.resume.filename}
                 onClick={() => setOpen(false)}
                 className="rounded-md bg-accent-gradient px-3.5 py-2.5 text-center text-sm font-semibold text-night"
               >

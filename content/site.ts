@@ -45,7 +45,11 @@ export const site = {
       { label: "About", href: "recruiter" },
     ],
     cta: {
-      resume: { label: "Download Résumé", href: "/resume.pdf" },
+      resume: {
+        label: "Download Résumé",
+        href: "/matt_martelli_resume.pdf",
+        filename: "matt_martelli_resume.pdf",
+      },
       recruiter: { label: "Recruiter Fast Path", href: "/recruiter" },
       contact: { label: "Contact", href: "#contact" },
     },
@@ -89,7 +93,7 @@ export const site = {
       { value: "HubSpot", label: "certified architect" },
     ],
     ctas: {
-      primary: { label: "Download Résumé", href: "/resume.pdf" },
+      primary: { label: "Download Résumé", href: "/matt_martelli_resume.pdf" },
       secondary: { label: "Explore Systems", href: "#agentic-systems" },
       recruiter: { label: "Recruiter Fast Path", href: "/recruiter" },
     },

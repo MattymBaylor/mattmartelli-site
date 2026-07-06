@@ -66,7 +66,7 @@ export function Footer() {
               <li>
                 <a
                   href={nav.cta.resume.href}
-                  download="Matt_Martelli_Resume.pdf"
+                  download={nav.cta.resume.filename}
                   className="inline-flex items-center gap-2 text-ink-muted transition-colors hover:text-accent-cyan"
                 >
                   <FileDown size={15} aria-hidden />

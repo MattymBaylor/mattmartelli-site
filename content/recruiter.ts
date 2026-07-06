@@ -44,7 +44,8 @@ export const recruiter = {
 
   resume: {
     label: "Download Résumé (PDF)",
-    href: "/resume.pdf",
+    href: "/matt_martelli_resume.pdf",
+    filename: "matt_martelli_resume.pdf",
   },
 
   experience: [

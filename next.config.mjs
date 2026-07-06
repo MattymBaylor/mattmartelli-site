@@ -18,6 +18,15 @@ const nextConfig = {
   },
   // Vanity routes → self-contained architecture canvases. Memorable share links
   // ("go look at /tcpa", "/tiger"). Rewrite (not redirect) so the clean URL stays.
+  async redirects() {
+    return [
+      {
+        source: "/resume.pdf",
+        destination: "/matt_martelli_resume.pdf",
+        permanent: true,
+      },
+    ];
+  },
   async rewrites() {
     return [
       { source: "/tcpa", destination: "/architecture/lead-hygiene-canvas.html" },

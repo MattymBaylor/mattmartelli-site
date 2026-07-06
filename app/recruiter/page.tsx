@@ -61,7 +61,7 @@ export default function RecruiterPage() {
           <div className="mt-6 flex flex-wrap gap-3">
             <a
               href={recruiter.resume.href}
-              download="Matt_Martelli_Resume.pdf"
+              download={recruiter.resume.filename}
               className="inline-flex items-center gap-2 rounded-md bg-accent-gradient px-4 py-2.5 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03]"
             >
               <Download size={15} aria-hidden /> {recruiter.resume.label}

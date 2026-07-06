@@ -98,7 +98,7 @@ export function HiringHero() {
             <motion.div variants={item} className="mt-7 flex flex-wrap gap-3">
               <a
                 href={hero.ctas.primary.href}
-                download="Matt_Martelli_Resume.pdf"
+                download={site.nav.cta.resume.filename}
                 className="inline-flex items-center gap-2 rounded-md bg-accent-gradient px-5 py-3 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03]"
               >
                 <Download size={16} aria-hidden />
