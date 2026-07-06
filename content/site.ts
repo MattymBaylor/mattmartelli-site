@@ -117,6 +117,20 @@ export const site = {
       caption: "The AI-powered lead lifecycle — an end-to-end agentic journey",
       hint: "Click to expand",
     },
+    // Workflow carousel — arrow-navigated diagrams in the Agentic section.
+    // Add slides by appending { src, alt, caption }. Images live in /public.
+    workflows: [
+      {
+        src: "/lead-lifecycle-workflow.webp",
+        alt: "The AI-Powered Lead Lifecycle — an end-to-end agentic journey: ingestion and triage, data hygiene and semantic standardization, enrichment and strategic routing, then final sync and operational action across HubSpot and Salesforce.",
+        caption: "The AI-powered lead lifecycle — an end-to-end agentic journey",
+      },
+      {
+        src: "/workflow-viral-video.png",
+        alt: "An n8n workflow that turns a single idea into a finished short-form video, published across multiple platforms.",
+        caption: "AI viral-video workflow — one idea to a finished short-form video, published across platforms",
+      },
+    ],
     // Explorable chips — selecting one updates the inline description.
     applications: [
       {

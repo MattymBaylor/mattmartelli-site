@@ -2,7 +2,7 @@ import { site } from "@/content/site";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { Explorable } from "@/components/ui/Explorable";
-import { ExpandableImage } from "@/components/ui/ExpandableImage";
+import { WorkflowCarousel } from "@/components/ui/WorkflowCarousel";
 import { StatCallout } from "@/components/ui/StatCallout";
 import { Footnotes } from "@/components/ui/Footnotes";
 
@@ -27,12 +27,10 @@ export function AgenticSystems() {
 
         <Reveal delay={0.1}>
           <div className="mt-12">
-            <ExpandableImage
-              src={agentic.lifecycle.src}
-              alt={agentic.lifecycle.alt}
-              caption={agentic.lifecycle.caption}
-              hint={agentic.lifecycle.hint}
-            />
+            <p className="mb-5 font-mono text-xs uppercase tracking-[0.18em] text-ink-faint">
+              Workflow library — use the arrows to browse
+            </p>
+            <WorkflowCarousel items={agentic.workflows} />
           </div>
         </Reveal>
 
