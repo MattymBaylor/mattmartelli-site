@@ -49,7 +49,7 @@ export const recruiter = {
 
   experience: [
     {
-      company: "Home Genius Exteriors",
+      company: "National home services enterprise",
       role: "AI Integration Strategist",
       dates: "2025–Present",
       note: "Enterprise AI and automation across recruiting, sales, customer experience, and operations.",
@@ -75,7 +75,7 @@ export const recruiter = {
   ],
 
   accomplishments: [
-    "Generate $750K/month in attributed pipeline at Home Genius through AI-driven initiatives and campaigns.",
+    "Generate $750K/month in attributed pipeline through AI-driven initiatives and campaigns.",
     "Drove $3.1M in new revenue within six months with a first-of-its-kind personalization pilot.",
     "Saved $90K+/year by re-architecting enterprise automation from Zapier to self-hosted n8n — with zero downtime.",
     "Led CRM and lifecycle transformations across databases of 500,000+ records, with TCPA/CAN-SPAM governance.",
