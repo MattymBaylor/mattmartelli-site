@@ -47,15 +47,26 @@ export function HiringHero() {
             transition={{ duration: 0.6 }}
             className="mx-auto w-full max-w-[260px] lg:mx-0"
           >
-            <div className="overflow-hidden rounded-2xl border border-line bg-surface-elevated/60 p-1.5 shadow-glow">
-              <Image
-                src="/headshot.jpg"
-                alt="Matt Martelli — AI Systems Architect"
-                width={260}
-                height={325}
-                priority
-                className="aspect-[4/5] w-full rounded-xl object-cover object-top"
-              />
+            <div className="overflow-hidden rounded-2xl border border-line bg-surface-elevated/60 shadow-glow">
+              <div className="p-1.5">
+                <Image
+                  src="/headshot.jpg"
+                  alt="Matt Martelli — AI Systems Architect"
+                  width={260}
+                  height={325}
+                  priority
+                  className="aspect-[4/5] w-full rounded-xl object-cover object-top"
+                />
+              </div>
+              <div className="border-t border-line/60 bg-night/50 px-3 py-3">
+                <Image
+                  src="/hubspot-certified-partner.webp"
+                  alt="HubSpot Certified Partner"
+                  width={690}
+                  height={336}
+                  className="h-auto w-full"
+                />
+              </div>
             </div>
             <p className="mt-3 text-center font-mono text-[10px] uppercase tracking-[0.14em] text-ink-faint lg:text-left">
               {hiring.availability}
