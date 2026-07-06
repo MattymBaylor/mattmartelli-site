@@ -26,12 +26,15 @@ export function ProofHighlights() {
           live demos in the portfolio section.
         </p>
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-3">
+        <div className="mt-10 grid gap-6 lg:grid-cols-3 lg:gap-5">
           {items.map((project, i) => (
-            <article
-              key={project.id}
-              className="group flex flex-col overflow-hidden rounded-xl border border-line bg-surface-elevated/60 transition-colors hover:border-accent-cyan/30"
-            >
+            <div key={project.id} className="relative">
+              {/* Soft ambient halo — separates cards from the section background */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -inset-2 rounded-2xl bg-[radial-gradient(ellipse_at_50%_30%,rgba(34,211,238,0.14)_0%,rgba(99,102,241,0.06)_42%,transparent_72%)] opacity-90 blur-md"
+              />
+              <article className="group relative flex flex-col overflow-hidden rounded-xl border border-line/90 bg-surface-elevated/85 shadow-lift transition-all duration-300 hover:-translate-y-0.5 hover:border-accent-cyan/35 hover:shadow-lift-hover">
               <div className="relative aspect-[16/10] border-b border-line">
                 <Image
                   src={project.image.src}
@@ -68,7 +71,8 @@ export function ProofHighlights() {
                   </a>
                 )}
               </div>
-            </article>
+              </article>
+            </div>
           ))}
         </div>
 

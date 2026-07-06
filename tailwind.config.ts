@@ -61,6 +61,9 @@ const config: Config = {
         elevated: "0 1px 0 0 rgba(255,255,255,0.04) inset, 0 8px 30px -12px rgba(0,0,0,0.7)",
         glow: "0 0 0 1px rgba(34,211,238,0.25), 0 0 40px -8px rgba(34,211,238,0.35)",
         "glow-indigo": "0 0 0 1px rgba(99,102,241,0.25), 0 0 40px -8px rgba(99,102,241,0.35)",
+        lift: "0 1px 0 0 rgba(255,255,255,0.07) inset, 0 4px 20px -6px rgba(0,0,0,0.55), 0 0 36px -10px rgba(34,211,238,0.14), 0 12px 32px -14px rgba(0,0,0,0.45)",
+        "lift-hover":
+          "0 1px 0 0 rgba(255,255,255,0.09) inset, 0 8px 28px -8px rgba(0,0,0,0.5), 0 0 44px -8px rgba(34,211,238,0.22), 0 16px 40px -12px rgba(0,0,0,0.4)",
       },
       backgroundImage: {
         "accent-gradient": "linear-gradient(135deg, #22D3EE 0%, #6366F1 100%)",
