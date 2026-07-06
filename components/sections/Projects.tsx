@@ -99,7 +99,7 @@ export function Projects() {
                   setActiveId(p.id);
                 }}
                 aria-haspopup="dialog"
-                className="group flex h-full w-full flex-col overflow-hidden rounded-xl border border-line bg-surface-elevated/70 text-left transition-all hover:-translate-y-1 hover:border-accent-cyan/40 hover:bg-surface-elevated hover:shadow-glow"
+                className="group flex h-full w-full flex-col overflow-hidden rounded-xl border border-line bg-surface-elevated/70 text-left shadow-glow transition-all hover:-translate-y-1 hover:border-accent-cyan/40 hover:bg-surface-elevated hover:shadow-lift-hover"
               >
                 <div className="relative border-b border-line">
                   <CardVisual project={p} />
@@ -150,7 +150,7 @@ export function Projects() {
               exit={reduced ? undefined : { opacity: 0, y: 16, scale: 0.99 }}
               transition={{ duration: 0.25 }}
               onClick={(e) => e.stopPropagation()}
-              className="mx-auto my-auto max-w-4xl overflow-hidden rounded-2xl border border-line bg-surface-elevated shadow-elevated"
+              className="mx-auto my-auto max-w-4xl overflow-hidden rounded-2xl border border-line bg-surface-elevated shadow-glow"
             >
               <div className="flex items-start justify-between gap-4 border-b border-line px-6 py-4">
                 <div>

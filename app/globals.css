@@ -53,7 +53,7 @@
   }
 
   .surface-card {
-    @apply rounded-xl border border-line bg-surface-elevated/80 shadow-elevated;
+    @apply rounded-xl border border-line bg-surface-elevated/80 shadow-glow;
   }
 
   .accent-text {

@@ -84,7 +84,7 @@ export function TigerTeamSection() {
             </a>
             <a
               href="/field-notes/tiger-sentinel"
-              className="group flex flex-col rounded-md border border-accent-cyan/40 bg-accent-cyan/10 px-5 py-3 transition-transform hover:scale-[1.02]"
+              className="group flex flex-col rounded-md border border-accent-cyan/40 bg-accent-cyan/10 px-5 py-3 shadow-glow transition-transform hover:scale-[1.02]"
             >
               <span className="text-sm font-bold text-ink">Tiger vs. Sentinel</span>
               <span className="mt-1 inline-flex items-center gap-1 text-sm font-medium text-accent-cyan">
@@ -94,7 +94,7 @@ export function TigerTeamSection() {
             </a>
             <Link
               href="/playbook"
-              className="group flex flex-col rounded-md border border-line px-5 py-3 transition-colors hover:border-accent-cyan/40"
+              className="group flex flex-col rounded-md border border-line px-5 py-3 shadow-glow transition-colors hover:border-accent-cyan/40"
             >
               <span className="text-sm font-bold text-ink">Interactive Playbook</span>
               <span className="mt-1 inline-flex items-center gap-1 text-sm text-ink-muted">

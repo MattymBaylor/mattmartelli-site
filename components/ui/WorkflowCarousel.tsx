@@ -87,7 +87,7 @@ export function WorkflowCarousel({ items }: { items: readonly Slide[] }) {
             onClick={() => setOpen(true)}
             aria-haspopup="dialog"
             aria-label={`Expand workflow: ${current.alt}`}
-            className="group relative block w-full overflow-hidden rounded-xl border border-line bg-surface-elevated/40 transition-colors hover:border-accent-cyan/40 focus-visible:border-accent-cyan/60"
+            className="group relative block w-full overflow-hidden rounded-xl border border-line bg-surface-elevated/40 shadow-glow transition-colors hover:border-accent-cyan/40 focus-visible:border-accent-cyan/60"
           >
             <AnimatePresence mode="wait" initial={false}>
               <motion.span

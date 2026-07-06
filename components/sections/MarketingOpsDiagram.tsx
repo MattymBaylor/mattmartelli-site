@@ -36,7 +36,7 @@ export function MarketingOpsDiagram() {
   const reduced = usePrefersReducedMotion();
 
   return (
-    <div className="rounded-xl border border-line bg-surface-elevated/40 p-5 sm:p-6">
+    <div className="rounded-xl border border-line bg-surface-elevated/40 p-5 shadow-glow sm:p-6">
       <p className="mb-4 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-accent-cyan/80">
         <span className="h-1.5 w-1.5 rounded-full bg-accent-cyan" aria-hidden />
         Lead → revenue, measured end to end

@@ -12,7 +12,7 @@ export function Contact() {
   const mailto = `mailto:${meta.email}?subject=${encodeURIComponent(MAIL_SUBJECT)}`;
 
   const channelClass =
-    "flex items-center gap-3 rounded-lg border border-line bg-surface-elevated/50 px-4 py-3.5 transition-colors hover:border-accent-cyan/40";
+    "flex items-center gap-3 rounded-lg border border-line bg-surface-elevated/50 px-4 py-3.5 shadow-glow transition-colors hover:border-accent-cyan/40";
 
   return (
     <section id="contact" className="section border-t border-line/60" aria-labelledby="contact-heading">

@@ -47,7 +47,7 @@ export function HiringHero() {
             transition={{ duration: 0.6 }}
             className="mx-auto w-full max-w-[260px] lg:mx-0"
           >
-            <div className="overflow-hidden rounded-2xl border border-line bg-surface-elevated/60 p-1.5 shadow-elevated">
+            <div className="overflow-hidden rounded-2xl border border-line bg-surface-elevated/60 p-1.5 shadow-glow">
               <Image
                 src="/headshot.jpg"
                 alt="Matt Martelli — AI Systems Architect"
@@ -147,7 +147,7 @@ export function HiringHero() {
           initial={reduced ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-10 rounded-xl border border-line bg-surface-elevated/50 p-5 sm:p-6"
+          className="mt-10 rounded-xl border border-line bg-surface-elevated/50 p-5 shadow-glow sm:p-6"
         >
           <p className="eyebrow mb-4">Selected accomplishments</p>
           <ul className="grid gap-3 sm:grid-cols-2">

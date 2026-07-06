@@ -29,7 +29,7 @@ export function StatCallout({
     <aside
       aria-describedby={footnote ? footnoteId : undefined}
       className={[
-        "my-12 flex flex-col gap-4 rounded-xl border border-l-4 p-6 sm:my-16 sm:flex-row sm:items-center sm:gap-6 sm:p-7",
+        "my-12 flex flex-col gap-4 rounded-xl border border-l-4 p-6 shadow-glow sm:my-16 sm:flex-row sm:items-center sm:gap-6 sm:p-7",
         owned
           ? "border-warm/25 border-l-warm bg-warm/[0.06]"
           : "border-[#10B981]/25 border-l-[#10B981]/50 bg-[#10B981]/5",

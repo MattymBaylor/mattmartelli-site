@@ -55,7 +55,7 @@ export function VoiceAI() {
                   call with a loudness-driven waveform + synced transcript. Served as
                   a self-contained page from /public/voice. */}
               <div className="mx-auto w-full max-w-[760px]">
-                <div className="relative aspect-video w-full">
+                <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-line bg-black shadow-glow">
                   <iframe
                     src="/voice/call-visualizer.html"
                     title="Interactive AI voice-agent call — play a real recorded outbound call"

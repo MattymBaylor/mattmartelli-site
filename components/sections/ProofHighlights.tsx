@@ -32,9 +32,9 @@ export function ProofHighlights() {
               {/* Soft ambient halo — separates cards from the section background */}
               <div
                 aria-hidden
-                className="pointer-events-none absolute -inset-2 rounded-2xl bg-[radial-gradient(ellipse_at_50%_30%,rgba(34,211,238,0.14)_0%,rgba(99,102,241,0.06)_42%,transparent_72%)] opacity-90 blur-md"
+                className="pointer-events-none absolute -inset-2 rounded-2xl bg-[radial-gradient(ellipse_at_50%_30%,rgba(34,211,238,0.20)_0%,rgba(99,102,241,0.10)_42%,transparent_72%)] opacity-95 blur-md"
               />
-              <article className="group relative flex flex-col overflow-hidden rounded-xl border border-line/90 bg-surface-elevated/85 shadow-lift transition-all duration-300 hover:-translate-y-0.5 hover:border-accent-cyan/35 hover:shadow-lift-hover">
+              <article className="group relative flex flex-col overflow-hidden rounded-xl border border-line/90 bg-surface-elevated/85 shadow-glow transition-all duration-300 hover:-translate-y-0.5 hover:border-accent-cyan/35 hover:shadow-lift-hover">
               <div className="relative aspect-[16/10] border-b border-line">
                 <Image
                   src={project.image.src}

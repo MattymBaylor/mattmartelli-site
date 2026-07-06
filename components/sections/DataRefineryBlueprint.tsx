@@ -74,7 +74,7 @@ export function DataRefineryBlueprint() {
         type="button"
         onClick={() => openAt(0)}
         aria-haspopup="dialog"
-        className="group block w-full overflow-hidden rounded-xl border border-line bg-surface-elevated/40 text-left transition-colors hover:border-accent-cyan/40 focus-visible:border-accent-cyan/60"
+        className="group block w-full overflow-hidden rounded-xl border border-line bg-surface-elevated/40 text-left shadow-glow transition-colors hover:border-accent-cyan/40 focus-visible:border-accent-cyan/60"
       >
         <div className="grid items-stretch gap-0 sm:grid-cols-[minmax(0,42%)_1fr]">
           <div className="flex items-center border-b border-line/70 bg-surface-raised/40 p-3 sm:border-b-0 sm:border-r sm:p-5">
