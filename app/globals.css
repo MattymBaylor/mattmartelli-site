@@ -100,6 +100,24 @@
   }
 }
 
+/* Tech stack marquee — infinite horizontal scroll */
+.marquee-track {
+  animation: marquee-scroll 40s linear infinite;
+}
+@keyframes marquee-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 /* React Flow controls/attribution restyle for dark theme */
 .react-flow__attribution {
   background: transparent !important;

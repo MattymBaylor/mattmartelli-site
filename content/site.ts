@@ -45,25 +45,53 @@ export const site = {
       { label: "About", href: "recruiter" },
     ],
     cta: {
+      resume: { label: "Download Résumé", href: "/resume.pdf" },
       recruiter: { label: "Recruiter Fast Path", href: "/recruiter" },
       contact: { label: "Contact", href: "#contact" },
     },
   },
 
+  hiring: {
+    primaryRole: "AI Systems Architect",
+    secondaryRole: "Production AI · Voice · RevOps",
+    availability: "Naples, FL · Remote · Open to senior IC, architect/lead, or consulting",
+    oneLiner:
+      "I design and ship production AI systems — voice agents, multi-agent workflows, and CRM automation — that connect data, automation, and human teams to measurable business outcomes.",
+    targetRoles: [
+      "AI Systems Architect",
+      "Forward Deployed Engineer",
+      "Senior Applied AI Engineer",
+    ],
+    targetRolesNote: "Also open to RevOps and marketing automation leadership roles.",
+    systemsDepth: {
+      eyebrow: "Technical depth",
+      title: "For evaluators who want to go deeper",
+      sub: "Interactive architecture canvases, voice AI demos, orchestration patterns, and the methodology behind how I pressure-test AI before it ships.",
+    },
+  },
+
   hero: {
+    eyebrow: "AI Systems Architect",
     name: "Matt Martelli",
     // Headline renders as two stacked lines; line 2 carries the emphasis.
     headlineLine1: "AI is the tool.",
     headlineLine2: "The system is the product.",
+    promise: "I build AI systems that find flaws, fix fast, and scale revenue.",
     capabilities:
-      "AI Automation Architect | Marketing Automation Architect | AI Integration Strategist | HubSpot Certified | Remote",
+      "AI Automation Architect | RevOps & CRM Systems | Marketing Automation | HubSpot Certified | Remote",
     introduction:
-      "I build production AI systems that connect voice agents, automation, CRM platforms, and human teams into measurable revenue engines.",
+      "I design production AI systems that connect voice agents, automation, CRM platforms, and human teams into measurable operating systems for growth.",
     experience:
-      "25 years in marketing, the last 15+ building the AI, automation, and CRM systems businesses run on.",
+      "My work is built for the real world: pressure-tested, failure-aware, and designed to turn weak spots into fix-ready execution.",
+    stats: [
+      { value: "25+", label: "years building systems" },
+      { value: "100+", label: "custom agent workflows" },
+      { value: "HubSpot", label: "certified architect" },
+    ],
     ctas: {
-      primary: { label: "Explore the Architecture", href: "#architecture" },
-      secondary: { label: "Recruiter Fast Path", href: "/recruiter" },
+      primary: { label: "Download Résumé", href: "/resume.pdf" },
+      secondary: { label: "Explore Systems", href: "#agentic-systems" },
+      recruiter: { label: "Recruiter Fast Path", href: "/recruiter" },
     },
     // Single flagship teaser — the one artifact that demonstrates the whole
     // thesis. Lives just under the hero CTAs; the full flagship card is in
@@ -73,6 +101,105 @@ export const site = {
       detail: "the multi-agent system that runs my own company.",
       href: "/seinfeld-hq",
     },
+  },
+
+  systemFlow: {
+    nodes: ["Voice", "Automation", "CRM", "Human teams"],
+  },
+
+  techStack: [
+    "n8n",
+    "Retell AI",
+    "OpenAI",
+    "Claude",
+    "HubSpot",
+    "Salesforce",
+    "CrewAI",
+    "ElevenLabs",
+    "HeyGen",
+    "Python",
+    "PostgreSQL",
+    "MCP",
+  ],
+
+  industries: [
+    "Home Services",
+    "Marketing Ops",
+    "RevOps",
+    "SaaS",
+    "Coaching",
+    "Enterprise",
+    "Lead Generation",
+    "Customer Support",
+  ],
+
+  focusAreas: [
+    { n: "01", label: "Agentic workflows", href: "#agentic-systems" },
+    { n: "02", label: "Voice AI systems", href: "#voice-ai" },
+    { n: "03", label: "Revenue operations", href: "#marketing-ops" },
+  ],
+
+  whatIBuild: {
+    eyebrow: "What I build",
+    heading: "From uncertain idea to dependable system.",
+    framing:
+      "I work where AI meets real organizational complexity — legacy CRMs, sensitive data, human decisions, and the need to prove something actually works.",
+    pillars: [
+      {
+        n: "01",
+        title: "Agentic systems",
+        blurb:
+          "Designing observable workflows where models, tools, data, and human judgment work together safely.",
+        points: ["Workflow architecture", "Tool orchestration", "Human oversight"],
+        href: "#agentic-systems",
+      },
+      {
+        n: "02",
+        title: "Voice & revenue AI",
+        blurb:
+          "Voice agents and recovery workflows that answer, qualify, schedule, and reclaim revenue — coordinated as one system.",
+        points: ["Realtime voice agents", "Speed-to-lead", "CRM integration"],
+        href: "#voice-ai",
+      },
+      {
+        n: "03",
+        title: "Marketing & RevOps",
+        blurb:
+          "Lifecycle marketing, lead management, and data hygiene at enterprise scale — the infrastructure businesses run on.",
+        points: ["CRM architecture", "Data hygiene", "Revenue attribution"],
+        href: "#marketing-ops",
+      },
+    ],
+  },
+
+  operatingPrinciples: {
+    eyebrow: "Operating principles",
+    heading: "How I think about AI delivery.",
+    sub: "The most valuable systems are understandable, governable, and quietly useful in ordinary work.",
+    items: [
+      {
+        n: "01",
+        title: "Useful before autonomous",
+        blurb: "Start with a real decision or workflow. Earn autonomy through evidence.",
+      },
+      {
+        n: "02",
+        title: "Visible before magical",
+        blurb: "Expose sources, reasoning boundaries, approvals, and failure paths.",
+      },
+      {
+        n: "03",
+        title: "Systems before prompts",
+        blurb: "The model is one component. Data, interfaces, evaluation, and operations make it work.",
+      },
+    ],
+  },
+
+  selectedWork: {
+    eyebrow: "Selected systems",
+    heading: "Practical AI. Built for real work.",
+    sub: "Production prototypes for real revenue, operations, and growth workflows.",
+    cta: { label: "View all projects", href: "#projects" },
   },
 
   whatIDo: {
@@ -474,6 +601,10 @@ export const site = {
 
   footer: {
     tagline: "Designing business systems powered by AI.",
+    thoughtLeadership: {
+      eyebrow: "Thought leadership & company",
+      note: "Audience-building — separate from the portfolio and hiring evaluation.",
+    },
   },
 } as const;
 

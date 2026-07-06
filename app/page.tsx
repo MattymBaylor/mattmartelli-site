@@ -1,14 +1,15 @@
 import { Header } from "@/components/nav/Header";
 import { Footer } from "@/components/nav/Footer";
-import { Hero } from "@/components/sections/Hero";
+import { HiringHero } from "@/components/sections/HiringHero";
+import { ProofHighlights } from "@/components/sections/ProofHighlights";
+import { ExperienceStrip } from "@/components/sections/ExperienceStrip";
+import { TigerTeamSection } from "@/components/sections/TigerTeamSection";
+import { SystemsDepthIntro } from "@/components/sections/SystemsDepthIntro";
 import { AgenticSystems } from "@/components/sections/AgenticSystems";
 import { Orchestration } from "@/components/sections/Orchestration";
 import { VoiceAI } from "@/components/sections/VoiceAI";
 import { MarketingOps } from "@/components/sections/MarketingOps";
 import { Projects } from "@/components/sections/Projects";
-import { AiBrief } from "@/components/sections/AiBrief";
-import { Podcast } from "@/components/sections/Podcast";
-import { RecruiterSummary } from "@/components/sections/RecruiterSummary";
 import { Contact } from "@/components/sections/Contact";
 
 export default function HomePage() {
@@ -16,15 +17,19 @@ export default function HomePage() {
     <>
       <Header />
       <main id="main">
-        <Hero />
+        {/* Hiring signal — first two screens */}
+        <HiringHero />
+        <ProofHighlights />
+        <ExperienceStrip />
+        {/* Differentiator for technical evaluators */}
+        <TigerTeamSection />
+        {/* Technical depth — opt-in scroll */}
+        <SystemsDepthIntro />
         <AgenticSystems />
         <Orchestration />
         <VoiceAI />
         <MarketingOps />
         <Projects />
-        <AiBrief />
-        <Podcast />
-        <RecruiterSummary />
         <Contact />
       </main>
       <Footer />

@@ -129,13 +129,20 @@ export function Header() {
         <div className="flex items-center gap-2.5">
           <Link
             href={site.nav.cta.recruiter.href}
-            className="hidden rounded-md border border-line-strong px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan sm:inline-flex"
+            className="hidden rounded-md border border-line-strong px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan lg:inline-flex"
           >
             {site.nav.cta.recruiter.label}
           </Link>
+          <a
+            href={site.nav.cta.resume.href}
+            download="Matt_Martelli_Resume.pdf"
+            className="hidden rounded-md bg-accent-gradient px-4 py-2 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03] sm:inline-flex"
+          >
+            {site.nav.cta.resume.label}
+          </a>
           <Link
             href={`/${site.nav.cta.contact.href}`}
-            className="hidden rounded-md bg-accent-gradient px-4 py-2 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03] sm:inline-flex"
+            className="hidden rounded-md border border-line-strong px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan md:inline-flex"
           >
             {site.nav.cta.contact.label}
           </Link>
@@ -218,6 +225,14 @@ export function Header() {
               );
             })}
             <li className="mt-2 flex flex-col gap-2">
+              <a
+                href={site.nav.cta.resume.href}
+                download="Matt_Martelli_Resume.pdf"
+                onClick={() => setOpen(false)}
+                className="rounded-md bg-accent-gradient px-3.5 py-2.5 text-center text-sm font-semibold text-night"
+              >
+                {site.nav.cta.resume.label}
+              </a>
               <Link
                 href={site.nav.cta.recruiter.href}
                 onClick={() => setOpen(false)}
@@ -229,7 +244,7 @@ export function Header() {
               <Link
                 href={`/${site.nav.cta.contact.href}`}
                 onClick={() => setOpen(false)}
-                className="rounded-md bg-accent-gradient px-3.5 py-2.5 text-center text-sm font-semibold text-night"
+                className="rounded-md border border-line-strong px-3.5 py-2.5 text-center text-sm font-medium"
               >
                 {site.nav.cta.contact.label}
               </Link>

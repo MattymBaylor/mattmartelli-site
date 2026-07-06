@@ -84,12 +84,12 @@ export function Projects() {
     <section id="projects" className="section border-t border-line/60">
       <div className="container-x">
         <SectionHeading
-          eyebrow="Featured Projects"
+          eyebrow="Full project library"
           title="Systems, not screenshots"
-          sub="Each project leads with the business outcome it produced. Click any card for the full story and a closer look."
+          sub="Every card leads with the business outcome. Click for architecture detail, tech stack, and live links."
         />
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {projects.map((p, i) => (
             <Reveal key={p.id} delay={(i % 3) * 0.06}>
               <button

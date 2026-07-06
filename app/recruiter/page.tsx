@@ -377,6 +377,27 @@ export default function RecruiterPage() {
             </Link>
           </div>
         </section>
+
+        <p className="mt-10 text-sm leading-relaxed text-ink-faint">
+          {recruiter.thoughtLeadership.line}{" "}
+          <a
+            href={recruiter.thoughtLeadership.youtube.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-ink-muted underline decoration-line-strong underline-offset-2 transition-colors hover:text-accent-cyan"
+          >
+            {recruiter.thoughtLeadership.youtube.label}
+          </a>
+          {" · "}
+          <a
+            href={recruiter.thoughtLeadership.podcast.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-ink-muted underline decoration-line-strong underline-offset-2 transition-colors hover:text-accent-cyan"
+          >
+            {recruiter.thoughtLeadership.podcast.label}
+          </a>
+        </p>
       </div>
     </main>
   );

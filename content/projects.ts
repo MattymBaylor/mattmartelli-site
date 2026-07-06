@@ -1,15 +1,8 @@
 /**
  * projects.ts — the single, unified list powering the Projects section.
  *
- * Every project uses the SAME shape: an image on the card, a one-line
- * `outcome`, and a README-style `description` shown in the click-to-open modal.
- * This keeps the whole section consistent.
- *
- * To add/replace a project image: drop the file in /public and set
- * `image.src` + `image.width`/`image.height` (pixel dimensions). Set
- * `image.placeholder: true` to render a "screenshot coming soon" panel until a
- * real image is ready. Optional: `callouts` (numbered "how it works"),
- * `flow` (short architecture labels), `tech`, `skills`, and a `link`.
+ * Five builder systems only. Thought leadership (YouTube, podcast) lives in
+ * the site footer — not mixed into the project grid.
  */
 
 export interface ProjectLink {
@@ -33,16 +26,11 @@ export interface ProjectImage {
 export interface Project {
   id: string;
   title: string;
-  /** Marks a primary demonstration (subtle badge). */
   flagship?: boolean;
-  /** One-line, business-outcome-first — shown on the card. */
   outcome: string;
-  /** README-style description — shown in the modal. */
   description: string;
   image: ProjectImage;
-  /** Numbered "how it works" steps (workflow/dashboard projects). */
   callouts?: ProjectCallout[];
-  /** Short architecture labels (conceptual projects). */
   flow?: string[];
   tech?: string[];
   skills?: string[];
@@ -51,28 +39,38 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: "matt-maya-show",
-    title: "Matt & Maya Show",
+    id: "voice-ecosystem",
+    title: "AI Voice Agent Ecosystem",
     outcome:
-      "A podcast about people, patterns, and the collision between human instinct and machine intelligence.",
+      "Turns missed and after-hours calls into qualified, scheduled, revenue-generating conversations.",
     description:
-      "Matt & Maya is a podcast exploring what happens when human intuition meets AI precision. Matt brings gut feelings, contradictions, and irrational passion for systems that somehow work. Maya brings patterns, data, and playful honesty about what the numbers mean. Every episode is a real debate about decisions, dilemmas, and the stuff people argue about\u2014exploring why we do what we do, even when we know better. No breathless futurism, no talking points. Just the human condition analyzed from two radically different perspectives: the part of you that feels and the part that knows. Visit the site and play the audio teaser to hear just how real the conversation gets.",
+      "Voice AI systems that answer calls, qualify leads, schedule appointments, and recover revenue opportunities around the clock — connecting the voice layer to CRM, scheduling, and follow-up so no call goes to waste. Productized as a live offering: AI that answers the phone, qualifies the lead, and books the appointment before the caller hangs up. The same pattern applies to any business that books appointments — coaching, medical, B2B, field service.",
     image: {
-      src: "/matt-maya-show.jpg",
-      alt: "Matt & Maya Show \u2014 Human Mess meets Elegant Logic. A podcast about people, patterns, and the beautiful collision between human instinct and machine intelligence.",
-      width: 1400,
-      height: 951,
+      src: "/voice-ecosystem.png",
+      alt: "Voice AI product landing: 'Every missed call is lost revenue' — AI that answers the phone, qualifies the lead, and books the job, with a call-flow diagram.",
+      width: 1600,
+      height: 1000,
     },
-    skills: [
-      "Podcast production",
-      "Thought leadership",
-      "AI narrative",
-      "Human-AI collaboration",
-    ],
-    link: {
-      label: "Listen to the teaser",
-      href: "https://mattandmayashow.com",
+    flow: ["Call", "Voice Agent", "CRM", "Scheduler", "Follow-Up"],
+    skills: ["Voice AI", "Realtime systems", "CRM integration", "Scheduling"],
+    link: { label: "View live site", href: "https://growthmindset.ai" },
+  },
+  {
+    id: "revenue-recovery",
+    title: "Revenue Recovery Platform",
+    outcome:
+      "Recaptures revenue that normally leaks away — missed calls, after-hours inquiries, and slow follow-up.",
+    description:
+      "Automation that detects missed opportunities — missed calls, after-hours inquiries, and delayed follow-up — and re-engages them automatically to reclaim revenue that would otherwise be lost. Built around speed-to-lead: the first responder wins the deal, so the system responds in under 60 seconds, automatically.",
+    image: {
+      src: "/revenue-recovery.png",
+      alt: "Speed-to-lead product: 'Your Leads Are Dying. Every Minute Costs You $47' with metric cards — 78% of jobs go to the first responder, 21x higher conversion under 5 minutes, 391% higher conversion when calling within one minute.",
+      width: 1600,
+      height: 1000,
     },
+    flow: ["Detect", "Re-engage", "Qualify", "Recover"],
+    skills: ["Workflow automation", "Revenue operations", "Event detection"],
+    link: { label: "View live site", href: "https://speedlead-pi.vercel.app" },
   },
   {
     id: "client-dashboard",
@@ -97,6 +95,34 @@ export const projects: Project[] = [
     ],
     tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Interactive charting"],
     skills: ["Front-end engineering", "Data visualization", "Dashboard design", "Interactive UI"],
+  },
+  {
+    id: "seinfeld-hq",
+    title: "Multi-Agent Company Operating System",
+    flagship: true,
+    outcome:
+      "A working demonstration that orchestration, routing, memory, and QA can run real workflows end to end — a system, not a prototype.",
+    description:
+      "A flagship case study in turning complex AI workflows into understandable business systems: agent orchestration, specialized worker agents, routing, memory, QA validation, and real-world workflow execution. It shows — rather than tells — how a multi-agent system divides a business problem, delegates to the right specialist, validates the work, and executes, with humans in the loop where it matters. Themed as a Seinfeld cast to make the org chart legible — but the theme is the wrapper; the architecture is the product.",
+    image: {
+      src: "/seinfeld-hq.png",
+      alt: "GrowthMindset.ai feature: 'I Run My Whole Company on a Cast of Seinfeld Characters' — a multi-agent system named after Seinfeld characters, illustrated as a lineup of characters.",
+      width: 1600,
+      height: 1000,
+    },
+    flow: ["Router", "Worker Agents", "Memory", "QA Validation", "Execution"],
+    link: {
+      label: "View the case study",
+      href: "/seinfeld-hq",
+    },
+    skills: [
+      "Agent orchestration",
+      "Multi-agent architecture",
+      "Workflow design",
+      "State management",
+      "Tool integration",
+      "Human-in-the-loop systems",
+    ],
   },
   {
     id: "viral-video-workflow",
@@ -137,92 +163,5 @@ export const projects: Project[] = [
       label: "View Live n8n Workflow",
       href: "https://n8n.growthmindsetai.tech/workflow/CwIi4IELhYQA2zyJ",
     },
-  },
-  /* TEMPORARILY REMOVED from the Projects grid for a cleaner recruiter view.
-     The flagship still lives on /seinfeld-hq and as the homepage hero teaser.
-     Re-add this card (with a stronger visual) when ready.
-  {
-    id: "seinfeld-hq",
-    title: "Designing Multi-Agent Systems Businesses Actually Understand",
-    flagship: true,
-    outcome:
-      "A working demonstration that orchestration, routing, memory, and QA can run real workflows end to end — a system, not a prototype.",
-    description:
-      "A flagship case study in turning complex AI workflows into understandable business systems: agent orchestration, specialized worker agents, routing, memory, QA validation, and real-world workflow execution. It shows — rather than tells — how a multi-agent system divides a business problem, delegates to the right specialist, validates the work, and executes, with humans in the loop where it matters. Themed as a Seinfeld cast to make the org chart legible — but the theme is the wrapper; the architecture is the product.",
-    image: {
-      src: "/seinfeld-hq.png",
-      alt: "GrowthMindset.ai feature: 'I Run My Whole Company on a Cast of Seinfeld Characters' — a multi-agent system named after Seinfeld characters, illustrated as a lineup of characters.",
-      width: 1600,
-      height: 1000,
-    },
-    flow: ["Router", "Worker Agents", "Memory", "QA Validation", "Execution"],
-    link: {
-      label: "View the case study",
-      href: "/seinfeld-hq",
-    },
-    skills: [
-      "Agent orchestration",
-      "Multi-agent architecture",
-      "Workflow design",
-      "State management",
-      "Tool integration",
-      "Human-in-the-loop systems",
-      "Technical storytelling",
-      "UX design",
-    ],
-  },
-  */
-  {
-    id: "ai-brief",
-    title: "The 60-Second AI Brief",
-    outcome:
-      "Thought leadership: plain-English AI briefings that help business leaders turn AI into revenue.",
-    description:
-      "My YouTube channel — intelligence for business leaders on the go. Simple, plain-English AI briefings: fast, practical explainers on how AI actually drives revenue, cuts costs, and makes teams more effective. Topics span turning ChatGPT, Claude, and Gemini into real competitive advantage; building automations that save teams hours every week; using AI for sharper decisions and clearer communication; what not to do with AI at work; and real-world playbooks from implementing AI day to day. It's where I translate the systems I build into language any executive can act on.",
-    image: {
-      src: "/ai-brief.png",
-      alt: "The 60-Second AI Brief — a YouTube channel of plain-English AI briefings for business leaders.",
-      width: 1280,
-      height: 720,
-    },
-    skills: ["Thought leadership", "AI strategy", "Executive communication", "Content"],
-    link: {
-      label: "Watch The 60-Second AI Brief",
-      href: "https://www.youtube.com/@matt_martelli",
-    },
-  },
-  {
-    id: "voice-ecosystem",
-    title: "AI Voice Agent Ecosystem",
-    outcome:
-      "Turns missed and after-hours calls into qualified, scheduled, revenue-generating conversations.",
-    description:
-      "Voice AI systems that answer calls, qualify leads, schedule appointments, and recover revenue opportunities around the clock — connecting the voice layer to CRM, scheduling, and follow-up so no call goes to waste. Productized as a live offering: AI that answers the phone, qualifies the lead, and books the appointment before the caller hangs up. The same pattern applies to any business that books appointments — coaching, medical, B2B, field service.",
-    image: {
-      src: "/voice-ecosystem.png",
-      alt: "Voice AI product landing: 'Every missed call is lost revenue' — AI that answers the phone, qualifies the lead, and books the job, with a call-flow diagram.",
-      width: 1600,
-      height: 1000,
-    },
-    flow: ["Call", "Voice Agent", "CRM", "Scheduler", "Follow-Up"],
-    skills: ["Voice AI", "Realtime systems", "CRM integration", "Scheduling"],
-    link: { label: "View live site", href: "https://growthmindset.ai" },
-  },
-  {
-    id: "revenue-recovery",
-    title: "Revenue Recovery Platform",
-    outcome:
-      "Recaptures revenue that normally leaks away — missed calls, after-hours inquiries, and slow follow-up.",
-    description:
-      "Automation that detects missed opportunities — missed calls, after-hours inquiries, and delayed follow-up — and re-engages them automatically to reclaim revenue that would otherwise be lost. Built around speed-to-lead: the first responder wins the deal, so the system responds in under 60 seconds, automatically.",
-    image: {
-      src: "/revenue-recovery.png",
-      alt: "Speed-to-lead product: 'Your Leads Are Dying. Every Minute Costs You $47' with metric cards — 78% of jobs go to the first responder, 21x higher conversion under 5 minutes, 391% higher conversion when calling within one minute.",
-      width: 1600,
-      height: 1000,
-    },
-    flow: ["Detect", "Re-engage", "Qualify", "Recover"],
-    skills: ["Workflow automation", "Revenue operations", "Event detection"],
-    link: { label: "View live site", href: "https://speedlead-pi.vercel.app" },
   },
 ];

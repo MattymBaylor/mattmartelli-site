@@ -164,6 +164,12 @@ export const recruiter = {
     title: "Sr. Business Development Manager, ACS Group",
   },
 
+  thoughtLeadership: {
+    line: "I also publish The 60-Second AI Brief on YouTube and co-host The Matt & Maya Show — linked in the site footer, not part of the hiring evaluation.",
+    youtube: { label: "The 60-Second AI Brief", href: "https://www.youtube.com/@matt_martelli" },
+    podcast: { label: "The Matt & Maya Show", href: "https://mattandmayashow.com" },
+  },
+
   closingCta: {
     heading: "Tell me about the role",
     sub: "Email or a text reaches me fastest — give me the business problem and I'll tell you how I'd architect the system that solves it.",
