@@ -122,7 +122,7 @@ export function HiringHero() {
               </a>
               <Link
                 href={hero.ctas.recruiter.href}
-                className="inline-flex items-center gap-2 rounded-md border border-warm/30 bg-warm/10 px-5 py-3 text-sm font-medium text-warm transition-colors hover:border-warm/50"
+                className="btn-recruiter px-5 py-3 text-sm"
               >
                 {hero.ctas.recruiter.label}
                 <ArrowUpRight size={16} aria-hidden />

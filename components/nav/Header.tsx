@@ -129,7 +129,7 @@ export function Header() {
         <div className="flex items-center gap-2.5">
           <Link
             href={site.nav.cta.recruiter.href}
-            className="hidden rounded-md border border-line-strong px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan lg:inline-flex"
+            className="btn-recruiter hidden px-4 py-2 text-sm lg:inline-flex"
           >
             {site.nav.cta.recruiter.label}
           </Link>
@@ -236,7 +236,7 @@ export function Header() {
               <Link
                 href={site.nav.cta.recruiter.href}
                 onClick={() => setOpen(false)}
-                className="inline-flex items-center justify-between rounded-md border border-line-strong px-3.5 py-2.5 text-sm font-medium"
+                className="btn-recruiter justify-between px-3.5 py-2.5 text-sm"
               >
                 {site.nav.cta.recruiter.label}
                 <ArrowUpRight size={16} />

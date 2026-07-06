@@ -76,7 +76,7 @@ export function Footer() {
               <li>
                 <Link
                   href={nav.cta.recruiter.href}
-                  className="inline-flex items-center gap-2 text-ink-muted transition-colors hover:text-accent-cyan"
+                  className="btn-recruiter px-4 py-2.5 text-sm"
                 >
                   {nav.cta.recruiter.label}
                   <ArrowUpRight size={14} aria-hidden />

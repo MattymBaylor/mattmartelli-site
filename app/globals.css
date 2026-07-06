@@ -60,6 +60,10 @@
     @apply bg-accent-gradient bg-clip-text text-transparent;
   }
 
+  .btn-recruiter {
+    @apply inline-flex items-center gap-2 rounded-md bg-[#FACC15] font-semibold text-night shadow-[0_0_0_1px_rgba(250,204,21,0.35),0_0_16px_-8px_rgba(250,204,21,0.4)] transition-transform hover:scale-[1.03];
+  }
+
   /* Skip link */
   .skip-link {
     @apply sr-only;
