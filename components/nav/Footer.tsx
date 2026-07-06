@@ -142,10 +142,16 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="container-x border-t border-line py-5">
+      <div className="container-x flex flex-col gap-3 border-t border-line py-5 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs text-ink-faint">
           © {new Date().getFullYear()} {meta.name}. {footer.tagline}
         </p>
+        <Link
+          href={footer.privacy.href}
+          className="text-xs text-ink-muted underline decoration-line-strong underline-offset-2 transition-colors hover:text-accent-cyan"
+        >
+          {footer.privacy.label}
+        </Link>
       </div>
     </footer>
   );

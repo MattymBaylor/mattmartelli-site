@@ -613,6 +613,7 @@ export const site = {
 
   footer: {
     tagline: "Designing business systems powered by AI.",
+    privacy: { label: "Privacy Policy", href: "/privacy" },
     thoughtLeadership: {
       eyebrow: "Thought leadership & company",
       note: "Audience-building — separate from the portfolio and hiring evaluation.",
