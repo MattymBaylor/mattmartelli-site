@@ -92,7 +92,7 @@ export function WorkflowCarousel({ items }: { items: readonly Slide[] }) {
             <AnimatePresence mode="wait" initial={false}>
               <motion.span
                 key={safeIndex}
-                className="flex aspect-[16/10] items-center justify-center bg-night/30"
+                className="flex aspect-[16/9] items-center justify-center bg-night/30"
                 initial={reduced ? false : { opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={reduced ? undefined : { opacity: 0 }}

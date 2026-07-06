@@ -126,9 +126,19 @@ export const site = {
         caption: "The AI-powered lead lifecycle — an end-to-end agentic journey",
       },
       {
-        src: "/workflow-viral-video.png",
-        alt: "An n8n workflow that turns a single idea into a finished short-form video, published across multiple platforms.",
-        caption: "AI viral-video workflow — one idea to a finished short-form video, published across platforms",
+        src: "/workflows/ai-architecture-orchestrator.webp",
+        alt: "Custom AI architecture blueprint — a master orchestrator agent that routes work to specialized agents for research, coding, design, analysis, and deployment over a secure API bridge.",
+        caption: "AI architecture — a master orchestrator delegating to specialized agents",
+      },
+      {
+        src: "/workflows/scalable-revenue-architecture.webp",
+        alt: "Scalable revenue architecture — a centralized HubSpot central nervous system connecting acquisition, fulfillment, and finance to eliminate data silos and sync drift.",
+        caption: "Scalable revenue architecture — one central nervous system, no data silos",
+      },
+      {
+        src: "/workflows/scaling-blueprint-journeys.webp",
+        alt: "The scaling blueprint — routing seven distinct customer personas by offer tier, sales cycle, and the high-leverage moment that converts each.",
+        caption: "The scaling blueprint — seven customer journeys, routed by intent",
       },
     ],
     // Explorable chips — selecting one updates the inline description.
