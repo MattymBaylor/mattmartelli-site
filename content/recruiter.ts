@@ -52,7 +52,7 @@ export const recruiter = {
     {
       company: "growthmindset.ai",
       role: "Founder & AI Systems Architect",
-      dates: "2026–Present",
+      dates: "2023–Present",
       note: "Production voice AI, multi-agent operating systems, and revenue automation — designed, built, and shipped as the growthmindset.ai platform.",
     },
     {
