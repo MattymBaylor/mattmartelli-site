@@ -140,6 +140,21 @@ export const site = {
         alt: "The scaling blueprint — routing seven distinct customer personas by offer tier, sales cycle, and the high-leverage moment that converts each.",
         caption: "The scaling blueprint — seven customer journeys, routed by intent",
       },
+      {
+        src: "/workflows/multi-agent-specialist-roster.webp",
+        alt: "A 15-agent AI operation — a specialist roster organized into Intelligence, Creation, Systems, and Quality Control departments, each agent owning a domain-specific job.",
+        caption: "Multi-agent operations — a 15-agent specialist roster across intelligence, creation, systems, and QA",
+      },
+      {
+        src: "/workflows/gtm-engine-blueprint.webp",
+        alt: "A unified go-to-market execution blueprint — data foundation and enrichment via Clay, routing and conversion via Chili Piper, outbound engagement via Outreach, unified on a HubSpot and Salesforce system of record.",
+        caption: "The GTM engine — Clay to Chili Piper to Outreach, unified on HubSpot + Salesforce",
+      },
+      {
+        src: "/workflows/tech-stack-decision-tree.webp",
+        alt: "A tech-stack architecture decision tree — choosing the right CRM and automation stack by ARR and contact volume, from sub-$1M scrappy stacks to enterprise.",
+        caption: "Tech-stack decision tree — the right architecture by ARR and contact volume",
+      },
     ],
     // Explorable chips — selecting one updates the inline description.
     applications: [
