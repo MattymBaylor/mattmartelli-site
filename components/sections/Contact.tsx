@@ -16,11 +16,12 @@ export function Contact() {
           eyebrow="AI Training & Evals"
           title="Teaching AI to reason better through human expertise."
           sub="Every AI system is only as sharp as the feedback it learns from. We build the evaluation frameworks and training pipelines that turn raw model output into reliable, production-ready intelligence — the difference between an AI that guesses and one that reasons."
+          align="center"
           headingId="training-evals-heading"
         />
 
         <Reveal delay={0.08}>
-          <div className="mx-auto mt-10 aspect-square w-full max-w-[600px] overflow-hidden rounded-2xl border border-line bg-black shadow-glow">
+          <div className="mx-auto mt-12 aspect-square w-full max-w-3xl overflow-hidden rounded-2xl border border-line bg-black shadow-glow">
             <video
               className="h-full w-full object-cover"
               controls
