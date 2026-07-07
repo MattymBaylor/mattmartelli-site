@@ -74,25 +74,27 @@ export function HiringHero() {
           </motion.div>
 
           <motion.div variants={container} initial="hidden" animate="show">
-            <motion.p variants={item} className="eyebrow">
-              {hiring.primaryRole}
-            </motion.p>
-
-            <motion.h1
-              id="hero-heading"
+            <motion.div
               variants={item}
-              className="mt-3 text-3xl font-semibold leading-tight sm:text-4xl lg:text-[2.75rem]"
+              className="rounded-2xl border border-line bg-surface-elevated/80 p-6 shadow-glow sm:p-7"
             >
-              {hero.name}
-            </motion.h1>
+              <p className="eyebrow">{hiring.primaryRole}</p>
 
-            <motion.p variants={item} className="mt-2 font-display text-lg text-accent-cyan sm:text-xl">
-              {hiring.secondaryRole}
-            </motion.p>
+              <h1
+                id="hero-heading"
+                className="mt-3 text-3xl font-semibold leading-tight sm:text-4xl lg:text-[2.75rem]"
+              >
+                {hero.name}
+              </h1>
+
+              <p className="mt-3 font-display text-lg text-accent-cyan sm:text-xl">
+                {hiring.secondaryRole}
+              </p>
+            </motion.div>
 
             <motion.p
               variants={item}
-              className="mt-6 text-balance font-semibold leading-snug text-2xl text-ink sm:text-3xl"
+              className="mt-8 text-balance font-semibold leading-snug text-2xl text-ink sm:mt-10 sm:text-3xl"
             >
               <span className="text-accent-cyan">{hero.headlineLine1}</span>{" "}
               <span>{hero.headlineLine2}</span>
