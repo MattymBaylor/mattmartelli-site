@@ -16,7 +16,7 @@ export function Footer() {
   const { footer, meta, nav } = site;
 
   return (
-    <footer className="border-t border-line bg-surface/40">
+    <footer id="contact" className="scroll-mt-24 border-t border-line bg-surface/40">
       <div className="container-x py-12">
         <div className="flex items-center gap-2.5">
           <Image
