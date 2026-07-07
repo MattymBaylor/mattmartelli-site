@@ -92,13 +92,13 @@ export function WorkflowCarousel({ items }: { items: readonly Slide[] }) {
             <AnimatePresence mode="wait" initial={false}>
               <motion.span
                 key={safeIndex}
-                className="flex aspect-[16/9] items-center justify-center bg-night/30"
+                className="block"
                 initial={reduced ? false : { opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={reduced ? undefined : { opacity: 0 }}
                 transition={{ duration: 0.18 }}
               >
-                <img src={current.src} alt={current.alt} loading="lazy" className="max-h-full max-w-full object-contain" />
+                <img src={current.src} alt={current.alt} loading="lazy" className="block w-full" />
               </motion.span>
             </AnimatePresence>
             <span className="pointer-events-none absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-md border border-line bg-night/70 px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-muted backdrop-blur-sm transition-colors group-hover:border-accent-cyan/50 group-hover:text-accent-cyan">
