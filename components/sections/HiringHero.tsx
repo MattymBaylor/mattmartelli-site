@@ -86,10 +86,6 @@ export function HiringHero() {
               {hero.name}
             </motion.h1>
 
-            <motion.p variants={item} className="mt-2 font-display text-lg text-accent-cyan sm:text-xl">
-              {hiring.secondaryRole}
-            </motion.p>
-
             <motion.p
               variants={item}
               className="mt-6 text-balance font-semibold leading-snug text-2xl text-ink sm:text-3xl"
