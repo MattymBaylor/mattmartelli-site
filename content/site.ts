@@ -56,7 +56,7 @@ export const site = {
 
   hiring: {
     primaryRole: "AI Systems Architect",
-    secondaryRole: "AI Architect & Strategist",
+    secondaryRole: "AI Architect | Marketing Automation | AI Voice & RevOps Strategist - (Remote)",
     availability: "Naples, FL · Remote · Open to senior IC, architect/lead, or consulting",
     oneLiner:
       "Voice agents that book the call. Multi-agent systems that run real operations. CRM automation workflows that turn speed-to-lead into attributed pipeline — built as one operating system your team can actually run.",
