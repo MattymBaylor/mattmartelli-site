@@ -92,7 +92,7 @@ export function HiringHero() {
 
             <motion.p
               variants={item}
-              className="mt-5 text-balance font-semibold leading-snug text-xl text-ink sm:text-2xl"
+              className="mt-6 text-balance font-semibold leading-snug text-2xl text-ink sm:text-3xl"
             >
               <span className="text-accent-cyan">{hero.headlineLine1}</span>{" "}
               <span>{hero.headlineLine2}</span>
@@ -100,14 +100,14 @@ export function HiringHero() {
 
             <motion.p
               variants={item}
-              className="mt-4 font-display text-lg font-medium leading-snug text-ink sm:text-xl"
+              className="mt-6 max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg"
             >
               {hero.promise}
             </motion.p>
 
             <motion.p
               variants={item}
-              className="mt-3 max-w-2xl text-base leading-relaxed text-ink-muted sm:text-[1.05rem]"
+              className="mt-3 max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg"
             >
               {hiring.oneLiner}
             </motion.p>
