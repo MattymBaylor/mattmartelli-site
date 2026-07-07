@@ -58,13 +58,13 @@ export function HiringHero() {
                   className="aspect-[4/5] w-full rounded-xl object-cover object-top"
                 />
               </div>
-              <div className="border-t border-line/60 bg-night/50 px-3 py-3">
+              <div className="border-t border-line/60 bg-night/50 px-4 py-4">
                 <Image
                   src="/hubspot-certified-partner.webp"
                   alt="HubSpot Certified Partner"
                   width={690}
                   height={336}
-                  className="h-auto w-full"
+                  className="mx-auto block h-auto w-[85%]"
                 />
               </div>
             </div>
