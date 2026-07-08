@@ -2,10 +2,11 @@
 /* eslint-disable @next/next/no-img-element */
 
 /**
- * WorkflowCarousel — a manual (arrow-navigated) slideshow of workflow diagrams.
- * No autoplay. Each slide keeps a click-to-expand full-screen lightbox. Slides
- * are framed to a uniform aspect box so images of slightly different sizes stay
- * visually consistent. Controls (arrows, dots, counter) only render for 2+ slides.
+ * WorkflowCarousel — a manual (arrow-navigated) slideshow of workflow diagrams,
+ * shown two-up so the row stays balanced and fills the section width. No
+ * autoplay. Each slide keeps a click-to-expand full-screen lightbox and is
+ * framed to a uniform aspect box so diagrams of different sizes stay the same
+ * height. Controls (arrows, dots, counter) only render for 2+ slides.
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -18,28 +19,35 @@ type Slide = { src: string; alt: string; caption?: string };
 
 export function WorkflowCarousel({ items }: { items: readonly Slide[] }) {
   const [index, setIndex] = useState(0);
-  const [open, setOpen] = useState(false);
+  const [lightbox, setLightbox] = useState<number | null>(null);
   const [mounted, setMounted] = useState(false);
   const reduced = usePrefersReducedMotion();
-  const triggerRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
   const wasOpen = useRef(false);
 
   const count = items.length;
-  const safeIndex = count ? ((index % count) + count) % count : 0;
-  const current = items[safeIndex];
   const many = count > 1;
+  const norm = (i: number) => (count ? ((i % count) + count) % count : 0);
+  const safeIndex = norm(index);
+  const open = lightbox !== null;
+  const lightIndex = lightbox === null ? safeIndex : norm(lightbox);
+  const lightCurrent = items[lightIndex];
 
-  const go = (dir: number) =>
-    setIndex((i) => (count ? (((i + dir) % count) + count) % count : 0));
+  // Two-up: the leading slide plus the next (wraps). A lone slide shows once.
+  const visible = many ? [safeIndex, norm(safeIndex + 1)] : [safeIndex];
+
+  const go = (dir: number) => setIndex((i) => norm(i + dir));
+  const goLightbox = (dir: number) =>
+    setLightbox((i) => (i === null ? null : norm(i + dir)));
 
   useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
-      if (e.key === "ArrowLeft") go(-1);
-      if (e.key === "ArrowRight") go(1);
+      if (e.key === "Escape") setLightbox(null);
+      if (e.key === "ArrowLeft") goLightbox(-1);
+      if (e.key === "ArrowRight") goLightbox(1);
     };
     document.addEventListener("keydown", onKey);
     const prev = document.body.style.overflow;
@@ -55,13 +63,18 @@ export function WorkflowCarousel({ items }: { items: readonly Slide[] }) {
     wasOpen.current = open;
   }, [open]);
 
-  if (!current) return null;
+  if (!count || !lightCurrent) return null;
 
   const arrowBase =
     "inline-flex shrink-0 items-center justify-center rounded-full border border-line bg-surface-elevated/70 text-ink-muted transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/60";
 
+  const openAt = (i: number, el: HTMLButtonElement) => {
+    triggerRef.current = el;
+    setLightbox(i);
+  };
+
   return (
-    <div className="mx-auto max-w-3xl">
+    <div>
       <div
         className="flex items-center gap-2 sm:gap-3"
         role="group"
@@ -75,49 +88,57 @@ export function WorkflowCarousel({ items }: { items: readonly Slide[] }) {
         }}
       >
         {many && (
-          <button type="button" onClick={() => go(-1)} aria-label="Previous workflow" className={`${arrowBase} h-10 w-10`}>
+          <button type="button" onClick={() => go(-1)} aria-label="Previous workflows" className={`${arrowBase} h-10 w-10`}>
             <ChevronLeft size={18} aria-hidden />
           </button>
         )}
 
         <div className="min-w-0 flex-1">
-          <button
-            ref={triggerRef}
-            type="button"
-            onClick={() => setOpen(true)}
-            aria-haspopup="dialog"
-            aria-label={`Expand workflow: ${current.alt}`}
-            className="group relative block w-full overflow-hidden rounded-xl border border-line bg-surface-elevated/40 shadow-glow transition-colors hover:border-accent-cyan/40 focus-visible:border-accent-cyan/60"
-          >
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.span
-                key={safeIndex}
-                className="block"
-                initial={reduced ? false : { opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={reduced ? undefined : { opacity: 0 }}
-                transition={{ duration: 0.18 }}
-              >
-                <img src={current.src} alt={current.alt} loading="lazy" className="block w-full" />
-              </motion.span>
-            </AnimatePresence>
-            <span className="pointer-events-none absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-md border border-line bg-night/70 px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-muted backdrop-blur-sm transition-colors group-hover:border-accent-cyan/50 group-hover:text-accent-cyan">
-              <Maximize2 size={12} aria-hidden />
-              Click to expand
-            </span>
-          </button>
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={safeIndex}
+              className={`grid gap-3 sm:gap-4 ${many ? "sm:grid-cols-2" : ""}`}
+              initial={reduced ? false : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={reduced ? undefined : { opacity: 0 }}
+              transition={{ duration: 0.18 }}
+            >
+              {visible.map((i) => {
+                const s = items[i];
+                if (!s) return null;
+                return (
+                  <figure key={`${i}-${s.src}`} className="min-w-0">
+                    <button
+                      type="button"
+                      onClick={(e) => openAt(i, e.currentTarget)}
+                      aria-haspopup="dialog"
+                      aria-label={`Expand workflow: ${s.alt}`}
+                      className="group relative block w-full overflow-hidden rounded-xl border border-line bg-surface-elevated/40 shadow-glow transition-colors hover:border-accent-cyan/40 focus-visible:border-accent-cyan/60"
+                    >
+                      <span className="flex aspect-[16/10] items-center justify-center bg-night/40 p-2">
+                        <img src={s.src} alt={s.alt} loading="lazy" className="max-h-full max-w-full object-contain" />
+                      </span>
+                      <span className="pointer-events-none absolute right-2.5 top-2.5 inline-flex items-center gap-1.5 rounded-md border border-line bg-night/70 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.14em] text-ink-muted backdrop-blur-sm transition-colors group-hover:border-accent-cyan/50 group-hover:text-accent-cyan">
+                        <Maximize2 size={11} aria-hidden />
+                        Expand
+                      </span>
+                    </button>
+                    {s.caption && (
+                      <figcaption className="mt-2.5 text-center text-xs text-ink-muted">{s.caption}</figcaption>
+                    )}
+                  </figure>
+                );
+              })}
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {many && (
-          <button type="button" onClick={() => go(1)} aria-label="Next workflow" className={`${arrowBase} h-10 w-10`}>
+          <button type="button" onClick={() => go(1)} aria-label="Next workflows" className={`${arrowBase} h-10 w-10`}>
             <ChevronRight size={18} aria-hidden />
           </button>
         )}
       </div>
-
-      {current.caption && (
-        <p className="mt-3 text-center text-xs text-ink-muted">{current.caption}</p>
-      )}
 
       {many && (
         <div className="mt-4 flex items-center justify-center gap-3">
@@ -146,34 +167,34 @@ export function WorkflowCarousel({ items }: { items: readonly Slide[] }) {
               <motion.div
                 role="dialog"
                 aria-modal="true"
-                aria-label={current.caption || current.alt}
+                aria-label={lightCurrent.caption || lightCurrent.alt}
                 className="fixed inset-0 z-[100] flex flex-col bg-night/95 p-4 backdrop-blur-sm sm:p-8"
                 initial={reduced ? false : { opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={reduced ? undefined : { opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                onClick={(e) => { if (e.target === e.currentTarget) setOpen(false); }}
+                onClick={(e) => { if (e.target === e.currentTarget) setLightbox(null); }}
               >
                 <div className="flex shrink-0 justify-end pb-3">
-                  <button type="button" onClick={() => setOpen(false)} aria-label="Close" className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-line text-ink-muted transition-colors hover:border-accent-cyan/40 hover:text-ink">
+                  <button type="button" onClick={() => setLightbox(null)} aria-label="Close" className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-line text-ink-muted transition-colors hover:border-accent-cyan/40 hover:text-ink">
                     <X size={18} aria-hidden />
                   </button>
                 </div>
-                <div className="relative flex flex-1 items-center justify-center overflow-auto" onClick={(e) => { if (e.target === e.currentTarget) setOpen(false); }}>
+                <div className="relative flex flex-1 items-center justify-center overflow-auto" onClick={(e) => { if (e.target === e.currentTarget) setLightbox(null); }}>
                   {many && (
-                    <button type="button" onClick={() => go(-1)} aria-label="Previous workflow" className={`${arrowBase} absolute left-0 top-1/2 h-11 w-11 -translate-y-1/2 bg-night/70`}>
+                    <button type="button" onClick={() => goLightbox(-1)} aria-label="Previous workflow" className={`${arrowBase} absolute left-0 top-1/2 h-11 w-11 -translate-y-1/2 bg-night/70`}>
                       <ChevronLeft size={20} aria-hidden />
                     </button>
                   )}
-                  <img src={current.src} alt={current.alt} className="max-h-full max-w-full rounded-lg border border-line object-contain shadow-elevated" />
+                  <img src={lightCurrent.src} alt={lightCurrent.alt} className="max-h-full max-w-full rounded-lg border border-line object-contain shadow-elevated" />
                   {many && (
-                    <button type="button" onClick={() => go(1)} aria-label="Next workflow" className={`${arrowBase} absolute right-0 top-1/2 h-11 w-11 -translate-y-1/2 bg-night/70`}>
+                    <button type="button" onClick={() => goLightbox(1)} aria-label="Next workflow" className={`${arrowBase} absolute right-0 top-1/2 h-11 w-11 -translate-y-1/2 bg-night/70`}>
                       <ChevronRight size={20} aria-hidden />
                     </button>
                   )}
                 </div>
                 <p className="shrink-0 pt-3 text-center text-xs text-ink-muted">
-                  {current.caption}{many ? `  ·  ${safeIndex + 1} / ${count}` : ""}
+                  {lightCurrent.caption}{many ? `  ·  ${lightIndex + 1} / ${count}` : ""}
                 </p>
               </motion.div>
             )}

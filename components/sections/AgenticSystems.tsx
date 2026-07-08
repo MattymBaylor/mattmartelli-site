@@ -27,9 +27,6 @@ export function AgenticSystems() {
 
         <Reveal delay={0.1}>
           <div className="mt-12">
-            <p className="mb-5 font-mono text-xs uppercase tracking-[0.18em] text-ink-faint">
-              Workflow library — use the arrows to browse
-            </p>
             <WorkflowCarousel items={agentic.workflows} />
           </div>
         </Reveal>

@@ -109,7 +109,7 @@ export function TigerTeamSection() {
           title="Tiger Team — the film"
           autoplay={!reduced}
           hoverAudio
-          className="mt-10"
+          className="mt-6"
         />
 
         <div className="mt-8 max-w-xl">
