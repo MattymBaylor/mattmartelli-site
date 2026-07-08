@@ -110,3 +110,15 @@ Commit: 818253a. Not yet deployed — awaiting "push it live."
 **Update, same day:** Matt swapped the wall for the Option C ticker — auto-scrolling row of portrait Shorts tiles, sorted most-popular-first via the RSS view counts. View badges deliberately withheld while counts are seed-stage (honest framing works both directions). Commits 818253a → b8bb332, deployed + verified on prod, GitHub synced.
 
 **Update 2, same day [DECK]:** Ticker was ranking a bulk-upload day, not the channel — the channel RSS feed is only the *latest 15*. Fix with zero user action: YouTube auto-maintains a hidden "popular uploads" playlist per channel (UC→PU prefix swap), whose RSS feed is the all-time top 15 by views. Matt asked "do I need to create a playlist?" — answer was no, YouTube already keeps one. Commit 6dff411, live + screenshot-verified on prod.
+
+## 2026-07-08 — Field Note Nº 01 (game theory) video lands on the recruiter page
+
+**Shipped (committed local, not yet deployed):** New section on `/recruiter` between Target Roles and the Seinfeld flagship card — eyebrow "Field Note Nº 01 · Game Theory," title "The game gets exactly what it rewards," two-line recruiter framing, and the new video (`X5q5sgkwMP4`, "The Battle for Your Company's Profitability," 60 Second AI Brief channel) in the same `DeferredYouTubeEmbed` treatment as the homepage Tiger film. Content data-driven via `recruiter.fieldNote` in `content/recruiter.ts`.
+
+**Judgment call:** The section sits between a compact pill list and a big glowing featured card, so it got the middle treatment — warm mono eyebrow + display h2 (the flagship/playbook heading grammar) but no card wrapper, letting the player's built-in glow border carry the visual weight without competing with the flagship card below. Spacing locked to the page's existing `mt-8` rhythm (measured 32px above and below at desktop and mobile).
+
+**Small platform fix:** moved the reduced-motion autoplay guard *inside* `DeferredYouTubeEmbed` so server components (like the recruiter page) can request autoplay without wiring the client hook themselves. Homepage behavior unchanged.
+
+**Debugging beat [DECK]:** First verification showed YouTube's "This video is unavailable (152-18)" inside the embed — on a video whose `playableInEmbed` flag was *true*. A/B-swapped the iframe src live (www vs nocookie domain, with/without `origin`, with/without autoplay params) and every variant played, including the exact original URL minutes later: the failure was transient fresh-upload propagation on YouTube's side, not code. The move: when a third-party embed fails right after upload, isolate domain/params empirically before redesigning anything — the five-minute A/B saved ripping out the privacy-enhanced domain for nothing.
+
+Verified with headless Playwright (desktop 1280 + mobile 375: placement, 32/32 spacing, no horizontal overflow, zero console errors, embed actually playing). Commit: bedeb65. Awaiting "push it live."
