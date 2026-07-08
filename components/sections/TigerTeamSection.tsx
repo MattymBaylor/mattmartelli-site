@@ -108,6 +108,7 @@ export function TigerTeamSection() {
           id={TIGER_VIDEO_ID}
           title="Tiger Team — the film"
           autoplay={!reduced}
+          hoverAudio
           className="mt-10"
         />
 

@@ -1,5 +1,6 @@
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { HoverAudioVideo } from "@/components/ui/HoverAudioVideo";
 
 // Repurposed in place from the old "Contact" section — this is now the
 // AI Training & Evals closing section. Direct contact channels live in the
@@ -29,20 +30,12 @@ export function Contact() {
         </Reveal>
 
         <Reveal delay={0.08}>
-          <div className="mx-auto mt-12 aspect-square w-full max-w-3xl overflow-hidden rounded-2xl border border-line bg-black shadow-glow">
-            <video
-              className="h-full w-full object-cover"
-              autoPlay
-              muted
-              loop
-              playsInline
-              controls
-              preload="auto"
+          <div className="relative mx-auto mt-12 aspect-square w-full max-w-3xl overflow-hidden rounded-2xl border border-line bg-black shadow-glow">
+            <HoverAudioVideo
+              src="/ai-evaluation.mp4"
               poster="/ai-evaluation-poster.jpg"
-            >
-              <source src="/ai-evaluation.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+              className="h-full w-full object-cover"
+            />
           </div>
         </Reveal>
       </div>
