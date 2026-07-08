@@ -131,6 +131,7 @@ export default function RecruiterPage() {
           <DeferredYouTubeEmbed
             id={recruiter.fieldNote.youtubeId}
             title={recruiter.fieldNote.videoTitle}
+            hoverAudio
             className="mt-6"
           />
         </section>
