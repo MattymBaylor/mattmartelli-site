@@ -98,13 +98,26 @@ export function DeferredYouTubeEmbed({
   useEffect(() => {
     if (!mounted || !hoverAudioActive) return;
 
+    // YouTube auto-displays (often junk auto-transcribed) captions on muted
+    // autoplay. Deselect the track as the player boots and once on the first
+    // playing signal — the CC button stays for visitors who want captions.
+    const clearAutoCaptions = () => post("setOption", ["captions", "track", {}]);
+    const ccTimers = [setTimeout(clearAutoCaptions, 1500), setTimeout(clearAutoCaptions, 4000)];
+    let ccStateShot = false;
+
     // Player state comes back on the jsapi message channel (1 playing, 2 paused).
     const onMessage = (e: MessageEvent) => {
       if (e.origin !== YT_ORIGIN || typeof e.data !== "string") return;
       try {
         const data = JSON.parse(e.data);
         const state = data?.info?.playerState;
-        if (typeof state === "number") lastPlayerState.current = state;
+        if (typeof state === "number") {
+          lastPlayerState.current = state;
+          if (state === 1 && !ccStateShot) {
+            ccStateShot = true;
+            clearAutoCaptions();
+          }
+        }
       } catch {
         /* not a player message */
       }
@@ -122,6 +135,7 @@ export function DeferredYouTubeEmbed({
       window.removeEventListener("message", onMessage);
       window.removeEventListener("blur", onBlur);
       if (recoveryTimer.current) clearTimeout(recoveryTimer.current);
+      ccTimers.forEach(clearTimeout);
     };
   }, [mounted, hoverAudioActive]);
 
