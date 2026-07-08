@@ -22,6 +22,16 @@ export const recruiter = {
     "Lifecycle Marketing & Automation Executive",
   ],
 
+  // Field-note video — sits between Target Roles and the flagship card.
+  fieldNote: {
+    eyebrow: "Field Note Nº 01 · Game Theory",
+    title: "The game gets exactly what it rewards",
+    description:
+      "A 100-second field note on applying game theory to AI systems: why agents rewarded for looking good on audit day learn to game the metric, and how reward engineering makes weak or fabricated findings unprofitable — the methodology behind how I pressure-test AI before it ships.",
+    videoTitle: "The Battle for Your Company's Profitability — Field Notes Nº 01, Game Theory",
+    youtubeId: "X5q5sgkwMP4",
+  },
+
   flagship: {
     title: "A Multi-Agent Company, Cast as Seinfeld",
     description:

@@ -18,6 +18,7 @@ import { recruiter } from "@/content/recruiter";
 import { site } from "@/content/site";
 import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
 import { Capabilities } from "@/components/sections/Capabilities";
+import { DeferredYouTubeEmbed } from "@/components/ui/DeferredYouTubeEmbed";
 
 export const metadata: Metadata = {
   title: "Recruiter Fast Path",
@@ -114,6 +115,24 @@ export default function RecruiterPage() {
               </li>
             ))}
           </ul>
+        </section>
+
+        {/* Field Note — game theory, the eval-design methodology on film */}
+        <section aria-labelledby="field-note" className="mt-8">
+          <p className="mb-2 inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-warm">
+            <PlayCircle size={11} aria-hidden /> {recruiter.fieldNote.eyebrow}
+          </p>
+          <h2 id="field-note" className="font-display text-2xl font-semibold sm:text-3xl">
+            {recruiter.fieldNote.title}
+          </h2>
+          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-muted sm:text-base">
+            {recruiter.fieldNote.description}
+          </p>
+          <DeferredYouTubeEmbed
+            id={recruiter.fieldNote.youtubeId}
+            title={recruiter.fieldNote.videoTitle}
+            className="mt-6"
+          />
         </section>
 
         {/* Featured Flagship Project */}

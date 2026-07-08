@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Play } from "lucide-react";
+import { usePrefersReducedMotion } from "@/lib/useReducedMotion";
 
 type DeferredYouTubeEmbedProps = {
   id: string;
@@ -44,6 +45,9 @@ export function DeferredYouTubeEmbed({
 }: DeferredYouTubeEmbedProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
+  // Guarded here so server components can request autoplay without wiring
+  // the reduced-motion hook themselves.
+  const reduced = usePrefersReducedMotion();
 
   useEffect(() => {
     const node = rootRef.current;
@@ -73,7 +77,7 @@ export function DeferredYouTubeEmbed({
       {mounted ? (
         <iframe
           title={title}
-          src={buildSrc(id, autoplay)}
+          src={buildSrc(id, autoplay && !reduced)}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
