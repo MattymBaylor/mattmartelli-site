@@ -134,7 +134,7 @@ export default function RecruiterPage() {
             <a
               href={recruiter.fieldNote.paper.href}
               download={recruiter.fieldNote.paper.filename}
-              className="inline-flex items-center gap-2 rounded-md border border-line-strong px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50"
+              className="inline-flex items-center gap-2 rounded-md bg-[#FACC15] px-4 py-2.5 text-sm font-semibold text-night shadow-[0_0_0_1px_rgba(250,204,21,0.35),0_0_16px_-8px_rgba(250,204,21,0.4)] transition-transform hover:scale-[1.03]"
             >
               <Download size={15} aria-hidden /> {recruiter.fieldNote.paper.label}
             </a>
