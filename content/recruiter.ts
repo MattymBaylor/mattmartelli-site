@@ -26,8 +26,11 @@ export const recruiter = {
   fieldNote: {
     eyebrow: "Field Note Nº 01 · Game Theory",
     title: "Is your architecture Battle Tested?",
-    description:
-      "A 100-second field note on applying game theory to AI systems: why agents rewarded for looking good on audit day learn to game the metric, and how reward engineering makes weak or fabricated findings unprofitable — the methodology behind how I pressure-test AI before it ships.",
+    description: [
+      "Before AI agents can be trusted, someone has to watch them. Most companies are racing to deploy AI. Far fewer are asking a harder question: Who audits the robots? This field note is the opening paper in my ongoing research into production AI governance, reward engineering, and agent reliability. It explains why the most dangerous AI failures rarely look like dramatic crashes—they quietly pass health checks while drifting farther from the outcomes they were designed to produce.",
+      "The ideas in this paper aren't theoretical. They're the same principles I use when designing production AI systems for enterprise organizations: adversarial testing, independent verification, continuous observability, and reward engineering that encourages truth instead of good-looking metrics. If you're hiring someone to build AI that can be trusted in production—not just impressive demos—this is the best place to start.",
+      "Watch the 100-second field note below to see how I pressure-test AI systems before they ship.",
+    ],
     videoTitle: "The Battle for Your Company's Profitability — Field Notes Nº 01, Game Theory",
     youtubeId: "X5q5sgkwMP4",
   },

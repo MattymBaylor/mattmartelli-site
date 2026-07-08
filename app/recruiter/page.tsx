@@ -125,9 +125,11 @@ export default function RecruiterPage() {
           <h2 id="field-note" className="font-display text-2xl font-semibold sm:text-3xl">
             {recruiter.fieldNote.title}
           </h2>
-          <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-muted sm:text-base">
-            {recruiter.fieldNote.description}
-          </p>
+          <div className="mt-3 max-w-3xl space-y-4 text-sm leading-relaxed text-ink-muted sm:text-base">
+            {recruiter.fieldNote.description.map((paragraph) => (
+              <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+            ))}
+          </div>
           <DeferredYouTubeEmbed
             id={recruiter.fieldNote.youtubeId}
             title={recruiter.fieldNote.videoTitle}
