@@ -64,7 +64,7 @@ export function HiringHero() {
                   alt="HubSpot Certified Partner"
                   width={690}
                   height={336}
-                  className="mx-auto block h-auto w-[85%]"
+                  className="mx-auto block h-auto w-[95%]"
                 />
               </div>
             </div>
