@@ -108,7 +108,7 @@ export function TigerTeamSection() {
           id={TIGER_VIDEO_ID}
           title="Tiger Team — the film"
           autoplay={!reduced}
-          className="mt-[calc(2.5rem+1in)]"
+          className="mt-10"
         />
 
         <div className="mt-8 max-w-xl">
