@@ -31,6 +31,11 @@ export const recruiter = {
       "The ideas in this paper aren't theoretical. They're the same principles I use when designing production AI systems for enterprise organizations: adversarial testing, independent verification, continuous observability, and reward engineering that encourages truth instead of good-looking metrics. If you're hiring someone to build AI that can be trusted in production—not just impressive demos—this is the best place to start.",
       "Watch the 100-second field note below to see how I pressure-test AI systems before they ship.",
     ],
+    paper: {
+      label: "Read the paper — No One Was Watching (PDF)",
+      href: "/no-one-was-watching.pdf",
+      filename: "No One Was Watching — Matt Martelli.pdf",
+    },
     videoTitle: "The Battle for Your Company's Profitability — Field Notes Nº 01, Game Theory",
     youtubeId: "X5q5sgkwMP4",
   },

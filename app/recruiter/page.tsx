@@ -130,6 +130,15 @@ export default function RecruiterPage() {
               <p key={paragraph.slice(0, 32)}>{paragraph}</p>
             ))}
           </div>
+          <div className="mt-5">
+            <a
+              href={recruiter.fieldNote.paper.href}
+              download={recruiter.fieldNote.paper.filename}
+              className="inline-flex items-center gap-2 rounded-md border border-line-strong px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50"
+            >
+              <Download size={15} aria-hidden /> {recruiter.fieldNote.paper.label}
+            </a>
+          </div>
           <DeferredYouTubeEmbed
             id={recruiter.fieldNote.youtubeId}
             title={recruiter.fieldNote.videoTitle}
