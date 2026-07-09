@@ -146,3 +146,5 @@ Commits: 1981ef1 → 0f772f1 → 2bc0bae → 429718f. GitHub synced. All queue s
 **Carousel evolution [DECK]:** manual two-up arrow carousel → continuous seamless ticker. Implementation: item set rendered twice on one `w-max` flex track, `translateX(-50%)` linear loop (~7s/slide, CSS custom property), pause on hover/focus/lightbox-open, resumes in place on mouse-away; `prefers-reduced-motion` gets a static scrollable strip. Judgment call from Matt after seeing it live: edge fade masks *removed* — "the way it's rolling, it looks like it's on a train, and with the fade it looks like it's popping in."
 
 Commits: 30e0861 (12 new slides) → a2720aa (dedupe to 15) → 0ccaeda (ticker) → this one (fade off + this log).
+
+**Pattern of record (Matt, verbatim, 2026-07-09):** "That is by far our best picture layout element. That is smooth, and it looks like a train… that's my favorite." → The continuous seamless ticker (WorkflowCarousel) is now the house pattern for any multi-image strip on Matt's properties: glow-bordered cards, constant linear drift, no edge fade, hover-to-pause, click-to-expand. Reach for it first before building any new gallery/carousel.
