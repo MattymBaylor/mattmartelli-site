@@ -134,3 +134,15 @@ Verified with headless Playwright (desktop 1280 + mobile 375: placement, 32/32 s
 **Ops discipline notes:** permission guardrails correctly blocked both deleting the stuck production deployment and an auto-redeploy loop — settled on detection-only regression watching (60s polls for the style marker on prod) with human-in-the-loop redeploy, which timed out clean with zero regressions. Every stage verified on the live domain by content markers, not deploy status.
 
 Commits: 1981ef1 → 0f772f1 → 2bc0bae → 429718f. GitHub synced. All queue stragglers completed harmlessly; prod holds the final build.
+
+## 2026-07-09 (morning) — Blueprint carousel refresh: 15 elements, one repeatable pipeline, and a train that never stops
+
+**The standing pipeline (memory-bank entry — reuse every time new blueprints land):** raw NotebookLM blueprint PDFs/PNGs get dropped into `public/workflows/` (left untracked). From there: `pdftoppm -png -scale-to-x 1600` → `cwebp -q 82 -m 6` → 1600px webp at ~50–140KB (matches the original slide spec) → new entry in `content/site.ts → agentic.workflows` with alt + caption → `tsc --noEmit` → commit only the webps + site.ts (never the raw PDFs, never unrelated working-tree changes) → `git pull --rebase --autostash` → push → verify the asset URLs on the live domain. Matt never needs to re-upload anything that's already in that folder.
+
+**Curation rule (Matt's, verbatim-adjacent):** one slide per *element* — no concept duplicates even when the artwork differs across decks ("I'm trying not to duplicate elements, even if it's a different picture"). Cover/title cards are excluded (the AI_Architecture cover: "too hard to optimize, and it looks weird"). Target size ~15 slides. Applied 2026-07-09: dropped the second security-rings, second stack, and two extra router visuals; final 15 spans lifecycle → paradigm → router → triage → agents → stack → scheduler → pipelines → security → GTM → personas → tooling → exec panel → roadmap.
+
+**OCR beat [DECK]:** the blueprint PDFs are pure raster (pdftotext returns nothing), so page identification across 59 deck pages ran through a 12-line Swift script hitting macOS Vision (`VNRecognizeTextRequest`) — titles extracted in one pass, dedupe decisions made from text instead of eyeballing 59 images.
+
+**Carousel evolution [DECK]:** manual two-up arrow carousel → continuous seamless ticker. Implementation: item set rendered twice on one `w-max` flex track, `translateX(-50%)` linear loop (~7s/slide, CSS custom property), pause on hover/focus/lightbox-open, resumes in place on mouse-away; `prefers-reduced-motion` gets a static scrollable strip. Judgment call from Matt after seeing it live: edge fade masks *removed* — "the way it's rolling, it looks like it's on a train, and with the fade it looks like it's popping in."
+
+Commits: 30e0861 (12 new slides) → a2720aa (dedupe to 15) → 0ccaeda (ticker) → this one (fade off + this log).

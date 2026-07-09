@@ -129,13 +129,9 @@ export function WorkflowCarousel({ items }: { items: readonly Slide[] }) {
         .wf-viewport:focus-within .wf-track {
           animation-play-state: paused;
         }
-        .wf-viewport {
-          -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
-          mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
-        }
         @media (prefers-reduced-motion: reduce) {
           .wf-track { animation: none; }
-          .wf-viewport { overflow-x: auto; mask-image: none; -webkit-mask-image: none; }
+          .wf-viewport { overflow-x: auto; }
           .wf-card[aria-hidden="true"] { display: none; }
         }
       `}</style>
