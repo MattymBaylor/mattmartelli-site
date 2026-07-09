@@ -9,9 +9,11 @@ import { DeferredYouTubeEmbed } from "@/components/ui/DeferredYouTubeEmbed";
 const TIGER_VIDEO_ID = "1oojonDDqek";
 
 const leadPoints = [
-  "Reward engineering makes AI fight for truth instead of gaming the metric.",
-  "Rival auditors from different labs collide to uncover failure modes most teams never see.",
-  "Cross-verified findings become ranked fixes, not vague AI opinions.",
+  "Three independent AI auditors challenge every workflow before it reaches production.",
+  "Hallucinations are penalized while evidence, consensus, and reproducible results are rewarded.",
+  "Failure modes are ranked by business impact, giving teams a prioritized roadmap instead of raw AI output.",
+  "Every recommendation includes actionable fixes that engineering teams can immediately implement.",
+  "Built for enterprise AI where reliability, governance, and trust matter more than flashy demos.",
 ];
 
 export function TigerTeamSection() {
@@ -55,9 +57,11 @@ export function TigerTeamSection() {
           A system builder who pressure-tests AI before it ships
         </h2>
         <p className="mt-4 max-w-3xl text-base leading-relaxed text-ink-muted sm:text-lg">
-          Three independent auditors attack the same workflow. A reward engine filters weak or
-          fabricated claims. Confirmed findings come out as ranked, ready-to-run fixes — not vague
-          AI opinions.
+          Three independent AI auditors attack the same workflow from different perspectives. A
+          reward engine penalizes hallucinations, rewards evidence, and ranks only verified
+          findings—producing implementation-ready fixes instead of vague AI opinions. Every
+          recommendation is explainable, reproducible, and built to help teams ship AI systems with
+          confidence.
         </p>
 
         <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_280px] lg:items-start">
