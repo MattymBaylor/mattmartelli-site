@@ -262,9 +262,9 @@ export const site = {
         caption: "The autonomous enterprise — from linear human effort to parallel agentic execution",
       },
       {
-        src: "/workflows/autonomous-enterprise-traffic-router.webp",
-        alt: "Enterprise signal routing — every incoming signal passes an authorization gate, then a traffic router dispatches it to Operations, Communications, Research, or Quality departments of specialized agents.",
-        caption: "Enterprise traffic router — every signal authorized, then routed to the right agent department",
+        src: "/workflows/one-brain-many-channels.webp",
+        alt: "The high-level vision — one brain, many channels: replacing a chaotic pile of isolated bot frameworks with a single command center that every interface feeds into.",
+        caption: "One brain, many channels — every interface feeds a single command center",
       },
       {
         src: "/workflows/ai-sales-router-outside-room.webp",
@@ -277,19 +277,9 @@ export const site = {
         caption: "Automated lead triage — tasks flow to the precise node of expertise, no manual routing",
       },
       {
-        src: "/workflows/claw-crew-revenue-floorplan.webp",
-        alt: "Agentic architecture mapped onto the physical floor plan of a revenue engine — a reasoning traffic router feeding deterministic agents for inside sales, confirmation, onboarding, marketing, and governance.",
-        caption: "The blueprint on the floor plan — agents mapped directly onto the revenue engine",
-      },
-      {
         src: "/workflows/ai-sales-hive-mind.webp",
         alt: "The hive mind — parallel task execution across five specialized agents (main, research, comms, ops, content) sharing one unified memory state, with dynamic triage and no human bottleneck.",
         caption: "The hive mind — five specialist agents, one shared memory, zero bottlenecks",
-      },
-      {
-        src: "/workflows/claw-crew-integrated-stack.webp",
-        alt: "A fully integrated operational stack in four layers — the hive-mind agent pool, importance-weighted Memory v2, a real-time war-room voice interface, and mission-control task routing — where memory informs routing, routing triggers tasks, and tasks update memory.",
-        caption: "Not scattered features — one operational stack where memory, routing, and tasks feed each other",
       },
       {
         src: "/workflows/ai-sales-6-layer-os.webp",
@@ -312,9 +302,29 @@ export const site = {
         caption: "4-ring defense — allowlist, verification, exfiltration guard, audit log, kill phrase",
       },
       {
-        src: "/workflows/autonomous-enterprise-security-rings.webp",
-        alt: "Military-grade AI security — concentric rings of network allowlisting, authentication, prevention, and accountability protecting enterprise data at the core of the autonomous stack.",
-        caption: "Military-grade security — concentric rings around the enterprise data core",
+        src: "/workflows/gtm-engine-unified-blueprint.webp",
+        alt: "A unified go-to-market execution blueprint — Clay as the data foundation for enrichment and sourcing, Chili Piper for routing and inbound conversion, Outreach for outbound execution, unified on a HubSpot and Salesforce core.",
+        caption: "The GTM engine — Clay to Chili Piper to Outreach on a HubSpot + Salesforce core",
+      },
+      {
+        src: "/workflows/seven-customer-journeys.webp",
+        alt: "Scaling seven distinct customer journeys — persona-routed sales architecture mapping each buyer, from emerging pro to growth-stage founder, to the offer tier, sales cycle, and conversion moment that fits.",
+        caption: "Seven distinct journeys — every persona routed to the right offer and sales cycle",
+      },
+      {
+        src: "/workflows/tooling-orbit-infrastructure.webp",
+        alt: "The tooling orbit — infrastructure for scale: engagement, revenue capture, learning, and fulfillment systems orbiting one CRM source of truth over bi-directional webhooks and native integrations, no middleware.",
+        caption: "The tooling orbit — every system orbits one CRM source of truth, no middleware",
+      },
+      {
+        src: "/workflows/executive-control-panel.webp",
+        alt: "The penthouse view — an executive control panel distilling backend complexity, AI routing, and human behavior into a handful of decision-ready numbers.",
+        caption: "The penthouse view — immense backend complexity distilled into one executive panel",
+      },
+      {
+        src: "/workflows/ninety-day-implementation-roadmap.webp",
+        alt: "The 90-day implementation blueprint — phase 1 baseline and triage, phase 2 high-ticket routing and concierge engine, phase 3 advanced QA and scale, without disrupting current revenue flow.",
+        caption: "The 90-day roadmap — baseline, routing, then advanced QA and scale",
       },
     ],
     // Explorable chips — selecting one updates the inline description.
