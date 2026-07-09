@@ -14,6 +14,7 @@ export function Orchestration() {
         />
 
         <Reveal>
+          {/* Shares max-w-5xl with the showcase + takeaway below so all right edges align. */}
           <div className="mt-5 max-w-5xl space-y-4">
             <p className="text-base leading-relaxed text-ink-muted sm:text-lg">
               {orchestration.framing}
