@@ -2,11 +2,12 @@
 /* eslint-disable @next/next/no-img-element */
 
 /**
- * WorkflowCarousel — a manual (arrow-navigated) slideshow of workflow diagrams,
- * shown two-up so the row stays balanced and fills the section width. No
- * autoplay. Each slide keeps a click-to-expand full-screen lightbox and is
- * framed to a uniform aspect box so diagrams of different sizes stay the same
- * height. Controls (arrows, dots, counter) only render for 2+ slides.
+ * WorkflowCarousel — a continuous, smoothly drifting ticker of workflow
+ * diagrams. The full set is rendered twice on one track that translates
+ * -50% on a linear loop, so the strip scrolls right-to-left forever with no
+ * visible seam. Hovering (or keyboard-focusing) the strip pauses the motion,
+ * and every card keeps its click-to-expand full-screen lightbox. Users with
+ * prefers-reduced-motion get a static, horizontally scrollable strip.
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -18,7 +19,6 @@ import { usePrefersReducedMotion } from "@/lib/useReducedMotion";
 type Slide = { src: string; alt: string; caption?: string };
 
 export function WorkflowCarousel({ items }: { items: readonly Slide[] }) {
-  const [index, setIndex] = useState(0);
   const [lightbox, setLightbox] = useState<number | null>(null);
   const [mounted, setMounted] = useState(false);
   const reduced = usePrefersReducedMotion();
@@ -28,15 +28,10 @@ export function WorkflowCarousel({ items }: { items: readonly Slide[] }) {
   const count = items.length;
   const many = count > 1;
   const norm = (i: number) => (count ? ((i % count) + count) % count : 0);
-  const safeIndex = norm(index);
   const open = lightbox !== null;
-  const lightIndex = lightbox === null ? safeIndex : norm(lightbox);
+  const lightIndex = lightbox === null ? 0 : norm(lightbox);
   const lightCurrent = items[lightIndex];
 
-  // Two-up: the leading slide plus the next (wraps). A lone slide shows once.
-  const visible = many ? [safeIndex, norm(safeIndex + 1)] : [safeIndex];
-
-  const go = (dir: number) => setIndex((i) => norm(i + dir));
   const goLightbox = (dir: number) =>
     setLightbox((i) => (i === null ? null : norm(i + dir)));
 
@@ -73,92 +68,77 @@ export function WorkflowCarousel({ items }: { items: readonly Slide[] }) {
     setLightbox(i);
   };
 
+  const renderCard = (s: Slide, i: number, dup: boolean) => (
+    <figure
+      key={`${dup ? "b" : "a"}-${i}-${s.src}`}
+      className="wf-card w-[78vw] shrink-0 sm:w-[min(44vw,560px)]"
+      aria-hidden={dup || undefined}
+    >
+      <button
+        type="button"
+        onClick={(e) => openAt(i, e.currentTarget)}
+        tabIndex={dup ? -1 : 0}
+        aria-haspopup="dialog"
+        aria-label={`Expand workflow: ${s.alt}`}
+        className="group relative block w-full overflow-hidden rounded-xl border border-line bg-surface-elevated/40 shadow-glow transition-colors hover:border-accent-cyan/40 focus-visible:border-accent-cyan/60"
+      >
+        <span className="flex aspect-[16/10] items-center justify-center bg-night/40 p-2">
+          <img src={s.src} alt={dup ? "" : s.alt} loading="lazy" className="max-h-full max-w-full object-contain" />
+        </span>
+        <span className="pointer-events-none absolute right-2.5 top-2.5 inline-flex items-center gap-1.5 rounded-md border border-line bg-night/70 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.14em] text-ink-muted backdrop-blur-sm transition-colors group-hover:border-accent-cyan/50 group-hover:text-accent-cyan">
+          <Maximize2 size={11} aria-hidden />
+          Expand
+        </span>
+      </button>
+      {s.caption && (
+        <figcaption className="mt-2.5 text-center text-xs text-ink-muted">{s.caption}</figcaption>
+      )}
+    </figure>
+  );
+
   return (
     <div>
       <div
-        className="flex items-center gap-2 sm:gap-3"
         role="group"
         aria-roledescription="carousel"
-        aria-label="Agentic workflow diagrams"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (!many) return;
-          if (e.key === "ArrowLeft") { e.preventDefault(); go(-1); }
-          if (e.key === "ArrowRight") { e.preventDefault(); go(1); }
-        }}
+        aria-label="Agentic workflow diagrams — auto-scrolling, hover to pause"
+        className="wf-viewport relative overflow-hidden"
       >
-        {many && (
-          <button type="button" onClick={() => go(-1)} aria-label="Previous workflows" className={`${arrowBase} h-10 w-10`}>
-            <ChevronLeft size={18} aria-hidden />
-          </button>
-        )}
-
-        <div className="min-w-0 flex-1">
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={safeIndex}
-              className={`grid gap-3 sm:gap-4 ${many ? "sm:grid-cols-2" : ""}`}
-              initial={reduced ? false : { opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={reduced ? undefined : { opacity: 0 }}
-              transition={{ duration: 0.18 }}
-            >
-              {visible.map((i) => {
-                const s = items[i];
-                if (!s) return null;
-                return (
-                  <figure key={`${i}-${s.src}`} className="min-w-0">
-                    <button
-                      type="button"
-                      onClick={(e) => openAt(i, e.currentTarget)}
-                      aria-haspopup="dialog"
-                      aria-label={`Expand workflow: ${s.alt}`}
-                      className="group relative block w-full overflow-hidden rounded-xl border border-line bg-surface-elevated/40 shadow-glow transition-colors hover:border-accent-cyan/40 focus-visible:border-accent-cyan/60"
-                    >
-                      <span className="flex aspect-[16/10] items-center justify-center bg-night/40 p-2">
-                        <img src={s.src} alt={s.alt} loading="lazy" className="max-h-full max-w-full object-contain" />
-                      </span>
-                      <span className="pointer-events-none absolute right-2.5 top-2.5 inline-flex items-center gap-1.5 rounded-md border border-line bg-night/70 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.14em] text-ink-muted backdrop-blur-sm transition-colors group-hover:border-accent-cyan/50 group-hover:text-accent-cyan">
-                        <Maximize2 size={11} aria-hidden />
-                        Expand
-                      </span>
-                    </button>
-                    {s.caption && (
-                      <figcaption className="mt-2.5 text-center text-xs text-ink-muted">{s.caption}</figcaption>
-                    )}
-                  </figure>
-                );
-              })}
-            </motion.div>
-          </AnimatePresence>
+        <div
+          className="wf-track flex w-max gap-3 sm:gap-4"
+          style={{
+            ["--wf-dur" as string]: `${count * 7}s`,
+            animationPlayState: open ? "paused" : undefined,
+          }}
+        >
+          {items.map((s, i) => renderCard(s, i, false))}
+          {many && items.map((s, i) => renderCard(s, i, true))}
         </div>
-
-        {many && (
-          <button type="button" onClick={() => go(1)} aria-label="Next workflows" className={`${arrowBase} h-10 w-10`}>
-            <ChevronRight size={18} aria-hidden />
-          </button>
-        )}
       </div>
 
-      {many && (
-        <div className="mt-4 flex items-center justify-center gap-3">
-          <div className="flex flex-wrap items-center justify-center gap-1.5">
-            {items.map((_, i) => (
-              <button
-                key={i}
-                type="button"
-                onClick={() => setIndex(i)}
-                aria-label={`Go to workflow ${i + 1}`}
-                aria-current={i === safeIndex}
-                className={`h-2 w-2 rounded-full transition-colors ${i === safeIndex ? "bg-accent-cyan" : "bg-line hover:bg-ink-faint"}`}
-              />
-            ))}
-          </div>
-          <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint">
-            {safeIndex + 1} / {count}
-          </span>
-        </div>
-      )}
+      <style>{`
+        @keyframes wf-marquee {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+        .wf-track {
+          animation: wf-marquee var(--wf-dur, 90s) linear infinite;
+          will-change: transform;
+        }
+        .wf-viewport:hover .wf-track,
+        .wf-viewport:focus-within .wf-track {
+          animation-play-state: paused;
+        }
+        .wf-viewport {
+          -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+          mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .wf-track { animation: none; }
+          .wf-viewport { overflow-x: auto; mask-image: none; -webkit-mask-image: none; }
+          .wf-card[aria-hidden="true"] { display: none; }
+        }
+      `}</style>
 
       {mounted &&
         createPortal(
