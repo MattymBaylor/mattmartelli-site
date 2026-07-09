@@ -4,6 +4,7 @@ import {
   Mail,
   Phone,
   Linkedin,
+  MessageCircle,
   Youtube,
   Globe,
   Mic,
@@ -61,6 +62,17 @@ export function Footer() {
                 >
                   <Linkedin size={15} aria-hidden />
                   LinkedIn
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://wa.me/12146088290"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-ink-muted transition-colors hover:text-accent-cyan"
+                >
+                  <MessageCircle size={15} aria-hidden />
+                  WhatsApp
                 </a>
               </li>
               <li>
