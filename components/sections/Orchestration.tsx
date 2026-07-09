@@ -36,6 +36,25 @@ export function Orchestration() {
             {orchestration.takeaway}
           </p>
         </Reveal>
+
+        {/* Primary-foundation callout → the standalone LangChain stack page (/stack.html). */}
+        <Reveal delay={0.15}>
+          <div className="mt-6 flex max-w-5xl flex-col gap-3 rounded-xl border border-accent-cyan/25 bg-accent-cyan/5 p-5 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-base leading-relaxed text-ink-muted sm:text-lg">
+              My primary foundation moving forward is{" "}
+              <span className="font-semibold text-ink">LangChain</span> — the
+              framework the largest AI teams standardize on, layered from a single
+              agent up to a fully evaluated, multi-agent system.
+            </p>
+            <a
+              href="/stack.html"
+              className="inline-flex shrink-0 items-center gap-2 rounded-md border border-accent-cyan/40 px-4 py-2.5 text-sm font-semibold text-accent-cyan transition-colors hover:bg-accent-cyan/10"
+            >
+              Explore the LangChain stack
+              <span aria-hidden>&rarr;</span>
+            </a>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
