@@ -40,3 +40,8 @@ next-env.d.ts
 node_modules/
 __pycache__/
 *.pyc
+
+# Blueprint Train raw sources — never commit (slides are the committed .webp files)
+public/workflows/*.pdf
+public/workflows/*.png
+public/workflows/*.jpg

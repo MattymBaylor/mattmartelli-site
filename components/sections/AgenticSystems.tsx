@@ -31,6 +31,15 @@ export function AgenticSystems() {
           </div>
         </Reveal>
 
+        <Reveal delay={0.1}>
+          <div className="mt-10">
+            <p className="mb-5 font-mono text-xs uppercase tracking-[0.18em] text-ink-faint">
+              The field-guide series — problem to roadmap
+            </p>
+            <WorkflowCarousel items={agentic.guides} />
+          </div>
+        </Reveal>
+
         <Reveal delay={0.12}>
           <StatCallout value="78%" kind="industry" footnote={site.footnotes[1]}>
             of buyers purchase from whoever responds first.
