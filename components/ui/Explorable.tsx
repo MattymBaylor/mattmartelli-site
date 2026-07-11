@@ -22,11 +22,14 @@ export function Explorable({
   items,
   ariaLabel,
   compact = false,
+  panelClassName = "",
 }: {
   items: readonly ExplorableItem[];
   ariaLabel: string;
   /** Smaller chips (tighter padding + 11px text). */
   compact?: boolean;
+  /** Extra classes for the detail panel (e.g. per-section position nudges). */
+  panelClassName?: string;
 }) {
   const [activeId, setActiveId] = useState(items[0]?.id);
   const reduced = usePrefersReducedMotion();
@@ -74,7 +77,7 @@ export function Explorable({
         })}
       </div>
 
-      <div className="surface-card min-h-[150px] border-l-2 border-accent-cyan/50 p-6 ring-1 ring-accent-cyan/20">
+      <div className={`surface-card min-h-[150px] border-l-2 border-accent-cyan/50 p-6 ring-1 ring-accent-cyan/20 ${panelClassName}`}>
         <AnimatePresence mode="wait">
           <motion.div
             key={active?.id}

@@ -21,7 +21,12 @@ export function AgenticSystems() {
             <p className="mb-5 font-mono text-xs uppercase tracking-[0.18em] text-ink-faint">
               Example applications — select to explore
             </p>
-            <Explorable items={agentic.applications} ariaLabel="Agentic system applications" compact />
+            <Explorable
+              items={agentic.applications}
+              ariaLabel="Agentic system applications"
+              compact
+              panelClassName="lg:-mt-5"
+            />
           </div>
         </Reveal>
 
