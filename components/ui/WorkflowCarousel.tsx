@@ -107,7 +107,7 @@ export function WorkflowCarousel({ items, reverse }: { items: readonly Slide[]; 
         <div
           className="wf-track flex w-max gap-3 sm:gap-4"
           style={{
-            ["--wf-dur" as string]: `${count * 7}s`,
+            ["--wf-dur" as string]: `${Math.max(count * 7, 60)}s`,
             animationDirection: reverse ? "reverse" : undefined,
             animationPlayState: open ? "paused" : undefined,
           }}
