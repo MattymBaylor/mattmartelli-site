@@ -46,7 +46,7 @@ export function VoiceAI() {
         </Reveal>
 
         <Reveal delay={0.12}>
-          <div className="mt-12 mb-28 grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-stretch">
+          <div className="mt-12 mb-28 grid gap-8 lg:grid-cols-[1.35fr_1fr] lg:gap-16 lg:items-stretch">
             <div className="flex h-full flex-col">
               <p className="mb-3 font-mono text-xs uppercase tracking-[0.18em] text-ink-faint">
                 {voice.demo.eyebrow}
@@ -65,17 +65,34 @@ export function VoiceAI() {
                 />
               </div>
             </div>
-            <div className="flex flex-col justify-center">
+            <div className="flex flex-col justify-center lg:py-4">
               <p className="font-display text-xl font-semibold leading-snug text-ink sm:text-2xl lg:text-[1.65rem]">
                 {voice.demo.headline}
               </p>
-              <p className="mt-4 text-base leading-relaxed text-ink-muted">
+              <p className="mt-5 text-base leading-relaxed text-ink-muted">
                 {voice.demo.craft}
               </p>
-              <p className="mt-4 text-base leading-relaxed text-ink-muted">
-                {voice.demo.stack}
+              <p className="mt-6 font-mono text-xs uppercase tracking-[0.18em] text-ink-faint">
+                {voice.demo.stackLead}
               </p>
-              <p className="mt-6 flex items-center gap-2.5 text-sm font-semibold uppercase tracking-[0.14em] text-accent-cyan">
+              <ul className="mt-3 space-y-2">
+                {voice.demo.stackItems.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-2.5 text-base leading-relaxed text-ink-muted"
+                  >
+                    <span
+                      className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-accent-cyan/60"
+                      aria-hidden
+                    />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 text-base leading-relaxed text-ink-muted">
+                {voice.demo.stackClose}
+              </p>
+              <p className="mt-8 flex items-center gap-2.5 text-sm font-semibold uppercase tracking-[0.14em] text-accent-cyan">
                 <ArrowLeft size={18} aria-hidden className="shrink-0 animate-pulse" />
                 {voice.demo.cta}
               </p>

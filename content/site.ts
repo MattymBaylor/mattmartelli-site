@@ -580,8 +580,15 @@ export const site = {
       headline: "Most voice AI still sounds like a robot. Listen to one that doesn't.",
       craft:
         "That natural tone is engineered — not defaulted. I spent weeks tuning persona, pacing, turn-taking, objection handling, and voice selection until callers stay on the line and actually book. Every hesitation, every interruption, every \"uh-huh\" moment was deliberate.",
-      stack:
-        "Under the hood: n8n orchestration, Retell AI realtime voice, OpenAI and Claude for reasoning, ElevenLabs and HeyGen for synthesis, CrewAI on the vector memory layer. The stack runs production. The sound is what proves it works.",
+      stackLead: "Under the hood:",
+      stackItems: [
+        "n8n orchestration",
+        "Retell AI realtime voice",
+        "OpenAI + Claude for reasoning",
+        "ElevenLabs + HeyGen for synthesis",
+        "CrewAI on the vector memory layer",
+      ],
+      stackClose: "The stack runs production. The sound is what proves it works.",
       cta: "Push play — real outbound call, zero edits",
     },
   },
