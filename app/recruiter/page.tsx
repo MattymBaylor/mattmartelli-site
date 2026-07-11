@@ -128,36 +128,50 @@ export default function RecruiterPage() {
           <h2 id="field-note" className="font-display text-2xl font-semibold sm:text-3xl">
             {recruiter.fieldNote.title}
           </h2>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-ink-muted sm:text-base">
-            {recruiter.fieldNote.lead}
-          </p>
-          <p className="mt-5 font-mono text-xs uppercase tracking-[0.18em] text-ink-faint">
-            {recruiter.fieldNote.pointsLead}
-          </p>
-          <ul className="mt-3 max-w-2xl space-y-2">
-            {recruiter.fieldNote.points.map((point) => (
-              <li
-                key={point}
-                className="flex items-start gap-2.5 text-sm leading-relaxed text-ink-muted sm:text-base"
-              >
-                <span
-                  className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-accent-cyan/60"
-                  aria-hidden
-                />
-                {point}
-              </li>
-            ))}
-          </ul>
-          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-ink-muted sm:text-base">
-            {recruiter.fieldNote.close}
-          </p>
-          <div className="mt-5">
+          {/* Text left, the paper itself right — the cover IS the download
+              link, so the old yellow button below is retired. */}
+          <div className="mt-4 grid gap-8 lg:grid-cols-[1fr_300px] lg:items-start lg:gap-14">
+            <div>
+              <p className="max-w-2xl text-sm leading-relaxed text-ink-muted sm:text-base">
+                {recruiter.fieldNote.lead}
+              </p>
+              <p className="mt-5 font-mono text-xs uppercase tracking-[0.18em] text-ink-faint">
+                {recruiter.fieldNote.pointsLead}
+              </p>
+              <ul className="mt-3 max-w-2xl space-y-2">
+                {recruiter.fieldNote.points.map((point) => (
+                  <li
+                    key={point}
+                    className="flex items-start gap-2.5 text-sm leading-relaxed text-ink-muted sm:text-base"
+                  >
+                    <span
+                      className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-accent-cyan/60"
+                      aria-hidden
+                    />
+                    {point}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 max-w-2xl text-sm leading-relaxed text-ink-muted sm:text-base">
+                {recruiter.fieldNote.close}
+              </p>
+            </div>
             <a
               href={recruiter.fieldNote.paper.href}
               download={recruiter.fieldNote.paper.filename}
-              className="inline-flex items-center gap-2 rounded-md bg-[#FACC15] px-4 py-2.5 text-sm font-semibold text-night shadow-[0_0_0_1px_rgba(250,204,21,0.35),0_0_16px_-8px_rgba(250,204,21,0.4)] transition-transform hover:scale-[1.03]"
+              className="group mx-auto block w-56 sm:w-64 lg:mx-0 lg:w-full"
+              aria-label={recruiter.fieldNote.paper.label}
             >
-              <Download size={15} aria-hidden /> {recruiter.fieldNote.paper.label}
+              <Image
+                src="/field-note-cover.webp"
+                alt="No One Was Watching — the field-note paper cover"
+                width={1020}
+                height={1320}
+                className="h-auto w-full rounded-lg border border-line shadow-[0_28px_56px_rgba(0,0,0,0.6)] transition-all duration-200 group-hover:-translate-y-1.5 group-hover:border-warm/50"
+              />
+              <span className="mt-3 inline-flex items-center gap-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-warm transition-colors group-hover:text-warm/80">
+                <Download size={13} aria-hidden /> Read the paper (PDF) →
+              </span>
             </a>
           </div>
           <DeferredYouTubeEmbed
