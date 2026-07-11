@@ -118,13 +118,13 @@ export const recruiter = {
       company: "Cambium Learning Group",
       role: "Email Marketing Manager | Senior Copywriter",
       dates: "2007–2010",
-      note: "First-of-its-kind personalization pilot that drove $3.1M in six months.",
+      note: "Personalization pilot that drove $3.1M in six months.",
     },
   ],
 
   accomplishments: [
     "Generate $750K/month in attributed pipeline through AI-driven initiatives and campaigns.",
-    "Drove $3.1M in new revenue within six months with a first-of-its-kind personalization pilot.",
+    "Drove $3.1M in new revenue within six months with a personalization pilot at Cambium Learning Group.",
     "Saved $90K+/year by re-architecting enterprise automation from Zapier to self-hosted n8n — with zero downtime.",
     "Led CRM and lifecycle transformations across databases of 500,000+ records, with TCPA/CAN-SPAM governance.",
     "Advised Fortune 400/500 organizations on automation architecture; co-founder and one of the First 100 HubSpot Partners.",
@@ -144,7 +144,7 @@ export const recruiter = {
 
   // Quantified impact for the recruiter right-rail "By the numbers" card.
   byNumbers: [
-    { value: "25 yrs", label: "Marketing — last 15+ in AI & automation" },
+    { value: "25 yrs", label: "Marketing — last 15 in marketing automation" },
     { value: "$90K+/yr", label: "Saved via a zero-downtime Zapier-to-n8n migration" },
     { value: "$750K+/mo", label: "Attributed pipeline from lifecycle automation" },
     { value: "500K+", label: "CRM records architected and kept compliant" },
@@ -210,6 +210,32 @@ export const recruiter = {
       "Matt is a visionary, yet has his eye on the present. His ideas and creativity are at the pinnacle of his field. I often ask Matt his opinions in business needs outside of his scope, knowing that he will produce an option I would never think of.",
     name: "Kelly Clark",
     title: "Sr. Business Development Manager, ACS Group",
+  },
+
+  // Homepage vouching block. Quotes are verbatim-sentence excerpts from public
+  // LinkedIn recommendations (full harvest: docs/linkedin-recommendations.md);
+  // excerpt with "…" only — never paraphrase inside quotation marks.
+  recommendations: {
+    heading: "On the record",
+    sub: "From LinkedIn recommendations — verbatim, and verifiable on the profile.",
+    linkLabel: "Read all of them on LinkedIn",
+    linkHref: "https://www.linkedin.com/in/mattmartelli/details/recommendations/",
+    quotes: [
+      {
+        quote:
+          "He didn't just manage systems; he optimized them, always finding ways to improve scalability and productivity. … Any company would be incredibly fortunate to have Matt on their team. He is a true asset, a problem-solver, and a leader who brings both vision and execution to every project he touches.",
+        name: "Christopher Seibert",
+        title: "VP of Growth",
+        context: "Managed Matt directly · March 2025",
+      },
+      {
+        quote:
+          "My recommendation of Matt is unequivocal. … The clearest statement I could give is that I would hire him immediately if I had a need for a consummate marketing professional.",
+        name: "John Campbell",
+        title: "Board Member, Cambium Learning Group",
+        context: "Senior leadership at Voyager · March 2010",
+      },
+    ],
   },
 
   thoughtLeadership: {

@@ -2,6 +2,7 @@ import { Header } from "@/components/nav/Header";
 import { Footer } from "@/components/nav/Footer";
 import { HiringHero } from "@/components/sections/HiringHero";
 import { ProofHighlights } from "@/components/sections/ProofHighlights";
+import { Recommendations } from "@/components/sections/Recommendations";
 import { WorkflowAutomations } from "@/components/sections/WorkflowAutomations";
 import { ExperienceStrip } from "@/components/sections/ExperienceStrip";
 import { TigerTeamSection } from "@/components/sections/TigerTeamSection";
@@ -21,6 +22,8 @@ export default function HomePage() {
         {/* Hiring signal — first two screens */}
         <HiringHero />
         <ProofHighlights />
+        {/* Third-party vouching — verbatim LinkedIn recommendations */}
+        <Recommendations />
         {/* Complete workflow automations — department-grouped living workflows */}
         <WorkflowAutomations />
         <ExperienceStrip />

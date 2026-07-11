@@ -136,7 +136,7 @@ export function Header() {
           <a
             href={site.nav.cta.resume.href}
             download={site.nav.cta.resume.filename}
-            className="hidden rounded-md bg-accent-gradient px-4 py-2 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03] sm:inline-flex"
+            className="hidden rounded-md border border-line-strong px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50 hover:text-accent-cyan sm:inline-flex"
           >
             {site.nav.cta.resume.label}
           </a>
@@ -225,14 +225,6 @@ export function Header() {
               );
             })}
             <li className="mt-2 flex flex-col gap-2">
-              <a
-                href={site.nav.cta.resume.href}
-                download={site.nav.cta.resume.filename}
-                onClick={() => setOpen(false)}
-                className="rounded-md bg-accent-gradient px-3.5 py-2.5 text-center text-sm font-semibold text-night"
-              >
-                {site.nav.cta.resume.label}
-              </a>
               <Link
                 href={site.nav.cta.recruiter.href}
                 onClick={() => setOpen(false)}
@@ -241,6 +233,14 @@ export function Header() {
                 {site.nav.cta.recruiter.label}
                 <ArrowUpRight size={16} />
               </Link>
+              <a
+                href={site.nav.cta.resume.href}
+                download={site.nav.cta.resume.filename}
+                onClick={() => setOpen(false)}
+                className="rounded-md border border-line-strong px-3.5 py-2.5 text-center text-sm font-medium text-ink"
+              >
+                {site.nav.cta.resume.label}
+              </a>
               <Link
                 href={`/${site.nav.cta.contact.href}`}
                 onClick={() => setOpen(false)}

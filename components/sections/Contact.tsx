@@ -22,7 +22,7 @@ export function Contact() {
 
         <Reveal>
           <p className="mx-auto mt-6 max-w-2xl text-center text-base leading-relaxed text-ink-muted sm:text-lg">
-            Every AI system is only as sharp as the feedback it learns from. We
+            Every AI system is only as sharp as the feedback it learns from. I
             build the evaluation frameworks and training pipelines that turn raw
             model output into reliable, production-ready intelligence — the
             difference between an AI that guesses and one that reasons.

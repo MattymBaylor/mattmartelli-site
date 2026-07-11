@@ -439,7 +439,7 @@ export const site = {
   orchestration: {
     heading: "AI Orchestration & Frameworks",
     framing:
-      "I've built 100+ custom agent workflows and harnesses over the last few years, and no two are alike. That's the point — each one is architected around your specific business, not a template.",
+      "I've built dozens of custom agent workflows and harnesses over the last few years, and no two are alike. That's the point — each one is architected around the business process it serves, not a template.",
     body: "Once you realize one size never fits all, you get the flexibility to build something streamlined and genuinely custom. Every build brings a new challenge.",
     // Points the reader up to the interactive diagram dropdown (Architecture
     // section sits directly above this one).
@@ -612,8 +612,8 @@ export const site = {
     // Rendered slides live in /public/blueprints; the lightbox reads this.
     blueprint: {
       eyebrow: "Featured methodology",
-      title: "Data Hygiene is critical!",
-      body: "Data hygiene ensures information is accurate, consistent, and up-to-date. It is the critical foundation for eliminating errors, driving strategic decisions, reducing operational costs, and maintaining regulatory compliance. Neglecting it leads to flawed analytics, wasted resources, and serious security vulnerabilities.",
+      title: "Dirty data is a silent tax.",
+      body: "I've led CRM and lifecycle transformations across databases of 500,000+ records — standardized, deduplicated, and kept TCPA/CAN-SPAM compliant. This blueprint is the methodology behind that work: an assembly line that turns messy records into revenue-ready data.",
       cta: "Click to view methodology",
       cover: "/blueprints/cover.webp",
       coverAlt: "The Data Refinery Blueprint — title slide",

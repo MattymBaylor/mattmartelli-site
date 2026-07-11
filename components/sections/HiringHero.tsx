@@ -102,10 +102,17 @@ export function HiringHero() {
             </motion.p>
 
             <motion.div variants={item} className="mt-7 flex flex-wrap gap-3">
+              <Link
+                href={hero.ctas.recruiter.href}
+                className="btn-recruiter px-5 py-3 text-sm"
+              >
+                {hero.ctas.recruiter.label}
+                <ArrowUpRight size={16} aria-hidden />
+              </Link>
               <a
                 href={hero.ctas.primary.href}
                 download={site.nav.cta.resume.filename}
-                className="inline-flex items-center gap-2 rounded-md bg-accent-gradient px-5 py-3 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03]"
+                className="inline-flex items-center gap-2 rounded-md border border-line-strong px-5 py-3 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50"
               >
                 <Download size={16} aria-hidden />
                 {hero.ctas.primary.label}
@@ -126,13 +133,6 @@ export function HiringHero() {
                 <Linkedin size={16} aria-hidden />
                 LinkedIn
               </a>
-              <Link
-                href={hero.ctas.recruiter.href}
-                className="btn-recruiter px-5 py-3 text-sm"
-              >
-                {hero.ctas.recruiter.label}
-                <ArrowUpRight size={16} aria-hidden />
-              </Link>
             </motion.div>
 
             <motion.ul
@@ -149,24 +149,7 @@ export function HiringHero() {
           </motion.div>
         </div>
 
-        <motion.div
-          initial={reduced ? false : { opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-10 rounded-xl border border-line bg-surface-elevated/50 p-5 shadow-glow sm:p-6"
-        >
-          <p className="eyebrow mb-4">Selected accomplishments</p>
-          <ul className="grid gap-3 sm:grid-cols-2">
-            {recruiter.accomplishments.slice(0, 4).map((item) => (
-              <li key={item} className="flex items-start gap-2.5 text-sm leading-relaxed text-ink-muted">
-                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-cyan" aria-hidden />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </motion.div>
-
-        <div className="mt-6 flex flex-wrap items-center gap-2">
+        <div className="mt-10 flex flex-wrap items-center gap-2">
           {/* w-full on mobile puts the label on its own line so the chips wrap
               as one aligned group beneath it; inline again from sm up */}
           <span className="w-full font-mono text-[10px] uppercase tracking-[0.14em] text-ink-faint sm:w-auto">
