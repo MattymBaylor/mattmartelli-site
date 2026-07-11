@@ -159,17 +159,23 @@ export default function RecruiterPage() {
             <a
               href={recruiter.fieldNote.paper.href}
               download={recruiter.fieldNote.paper.filename}
-              className="group mx-auto block w-56 sm:w-64 lg:mx-0 lg:w-full"
+              className="group relative mx-auto block w-56 sm:w-64 lg:-ml-6 lg:-mt-6 lg:mx-0 lg:w-full"
               aria-label={recruiter.fieldNote.paper.label}
             >
+              {/* soft red halo behind the cover — matches the paper's accent,
+                  same pattern as the vault book glows */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute -left-[20%] -top-[10%] h-[120%] w-[140%] bg-[radial-gradient(ellipse_at_50%_45%,rgba(244,99,99,0.16),rgba(244,99,99,0.05)_48%,transparent_72%)]"
+              />
               <Image
                 src="/field-note-cover.webp"
                 alt="No One Was Watching — the field-note paper cover"
                 width={1020}
                 height={1320}
-                className="h-auto w-full rounded-lg border border-line shadow-[0_28px_56px_rgba(0,0,0,0.6)] transition-all duration-200 group-hover:-translate-y-1.5 group-hover:border-warm/50"
+                className="relative h-auto w-full rounded-lg border border-line shadow-[0_28px_56px_rgba(0,0,0,0.6)] transition-all duration-200 group-hover:-translate-y-1.5 group-hover:border-warm/50"
               />
-              <span className="mt-3 inline-flex items-center gap-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-warm transition-colors group-hover:text-warm/80">
+              <span className="relative mt-3 inline-flex items-center gap-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-warm transition-colors group-hover:text-warm/80">
                 <Download size={13} aria-hidden /> Read the paper (PDF) →
               </span>
             </a>
