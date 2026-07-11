@@ -159,7 +159,7 @@ export default function RecruiterPage() {
             <a
               href={recruiter.fieldNote.paper.href}
               download={recruiter.fieldNote.paper.filename}
-              className="group relative mx-auto block w-56 sm:w-64 lg:-ml-6 lg:-mt-6 lg:mx-0 lg:w-full"
+              className="group relative mx-auto block w-56 sm:w-64 lg:-ml-16 lg:-mt-14 lg:mx-0 lg:w-full"
               aria-label={recruiter.fieldNote.paper.label}
             >
               {/* soft red halo behind the cover — matches the paper's accent,
