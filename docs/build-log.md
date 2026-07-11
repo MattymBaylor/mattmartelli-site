@@ -172,3 +172,25 @@ Second WorkflowCarousel shipped directly under the Agentic section's original tr
 **Same session — the train becomes a drop folder [TRAIN]:** Created `~/BlueprintTrains/Agentic` + `~/BlueprintTrains/Guides` on Matt's Mac; all raw sources moved out of `public/workflows/` (now webp-only). New `content/trains.manifest.json` maps every source doc → its slides per carousel (dupes map to `[]`, train #1 pre-manifest slides protected as `legacySlides`). Trains now counter-rotate: `WorkflowCarousel` gained a `reverse` prop — top train drifts left, field-guide train drifts right, same speed knob. Daily scheduled sync (Claude) diffs folders vs manifest: new doc → OCR/curate/generate/wire; removed doc → slides off the train; then tsc → commit → push → live verify. "Run the train" still works on demand.
 
 **Same session — train #2 becomes the book rail [TRAIN]:** Matt re-dropped full books; among 6 files in ~/BlueprintTrains/Guides only two distinct covers exist — "Paying Agents to Find Truth" (Paper 1 of 2) and "Standing Watch" (Paper 2 of 2, = Sentinel.pdf; Tiger/Tiger-mobile/Tiger-and-Sentinel-Teams are variants of Paper 1). Replaced all 15 interior slides with the two cover cards (guides train now counter-rotates right with covers), relabeled the rail "Who Audits the Robots?", manifest now maps books→covers with style=book-covers. Earlier guide sources moved to ~/BlueprintTrains/Guides-removed (not deleted).
+
+## 2026-07-10 — Circle-driven design QA sweep + the Voice Treatment becomes a skill
+
+**What:** Seven production deploys in one sitting, every one initiated by Matt circling or screenshotting the live site while Claude drove the code — the first full session of the point-and-fix workflow (Chrome element picker proved flaky; freehand red-circle annotations proved perfect).
+
+**Shipped, in order:**
+1. Lead Qualification card nudged up 20px (new `panelClassName` prop on `Explorable` keeps it scoped).
+2. Voice-demo block rebalanced — stack paragraph → "UNDER THE HOOD:" cyan bullets, gutter doubled to `lg:gap-16`, columns verified pixel-equal (584/584). **Matt named this the format he wants everywhere: "That's the spacing I liked."**
+3. Mobile horizontal overflow killed — the architecture `<select>`'s 502px intrinsic width was dragging the whole page sideways on phones (`w-full min-w-0 sm:w-auto`). Matt diagnosed the culprit himself from a screenshot.
+4. Architecture viewer disabled on mobile per Matt's call — phones get a "built for a big screen" pointer card; lazy iframe never fetches inside `display:none`; the now-orphaned "select from the dropdown" cue hidden on mobile too.
+5. Tiger Team CTA stack slimmed ("I think a different chatbot made it") — px-4 py-2, 13px subtitles, 264px column, `lg:-mt-2`.
+6. "Best fit for" chips: label gets its own line on mobile (`w-full sm:w-auto`), chips align as one group.
+7. Recruiter fast path: flagship Seinfeld card, executive summary, and field note all restructured to the voice format (content fields `lead`/`pointsLead`/`points`/`close`; homepage keeps prose `executiveSummary`); back-to-site link now a sticky bar so deep scrollers aren't stranded.
+
+**Decisions:**
+- The format is canon: lead → mono eyebrow → cyan-dot bullets → kicker closer. Bullets redistribute existing copy, never invent claims.
+- Verification by measurement, not squinting — column heights, gap px, `scrollWidth` overflow checked via JS in the preview browser every time.
+- One gotcha logged: two-part JSX edits leave a broken intermediate the dev server compiles and caches as scary-looking stale errors — check the file, not the console history.
+
+**`[DECK]`** — *Session-to-skill in the same night, again:* the spacing treatment Matt approved at 9pm was an installed global skill (`voice-treatment`) by 11 — trigger phrases in his own words ("break this up," "make it punchy"), with the honest-framing rule and both sites' deploy pipelines baked in. Second proof of the Blueprint Train pattern: any move he likes twice becomes a one-phrase command. Companion beat: *the client can art-direct a live production site by drawing red circles on screenshots while the agent measures, fixes, deploys, and confirms — seven times in an evening.*
+
+**Open:** the "top section needs one more gutter on the left" circle never landed — parked. AgenticSystems Explorable row still owed the voice-treatment spacing pass (in open-commitments).
