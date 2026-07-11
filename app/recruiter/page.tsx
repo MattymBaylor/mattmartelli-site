@@ -130,7 +130,7 @@ export default function RecruiterPage() {
           </h2>
           {/* Text left, the paper itself right — the cover IS the download
               link, so the old yellow button below is retired. */}
-          <div className="mt-4 grid gap-8 lg:grid-cols-[1fr_300px] lg:items-start lg:gap-14">
+          <div className="mt-4 grid gap-8 lg:grid-cols-[1fr_224px] lg:items-start lg:gap-14">
             <div>
               <p className="max-w-2xl text-sm leading-relaxed text-ink-muted sm:text-base">
                 {recruiter.fieldNote.lead}
@@ -184,7 +184,7 @@ export default function RecruiterPage() {
             id={recruiter.fieldNote.youtubeId}
             title={recruiter.fieldNote.videoTitle}
             hoverAudio
-            className="mt-6"
+            className="mt-12"
           />
         </section>
 
