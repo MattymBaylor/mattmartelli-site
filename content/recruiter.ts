@@ -26,11 +26,16 @@ export const recruiter = {
   fieldNote: {
     eyebrow: "Field Note Nº 01 · Game Theory",
     title: "Is your architecture Battle Tested?",
-    description: [
-      "Before AI agents can be trusted, someone has to watch them. Most companies are racing to deploy AI. Far fewer are asking a harder question: Who audits the robots? This field note is the opening paper in my ongoing research into production AI governance, reward engineering, and agent reliability. It explains why the most dangerous AI failures rarely look like dramatic crashes—they quietly pass health checks while drifting farther from the outcomes they were designed to produce.",
-      "The ideas in this paper aren't theoretical. They're the same principles I use when designing production AI systems for enterprise organizations: adversarial testing, independent verification, continuous observability, and reward engineering that encourages truth instead of good-looking metrics. If you're hiring someone to build AI that can be trusted in production—not just impressive demos—this is the best place to start.",
-      "Watch the 100-second field note below to see how I pressure-test AI systems before they ship.",
+    lead: "Before AI agents can be trusted, someone has to watch them. Most companies are racing to deploy AI — far fewer are asking the harder question: who audits the robots?",
+    pointsLead: "The opening paper in my production-AI research:",
+    points: [
+      "Why the most dangerous AI failures aren't crashes — they quietly pass health checks while drifting from the outcomes they were designed to produce",
+      "Adversarial testing, independent verification, and continuous observability — applied, not theoretical",
+      "Reward engineering that encourages truth instead of good-looking metrics",
+      "The same principles I use designing production AI systems for enterprise organizations",
     ],
+    close:
+      "If you're hiring someone to build AI that can be trusted in production — not just impressive demos — start here. The 100-second field note below shows how I pressure-test AI systems before they ship.",
     paper: {
       label: "Read the paper — No One Was Watching (PDF)",
       href: "/no-one-was-watching.pdf",

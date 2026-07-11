@@ -128,11 +128,29 @@ export default function RecruiterPage() {
           <h2 id="field-note" className="font-display text-2xl font-semibold sm:text-3xl">
             {recruiter.fieldNote.title}
           </h2>
-          <div className="mt-3 space-y-4 text-sm leading-relaxed text-ink-muted sm:text-base">
-            {recruiter.fieldNote.description.map((paragraph) => (
-              <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-ink-muted sm:text-base">
+            {recruiter.fieldNote.lead}
+          </p>
+          <p className="mt-5 font-mono text-xs uppercase tracking-[0.18em] text-ink-faint">
+            {recruiter.fieldNote.pointsLead}
+          </p>
+          <ul className="mt-3 max-w-2xl space-y-2">
+            {recruiter.fieldNote.points.map((point) => (
+              <li
+                key={point}
+                className="flex items-start gap-2.5 text-sm leading-relaxed text-ink-muted sm:text-base"
+              >
+                <span
+                  className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-accent-cyan/60"
+                  aria-hidden
+                />
+                {point}
+              </li>
             ))}
-          </div>
+          </ul>
+          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-ink-muted sm:text-base">
+            {recruiter.fieldNote.close}
+          </p>
           <div className="mt-5">
             <a
               href={recruiter.fieldNote.paper.href}
