@@ -430,16 +430,27 @@ export default function RecruiterPage() {
           </aside>
         </div>
 
-        {/* Testimonial */}
-        <figure className="mt-12 rounded-2xl border border-line bg-surface-elevated/60 p-6 sm:p-8">
-          <Quote size={22} className="text-accent-cyan/50" aria-hidden />
-          <blockquote className="mt-3 max-w-3xl text-lg leading-relaxed text-ink sm:text-xl">
-            {recruiter.testimonial.quote}
-          </blockquote>
-          <figcaption className="mt-4 text-sm">
-            <span className="font-semibold text-ink">{recruiter.testimonial.name}</span>
-            <span className="text-ink-muted"> · {recruiter.testimonial.title}</span>
-          </figcaption>
+        {/* Testimonial — Kelly's cutout sits flush on the card's bottom edge */}
+        <figure className="mt-12 overflow-hidden rounded-2xl border border-line bg-surface-elevated/60 p-6 sm:p-8">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:gap-10">
+            <div className="sm:flex-1">
+              <Quote size={22} className="text-accent-cyan/50" aria-hidden />
+              <blockquote className="mt-3 max-w-3xl text-lg leading-relaxed text-ink sm:text-xl">
+                {recruiter.testimonial.quote}
+              </blockquote>
+              <figcaption className="mt-4 text-sm">
+                <span className="font-semibold text-ink">{recruiter.testimonial.name}</span>
+                <span className="text-ink-muted"> · {recruiter.testimonial.title}</span>
+              </figcaption>
+            </div>
+            <Image
+              src="/kelly-clark.png"
+              alt="Kelly Clark, Sr. Business Development Manager at ACS Group"
+              width={336}
+              height={336}
+              className="mx-auto h-auto w-32 shrink-0 sm:mx-0 sm:-mb-8 sm:w-40"
+            />
+          </div>
         </figure>
 
         {/* Interactive Playbook — full-screen, two-pane walkthrough */}
