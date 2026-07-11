@@ -432,7 +432,7 @@ export default function RecruiterPage() {
 
         {/* Testimonial — Kelly's cutout sits flush on the card's bottom edge */}
         <figure className="mt-12 overflow-hidden rounded-2xl border border-line bg-surface-elevated/60 p-6 sm:p-8">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:gap-10">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-10">
             <div className="sm:flex-1">
               <Quote size={22} className="text-accent-cyan/50" aria-hidden />
               <blockquote className="mt-3 max-w-3xl text-lg leading-relaxed text-ink sm:text-xl">
@@ -443,12 +443,15 @@ export default function RecruiterPage() {
                 <span className="text-ink-muted"> · {recruiter.testimonial.title}</span>
               </figcaption>
             </div>
+            {/* Centered on the quote, nudged in from the right edge; the
+                bottom-fade mask feathers the cutout's flat shirt line so it
+                can float mid-card instead of sitting on the bottom edge. */}
             <Image
               src="/kelly-clark.png"
               alt="Kelly Clark, Sr. Business Development Manager at ACS Group"
               width={336}
               height={336}
-              className="mx-auto h-auto w-32 shrink-0 sm:mx-0 sm:-mb-8 sm:w-40"
+              className="mx-auto h-auto w-32 shrink-0 sm:mx-0 sm:mr-8 sm:w-40 sm:-translate-y-2 [mask-image:linear-gradient(to_bottom,black_78%,transparent_100%)]"
             />
           </div>
         </figure>
