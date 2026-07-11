@@ -1,0 +1,62 @@
+{
+  "$comment": "Blueprint Train sync manifest. Watched folders on Matt's Mac map to carousels. sources: {sourceFilename: [slide webps it produced]}. Empty array = dupe/no-diagram source (removal is a no-op). legacySlides = pre-manifest slides never auto-removed. Sync: new file in folder -> curate + add; file removed -> remove its slides from site.ts + delete webps.",
+  "slidesDir": "public/workflows",
+  "trains": {
+    "agentic": {
+      "watchFolder": "~/BlueprintTrains/Agentic",
+      "contentArray": "agentic.workflows",
+      "component": "components/sections/AgenticSystems.tsx",
+      "direction": "left",
+      "sources": {},
+      "legacySlides": [
+        "autonomous-enterprise-linear-vs-parallel.webp",
+        "one-brain-many-channels.webp",
+        "ai-sales-router-outside-room.webp",
+        "claw-crew-lead-triage-pipeline.webp",
+        "ai-sales-hive-mind.webp",
+        "ai-sales-6-layer-os.webp",
+        "claw-crew-mission-control-radar.webp",
+        "ai-sales-one-way-pipelines.webp",
+        "claw-crew-defense-rings.webp",
+        "gtm-engine-unified-blueprint.webp",
+        "seven-customer-journeys.webp",
+        "tooling-orbit-infrastructure.webp",
+        "executive-control-panel.webp",
+        "ninety-day-implementation-roadmap.webp"
+      ]
+    },    "guides": {
+      "watchFolder": "~/BlueprintTrains/Guides",
+      "contentArray": "agentic.guides",
+      "component": "components/sections/AgenticSystems.tsx",
+      "direction": "right",
+      "sources": {
+        "2026 Enterprise AI Integration Playbook.pdf": [
+          "six-phase-methodology.webp",
+          "eight-layer-architecture.webp",
+          "integration-patterns.webp",
+          "nine-security-controls.webp",
+          "board-deck-outcomes.webp",
+          "timeline-decision-gates.webp"
+        ],
+        "Paying Agents to Find Truth.pdf": [
+          "reward-number-line.webp",
+          "finding-runs-the-gauntlet.webp",
+          "cross-lab-rivalry.webp"
+        ],
+        "Sentinel.pdf": [
+          "tiger-sentinel-two-winners.webp",
+          "three-kinds-of-drift.webp",
+          "promotion-gate.webp",
+          "monitoring-stack-three-layers.webp"
+        ],
+        "no-one-was-watching.pdf": ["incident-count-698.webp"],
+        "Voice Guide 2026.pdf": ["voice-agent-end-to-end.webp"],
+        "AI Voice Agent Implementation Guide.pdf": [],
+        "Tiger.pdf": [],
+        "Tiger and Sentinel Teams.pdf": [],
+        "agent-lying-lead-magnet.pdf": []
+      },
+      "legacySlides": []
+    }
+  }
+}

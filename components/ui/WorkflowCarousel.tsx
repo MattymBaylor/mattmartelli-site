@@ -18,7 +18,7 @@ import { usePrefersReducedMotion } from "@/lib/useReducedMotion";
 
 type Slide = { src: string; alt: string; caption?: string };
 
-export function WorkflowCarousel({ items }: { items: readonly Slide[] }) {
+export function WorkflowCarousel({ items, reverse }: { items: readonly Slide[]; reverse?: boolean }) {
   const [lightbox, setLightbox] = useState<number | null>(null);
   const [mounted, setMounted] = useState(false);
   const reduced = usePrefersReducedMotion();
@@ -108,6 +108,7 @@ export function WorkflowCarousel({ items }: { items: readonly Slide[] }) {
           className="wf-track flex w-max gap-3 sm:gap-4"
           style={{
             ["--wf-dur" as string]: `${count * 7}s`,
+            animationDirection: reverse ? "reverse" : undefined,
             animationPlayState: open ? "paused" : undefined,
           }}
         >

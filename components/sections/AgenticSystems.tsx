@@ -36,7 +36,7 @@ export function AgenticSystems() {
             <p className="mb-5 font-mono text-xs uppercase tracking-[0.18em] text-ink-faint">
               The field-guide series — problem to roadmap
             </p>
-            <WorkflowCarousel items={agentic.guides} />
+            <WorkflowCarousel items={agentic.guides} reverse />
           </div>
         </Reveal>
 
