@@ -167,7 +167,9 @@ export function HiringHero() {
         </motion.div>
 
         <div className="mt-6 flex flex-wrap items-center gap-2">
-          <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-faint">
+          {/* w-full on mobile puts the label on its own line so the chips wrap
+              as one aligned group beneath it; inline again from sm up */}
+          <span className="w-full font-mono text-[10px] uppercase tracking-[0.14em] text-ink-faint sm:w-auto">
             Best fit for:
           </span>
           {hiring.targetRoles.map((role) => (
@@ -178,7 +180,7 @@ export function HiringHero() {
               {role}
             </span>
           ))}
-          <span className="text-xs text-ink-faint">{hiring.targetRolesNote}</span>
+          <span className="w-full text-xs text-ink-faint sm:w-auto">{hiring.targetRolesNote}</span>
         </div>
       </div>
     </section>
