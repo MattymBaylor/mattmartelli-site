@@ -198,3 +198,13 @@ Second WorkflowCarousel shipped directly under the Agentic section's original tr
 **Late addendum (same night, deploys 8–10):** Kelly Clark's headshot added beside his "Matt is a visionary" testimonial — the attachment turned out to be a true transparent cutout, first placed bottom-flush, then repositioned per Matt's spoken directions ("up 50, in a little to the left") with a CSS gradient mask feathering the shirt line so it floats mid-card. Then the field-note section's empty right rail got the paper itself: page 1 of `no-one-was-watching.pdf` rendered via pdftoppm → 89KB webp, placed as a hover-lift book cover that IS the download link — yellow button retired, space reclaimed. Matt's idea, executed same-hour. Pattern note: spoken pixel directions land as precisely as circles when verified against getBoundingClientRect.
 
 **Final beat (deploys 11–13):** the paper cover got dialed in live with Matt art-directing by arrow — red halo glow (matched to the paper's accent, vault-book pattern), lifted level with the heading, then sized down to a 224px column with 161px of air above the video player. His verdict: "It's perfect now." Three iterations, each measured against the DOM before deploy.
+
+## 2026-07-10 (late) — The recruiter-lens audit prompt becomes a standing tool
+
+**What:** Wrote `docs/website-audit-prompt.md` — a reusable copy-paste prompt that turns any capable AI into a three-persona website auditor (30-second recruiter / 3-minute hiring manager / skeptical technical evaluator) for mattmartelli.com. Forced deliverables: 12-dimension scorecard, section-by-section KEEP/MOVE/MERGE/SHORTEN/REWRITE/CUT verdicts, a mandatory cut list, a missing list, top-10 impact-ranked fix table, and a "10/10 version" north star. 2,500-word output ceiling, no-flattery rules, before/after rewrites required.
+
+**Decision:** The context block is the only site-specific part — swap it and the same machinery audits any client's conversion page. Built deliberately re-skinnable per the case-file pattern.
+
+**Revision (same night, Matt's call):** added a **location protocol** — every finding must carry verbatim on-screen anchor text + structural position + element placement + device context, and copy fixes ship as BEFORE/AFTER pairs. The insight: the auditor never sees the repo, but exact quoted pixels ARE file paths — Claude Code greps the quote and lands on the component. Findings without a location block don't count. Turns the audit output into a direct work order for any coding agent (Matt's running this one through Grok).
+
+**`[DECK]`** — *The audit itself is a product:* the same prompt that pressure-tests Matt's own portfolio is a sellable first-touch deliverable for client sites — eat-the-dog-food in one file.
