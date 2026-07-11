@@ -327,83 +327,20 @@ export const site = {
         caption: "The 90-day roadmap — baseline, routing, then advanced QA and scale",
       },
     ],
-    // Blueprint Train #2 — the field-guide series. One slide per element,
-    // arc: problem → offense/defense → agents → stack → ops → security → business → roadmap.
+    // Blueprint Train #2 — the book rail. One cover card per distinct book
+    // in the "Who Audits the Robots?" field-guide series. Managed by the
+    // BlueprintTrains sync: drop a book in ~/BlueprintTrains/Guides, its cover
+    // joins the rail; pull it out, the cover comes off.
     guides: [
       {
-        src: "/workflows/incident-count-698.webp",
-        alt: "698 catalogued incidents of misaligned and deceptive AI agent behavior across a five-month study window, with the incident rate climbing nearly fivefold as more capable agentic models rolled out.",
-        caption: "698 catalogued incidents — the number that should end the debate",
+        src: "/workflows/cover-paying-agents.webp",
+        alt: "Cover of Paying Agents to Find Truth, Paper 1 of 2 in the Who Audits the Robots? series — how to make a team of AI auditors accurate on purpose by rewarding provable findings, punishing bluffing, and never letting a model grade its own work.",
+        caption: "Paying Agents to Find Truth — the offense: reward design for AI auditors (Paper 1 of 2)",
       },
       {
-        src: "/workflows/tiger-sentinel-two-winners.webp",
-        alt: "Two winners, opposite victories — the Tiger team is paid to break things with real, cited, reproducible holes; the Sentinel is paid for nothing breaking, catching regressions at the gate. Neither can cheat because the other is watching.",
-        caption: "Two winners, opposite victories — Tiger breaks things, Sentinel keeps them whole",
-      },
-      {
-        src: "/workflows/reward-number-line.webp",
-        alt: "The reward number line — a caught fabrication scores minus five through the veto layer, silence scores zero, and a true, cited, independently confirmed finding pays plus 0.95, making honesty the only rational strategy.",
-        caption: "The reward number line — truth pays +0.95, caught bluffing costs −5",
-      },
-      {
-        src: "/workflows/finding-runs-the-gauntlet.webp",
-        alt: "A finding runs the gauntlet — every auditor finding passes three composed gates: the citation gate collapses uncited claims to zero, the veto layer turns refuted fabrications negative, and consensus weighting discounts lone flags.",
-        caption: "The gauntlet — cited, rival-confirmed, and refutation-proof before it scores",
-      },
-      {
-        src: "/workflows/cross-lab-rivalry.webp",
-        alt: "Cross-lab rivalry — different copies of the same AI share the same blind spots, different platforms don't: independent blind spots, no self-flattery, no single point of failure, no vendor lock-in.",
-        caption: "Cross-lab rivalry — different platforms don't share blind spots",
-      },
-      {
-        src: "/workflows/voice-agent-end-to-end.webp",
-        alt: "One system, end to end — a typical AI voice agent deployment: the customer reaches the voice agent, which drives workflow automation wired into CRM, calendar, SMS and email, and notifications and reporting.",
-        caption: "One system, end to end — voice wired into workflow, CRM, calendar, and SMS",
-      },
-      {
-        src: "/workflows/six-phase-methodology.webp",
-        alt: "Six phases, one accountable system — discovery, architecture, prototype, implementation, optimization, and governance; no design until the problem is measured, and an honest go / no-go before anything is built.",
-        caption: "Six phases, one accountable system — no design until the problem is measured",
-      },
-      {
-        src: "/workflows/eight-layer-architecture.webp",
-        alt: "One architecture, adapted per engagement — eight separated layers from users and business applications through the AI orchestration layer, tool calling and MCP, workflow automation, and reporting and monitoring; models are interchangeable parts.",
-        caption: "Eight layers, separated — models are interchangeable; the design is what lasts",
-      },
-      {
-        src: "/workflows/integration-patterns.webp",
-        alt: "We integrate with what you already run — CRM, ERP, HubSpot, Salesforce, SQL databases, REST APIs, SharePoint, Microsoft 365, email, calendars, voice, and document processing, every integration following the same authenticate, sync, transform, act, log pattern.",
-        caption: "Integrates with what you already run — every connection follows the same pattern",
-      },
-      {
-        src: "/workflows/three-kinds-of-drift.webp",
-        alt: "Three kinds of drift — data drift where inputs change, concept drift where what counts as right moves, and semantic drift where embedding space shifts relative to what retrieval was calibrated against; drift doesn't announce itself.",
-        caption: "Three kinds of drift — naming the type tells you where to look",
-      },
-      {
-        src: "/workflows/promotion-gate.webp",
-        alt: "The promotion gate — no change ships without clearing three conditions: a human reviews and signs off the diagnosis, the fix proves out on a staged slice of traffic, and a tested one-step rollback exists before anything ships.",
-        caption: "The promotion gate — reviewed, staged, and a tested way back before it ships",
-      },
-      {
-        src: "/workflows/monitoring-stack-three-layers.webp",
-        alt: "The monitoring stack, top-down — quality evaluation scored by online evals on sampled live traffic, LLM telemetry with traces, tokens, latency, cost and tool calls, and infrastructure metrics; only the top layer answers whether the system is right.",
-        caption: "The monitoring stack — only the top layer answers “is it right?”",
-      },
-      {
-        src: "/workflows/nine-security-controls.webp",
-        alt: "Governed enough for security to say yes — nine controls designed in from day one: authentication, authorization, human approval, audit logs, role-based access, data privacy, monitoring, fallback procedures, and enterprise guardrails; human-in-the-loop by design.",
-        caption: "Nine controls, designed in from day one — approval gates on every consequential action",
-      },
-      {
-        src: "/workflows/board-deck-outcomes.webp",
-        alt: "Outcomes you can put in a board deck — faster operations, reduced manual work, higher data quality, improved customer experience, scalable automation, enterprise visibility, operational consistency, and better decision-making, measured against discovery baselines.",
-        caption: "Outcomes for a board deck — improvement is provable, not claimed",
-      },
-      {
-        src: "/workflows/timeline-decision-gates.webp",
-        alt: "A timeline you can hold us to — discovery, architecture, pilot, production, optimization, knowledge transfer, and support, with every phase ending in a decision gate you control: a working demonstration, a document that survives the meeting, and a go / no-go.",
-        caption: "A timeline you can hold us to — every phase ends with a decision gate you control",
+        src: "/workflows/cover-standing-watch.webp",
+        alt: "Cover of Standing Watch, Paper 2 of 2 in the Who Audits the Robots? series — how to keep a production AI system honest between audits: watching for drift, catching regressions early, and shipping fixes that actually hold.",
+        caption: "Standing Watch — the defense: keeping production honest between audits (Paper 2 of 2)",
       },
     ],
     // Explorable chips — selecting one updates the inline description.

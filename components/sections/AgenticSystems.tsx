@@ -34,7 +34,7 @@ export function AgenticSystems() {
         <Reveal delay={0.1}>
           <div className="mt-10">
             <p className="mb-5 font-mono text-xs uppercase tracking-[0.18em] text-ink-faint">
-              The field-guide series — problem to roadmap
+              The field-guide series — Who Audits the Robots?
             </p>
             <WorkflowCarousel items={agentic.guides} reverse />
           </div>
