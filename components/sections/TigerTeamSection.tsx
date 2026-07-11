@@ -64,7 +64,7 @@ export function TigerTeamSection() {
           confidence.
         </p>
 
-        <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_280px] lg:items-start">
+        <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_264px] lg:items-start">
           <ul className="space-y-3">
             {leadPoints.map((point) => (
               <li key={point} className="flex items-start gap-2.5 text-sm text-ink-muted sm:text-base">
@@ -74,35 +74,35 @@ export function TigerTeamSection() {
             ))}
           </ul>
 
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-2.5 lg:-mt-2">
             <a
               href="/who-audits-the-robots"
-              className="group flex flex-col rounded-md bg-[#FACC15] px-5 py-3 text-night shadow-[0_0_0_1px_rgba(250,204,21,0.35)] transition-transform hover:scale-[1.02]"
+              className="group flex flex-col rounded-md bg-[#FACC15] px-4 py-2 text-night shadow-[0_0_0_1px_rgba(250,204,21,0.35)] transition-transform hover:scale-[1.02]"
             >
-              <span className="text-sm font-bold">Tiger Team Plays Offense</span>
-              <span className="mt-1 inline-flex items-center gap-1 text-sm font-semibold">
+              <span className="text-sm font-bold leading-tight">Tiger Team Plays Offense</span>
+              <span className="mt-0.5 inline-flex items-center gap-1 text-[13px] font-semibold">
                 Read the article
-                <ArrowUpRight size={14} aria-hidden />
+                <ArrowUpRight size={13} aria-hidden />
               </span>
             </a>
             <a
               href="/field-notes/tiger-sentinel"
-              className="group flex flex-col rounded-md border border-accent-cyan/40 bg-accent-cyan/10 px-5 py-3 shadow-glow transition-transform hover:scale-[1.02]"
+              className="group flex flex-col rounded-md border border-accent-cyan/40 bg-accent-cyan/10 px-4 py-2 shadow-glow transition-transform hover:scale-[1.02]"
             >
-              <span className="text-sm font-bold text-ink">Tiger vs. Sentinel</span>
-              <span className="mt-1 inline-flex items-center gap-1 text-sm font-medium text-accent-cyan">
+              <span className="text-sm font-bold leading-tight text-ink">Tiger vs. Sentinel</span>
+              <span className="mt-0.5 inline-flex items-center gap-1 text-[13px] font-medium text-accent-cyan">
                 Field note
-                <ArrowUpRight size={14} aria-hidden />
+                <ArrowUpRight size={13} aria-hidden />
               </span>
             </a>
             <Link
               href="/playbook"
-              className="group flex flex-col rounded-md border border-line px-5 py-3 shadow-glow transition-colors hover:border-accent-cyan/40"
+              className="group flex flex-col rounded-md border border-line px-4 py-2 shadow-glow transition-colors hover:border-accent-cyan/40"
             >
-              <span className="text-sm font-bold text-ink">Interactive Playbook</span>
-              <span className="mt-1 inline-flex items-center gap-1 text-sm text-ink-muted">
+              <span className="text-sm font-bold leading-tight text-ink">Interactive Playbook</span>
+              <span className="mt-0.5 inline-flex items-center gap-1 text-[13px] text-ink-muted">
                 Live system demos
-                <ArrowUpRight size={14} aria-hidden />
+                <ArrowUpRight size={13} aria-hidden />
               </span>
             </Link>
           </div>

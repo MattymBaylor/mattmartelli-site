@@ -100,6 +100,22 @@ export function ArchitectureShowcase({ className = "mx-auto mt-10 max-w-5xl" }: 
   return (
     <Reveal delay={0.1}>
       <div id="architecture" className={`scroll-mt-24 ${className}`}>
+        {/* Mobile: the canvases are desktop artifacts — a dropdown plus a 72vh
+            diagram iframe is unusable on a phone. Show a pointer card instead.
+            The hidden viewer's iframe stays unfetched on phones because
+            loading="lazy" never triggers inside display:none. */}
+        <div className="rounded-xl border border-line bg-surface-elevated/50 p-5 md:hidden">
+          <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-accent-cyan/80">
+            Interactive blueprints
+          </p>
+          <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+            {DIAGRAMS.length} interactive architecture diagrams live here — real
+            multi-agent systems mapped end to end. They&apos;re built for a big
+            screen; open this page on desktop to explore them.
+          </p>
+        </div>
+
+        <div className="hidden md:block">
         {/* selector */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <label className="flex min-w-0 items-center gap-3">
@@ -139,6 +155,7 @@ export function ArchitectureShowcase({ className = "mx-auto mt-10 max-w-5xl" }: 
             loading="lazy"
             allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
           />
+        </div>
         </div>
       </div>
     </Reveal>

@@ -22,7 +22,9 @@ export function Orchestration() {
             <p className="text-base leading-relaxed text-ink-muted sm:text-lg">
               {orchestration.body}
             </p>
-            <p className="text-base leading-relaxed text-ink-muted sm:text-lg">
+            {/* The dropdown it references is desktop-only (mobile gets the
+                pointer card), so hide the instruction on phones. */}
+            <p className="hidden text-base leading-relaxed text-ink-muted sm:text-lg md:block">
               {orchestration.cue}
             </p>
           </div>
