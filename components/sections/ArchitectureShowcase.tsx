@@ -102,15 +102,17 @@ export function ArchitectureShowcase({ className = "mx-auto mt-10 max-w-5xl" }: 
       <div id="architecture" className={`scroll-mt-24 ${className}`}>
         {/* selector */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <label className="flex items-center gap-3">
+          <label className="flex min-w-0 items-center gap-3">
             <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint">
               Select
             </span>
+            {/* w-full + min-w-0 so long option titles truncate on phones instead
+                of forcing the select (and the whole page) into horizontal overflow */}
             <select
               value={activeId}
               onChange={(e) => setActiveId(e.target.value)}
               aria-label="Select an architecture diagram"
-              className="rounded-md border border-line-strong bg-surface-elevated px-4 py-2.5 text-sm font-medium text-ink outline-none transition-colors hover:border-accent-cyan/50 focus-visible:ring-2 focus-visible:ring-accent-cyan/70"
+              className="w-full min-w-0 rounded-md border border-line-strong bg-surface-elevated px-4 py-2.5 text-sm font-medium text-ink outline-none transition-colors hover:border-accent-cyan/50 focus-visible:ring-2 focus-visible:ring-accent-cyan/70 sm:w-auto"
             >
               {DIAGRAMS.map((d) => (
                 <option key={d.id} value={d.id}>
