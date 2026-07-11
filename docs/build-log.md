@@ -208,3 +208,19 @@ Second WorkflowCarousel shipped directly under the Agentic section's original tr
 **Revision (same night, Matt's call):** added a **location protocol** — every finding must carry verbatim on-screen anchor text + structural position + element placement + device context, and copy fixes ship as BEFORE/AFTER pairs. The insight: the auditor never sees the repo, but exact quoted pixels ARE file paths — Claude Code greps the quote and lands on the component. Findings without a location block don't count. Turns the audit output into a direct work order for any coding agent (Matt's running this one through Grok).
 
 **`[DECK]`** — *The audit itself is a product:* the same prompt that pressure-tests Matt's own portfolio is a sellable first-touch deliverable for client sites — eat-the-dog-food in one file.
+
+## 2026-07-11 (small hours) — Grok audits, Claude executes: Batch A ships
+
+**What:** The audit prompt came home. Matt ran the recruiter-lens prompt through Grok; the audit came back with verbatim anchor text on every finding, and every anchor grepped to a real component on the first try — the location protocol worked exactly as designed. Triage caught Grok's one factual miss (it said "no testimonials" — Kelly Clark's blockquote has been live on /recruiter since Tuesday) and two places it lacked context (the blueprint carousel is a flagship investment, not clutter; the $750K client is confidential).
+
+**Batch A landed (commit 9a56357):** tenure stat now fully true ("25 yrs / last 15 in marketing automation" — Matt's call: "that was a ruse," AI dropped from the claim); $3.1M pilot attributed to Cambium (employer was already public in the same file); "first-of-its-kind" cut; "100+ workflows" → "dozens"; data-hygiene brochure copy → owned 500K-record outcome ("Dirty data is a silent tax."); "We build" → "I build"; Recruiter Fast Path now the single primary CTA in hero, nav, and mobile menu; duplicate accomplishments box gone from the hero.
+
+**NEW — "On the record" vouching section:** Chrome (Matt's logged-in session) pulled all 15 LinkedIn recommendations verbatim → docs/linkedin-recommendations.md, tiered. Homepage got the two hire-decision quotes: Christopher Seibert (VP of Growth, the only direct manager in the set, March 2025) and John Campbell (board member + mentor: "I would hire him immediately", 2010). Every quote publicly verifiable — honest-framing bar met with a link.
+
+**Kelly Clark stays, permanently:** Matt's call — Kelly passed away; the testimonial + headshot on /recruiter is a dedication. He was also a recruiter, which makes his the right voice on that page. On the record so no future audit pass touches it.
+
+**Verification note:** occluded preview windows screenshot black on scrolled content (stale frames) — verified by DOM measurement instead (opacity/visibility/getBoundingClientRect), then captured the section visually via a 2400px-tall viewport. Third confirmation of the browser-verification gotcha.
+
+**`[DECK]`** — *The full loop, one evening:* wrote the audit prompt → competitor's model ran the audit → verbatim-anchor location protocol made every finding grep-able → Claude Code triaged (killing one hallucinated finding), pulled vouching assets from LinkedIn with the user's own browser, and shipped the fixes. Audit-to-production with three AI systems cooperating and a human making exactly four decisions.
+
+**Open:** Batch B still needs Matt: name the $750K client or keep "client undisclosed" (contract wrapped ~June 22); one title everywhere (recommend AI Systems Architect — LinkedIn headline should match); Batch C (section reorder + homepage length cut) needs a plan session.
