@@ -44,12 +44,15 @@ export default function RecruiterPage() {
   return (
     <main id="main" className="min-h-screen">
       <div className="container-x py-12 sm:py-16">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-sm text-ink-muted transition-colors hover:text-accent-cyan"
-        >
-          <ArrowLeft size={15} aria-hidden /> Back to the full site
-        </Link>
+        {/* Sticky so the way back to the main site survives a deep scroll */}
+        <div className="sticky top-0 z-40 -mx-5 border-b border-line/60 bg-night/85 px-5 py-3 backdrop-blur sm:-mx-8 sm:px-8">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-sm text-ink-muted transition-colors hover:text-accent-cyan"
+          >
+            <ArrowLeft size={15} aria-hidden /> Back to the full site
+          </Link>
+        </div>
 
         <header className="mt-8 border-b border-line pb-8">
           <p className="eyebrow mb-3">Recruiter Fast Path</p>
@@ -160,10 +163,27 @@ export default function RecruiterPage() {
               <h2 id="flagship" className="font-display text-2xl font-semibold sm:text-3xl">
                 {recruiter.flagship.title}
               </h2>
-              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-muted sm:text-base">
-                {recruiter.flagship.description}
+              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-ink-muted sm:text-base">
+                {recruiter.flagship.lead}
               </p>
-              <div className="mt-6 flex flex-wrap gap-3">
+              <p className="mt-5 font-mono text-xs uppercase tracking-[0.18em] text-ink-faint">
+                {recruiter.flagship.pointsLead}
+              </p>
+              <ul className="mt-3 max-w-2xl space-y-2">
+                {recruiter.flagship.points.map((point) => (
+                  <li
+                    key={point}
+                    className="flex items-start gap-2.5 text-sm leading-relaxed text-ink-muted sm:text-base"
+                  >
+                    <span
+                      className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-accent-cyan/60"
+                      aria-hidden
+                    />
+                    {point}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-7 flex flex-wrap gap-3">
                 <Link
                   href={recruiter.flagship.caseStudy.href}
                   className="inline-flex items-center gap-2 rounded-md bg-accent-gradient px-4 py-2.5 text-sm font-semibold text-night shadow-glow transition-transform hover:scale-[1.03]"
@@ -190,8 +210,28 @@ export default function RecruiterPage() {
               <h2 id="exec-summary" className="text-xl font-semibold">
                 Executive summary
               </h2>
-              <p className="mt-3 leading-relaxed text-ink-muted">
-                {recruiter.executiveSummary}
+              <p className="mt-4 leading-relaxed text-ink-muted">
+                {recruiter.executiveSummaryLead}
+              </p>
+              <p className="mt-5 font-mono text-xs uppercase tracking-[0.18em] text-ink-faint">
+                {recruiter.executiveSummaryPointsLead}
+              </p>
+              <ul className="mt-3 space-y-2">
+                {recruiter.executiveSummaryPoints.map((point) => (
+                  <li
+                    key={point}
+                    className="flex items-start gap-2.5 leading-relaxed text-ink-muted"
+                  >
+                    <span
+                      className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-accent-cyan/60"
+                      aria-hidden
+                    />
+                    {point}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 leading-relaxed text-ink-muted">
+                {recruiter.executiveSummaryClose}
               </p>
             </section>
 

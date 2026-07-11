@@ -42,8 +42,14 @@ export const recruiter = {
 
   flagship: {
     title: "A Multi-Agent Company, Cast as Seinfeld",
-    description:
-      "This is the real operating system that runs my own company — and the clearest proof of how I make complex AI legible. Every specialized agent (planner, router, specialists, critic, memory) is cast as a Seinfeld character with a defined job. The casting is the actual innovation, not set dressing: multi-agent architecture is abstract and easy to tune out, but a familiar ensemble makes it instantly clear who does what and why — for engineers and executives alike. That's why the case study shows a cast of characters instead of boxes labeled \"Agent 1\": they run real workflows end to end — lead capture, qualification, follow-up, QA, and human handoffs.",
+    lead: "The real operating system that runs my own company — and the clearest proof of how I make complex AI legible.",
+    pointsLead: "The casting is the innovation:",
+    points: [
+      "Every specialized agent — planner, router, specialists, critic, memory — is a Seinfeld character with a defined job",
+      "A familiar ensemble makes abstract architecture instantly legible: who does what, and why",
+      "Reads for engineers and executives alike — a cast of characters, not boxes labeled “Agent 1”",
+      "The cast runs real workflows end to end: lead capture, qualification, follow-up, QA, human handoffs",
+    ],
     caseStudy: { label: "Read the Case Study", href: "/seinfeld-hq" },
     demo: { label: "Launch Interactive Demo", href: "https://growthmindset.ai/seinfeld-hq/" },
   },
@@ -57,8 +63,20 @@ export const recruiter = {
     cta: { label: "Launch the Interactive Playbook", href: "/playbook" },
   },
 
+  // Prose version — still used by the homepage RecruiterSummary section.
   executiveSummary:
     "AI Automation Architect and Marketing Automation Architect — 25 years in marketing, the last 15+ building AI and automation systems at the intersection of technology, operations, and customer experience. I design and build production AI systems — voice agents, multi-agent workflows, CRM and lifecycle automation — that connect data, automation, and human teams to deliver measurable business outcomes. I'm framework-agnostic by design: the system and the result come first, the tooling follows.",
+  // Structured version — the recruiter fast-path page renders lead + bullets.
+  executiveSummaryLead:
+    "AI Automation Architect and Marketing Automation Architect — 25 years in marketing, the last 15+ building AI and automation systems at the intersection of technology, operations, and customer experience.",
+  executiveSummaryPointsLead: "What I design and build:",
+  executiveSummaryPoints: [
+    "Production voice agents",
+    "Multi-agent workflows",
+    "CRM and lifecycle automation",
+  ],
+  executiveSummaryClose:
+    "Systems that connect data, automation, and human teams to deliver measurable business outcomes. Framework-agnostic by design: the system and the result come first, the tooling follows.",
 
   resume: {
     label: "Download Résumé (PDF)",
