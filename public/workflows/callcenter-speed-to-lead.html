@@ -35,7 +35,6 @@
             position: relative;
         }
 
-        /* Radial glow behind the form */
         body::before {
             content: '';
             position: fixed;
@@ -67,105 +66,28 @@
             z-index: 1;
         }
 
-        /* ── HEADER ── */
         .header {
             background: var(--navy);
             padding: 24px 20px 20px;
             text-align: center;
             border-bottom: 3px solid var(--teal);
         }
-
         .logo-text-wrap { display: inline-block; }
-        .logo-line1 {
-            display: block;
-            font-size: 26px;
-            font-weight: 800;
-            color: var(--white);
-            letter-spacing: 1px;
-            line-height: 1.1;
-        }
+        .logo-line1 { display: block; font-size: 26px; font-weight: 800; color: var(--white); letter-spacing: 1px; line-height: 1.1; }
         .logo-line1 span { color: var(--teal); }
-        .logo-line2 {
-            display: block;
-            font-size: 11px;
-            font-weight: 600;
-            color: rgba(255,255,255,0.75);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-top: 2px;
-        }
+        .logo-line2 { display: block; font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.75); letter-spacing: 4px; text-transform: uppercase; margin-top: 2px; }
 
-        /* ── PROGRESS ── */
-        .progress-container {
-            padding: 20px 20px 0;
-            background: white;
-            position: relative;
-        }
-        .progress-steps {
-            display: flex;
-            justify-content: space-between;
-            position: relative;
-            margin-bottom: 8px;
-        }
-        .progress-steps::before {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: 10%;
-            right: 10%;
-            height: 2px;
-            background: var(--medium-gray);
-            z-index: 0;
-        }
-        .progress-step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex: 1;
-            position: relative;
-            z-index: 1;
-        }
-        .step-number {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--medium-gray);
-            color: var(--text-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 16px;
-            transition: var(--transition);
-            border: 2px solid transparent;
-        }
-        .step-label {
-            font-size: 11px;
-            color: var(--text-light);
-            margin-top: 4px;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-        .progress-step.active .step-number {
-            background: var(--teal);
-            color: white;
-        }
-        .progress-step.active .step-label {
-            color: var(--teal);
-            font-weight: 700;
-        }
-        .progress-step.completed .step-number {
-            background: var(--navy);
-            color: white;
-        }
-        .progress-bar-fill {
-            height: 3px;
-            background: var(--navy);
-            transition: width 0.5s ease;
-            margin-top: 4px;
-        }
+        .progress-container { padding: 20px 20px 0; background: white; position: relative; }
+        .progress-steps { display: flex; justify-content: space-between; position: relative; margin-bottom: 8px; }
+        .progress-steps::before { content: ''; position: absolute; top: 20px; left: 10%; right: 10%; height: 2px; background: var(--medium-gray); z-index: 0; }
+        .progress-step { display: flex; flex-direction: column; align-items: center; flex: 1; position: relative; z-index: 1; }
+        .step-number { width: 40px; height: 40px; border-radius: 50%; background: var(--medium-gray); color: var(--text-light); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; transition: var(--transition); border: 2px solid transparent; }
+        .step-label { font-size: 11px; color: var(--text-light); margin-top: 4px; font-weight: 500; transition: var(--transition); }
+        .progress-step.active .step-number { background: var(--teal); color: white; }
+        .progress-step.active .step-label { color: var(--teal); font-weight: 700; }
+        .progress-step.completed .step-number { background: var(--navy); color: white; }
+        .progress-bar-fill { height: 3px; background: var(--navy); transition: width 0.5s ease; margin-top: 4px; }
 
-        /* ── FORM CONTENT ── */
         .form-content { padding: 24px 20px; }
         .form-step { display: none; }
         .form-step.active { display: block; }
@@ -174,18 +96,7 @@
 
         .form-group { margin-bottom: 16px; }
         .form-label { display: block; font-size: 14px; font-weight: 600; color: var(--text-dark); margin-bottom: 6px; }
-        .form-input {
-            width: 100%;
-            padding: 14px 16px;
-            border: 2px solid var(--medium-gray);
-            border-radius: var(--radius-md);
-            font-size: 16px;
-            color: var(--text-dark);
-            background: white;
-            transition: var(--transition);
-            outline: none;
-            -webkit-appearance: none;
-        }
+        .form-input { width: 100%; padding: 14px 16px; border: 2px solid var(--medium-gray); border-radius: var(--radius-md); font-size: 16px; color: var(--text-dark); background: white; transition: var(--transition); outline: none; -webkit-appearance: none; }
         .form-input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(0,168,168,0.1); }
         .form-input.valid { border-color: var(--success-green); }
         .form-input.error { border-color: var(--error-red); }
@@ -193,82 +104,27 @@
         .error-message { font-size: 12px; color: var(--error-red); margin-top: 4px; display: none; }
         .error-message.show { display: block; }
 
-        /* ── BUTTONS ── */
         .button-group { display: flex; gap: 12px; margin-top: 24px; }
-        .btn {
-            flex: 1;
-            padding: 16px;
-            border: none;
-            border-radius: var(--radius-md);
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            -webkit-appearance: none;
-        }
+        .btn { flex: 1; padding: 16px; border: none; border-radius: var(--radius-md); font-size: 16px; font-weight: 700; cursor: pointer; transition: var(--transition); -webkit-appearance: none; }
         .btn-primary { background: var(--teal); color: white; }
         .btn-primary:hover:not(:disabled) { background: #008f8f; transform: translateY(-1px); }
         .btn-primary:disabled { background: var(--medium-gray); color: var(--text-light); cursor: not-allowed; transform: none; }
         .btn-secondary { background: white; color: var(--navy); border: 2px solid var(--navy); }
         .btn-secondary:hover { background: var(--navy); color: white; }
 
-        /* ── WAITLIST ── */
-        .waitlist-message {
-            display: none;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            text-align: center;
-            color: white;
-            margin-bottom: 16px;
-        }
+        .waitlist-message { display: none; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: var(--radius-lg); padding: 24px; text-align: center; color: white; margin-bottom: 16px; }
         .waitlist-message.show { display: block; }
         .waitlist-icon { font-size: 36px; margin-bottom: 10px; }
         .waitlist-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
         .waitlist-text { font-size: 14px; opacity: 0.9; }
 
-        /* ── CALENDAR ── */
         .calendar-container { margin-bottom: 20px; }
-
-        .calendar-nav {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 12px;
-        }
-        .cal-arrow {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: var(--teal);
-            color: white;
-            border: none;
-            font-size: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            transition: var(--transition);
-        }
+        .calendar-nav { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+        .cal-arrow { width: 44px; height: 44px; border-radius: 50%; background: var(--teal); color: white; border: none; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: var(--transition); }
         .cal-arrow:hover { background: #008f8f; transform: scale(1.05); }
         .cal-arrow:disabled { background: var(--medium-gray); color: var(--text-light); cursor: not-allowed; transform: none; }
-
-        .calendar-days {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            flex: 1;
-        }
-        .calendar-day {
-            border: 2px solid var(--medium-gray);
-            border-radius: var(--radius-md);
-            padding: 10px 4px;
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-            background: white;
-        }
+        .calendar-days { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; flex: 1; }
+        .calendar-day { border: 2px solid var(--medium-gray); border-radius: var(--radius-md); padding: 10px 4px; text-align: center; cursor: pointer; transition: var(--transition); background: white; }
         .calendar-day:hover { border-color: var(--teal); background: rgba(0,168,168,0.05); }
         .calendar-day.selected { border-color: var(--teal); background: var(--teal); color: white; }
         .day-name { font-size: 11px; font-weight: 700; text-transform: uppercase; opacity: 0.7; }
@@ -277,45 +133,36 @@
         .day-month { font-size: 10px; opacity: 0.7; }
         .calendar-day.selected .day-month { opacity: 1; }
 
-        /* ── TIME SLOTS ── */
         .time-slots { display: none; flex-direction: column; gap: 10px; margin-top: 16px; }
         .time-slots.show { display: flex; }
-        .time-slot {
-            border: 2px solid var(--medium-gray);
-            border-radius: var(--radius-md);
-            padding: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            transition: var(--transition);
-        }
+        .time-slot { border: 2px solid var(--medium-gray); border-radius: var(--radius-md); padding: 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: var(--transition); }
         .time-slot:hover { border-color: var(--teal); background: rgba(0,168,168,0.05); }
         .time-slot.selected { border-color: var(--teal); background: rgba(0,168,168,0.1); }
         .time-slot-label { font-size: 20px; font-weight: 700; color: var(--navy); }
         .time-slot-period { font-size: 13px; color: var(--text-light); font-weight: 500; }
 
-        /* ── LOADING ── */
         .loading { display: none; text-align: center; padding: 40px 20px; }
         .loading.show { display: block; }
-        .spinner {
-            width: 48px; height: 48px;
-            border: 4px solid var(--medium-gray);
-            border-top-color: var(--teal);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin: 0 auto 16px;
-        }
+        .spinner { width: 48px; height: 48px; border: 4px solid var(--medium-gray); border-top-color: var(--teal); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* ── TYPING CURSOR EFFECT ── */
+        /* ── CONFIRMATION (booking complete) ── */
+        .confirm { display: none; text-align: center; padding: 26px 6px 10px; animation: fadeUp .45s ease both; }
+        .confirm.show { display: block; }
+        .confirm-check { width: 66px; height: 66px; margin: 0 auto 16px; border-radius: 50%; background: rgba(56,142,60,.10); color: var(--success-green); border: 2px solid var(--success-green); display: flex; align-items: center; justify-content: center; font-size: 34px; font-weight: 800; }
+        .confirm-summary { text-align: left; margin: 18px auto 0; max-width: 360px; display: flex; flex-direction: column; gap: 10px; }
+        .confirm-summary > div { display: flex; align-items: center; justify-content: space-between; gap: 12px; border: 1px solid var(--medium-gray); border-radius: var(--radius-md); padding: 12px 14px; }
+        .confirm-summary .lbl { font-size: 11px; color: var(--text-light); text-transform: uppercase; letter-spacing: .07em; font-weight: 600; }
+        .confirm-summary .val { font-size: 14px; color: var(--navy); font-weight: 700; text-align: right; }
+        .confirm-note { font-size: 13px; color: var(--text-light); margin-top: 16px; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
         .typing { border-right: 2px solid var(--teal); }
     </style>
 </head>
 <body>
 <div class="container">
 
-    <!-- Header -->
     <div class="header">
         <div class="logo-text-wrap">
             <span class="logo-line1">NAPLES <span>EXTERIORS</span></span>
@@ -323,34 +170,19 @@
         </div>
     </div>
 
-    <!-- Progress -->
     <div class="progress-container">
         <div class="progress-steps">
-            <div class="progress-step active" data-step="1">
-                <div class="step-number">1</div>
-                <div class="step-label">Email</div>
-            </div>
-            <div class="progress-step" data-step="2">
-                <div class="step-number">2</div>
-                <div class="step-label">Contact</div>
-            </div>
-            <div class="progress-step" data-step="3">
-                <div class="step-number">3</div>
-                <div class="step-label">Address</div>
-            </div>
-            <div class="progress-step" data-step="4">
-                <div class="step-number">4</div>
-                <div class="step-label">Schedule</div>
-            </div>
+            <div class="progress-step active" data-step="1"><div class="step-number">1</div><div class="step-label">Email</div></div>
+            <div class="progress-step" data-step="2"><div class="step-number">2</div><div class="step-label">Contact</div></div>
+            <div class="progress-step" data-step="3"><div class="step-number">3</div><div class="step-label">Address</div></div>
+            <div class="progress-step" data-step="4"><div class="step-number">4</div><div class="step-label">Schedule</div></div>
         </div>
         <div class="progress-bar-fill" id="progressBar" style="width:25%"></div>
     </div>
 
-    <!-- Form -->
     <div class="form-content">
         <form id="bookingForm" onsubmit="return false;">
 
-            <!-- STEP 1 -->
             <div class="form-step active" data-step="1">
                 <h2 class="step-title">Let's get started!</h2>
                 <p class="step-subtitle">Where should we send your appointment confirmation?</p>
@@ -364,52 +196,24 @@
                 </div>
             </div>
 
-            <!-- STEP 2 -->
             <div class="form-step" data-step="2">
                 <h2 class="step-title">Great! Now let's get to know you</h2>
                 <p class="step-subtitle">How should we address you?</p>
-                <div class="form-group">
-                    <label class="form-label">First Name</label>
-                    <input type="text" id="firstName" class="form-input" placeholder="John" autocomplete="given-name">
-                    <div class="error-message" id="firstName-error"></div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Last Name</label>
-                    <input type="text" id="lastName" class="form-input" placeholder="Smith" autocomplete="family-name">
-                    <div class="error-message" id="lastName-error"></div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Phone Number</label>
-                    <input type="tel" id="phone" class="form-input" placeholder="(239) 555-0147" autocomplete="tel">
-                    <div class="input-helper">We'll text you appointment reminders</div>
-                    <div class="error-message" id="phone-error"></div>
-                </div>
+                <div class="form-group"><label class="form-label">First Name</label><input type="text" id="firstName" class="form-input" placeholder="John" autocomplete="given-name"><div class="error-message" id="firstName-error"></div></div>
+                <div class="form-group"><label class="form-label">Last Name</label><input type="text" id="lastName" class="form-input" placeholder="Smith" autocomplete="family-name"><div class="error-message" id="lastName-error"></div></div>
+                <div class="form-group"><label class="form-label">Phone Number</label><input type="tel" id="phone" class="form-input" placeholder="(239) 555-0147" autocomplete="tel"><div class="input-helper">We'll text you appointment reminders</div><div class="error-message" id="phone-error"></div></div>
                 <div class="button-group">
                     <button type="button" class="btn btn-secondary" onclick="goToStep(1)">Back</button>
                     <button type="button" class="btn btn-primary" id="step2Next" onclick="nextStep(2)">Continue</button>
                 </div>
             </div>
 
-            <!-- STEP 3 -->
             <div class="form-step" data-step="3">
                 <h2 class="step-title">Where do you need service?</h2>
                 <p class="step-subtitle">We'll check if we serve your area</p>
-                <div class="form-group">
-                    <label class="form-label">ZIP Code</label>
-                    <input type="text" id="zipCode" class="form-input" placeholder="34102" maxlength="5" autocomplete="postal-code">
-                    <div class="input-helper">Enter your 5-digit ZIP code</div>
-                    <div class="error-message" id="zipCode-error"></div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Street Address</label>
-                    <input type="text" id="address" class="form-input" placeholder="123 Palm Ave" autocomplete="street-address">
-                    <div class="error-message" id="address-error"></div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">City</label>
-                    <input type="text" id="city" class="form-input" placeholder="Naples" autocomplete="address-level2">
-                    <div class="error-message" id="city-error"></div>
-                </div>
+                <div class="form-group"><label class="form-label">ZIP Code</label><input type="text" id="zipCode" class="form-input" placeholder="34102" maxlength="5" autocomplete="postal-code"><div class="input-helper">Enter your 5-digit ZIP code</div><div class="error-message" id="zipCode-error"></div></div>
+                <div class="form-group"><label class="form-label">Street Address</label><input type="text" id="address" class="form-input" placeholder="123 Palm Ave" autocomplete="street-address"><div class="error-message" id="address-error"></div></div>
+                <div class="form-group"><label class="form-label">City</label><input type="text" id="city" class="form-input" placeholder="Naples" autocomplete="address-level2"><div class="error-message" id="city-error"></div></div>
                 <div class="waitlist-message" id="waitlistMessage">
                     <div class="waitlist-icon">📍</div>
                     <h3 class="waitlist-title">We're not in your area yet!</h3>
@@ -421,11 +225,9 @@
                 </div>
             </div>
 
-            <!-- STEP 4 -->
             <div class="form-step" data-step="4">
                 <h2 class="step-title">Pick your perfect time</h2>
                 <p class="step-subtitle">Choose a day, then select a time slot</p>
-
                 <div class="calendar-container">
                     <div class="calendar-nav">
                         <button type="button" class="cal-arrow" id="calPrev" onclick="shiftCal(-1)">&#8592;</button>
@@ -433,34 +235,32 @@
                         <button type="button" class="cal-arrow" id="calNext" onclick="shiftCal(1)">&#8594;</button>
                     </div>
                     <div class="time-slots" id="timeSlots">
-                        <div class="time-slot" data-time="10:00 AM" onclick="selectTime(this)">
-                            <span class="time-slot-label">10:00 AM</span>
-                            <span class="time-slot-period">Morning</span>
-                        </div>
-                        <div class="time-slot" data-time="2:00 PM" onclick="selectTime(this)">
-                            <span class="time-slot-label">2:00 PM</span>
-                            <span class="time-slot-period">Afternoon</span>
-                        </div>
-                        <div class="time-slot" data-time="6:00 PM" onclick="selectTime(this)">
-                            <span class="time-slot-label">6:00 PM</span>
-                            <span class="time-slot-period">Evening</span>
-                        </div>
+                        <div class="time-slot" data-time="10:00 AM" onclick="selectTime(this)"><span class="time-slot-label">10:00 AM</span><span class="time-slot-period">Morning</span></div>
+                        <div class="time-slot" data-time="2:00 PM" onclick="selectTime(this)"><span class="time-slot-label">2:00 PM</span><span class="time-slot-period">Afternoon</span></div>
+                        <div class="time-slot" data-time="6:00 PM" onclick="selectTime(this)"><span class="time-slot-label">6:00 PM</span><span class="time-slot-period">Evening</span></div>
                     </div>
                 </div>
-
-                <input type="hidden" id="selectedDate">
-                <input type="hidden" id="selectedTime">
-
+                <input type="hidden" id="selectedDate"><input type="hidden" id="selectedTime">
                 <div class="button-group">
                     <button type="button" class="btn btn-secondary" onclick="goToStep(3)">Back</button>
                     <button type="submit" class="btn btn-primary" id="submitBtn" disabled onclick="submitForm()">Book My Appointment</button>
                 </div>
             </div>
 
-            <!-- Loading -->
             <div class="loading" id="loadingState">
                 <div class="spinner"></div>
                 <p style="color:var(--navy);font-weight:600;">Booking your appointment...</p>
+            </div>
+
+            <div class="confirm" id="confirmState">
+                <div class="confirm-check">&#10003;</div>
+                <h2 class="step-title">You're booked!</h2>
+                <p class="step-subtitle">A confirmation is on its way to <span id="confEmail">your inbox</span>.</p>
+                <div class="confirm-summary">
+                    <div><span class="lbl">When</span><span class="val" id="confWhen">Your selected time</span></div>
+                    <div><span class="lbl">Where</span><span class="val" id="confWhere">77 Palm Ave, Naples</span></div>
+                </div>
+                <p class="confirm-note">We'll text a reminder to (239) 555-0147.</p>
             </div>
 
         </form>
@@ -468,36 +268,29 @@
 </div>
 
 <script>
-// ── SERVICE AREA ZIPS (Naples FL area) ──
 const SERVICE_ZIPS = new Set([
     "34101","34102","34103","34104","34105","34106","34107","34108",
     "34109","34110","34112","34113","34114","34116","34117","34119","34120",
     "34134","34135","34140","34141","34142","34143","34145",
     "33901","33907","33908","33912","33919","33931","33967",
-    // sample NJ/OH for HGE compatibility
     "07001","07024","07652","44101","43201"
 ]);
 
-// ── STATE ──
 let currentStep = 1;
-let calOffset   = 0; // how many days forward from today the 4-day window starts
+let calOffset   = 0;
 const DAYS_SHOWN   = 4;
 const MAX_DAYS     = 14;
 
-// ── STEP NAVIGATION ──
 function goToStep(n) {
     document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
     document.querySelector(`.form-step[data-step="${n}"]`).classList.add('active');
     currentStep = n;
-
-    // Progress indicators
     document.querySelectorAll('.progress-step').forEach(s => {
         const sn = parseInt(s.dataset.step);
         s.classList.remove('active','completed');
         if (sn === n)   s.classList.add('active');
         if (sn < n)     s.classList.add('completed');
     });
-
     const pct = {1:25,2:50,3:75,4:100}[n];
     document.getElementById('progressBar').style.width = pct + '%';
 }
@@ -508,13 +301,8 @@ function nextStep(from) {
         const zip = document.getElementById('zipCode').value.trim();
         const wl  = document.getElementById('waitlistMessage');
         const btn = document.getElementById('step3Next');
-        if (!SERVICE_ZIPS.has(zip)) {
-            wl.classList.add('show');
-            btn.textContent = 'Join Waitlist';
-            return;
-        }
-        wl.classList.remove('show');
-        btn.textContent = 'Continue';
+        if (!SERVICE_ZIPS.has(zip)) { wl.classList.add('show'); btn.textContent = 'Join Waitlist'; return; }
+        wl.classList.remove('show'); btn.textContent = 'Continue';
     }
     goToStep(from + 1);
     if (from + 1 === 4) renderCalendar();
@@ -522,67 +310,39 @@ function nextStep(from) {
 
 function validateStep(step) {
     let ok = true;
-    const req = {
-        1: ['email'],
-        2: ['firstName','lastName','phone'],
-        3: ['zipCode','address','city']
-    }[step] || [];
-
+    const req = { 1: ['email'], 2: ['firstName','lastName','phone'], 3: ['zipCode','address','city'] }[step] || [];
     req.forEach(id => {
         const el  = document.getElementById(id);
         const err = document.getElementById(id + '-error');
-        if (!el.value.trim()) {
-            el.classList.add('error');
-            if (err) { err.textContent = 'This field is required'; err.classList.add('show'); }
-            ok = false;
-        } else {
-            el.classList.remove('error');
-            el.classList.add('valid');
-            if (err) { err.classList.remove('show'); }
-        }
+        if (!el.value.trim()) { el.classList.add('error'); if (err) { err.textContent = 'This field is required'; err.classList.add('show'); } ok = false; }
+        else { el.classList.remove('error'); el.classList.add('valid'); if (err) { err.classList.remove('show'); } }
     });
     return ok;
 }
 
-// ── CALENDAR ──
 function renderCalendar() {
     const container = document.getElementById('calendarDays');
     container.innerHTML = '';
-    const today = new Date();
-    today.setHours(0,0,0,0);
+    const today = new Date(); today.setHours(0,0,0,0);
     const days  = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
     const months= ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-
     for (let i = 0; i < DAYS_SHOWN; i++) {
-        const d = new Date(today);
-        d.setDate(today.getDate() + calOffset + i);
-
+        const d = new Date(today); d.setDate(today.getDate() + calOffset + i);
         const el = document.createElement('div');
         el.className  = 'calendar-day';
         el.dataset.date = d.toLocaleDateString('en-US', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
-        el.innerHTML = `
-            <div class="day-name">${days[d.getDay()]}</div>
-            <div class="day-date">${d.getDate()}</div>
-            <div class="day-month">${months[d.getMonth()]}</div>
-        `;
+        el.innerHTML = `<div class="day-name">${days[d.getDay()]}</div><div class="day-date">${d.getDate()}</div><div class="day-month">${months[d.getMonth()]}</div>`;
         el.addEventListener('click', () => selectDay(el, d));
         container.appendChild(el);
     }
-
-    // Arrow states
     document.getElementById('calPrev').disabled = (calOffset === 0);
     document.getElementById('calNext').disabled = (calOffset + DAYS_SHOWN >= MAX_DAYS);
-
-    // Clear time + submit
     document.getElementById('timeSlots').classList.remove('show');
     document.getElementById('submitBtn').disabled = true;
     document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
 }
 
-function shiftCal(dir) {
-    calOffset = Math.max(0, Math.min(calOffset + DAYS_SHOWN * dir, MAX_DAYS - DAYS_SHOWN));
-    renderCalendar();
-}
+function shiftCal(dir) { calOffset = Math.max(0, Math.min(calOffset + DAYS_SHOWN * dir, MAX_DAYS - DAYS_SHOWN)); renderCalendar(); }
 
 function selectDay(el, dateObj) {
     document.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('selected'));
@@ -600,12 +360,32 @@ function selectTime(el) {
     document.getElementById('submitBtn').disabled = false;
 }
 
+// Submit -> booking spinner -> confirmation screen (the second half of the demo).
+function submitForm() {
+    document.querySelector('.form-step[data-step="4"]').style.display = 'none';
+    document.getElementById('loadingState').classList.add('show');
+    setTimeout(function() {
+        document.getElementById('loadingState').classList.remove('show');
+        var when = document.getElementById('selectedDate').value || '';
+        var time = document.getElementById('selectedTime').value || '';
+        document.getElementById('confEmail').textContent = document.getElementById('email').value || 'your inbox';
+        document.getElementById('confWhen').textContent = (when ? when + (time ? '  ·  ' + time : '') : 'Your selected time');
+        var addr = document.getElementById('address').value, city = document.getElementById('city').value;
+        document.getElementById('confWhere').textContent = (addr ? addr + (city ? ', ' + city : '') : '77 Palm Ave, Naples');
+        document.getElementById('confirmState').classList.add('show');
+    }, 1400);
+}
+
 function resetDemo() {
-    ['email','firstName','lastName','phone','zipCode','address','city'].forEach(id => {
-        const el = document.getElementById(id);
+    ['email','firstName','lastName','phone','zipCode','address','city'].forEach(function(id) {
+        var el = document.getElementById(id);
         if (el) { el.value = ''; el.classList.remove('valid','error'); }
     });
     document.getElementById('waitlistMessage').classList.remove('show');
+    document.getElementById('confirmState').classList.remove('show');
+    document.getElementById('loadingState').classList.remove('show');
+    document.querySelector('.form-step[data-step="4"]').style.display = '';
+    var sb = document.getElementById('submitBtn'); if (sb) sb.disabled = true;
     calOffset = 0;
     goToStep(1);
 }
@@ -613,34 +393,25 @@ function resetDemo() {
 // ── AUTO-FILL DEMO (auto-plays on load, loops forever) ──
 function typeInto(id, text, cb) {
     const el = document.getElementById(id);
-    el.value = '';
-    el.classList.add('typing');
+    el.value = ''; el.classList.add('typing');
     let i = 0;
     const iv = setInterval(() => {
         el.value += text[i++];
-        if (i >= text.length) {
-            clearInterval(iv);
-            el.classList.remove('typing');
-            el.classList.add('valid');
-            if (cb) setTimeout(cb, 200);
-        }
+        if (i >= text.length) { clearInterval(iv); el.classList.remove('typing'); el.classList.add('valid'); if (cb) setTimeout(cb, 200); }
     }, 60);
 }
-
 function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 async function runDemo() {
     resetDemo();
     await delay(700);
 
-    // ── STEP 1: Email ──
     goToStep(1);
     await delay(400);
     await new Promise(r => typeInto('email', 'john.smith@gmail.com', r));
     await delay(700);
     document.getElementById('step1Next').click();
 
-    // ── STEP 2: Contact ──
     await delay(500);
     await new Promise(r => typeInto('firstName', 'John', r));
     await delay(300);
@@ -650,7 +421,6 @@ async function runDemo() {
     await delay(700);
     document.getElementById('step2Next').click();
 
-    // ── STEP 3: Address ──
     await delay(500);
     await new Promise(r => typeInto('zipCode', '34102', r));
     await delay(300);
@@ -660,25 +430,19 @@ async function runDemo() {
     await delay(700);
     document.getElementById('step3Next').click();
 
-    // ── STEP 4: Calendar ──
     await delay(600);
     const days = document.querySelectorAll('.calendar-day');
-    if (days[1]) {
-        days[1].click();
-        await delay(600);
-    }
+    if (days[1]) { days[1].click(); await delay(650); }
     const slots = document.querySelectorAll('.time-slot');
-    if (slots[1]) {
-        slots[1].click();
-        await delay(600);
-    }
+    if (slots[1]) { slots[1].click(); await delay(800); }
 
-    // Hold on the completed booking, then loop.
-    await delay(2800);
+    // Finish it: submit -> booking -> confirmation, hold, then loop.
+    document.getElementById('submitBtn').click();
+    await delay(1400);   // booking spinner
+    await delay(3600);   // hold on the confirmation
     runDemo();
 }
 
-// Init + auto-play on load, looping continuously.
 renderCalendar();
 setTimeout(runDemo, 800);
 </script>
