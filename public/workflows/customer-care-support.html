@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Customer Support — Living Flow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0A0F;--panel:#12141C;--panel2:#0D1117;--raised:#171A24;
+    --line:rgba(148,163,184,0.14);--line2:rgba(148,163,184,0.24);
+    --ink:#E6EDF3;--muted:#9BA7B4;--faint:#697586;
+    --cyan:#22D3EE;--indigo:#6366F1;--amber:#F5A524;--green:#2FB877;
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --disp:'Space Grotesk','Inter',sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  a{color:var(--cyan);text-decoration:none}
+  .wrap{max-width:1000px;margin:0 auto;padding:44px 22px 72px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);opacity:.9;margin-bottom:14px}
+  h1{font-family:var(--disp);font-size:clamp(28px,5vw,44px);font-weight:700;line-height:1.08;letter-spacing:-.02em;max-width:17ch}
+  .lede{color:var(--muted);font-size:clamp(15px,2.2vw,18px);line-height:1.55;max-width:62ch;margin-top:14px}
+  .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+  .badge{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--muted);border:1px solid var(--line);background:rgba(255,255,255,0.015);border-radius:999px;padding:7px 13px}
+  .badge b{color:var(--ink);font-weight:600}
+  .badge .live{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 9px var(--cyan);animation:pulse 1.6s ease-in-out infinite}
+  .controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin:26px 0 6px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0))}
+  .play{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-size:14px;font-weight:600;color:#04222b;background:var(--cyan);border:none;border-radius:9px;padding:10px 16px;cursor:pointer;transition:filter .15s}
+  .play:hover{filter:brightness(1.08)}
+  .play svg{width:14px;height:14px;fill:currentColor}
+  .progress{flex:1;min-width:140px;height:5px;border-radius:99px;background:var(--raised);overflow:hidden}
+  .progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--indigo));transition:width .5s ease}
+  .score{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:12.5px;color:var(--muted);white-space:nowrap}
+  .score .n{color:var(--ink);font-size:15px;font-weight:600;min-width:2.2ch;text-align:right}
+  .score .tag{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--green);border:1px solid rgba(47,184,119,.35);border-radius:99px;padding:2px 8px;opacity:0;transition:opacity .3s}
+  .score.hot .tag{opacity:1}
+  .hint{font-size:12px;color:var(--faint);margin:10px 2px 0}
+  .phase{margin-top:34px}
+  .phase-h{display:flex;align-items:center;gap:12px;margin:0 0 6px}
+  .phase-h .k{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--faint)}
+  .phase-h .t{font-family:var(--disp);font-size:17px;font-weight:600;color:var(--ink)}
+  .phase-h .days{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--faint)}
+  .track{position:relative;margin-top:14px;padding-left:96px}
+  .track::before{content:"";position:absolute;left:52px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--line2),var(--line));}
+  .spine{position:absolute;left:51px;top:6px;width:4px;background:linear-gradient(180deg,var(--cyan),var(--indigo));border-radius:4px;height:0;transition:height .6s ease;box-shadow:0 0 14px rgba(34,211,238,.4)}
+  .node{position:relative;margin-bottom:14px}
+  .node .day{position:absolute;left:-96px;top:14px;width:80px;text-align:right;font-family:var(--mono);font-size:11px;color:var(--faint);line-height:1.3}
+  .node .dot{position:absolute;left:-47px;top:16px;width:15px;height:15px;border-radius:50%;background:var(--panel);border:2.5px solid var(--faint);z-index:2;transition:border-color .3s,box-shadow .3s,background .3s}
+  .card{border:1px solid var(--line);background:var(--panel);border-radius:13px;padding:14px 16px;transition:border-color .25s,transform .25s,background .25s}
+  .card:hover{border-color:var(--line2)}
+  .card .row{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .chan{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:6px;border:1px solid transparent}
+  .c-email{color:var(--cyan);border-color:rgba(34,211,238,.32);background:rgba(34,211,238,.08)}
+  .c-chat{color:var(--green);border-color:rgba(47,184,119,.32);background:rgba(47,184,119,.08)}
+  .c-phone{color:var(--amber);border-color:rgba(245,165,36,.32);background:rgba(245,165,36,.08)}
+  .c-crm{color:var(--indigo);border-color:rgba(99,102,241,.34);background:rgba(99,102,241,.10)}
+  .card .title{font-family:var(--disp);font-size:15.5px;font-weight:600;color:var(--ink)}
+  .card p{color:var(--muted);font-size:13.5px;line-height:1.5;margin-top:6px}
+  .card .meta{font-family:var(--mono);font-size:11px;color:var(--green);margin-top:8px;display:inline-flex;align-items:center;gap:6px}
+  .card .meta::before{content:"+";font-weight:700}
+  .node.on .dot{border-color:var(--cyan);background:var(--cyan);box-shadow:0 0 0 4px rgba(34,211,238,.16),0 0 14px rgba(34,211,238,.5)}
+  .node.on .card{border-color:rgba(34,211,238,.5);background:#14202b;transform:translateX(2px)}
+  .decision{position:relative;margin:6px 0 18px}
+  .decision .dot{position:absolute;left:-52px;top:10px;width:24px;height:24px;background:var(--panel);border:2px solid var(--amber);transform:rotate(45deg);z-index:2;border-radius:4px}
+  .decision .box{border:1px dashed rgba(245,165,36,.4);background:rgba(245,165,36,.05);border-radius:12px;padding:12px 15px}
+  .decision .q{font-family:var(--disp);font-size:14px;font-weight:600;color:var(--amber)}
+  .decision .branches{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:8px}
+  .decision .br{font-size:13px;color:var(--muted);display:inline-flex;align-items:center;gap:7px}
+  .decision .br b{color:var(--ink);font-weight:600}
+  .decision .yes::before{content:"→";color:var(--green);font-weight:700}
+  .decision .no::before{content:"↻";color:var(--faint);font-weight:700}
+  .outcomes{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+  .out{border-radius:14px;padding:16px 18px;border:1px solid var(--line)}
+  .out.win{border-color:rgba(99,102,241,.4);background:linear-gradient(180deg,rgba(99,102,241,.10),rgba(99,102,241,.02))}
+  .out.warm{border-color:var(--line);background:var(--panel2)}
+  .out .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}
+  .out.win .k{color:var(--indigo)} .out.warm .k{color:var(--faint)}
+  .out .t{font-family:var(--disp);font-size:16px;font-weight:600;color:var(--ink);margin-bottom:6px}
+  .out p{color:var(--muted);font-size:13.5px;line-height:1.5}
+  .foot{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--faint);font-size:12.5px;line-height:1.6}
+  .foot b{color:var(--muted);font-weight:600}
+  @keyframes pulse{0%,100%{opacity:.45}50%{opacity:1}}
+  @media (max-width:640px){
+    .track{padding-left:64px}.track::before,.spine{left:34px}
+    .node .day{left:-64px;width:52px}.node .dot{left:-64px}.decision .dot{left:-69px}
+    .outcomes{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="eyebrow">Customer care process · Growth Mindset</p>
+  <h1>Customer support, from first message to resolved.</h1>
+  <p class="lede">How any request — email, chat, or phone — becomes a resolved, measured ticket: AI deflection up front, the right human when it matters, and a feedback loop that makes the next one easier. Run by Growth Mindset on your behalf.</p>
+  <div class="badges">
+    <span class="badge"><span class="live"></span> <b>Silverline Home Services</b> · Support ticket</span>
+    <span class="badge">Channels: Email · Chat · Phone</span>
+    <span class="badge">AI deflection + CSAT</span>
+  </div>
+
+  <div class="controls">
+    <button class="play" id="play" type="button" aria-label="Play the journey">
+      <svg viewBox="0 0 24 24" id="playIcon"><path d="M8 5v14l11-7z"/></svg>
+      <span id="playLabel">Play the journey</span>
+    </button>
+    <div class="progress" aria-hidden="true"><i id="bar"></i></div>
+    <div class="score" id="score"><span>Resolution</span><span class="n" id="scoreN">0</span><span class="tag">Resolved</span></div>
+  </div>
+  <p class="hint">Read top to bottom — the left tag is the channel; diamonds are decisions. Press <b>Play the journey</b> to walk it, or scroll it yourself.</p>
+
+  <section class="phase">
+    <div class="phase-h"><span class="k">01</span><span class="t">Any channel, one queue</span><span class="days">Minute 0</span></div>
+    <div class="track">
+      <div class="spine" id="spine"></div>
+      <div class="node" data-score="14">
+        <div class="day">Instant</div><div class="dot"></div>
+        <div class="card">
+          <div class="row"><span class="chan c-email">Email</span><span class="chan c-chat">Chat</span><span class="chan c-phone">Phone</span><span class="title">Omnichannel intake</span></div>
+          <p>Every request opens one ticket with the customer’s history, order, and prior conversations already attached.</p>
+          <span class="meta">One queue, full context — customers never repeat themselves</span>
+        </div>
+      </div>
+      <div class="decision">
+        <div class="dot"></div>
+        <div class="box">
+          <div class="q">Urgent or VIP?</div>
+          <div class="branches">
+            <span class="br yes"><b>Yes</b> → priority queue with a tighter SLA</span>
+            <span class="br no"><b>No</b> → standard queue</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="phase">
+    <div class="phase-h"><span class="k">02</span><span class="t">Deflect &amp; auto-resolve</span><span class="days">Minutes 0–5</span></div>
+    <div class="track">
+      <div class="node" data-score="12">
+        <div class="day">Minute 0</div><div class="dot"></div>
+        <div class="card">
+          <div class="row"><span class="chan c-chat">Chat</span><span class="title">AI first response</span></div>
+          <p>Instant acknowledgment plus best-guess answers drawn from your knowledge base.</p>
+        </div>
+      </div>
+      <div class="node" data-score="12">
+        <div class="day">Minute 2</div><div class="dot"></div>
+        <div class="card">
+          <div class="row"><span class="chan c-crm">Self-service</span><span class="title">Resolve the common stuff</span></div>
+          <p>A how-to article or a self-serve account action handles the routine issues on the spot.</p>
+        </div>
+      </div>
+      <div class="decision">
+        <div class="dot"></div>
+        <div class="box">
+          <div class="q">Solved without an agent?</div>
+          <div class="branches">
+            <span class="br yes"><b>Yes</b> → close &amp; send a CSAT survey</span>
+            <span class="br no"><b>No</b> → route to a human</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="phase">
+    <div class="phase-h"><span class="k">03</span><span class="t">Human resolution</span><span class="days">Same day</span></div>
+    <div class="track">
+      <div class="node" data-score="12">
+        <div class="day">Routed</div><div class="dot"></div>
+        <div class="card">
+          <div class="row"><span class="chan c-crm">Routing</span><span class="title">Smart routing</span></div>
+          <p>Sent to the right team by topic, language, and current load — not a first-come pile.</p>
+        </div>
+      </div>
+      <div class="node" data-score="14">
+        <div class="day">Working</div><div class="dot"></div>
+        <div class="card">
+          <div class="row"><span class="chan c-crm">Agent</span><span class="title">Agent works the ticket</span></div>
+          <p>Full context and suggested replies in hand; internal notes keep everyone aligned.</p>
+        </div>
+      </div>
+      <div class="decision">
+        <div class="dot"></div>
+        <div class="box">
+          <div class="q">Needs another team?</div>
+          <div class="branches">
+            <span class="br yes"><b>Yes</b> → escalate with an SLA clock + context</span>
+            <span class="br no"><b>No</b> → resolve</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="phase">
+    <div class="phase-h"><span class="k">04</span><span class="t">Close &amp; learn</span></div>
+    <div class="track">
+      <div class="node" data-score="10">
+        <div class="day">Resolved</div><div class="dot"></div>
+        <div class="card">
+          <div class="row"><span class="chan c-email">Email</span><span class="title">Resolution + confirmation</span></div>
+          <p>The customer is told what changed and how to reopen if anything’s still off.</p>
+        </div>
+      </div>
+      <div class="node" data-score="10">
+        <div class="day">Feedback</div><div class="dot"></div>
+        <div class="card">
+          <div class="row"><span class="chan c-chat">SMS</span><span class="title">CSAT survey</span></div>
+          <p>A one-tap satisfaction score is captured on every close.</p>
+        </div>
+      </div>
+      <div class="node" data-score="10">
+        <div class="day">Improve</div><div class="dot"></div>
+        <div class="card">
+          <div class="row"><span class="chan c-crm">CRM</span><span class="title">Feedback loop</span></div>
+          <p>Recurring issues become knowledge-base updates and product tickets — the next one is easier.</p>
+          <span class="meta">Deflection climbs as the KB gets smarter</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="phase">
+    <div class="phase-h"><span class="k">05</span><span class="t">Where every ticket lands</span></div>
+    <div class="outcomes">
+      <div class="out win">
+        <div class="k">Resolved</div>
+        <div class="t">Closed with CSAT</div>
+        <p>Handled in one place with full history — deflected when possible, humaned when it matters, and measured every time.</p>
+      </div>
+      <div class="out warm">
+        <div class="k">Escalated</div>
+        <div class="t">Tracked to SLA</div>
+        <p>Anything needing another team is handed off with a clock and context, so nothing stalls in a black hole.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="foot"><b>Illustrative example</b> — Silverline Home Services support ticket. A reusable Growth Mindset template; swap in your channels, teams, SLAs, and knowledge base. Built on your helpdesk + CRM with n8n orchestration. · growthmindset.ai</p>
+</main>
+
+<script>
+(function(){
+  var nodes = Array.prototype.slice.call(document.querySelectorAll('.node'));
+  var spine = document.getElementById('spine');
+  var bar = document.getElementById('bar');
+  var scoreN = document.getElementById('scoreN');
+  var scoreWrap = document.getElementById('score');
+  var playBtn = document.getElementById('play');
+  var playLabel = document.getElementById('playLabel');
+  var playIcon = document.getElementById('playIcon');
+  var i = -1, timer = null, score = 0;
+  var THRESHOLD = 100;
+  var PLAY = '<path d="M8 5v14l11-7z"/>';
+  var PAUSE = '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';
+  function setActive(idx){
+    nodes.forEach(function(n,k){ n.classList.toggle('on', k <= idx); });
+    if(idx >= 0){
+      var track = nodes[idx].closest('.track');
+      if(spine.parentNode !== track){ track.appendChild(spine); }
+      var first = track.querySelector('.node .dot').getBoundingClientRect();
+      var active = nodes[idx].querySelector('.dot').getBoundingClientRect();
+      spine.style.height = Math.max(0,(active.top - first.top) + 8) + 'px';
+    } else { spine.style.height = '0px'; }
+    score = 0;
+    for(var k=0;k<=idx;k++){ score += parseInt(nodes[k].getAttribute('data-score'),10)||0; }
+    scoreN.textContent = score;
+    bar.style.width = Math.round(((idx+1)/nodes.length)*100) + '%';
+    scoreWrap.classList.toggle('hot', score >= THRESHOLD);
+  }
+  function step(){ i++; if(i >= nodes.length){ stop(true); return; } nodes[i].scrollIntoView({behavior:'smooth', block:'center'}); setActive(i); }
+  function stop(finished){ clearInterval(timer); timer = null; playIcon.innerHTML = PLAY; playLabel.textContent = finished ? 'Replay the journey' : 'Play the journey'; if(finished){ i = nodes.length - 1; } }
+  function play(){ if(timer){ stop(false); return; } if(i >= nodes.length - 1){ i = -1; setActive(-1); } playIcon.innerHTML = PAUSE; playLabel.textContent = 'Pause'; step(); timer = setInterval(step, 1500); }
+  playBtn.addEventListener('click', play);
+  nodes.forEach(function(n,k){ n.addEventListener('click', function(){ stop(false); i = k; setActive(k); }); });
+  window.addEventListener('resize', function(){ if(i>=0) setActive(i); });
+})();
+</script>
+</body>
+</html>
