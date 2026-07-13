@@ -21,22 +21,19 @@ import { Reveal } from "@/components/ui/Reveal";
 /**
  * Complete Workflow Automations
  * -----------------------------
- * End-to-end "living workflow" demos grouped by the department that runs them.
- * The left rail is the menu; the right hero embeds the selected workflow.
+ * Department-grouped "living workflow" demos. Left rail = the menu; right hero
+ * embeds the selected workflow (served from /public/workflows/*.html over HTTPS).
+ * A HEAD probe on load marks which are hosted so the rail shows live/soon.
  *
- * Each workflow file lives under /public/workflows/*.html and is served over
- * HTTPS. A HEAD probe on load marks which are hosted, so the rail shows live /
- * soon status up front; unhosted ones fall back to an on-brand animated teaser.
- *
- * The hero auto-fits the embed's content height (up to COLLAPSE_MAX) so the
- * animation is never clipped; some embeds grow after load (async render,
- * multi-step forms), so we track the tallest height seen and never shrink.
- * Expand opens the full measured height. Green is the highlight accent only.
+ * The hero sizes itself to the embed's CURRENT content height, so it grows for
+ * tall steps (calendar, confirmation) and retracts for short ones (a single
+ * field) — the animation is never clipped and never leaves a big empty gap.
+ * Default view is capped at COLLAPSE_MAX; Expand opens the full height.
  */
 
 const GREEN = "#2FB877";
-const COLLAPSE_MAX = 820; // tallest the default (unexpanded) hero will grow to
-const MIN_H = 440;
+const COLLAPSE_MAX = 820;
+const MIN_H = 300;
 
 type Dept = { id: string; label: string };
 type Workflow = {
@@ -136,16 +133,15 @@ export function WorkflowAutomations() {
   const [activeId, setActiveId] = useState(DEFAULT_ID);
   const [expanded, setExpanded] = useState(false);
   const [avail, setAvail] = useState<Record<string, boolean>>({});
-  const [frameH, setFrameH] = useState(620);
+  const [frameH, setFrameH] = useState(560);
   const frameRef = useRef<HTMLIFrameElement | null>(null);
-  const maxSeen = useRef(0);
+  const expandedRef = useRef(false);
 
   const active = WORKFLOWS.find((w) => w.id === activeId) ?? WORKFLOWS[0];
   const deptLabel = (id: string) =>
     DEPARTMENTS.find((d) => d.id === id)?.label ?? "";
 
-  // Probe every hosted workflow up front so the rail shows accurate live/soon
-  // status without waiting for a click.
+  // Probe every hosted workflow up front so the rail shows accurate live/soon.
   useEffect(() => {
     let cancelled = false;
     WORKFLOWS.forEach((w) => {
@@ -165,40 +161,49 @@ export function WorkflowAutomations() {
 
   const isLive = Boolean(active.src && avail[active.id]);
 
-  const applyHeight = useCallback(() => {
-    const full = Math.max(maxSeen.current || 620, MIN_H);
-    setFrameH(expanded ? full : Math.min(full, COLLAPSE_MAX));
-  }, [expanded]);
-
-  // Measure the embed's content height (same-origin) and grow to the tallest
-  // state seen — handles multi-step forms and async-rendered flows.
+  // Measure the embed's TRUE content height (furthest child bottom + bottom
+  // padding) rather than scrollHeight — that way a min-height:100vh floor on the
+  // embed body can't lock the hero tall, so it can retract for short steps too.
   const measure = useCallback(() => {
     try {
-      const doc = frameRef.current?.contentWindow?.document;
-      const h = doc
-        ? Math.max(doc.documentElement.scrollHeight, doc.body.scrollHeight)
-        : 0;
-      if (h > maxSeen.current) maxSeen.current = h;
+      const win = frameRef.current?.contentWindow;
+      const doc = win?.document;
+      const body = doc?.body;
+      if (!win || !doc || !body) return;
+      const bodyTop = body.getBoundingClientRect().top;
+      const padBottom = parseFloat(win.getComputedStyle(body).paddingBottom) || 0;
+      let bottom = 0;
+      Array.from(body.children).forEach((el) => {
+        const tag = el.tagName;
+        if (tag === "SCRIPT" || tag === "STYLE" || tag === "LINK") return;
+        const b = el.getBoundingClientRect().bottom - bodyTop;
+        if (b > bottom) bottom = b;
+      });
+      let h = bottom + padBottom;
+      if (h < 160)
+        h = Math.max(doc.documentElement.scrollHeight, body.scrollHeight);
+      const next = expandedRef.current
+        ? Math.max(h, MIN_H)
+        : Math.min(Math.max(h, MIN_H), COLLAPSE_MAX);
+      setFrameH(Math.round(next));
     } catch {
-      /* cross-origin or not ready yet */
+      /* cross-origin or not ready */
     }
-    applyHeight();
-  }, [applyHeight]);
+  }, []);
 
-  // On select: reset the tracked height and re-measure across a few beats so
-  // late-growing embeds settle to a fit.
+  // Keep the hero synced to the current content while a workflow is active.
+  // (Polling, because some embeds floor body height, which hides shrink from
+  // ResizeObserver; setState bails when the value is unchanged, so it's cheap.)
   useEffect(() => {
-    maxSeen.current = 0;
-    applyHeight();
-    const timers = [200, 700, 1500, 3000, 5000, 8000].map((ms) =>
-      setTimeout(measure, ms),
-    );
-    return () => timers.forEach((t) => clearTimeout(t));
-  }, [activeId, measure, applyHeight]);
+    measure();
+    const id = window.setInterval(measure, 350);
+    return () => window.clearInterval(id);
+  }, [activeId, measure]);
 
   useEffect(() => {
-    applyHeight();
-  }, [expanded, applyHeight]);
+    expandedRef.current = expanded;
+    measure();
+  }, [expanded, measure]);
 
   const select = (id: string) => {
     setActiveId(id);
@@ -346,7 +351,7 @@ export function WorkflowAutomations() {
                   className="relative bg-night"
                   style={{
                     height: isLive ? frameH : 380,
-                    transition: "height 0.28s ease",
+                    transition: "height 0.3s ease",
                   }}
                 >
                   {isLive ? (
