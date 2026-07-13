@@ -5,6 +5,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Explorable } from "@/components/ui/Explorable";
 import { StatCallout } from "@/components/ui/StatCallout";
 import { Footnotes } from "@/components/ui/Footnotes";
+import { CallVisualizer } from "@/components/ui/CallVisualizer";
 
 export function VoiceAI() {
   const { voice } = site;
@@ -53,16 +54,10 @@ export function VoiceAI() {
               </p>
               {/* Interactive call visualizer — plays a real recorded AI voice-agent
                   call with a loudness-driven waveform + synced transcript. Served as
-                  a self-contained page from /public/voice. */}
+                  a self-contained page from /public/voice. Wrapped in CallVisualizer
+                  so the audio pauses when it scrolls off-screen or the tab is hidden. */}
               <div className="relative min-h-[220px] flex-1 overflow-hidden rounded-2xl border border-line bg-black shadow-glow">
-                <iframe
-                  src="/voice/call-visualizer.html?embed=1"
-                  title="Interactive AI voice-agent call — play a real recorded outbound call"
-                  className="pointer-events-auto absolute inset-0 h-full w-full border-0"
-                  allow="autoplay"
-                  loading="lazy"
-                  scrolling="no"
-                />
+                <CallVisualizer />
               </div>
             </div>
             <div className="flex flex-col justify-center lg:py-4">
