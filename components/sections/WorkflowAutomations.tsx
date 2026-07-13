@@ -22,16 +22,21 @@ import { Reveal } from "@/components/ui/Reveal";
  * Complete Workflow Automations
  * -----------------------------
  * End-to-end "living workflow" demos grouped by the department that runs them.
- * The left rail is the menu (every capability visible = breadth at a glance);
- * the right hero embeds the selected workflow and can expand to full height.
+ * The left rail is the menu; the right hero embeds the selected workflow.
  *
  * Each workflow file lives under /public/workflows/*.html and is served over
  * HTTPS. A HEAD probe on load marks which are hosted, so the rail shows live /
  * soon status up front; unhosted ones fall back to an on-brand animated teaser.
- * Green is used ONLY as the highlight / department-label accent.
+ *
+ * The hero auto-fits the embed's content height (up to COLLAPSE_MAX) so the
+ * animation is never clipped; some embeds grow after load (async render,
+ * multi-step forms), so we track the tallest height seen and never shrink.
+ * Expand opens the full measured height. Green is the highlight accent only.
  */
 
 const GREEN = "#2FB877";
+const COLLAPSE_MAX = 820; // tallest the default (unexpanded) hero will grow to
+const MIN_H = 440;
 
 type Dept = { id: string; label: string };
 type Workflow = {
@@ -83,7 +88,7 @@ const WORKFLOWS: Workflow[] = [
     sub: "Book · qualify · schedule",
     src: "/workflows/callcenter-speed-to-lead.html",
     frame: "naples-exteriors · lead-intake",
-    out: "A guided web form that captures the lead, qualifies with a live service-area check, and self-schedules the estimate in under a minute — the speed-to-lead front door. Hit “Run Auto-Fill” to watch it complete itself.",
+    out: "A guided web form that captures the lead, qualifies with a live service-area check, and self-schedules the estimate in under a minute — the speed-to-lead front door. It auto-plays on a loop.",
   },
   {
     id: "callcenter",
@@ -131,8 +136,9 @@ export function WorkflowAutomations() {
   const [activeId, setActiveId] = useState(DEFAULT_ID);
   const [expanded, setExpanded] = useState(false);
   const [avail, setAvail] = useState<Record<string, boolean>>({});
-  const [frameH, setFrameH] = useState(460);
+  const [frameH, setFrameH] = useState(620);
   const frameRef = useRef<HTMLIFrameElement | null>(null);
+  const maxSeen = useRef(0);
 
   const active = WORKFLOWS.find((w) => w.id === activeId) ?? WORKFLOWS[0];
   const deptLabel = (id: string) =>
@@ -159,25 +165,40 @@ export function WorkflowAutomations() {
 
   const isLive = Boolean(active.src && avail[active.id]);
 
+  const applyHeight = useCallback(() => {
+    const full = Math.max(maxSeen.current || 620, MIN_H);
+    setFrameH(expanded ? full : Math.min(full, COLLAPSE_MAX));
+  }, [expanded]);
+
+  // Measure the embed's content height (same-origin) and grow to the tallest
+  // state seen — handles multi-step forms and async-rendered flows.
   const measure = useCallback(() => {
-    if (!expanded) {
-      setFrameH(460);
-      return;
-    }
     try {
       const doc = frameRef.current?.contentWindow?.document;
       const h = doc
         ? Math.max(doc.documentElement.scrollHeight, doc.body.scrollHeight)
         : 0;
-      setFrameH(h > 200 ? h : 1400);
+      if (h > maxSeen.current) maxSeen.current = h;
     } catch {
-      setFrameH(1400);
+      /* cross-origin or not ready yet */
     }
-  }, [expanded]);
+    applyHeight();
+  }, [applyHeight]);
+
+  // On select: reset the tracked height and re-measure across a few beats so
+  // late-growing embeds settle to a fit.
+  useEffect(() => {
+    maxSeen.current = 0;
+    applyHeight();
+    const timers = [200, 700, 1500, 3000, 5000, 8000].map((ms) =>
+      setTimeout(measure, ms),
+    );
+    return () => timers.forEach((t) => clearTimeout(t));
+  }, [activeId, measure, applyHeight]);
 
   useEffect(() => {
-    measure();
-  }, [expanded, activeId, measure]);
+    applyHeight();
+  }, [expanded, applyHeight]);
 
   const select = (id: string) => {
     setActiveId(id);
