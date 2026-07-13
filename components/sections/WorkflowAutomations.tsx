@@ -25,11 +25,9 @@ import { Reveal } from "@/components/ui/Reveal";
  * the right hero embeds the selected workflow and can expand to full height.
  *
  * Each workflow file lives under /public/workflows/*.html and is served over
- * HTTPS (which is required — the DC runtime bootstraps by fetching its own URL,
- * blocked on file://). Until a workflow file is published we can't detect it,
- * so the hero shows an on-brand animated teaser; a HEAD probe flips it to the
- * live embed automatically once the file exists. Green is used ONLY as the
- * highlight / department-label accent, per the dark house theme.
+ * HTTPS. A HEAD probe on load marks which are hosted, so the rail shows live /
+ * soon status up front; unhosted ones fall back to an on-brand animated teaser.
+ * Green is used ONLY as the highlight / department-label accent.
  */
 
 const GREEN = "#2FB877";
@@ -125,21 +123,24 @@ export function WorkflowAutomations() {
   const deptLabel = (id: string) =>
     DEPARTMENTS.find((d) => d.id === id)?.label ?? "";
 
-  // Probe whether the workflow file is hosted yet; until then, show the teaser.
+  // Probe every hosted workflow up front so the rail shows accurate live/soon
+  // status without waiting for a click.
   useEffect(() => {
-    if (!active.src || avail[active.id] !== undefined) return;
     let cancelled = false;
-    fetch(active.src, { method: "HEAD" })
-      .then((r) => {
-        if (!cancelled) setAvail((a) => ({ ...a, [active.id]: r.ok }));
-      })
-      .catch(() => {
-        if (!cancelled) setAvail((a) => ({ ...a, [active.id]: false }));
-      });
+    WORKFLOWS.forEach((w) => {
+      if (!w.src) return;
+      fetch(w.src, { method: "HEAD" })
+        .then((r) => {
+          if (!cancelled) setAvail((a) => ({ ...a, [w.id]: r.ok }));
+        })
+        .catch(() => {
+          if (!cancelled) setAvail((a) => ({ ...a, [w.id]: false }));
+        });
+    });
     return () => {
       cancelled = true;
     };
-  }, [active, avail]);
+  }, []);
 
   const isLive = Boolean(active.src && avail[active.id]);
 
