@@ -95,34 +95,6 @@
             margin-top: 2px;
         }
 
-        /* ── DEMO BAR ── */
-        .demo-bar {
-            background: #fff3cd;
-            border-bottom: 1px solid #ffc107;
-            padding: 8px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-        }
-        .demo-bar span {
-            font-size: 12px;
-            font-weight: 600;
-            color: #856404;
-        }
-        .demo-btn {
-            background: var(--teal);
-            color: white;
-            border: none;
-            border-radius: 20px;
-            padding: 6px 16px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-        .demo-btn:hover { background: #008f8f; }
-
         /* ── PROGRESS ── */
         .progress-container {
             padding: 20px 20px 0;
@@ -351,12 +323,6 @@
         </div>
     </div>
 
-    <!-- Demo Bar -->
-    <div class="demo-bar">
-        <span>🎬 Demo Mode — Naples Exteriors</span>
-        <button class="demo-btn" id="runDemoBtn" onclick="runDemo()">▶ Run Auto-Fill</button>
-    </div>
-
     <!-- Progress -->
     <div class="progress-container">
         <div class="progress-steps">
@@ -534,8 +500,6 @@ function goToStep(n) {
 
     const pct = {1:25,2:50,3:75,4:100}[n];
     document.getElementById('progressBar').style.width = pct + '%';
-
-    window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
 function nextStep(from) {
@@ -636,18 +600,6 @@ function selectTime(el) {
     document.getElementById('submitBtn').disabled = false;
 }
 
-function submitForm() {
-    document.querySelector('.form-step[data-step="4"]').style.display = 'none';
-    document.getElementById('loadingState').classList.add('show');
-    setTimeout(() => {
-        // In demo mode just show alert instead of redirect
-        document.getElementById('loadingState').classList.remove('show');
-        document.querySelector('.form-step[data-step="4"]').style.display = 'block';
-        alert('✅ Demo complete!\n\nIn production this redirects to:\nnaplesexteriors.com/appointment-confirmation/');
-        resetDemo();
-    }, 2000);
-}
-
 function resetDemo() {
     ['email','firstName','lastName','phone','zipCode','address','city'].forEach(id => {
         const el = document.getElementById(id);
@@ -656,11 +608,9 @@ function resetDemo() {
     document.getElementById('waitlistMessage').classList.remove('show');
     calOffset = 0;
     goToStep(1);
-    document.getElementById('runDemoBtn').disabled = false;
-    document.getElementById('runDemoBtn').textContent = '▶ Run Auto-Fill';
 }
 
-// ── AUTO-FILL DEMO ──
+// ── AUTO-FILL DEMO (auto-plays on load, loops forever) ──
 function typeInto(id, text, cb) {
     const el = document.getElementById(id);
     el.value = '';
@@ -680,12 +630,8 @@ function typeInto(id, text, cb) {
 function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 async function runDemo() {
-    const btn = document.getElementById('runDemoBtn');
-    btn.disabled = true;
-    btn.textContent = '⏳ Running...';
-
     resetDemo();
-    await delay(500);
+    await delay(700);
 
     // ── STEP 1: Email ──
     goToStep(1);
@@ -716,25 +662,25 @@ async function runDemo() {
 
     // ── STEP 4: Calendar ──
     await delay(600);
-    // Pick 2nd day card
     const days = document.querySelectorAll('.calendar-day');
     if (days[1]) {
         days[1].click();
         await delay(600);
     }
-    // Pick 2pm slot
     const slots = document.querySelectorAll('.time-slot');
     if (slots[1]) {
         slots[1].click();
         await delay(600);
     }
 
-    btn.disabled = false;
-    btn.textContent = '🔄 Replay';
+    // Hold on the completed booking, then loop.
+    await delay(2800);
+    runDemo();
 }
 
-// Init calendar on load (hidden, just in case)
+// Init + auto-play on load, looping continuously.
 renderCalendar();
+setTimeout(runDemo, 800);
 </script>
 </body>
 </html>
