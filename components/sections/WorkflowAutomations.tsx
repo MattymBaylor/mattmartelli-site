@@ -27,7 +27,9 @@ import { Reveal } from "@/components/ui/Reveal";
  *
  * The hero sizes itself to the embed's CURRENT content height, so it grows for
  * tall steps (calendar, confirmation) and retracts for short ones (a single
- * field) — the animation is never clipped and never leaves a big empty gap.
+ * field). Height is SNAPPED (no CSS transition): the content-poll updates height
+ * a few times per second, and a transition would restart every tick and lag the
+ * real content — leaving the embed clipped. Snapping tracks it exactly.
  * Default view is capped at COLLAPSE_MAX; Expand opens the full height.
  */
 
@@ -135,6 +137,7 @@ export function WorkflowAutomations() {
   const [avail, setAvail] = useState<Record<string, boolean>>({});
   const [frameH, setFrameH] = useState(560);
   const frameRef = useRef<HTMLIFrameElement | null>(null);
+  const frameHRef = useRef(560);
   const expandedRef = useRef(false);
 
   const active = WORKFLOWS.find((w) => w.id === activeId) ?? WORKFLOWS[0];
@@ -164,6 +167,7 @@ export function WorkflowAutomations() {
   // Measure the embed's TRUE content height (furthest child bottom + bottom
   // padding) rather than scrollHeight — that way a min-height:100vh floor on the
   // embed body can't lock the hero tall, so it can retract for short steps too.
+  // Only commit a change past a small threshold to avoid subpixel churn.
   const measure = useCallback(() => {
     try {
       const win = frameRef.current?.contentWindow;
@@ -182,10 +186,15 @@ export function WorkflowAutomations() {
       let h = bottom + padBottom;
       if (h < 160)
         h = Math.max(doc.documentElement.scrollHeight, body.scrollHeight);
-      const next = expandedRef.current
-        ? Math.max(h, MIN_H)
-        : Math.min(Math.max(h, MIN_H), COLLAPSE_MAX);
-      setFrameH(Math.round(next));
+      const next = Math.round(
+        expandedRef.current
+          ? Math.max(h, MIN_H)
+          : Math.min(Math.max(h, MIN_H), COLLAPSE_MAX),
+      );
+      if (Math.abs(next - frameHRef.current) >= 2) {
+        frameHRef.current = next;
+        setFrameH(next);
+      }
     } catch {
       /* cross-origin or not ready */
     }
@@ -193,10 +202,10 @@ export function WorkflowAutomations() {
 
   // Keep the hero synced to the current content while a workflow is active.
   // (Polling, because some embeds floor body height, which hides shrink from
-  // ResizeObserver; setState bails when the value is unchanged, so it's cheap.)
+  // ResizeObserver; the threshold above makes unchanged ticks a no-op.)
   useEffect(() => {
     measure();
-    const id = window.setInterval(measure, 350);
+    const id = window.setInterval(measure, 300);
     return () => window.clearInterval(id);
   }, [activeId, measure]);
 
@@ -349,10 +358,7 @@ export function WorkflowAutomations() {
 
                 <div
                   className="relative bg-night"
-                  style={{
-                    height: isLive ? frameH : 380,
-                    transition: "height 0.3s ease",
-                  }}
+                  style={{ height: isLive ? frameH : 380 }}
                 >
                   {isLive ? (
                     <iframe
