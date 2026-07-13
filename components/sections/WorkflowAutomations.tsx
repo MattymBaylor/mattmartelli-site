@@ -30,7 +30,9 @@ import { Reveal } from "@/components/ui/Reveal";
  * field). Height is SNAPPED (no CSS transition): the content-poll updates height
  * a few times per second, and a transition would restart every tick and lag the
  * real content — leaving the embed clipped. Snapping tracks it exactly.
- * Default view is capped at COLLAPSE_MAX; Expand opens the full height.
+ * Collapsed view is capped (COLLAPSE_MAX for tall scrolling timelines; a
+ * per-workflow collapseMax for self-contained forms that should show in full).
+ * Expand always opens the full height.
  */
 
 const GREEN = "#2FB877";
@@ -47,6 +49,7 @@ type Workflow = {
   src?: string;
   frame?: string;
   out: string;
+  collapseMax?: number;
 };
 
 const DEPARTMENTS: Dept[] = [
@@ -87,6 +90,7 @@ const WORKFLOWS: Workflow[] = [
     sub: "Book · qualify · schedule",
     src: "/workflows/callcenter-speed-to-lead.html",
     frame: "naples-exteriors · lead-intake",
+    collapseMax: 960,
     out: "A guided web form that captures the lead, qualifies with a live service-area check, and self-schedules the estimate in under a minute — the speed-to-lead front door. It auto-plays on a loop.",
   },
   {
@@ -139,6 +143,7 @@ export function WorkflowAutomations() {
   const frameRef = useRef<HTMLIFrameElement | null>(null);
   const frameHRef = useRef(560);
   const expandedRef = useRef(false);
+  const capRef = useRef(COLLAPSE_MAX);
 
   const active = WORKFLOWS.find((w) => w.id === activeId) ?? WORKFLOWS[0];
   const deptLabel = (id: string) =>
@@ -189,7 +194,7 @@ export function WorkflowAutomations() {
       const next = Math.round(
         expandedRef.current
           ? Math.max(h, MIN_H)
-          : Math.min(Math.max(h, MIN_H), COLLAPSE_MAX),
+          : Math.min(Math.max(h, MIN_H), capRef.current),
       );
       if (Math.abs(next - frameHRef.current) >= 2) {
         frameHRef.current = next;
@@ -204,10 +209,11 @@ export function WorkflowAutomations() {
   // (Polling, because some embeds floor body height, which hides shrink from
   // ResizeObserver; the threshold above makes unchanged ticks a no-op.)
   useEffect(() => {
+    capRef.current = active.collapseMax ?? COLLAPSE_MAX;
     measure();
     const id = window.setInterval(measure, 300);
     return () => window.clearInterval(id);
-  }, [activeId, measure]);
+  }, [active, measure]);
 
   useEffect(() => {
     expandedRef.current = expanded;
