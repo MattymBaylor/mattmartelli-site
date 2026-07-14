@@ -279,11 +279,11 @@ export default function RecruiterPage() {
               </div>
             </div>
             <Image
-              src="/flagship-public-pulse.jpg"
-              alt="#public-pulse live agent feed on iPhone — multi-agent operating system"
-              width={1010}
-              height={480}
-              className="mx-auto h-auto w-full max-w-[280px] shrink-0 sm:max-w-[300px] lg:max-w-[320px]"
+              src="/flagship-public-pulse-phone.png"
+              alt="#public-pulse live agent feed on iPhone"
+              width={680}
+              height={1200}
+              className="mx-auto h-auto w-44 shrink-0 drop-shadow-[0_30px_60px_rgba(34,211,238,0.35)] sm:w-52 lg:w-64"
               priority
             />
           </div>
