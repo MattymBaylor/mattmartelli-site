@@ -41,7 +41,8 @@ export function ExplainerPhone({
   interactive = false,
 }: ExplainerPhoneProps) {
   const ownFrame = item.kind === "html" && item.hasOwnFrame;
-  const width = size === "hero" ? 300 : EXPLAINER_PHONE_WIDTH_PX;
+  // Train strip stays 220; expanded lightbox is ~20% over the previous 300 hero.
+  const width = size === "hero" ? 360 : EXPLAINER_PHONE_WIDTH_PX;
 
   return (
     <div className="relative flex shrink-0 flex-col" style={{ width }}>
