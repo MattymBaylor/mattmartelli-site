@@ -279,11 +279,11 @@ export default function RecruiterPage() {
               </div>
             </div>
             <Image
-              src="/flagship-seinfeld.png"
-              alt="A multi-agent system cast as Seinfeld characters"
-              width={520}
-              height={620}
-              className="mx-auto h-auto w-44 shrink-0 sm:w-52 lg:w-64"
+              src="/flagship-public-pulse.jpg"
+              alt="#public-pulse live agent feed on iPhone — multi-agent operating system"
+              width={1010}
+              height={480}
+              className="mx-auto h-auto w-full max-w-[280px] shrink-0 sm:max-w-[300px] lg:max-w-[320px]"
               priority
             />
           </div>
