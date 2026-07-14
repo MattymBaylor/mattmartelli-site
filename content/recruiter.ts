@@ -79,6 +79,30 @@ export const recruiter = {
     cta: { label: "Launch the Interactive Playbook", href: "/playbook" },
   },
 
+  // Vertical 9:16 explainers — sit under the Playbook card on /recruiter.
+  explainerVideos: {
+    eyebrow: "Explainer Videos",
+    body:
+      "High-level 30–60 second animations that give C-level leaders and teams the 30,000-foot view instantly. No deep dive required. Complex systems become clear in under a minute — so decision-makers and the rest of the organization grasp the concept before the detailed charts ever reach IT.",
+    items: [
+      {
+        kind: "video" as const,
+        src: "/explainers/tiger-team.mp4",
+        label: "Tiger Team",
+      },
+      {
+        kind: "video" as const,
+        src: "/explainers/missed-call.mp4",
+        label: "Missed Call",
+      },
+      {
+        kind: "html" as const,
+        src: "/explainers/one-way-interview.html",
+        label: "One-Way Interview",
+      },
+    ],
+  },
+
   // Prose version — still used by the homepage RecruiterSummary section.
   executiveSummary:
     "AI Automation Architect and Marketing Automation Architect — 25 years in marketing, the last 15+ building AI and automation systems at the intersection of technology, operations, and customer experience. I design and build production AI systems — voice agents, multi-agent workflows, CRM and lifecycle automation — that connect data, automation, and human teams to deliver measurable business outcomes. I'm framework-agnostic by design: the system and the result come first, the tooling follows.",

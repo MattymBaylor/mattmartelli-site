@@ -21,6 +21,7 @@ import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
 import { Capabilities } from "@/components/sections/Capabilities";
 import { DeferredYouTubeEmbed } from "@/components/ui/DeferredYouTubeEmbed";
 import { LivingFlowEmbed } from "@/components/ui/LivingFlowEmbed";
+import { ExplainerPhone } from "@/components/ui/ExplainerPhone";
 
 export const metadata: Metadata = {
   title: "Recruiter Fast Path",
@@ -548,26 +549,28 @@ export default function RecruiterPage() {
           </div>
         </section>
 
-        <p className="mt-10 text-sm leading-relaxed text-ink-faint">
-          {recruiter.thoughtLeadership.line}{" "}
-          <a
-            href={recruiter.thoughtLeadership.youtube.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-ink-muted underline decoration-line-strong underline-offset-2 transition-colors hover:text-accent-cyan"
-          >
-            {recruiter.thoughtLeadership.youtube.label}
-          </a>
-          {" · "}
-          <a
-            href={recruiter.thoughtLeadership.podcast.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-ink-muted underline decoration-line-strong underline-offset-2 transition-colors hover:text-accent-cyan"
-          >
-            {recruiter.thoughtLeadership.podcast.label}
-          </a>
-        </p>
+        {/* Explainer Videos — 9:16 phone mockups for C-level 30k-ft systems explainers */}
+        <section
+          aria-labelledby="explainer-videos"
+          className="mt-12 overflow-hidden rounded-2xl border border-accent-cyan/30 bg-surface-elevated/60 p-6 shadow-glow sm:p-8"
+        >
+          <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.16em] text-accent-cyan">
+            {recruiter.explainerVideos.eyebrow}
+          </p>
+          <h2 id="explainer-videos" className="sr-only">
+            Explainer Videos
+          </h2>
+          <p className="max-w-3xl text-sm leading-relaxed text-ink-muted sm:text-base">
+            {recruiter.explainerVideos.body}
+          </p>
+          <div className="mt-8 grid grid-cols-1 items-start justify-items-center gap-8 sm:grid-cols-3 sm:gap-6 lg:gap-10">
+            {recruiter.explainerVideos.items.map((item) => (
+              <ExplainerPhone key={item.src} item={item} />
+            ))}
+          </div>
+          {/* Generous footer breathing room so the section never feels cramped */}
+          <div className="h-6 sm:h-10" aria-hidden />
+        </section>
       </div>
     </main>
   );
