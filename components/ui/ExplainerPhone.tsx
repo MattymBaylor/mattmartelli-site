@@ -12,6 +12,8 @@ type HtmlItem = {
   kind: "html";
   src: string;
   label: string;
+  /** When true, the HTML already includes device chrome — skip outer bezel chrome. */
+  hasOwnFrame?: boolean;
 };
 
 export type ExplainerItem = VideoItem | HtmlItem;
@@ -21,15 +23,17 @@ export type ExplainerItem = VideoItem | HtmlItem;
  * Screen content is either a looping muted video or a same-origin HTML iframe.
  */
 export function ExplainerPhone({ item }: { item: ExplainerItem }) {
+  const ownFrame = item.kind === "html" && item.hasOwnFrame;
+
   return (
-    <div className="relative mx-auto w-full max-w-[220px] sm:max-w-none">
-      {/* Backlight stack — same depth language as #public-pulse phone */}
+    <div className="relative w-[200px] shrink-0 sm:w-[220px]">
+      {/* Backlight stack */}
       <div
-        className="pointer-events-none absolute -inset-10 -z-30 rounded-[5rem] bg-[radial-gradient(closest-side,rgba(34,211,238,0.20),rgba(99,102,241,0.08)_45%,transparent_75%)] blur-2xl"
+        className="pointer-events-none absolute -inset-8 -z-30 rounded-[5rem] bg-[radial-gradient(closest-side,rgba(34,211,238,0.20),rgba(99,102,241,0.08)_45%,transparent_75%)] blur-2xl"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute -inset-4 -z-20 rounded-[3rem] bg-[radial-gradient(closest-side,rgba(34,211,238,0.14),transparent_70%)] blur-xl"
+        className="pointer-events-none absolute -inset-3 -z-20 rounded-[3rem] bg-[radial-gradient(closest-side,rgba(34,211,238,0.14),transparent_70%)] blur-xl"
         aria-hidden
       />
       <div
@@ -37,52 +41,59 @@ export function ExplainerPhone({ item }: { item: ExplainerItem }) {
         aria-hidden
       />
 
-      {/* Bezel */}
-      <div className="relative aspect-[9/19.5] w-full overflow-hidden rounded-[2.2rem] border border-line-strong bg-night shadow-[0_24px_48px_-12px_rgba(34,211,238,0.40),0_0_0_1px_rgba(255,255,255,0.04)_inset] ring-1 ring-white/[0.04]">
-        {/* Notch */}
-        <div
-          className="absolute left-1/2 top-2 z-30 h-5 w-24 -translate-x-1/2 rounded-full bg-black"
-          aria-hidden
-        />
-
-        {/* Status bar */}
-        <div className="absolute inset-x-0 top-0 z-20 flex h-10 items-end justify-between px-5 pb-1 font-mono text-[10px] text-white">
-          <span className="font-semibold tabular-nums">9:41</span>
-          <div className="flex items-center gap-1">
-            <Signal size={10} aria-hidden />
-            <Wifi size={10} aria-hidden />
-            <span
-              className="relative inline-block h-2 w-4 rounded-[2px] border border-white/80"
-              aria-hidden
-            >
-              <span className="absolute inset-0 m-px rounded-[1px] bg-white" />
-            </span>
+      {ownFrame ? (
+        /* Self-framed HTML reels (Lead Nurture, etc.) — soft shell only */
+        <div className="relative aspect-[9/19.5] w-full overflow-hidden rounded-[2.2rem] border border-line-strong bg-night shadow-[0_24px_48px_-12px_rgba(34,211,238,0.40),0_0_0_1px_rgba(255,255,255,0.04)_inset] ring-1 ring-white/[0.04]">
+          <iframe
+            src={item.src}
+            title={item.label}
+            className="absolute inset-0 h-full w-full border-0 bg-night"
+            loading="lazy"
+          />
+        </div>
+      ) : (
+        /* Site chrome for plain video / unframed HTML */
+        <div className="relative aspect-[9/19.5] w-full overflow-hidden rounded-[2.2rem] border border-line-strong bg-night shadow-[0_24px_48px_-12px_rgba(34,211,238,0.40),0_0_0_1px_rgba(255,255,255,0.04)_inset] ring-1 ring-white/[0.04]">
+          <div
+            className="absolute left-1/2 top-2 z-30 h-5 w-24 -translate-x-1/2 rounded-full bg-black"
+            aria-hidden
+          />
+          <div className="absolute inset-x-0 top-0 z-20 flex h-10 items-end justify-between px-5 pb-1 font-mono text-[10px] text-white">
+            <span className="font-semibold tabular-nums">9:41</span>
+            <div className="flex items-center gap-1">
+              <Signal size={10} aria-hidden />
+              <Wifi size={10} aria-hidden />
+              <span
+                className="relative inline-block h-2 w-4 rounded-[2px] border border-white/80"
+                aria-hidden
+              >
+                <span className="absolute inset-0 m-px rounded-[1px] bg-white" />
+              </span>
+            </div>
+          </div>
+          <div className="absolute inset-0 pt-10">
+            {item.kind === "video" ? (
+              <video
+                src={item.src}
+                className="h-full w-full object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label={item.label}
+              />
+            ) : (
+              <iframe
+                src={item.src}
+                title={item.label}
+                className="h-full w-full border-0 bg-night"
+                loading="lazy"
+              />
+            )}
           </div>
         </div>
-
-        {/* Screen */}
-        <div className="absolute inset-0 pt-10">
-          {item.kind === "video" ? (
-            <video
-              src={item.src}
-              className="h-full w-full object-cover"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              aria-label={item.label}
-            />
-          ) : (
-            <iframe
-              src={item.src}
-              title={item.label}
-              className="h-full w-full border-0 bg-night"
-              loading="lazy"
-            />
-          )}
-        </div>
-      </div>
+      )}
 
       <p className="mt-3 text-center font-mono text-[10px] uppercase tracking-[0.14em] text-ink-faint">
         {item.label}

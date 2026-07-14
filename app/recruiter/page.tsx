@@ -21,7 +21,7 @@ import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
 import { Capabilities } from "@/components/sections/Capabilities";
 import { DeferredYouTubeEmbed } from "@/components/ui/DeferredYouTubeEmbed";
 import { LivingFlowEmbed } from "@/components/ui/LivingFlowEmbed";
-import { ExplainerPhone } from "@/components/ui/ExplainerPhone";
+import { ExplainerCarousel } from "@/components/ui/ExplainerCarousel";
 
 export const metadata: Metadata = {
   title: "Recruiter Fast Path",
@@ -563,11 +563,7 @@ export default function RecruiterPage() {
           <p className="max-w-3xl text-sm leading-relaxed text-ink-muted sm:text-base">
             {recruiter.explainerVideos.body}
           </p>
-          <div className="mt-8 grid grid-cols-1 items-start justify-items-center gap-8 sm:grid-cols-3 sm:gap-6 lg:gap-10">
-            {recruiter.explainerVideos.items.map((item) => (
-              <ExplainerPhone key={item.src} item={item} />
-            ))}
-          </div>
+          <ExplainerCarousel items={recruiter.explainerVideos.items} />
           {/* Generous footer breathing room so the section never feels cramped */}
           <div className="h-6 sm:h-10" aria-hidden />
         </section>

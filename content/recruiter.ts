@@ -99,6 +99,13 @@ export const recruiter = {
         kind: "html" as const,
         src: "/explainers/one-way-interview.html",
         label: "One-Way Interview",
+        hasOwnFrame: true,
+      },
+      {
+        kind: "html" as const,
+        src: "/explainers/lead-nurture.html",
+        label: "Lead Nurture",
+        hasOwnFrame: true,
       },
     ],
   },
