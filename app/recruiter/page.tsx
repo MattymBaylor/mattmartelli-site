@@ -13,6 +13,7 @@ import {
   Star,
   Quote,
   PlayCircle,
+  Workflow,
 } from "lucide-react";
 import { recruiter } from "@/content/recruiter";
 import { site } from "@/content/site";
@@ -186,6 +187,42 @@ export default function RecruiterPage() {
             hoverAudio
             className="mt-12"
           />
+        </section>
+
+        {/* Living Flow — interactive bridge: governance → multi-agent architecture */}
+        <section aria-labelledby="living-flow" className="mt-8">
+          <p className="mb-2 inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-warm">
+            <Workflow size={11} aria-hidden /> {recruiter.livingFlow.eyebrow}
+          </p>
+          <h2
+            id="living-flow"
+            className="font-display text-2xl font-semibold sm:text-3xl"
+          >
+            {recruiter.livingFlow.title}
+          </h2>
+          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-ink-muted sm:text-base">
+            {recruiter.livingFlow.lead}
+          </p>
+          <div className="mt-6 overflow-hidden rounded-2xl border border-accent-cyan/30 bg-surface-elevated/60 shadow-glow">
+            <iframe
+              src={recruiter.livingFlow.src}
+              title={recruiter.livingFlow.iframeTitle}
+              className="h-[min(70vh,720px)] min-h-[320px] w-full border-0 sm:min-h-[420px]"
+              loading="lazy"
+              allow="fullscreen"
+            />
+          </div>
+          <p className="mt-3">
+            <a
+              href={recruiter.livingFlow.src}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-accent-cyan transition-colors hover:text-accent-cyan/80"
+            >
+              {recruiter.livingFlow.openLabel}
+              <ArrowUpRight size={13} aria-hidden />
+            </a>
+          </p>
         </section>
 
         {/* Featured Flagship Project */}

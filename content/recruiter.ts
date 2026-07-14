@@ -45,6 +45,17 @@ export const recruiter = {
     youtubeId: "X5q5sgkwMP4",
   },
 
+  // Living Flow — interactive landscape between governance (Field Note) and multi-agent flagship.
+  livingFlow: {
+    eyebrow: "Living Flow",
+    title: "How trusted agents actually move work",
+    lead:
+      "Governance decides what should never happen. Architecture decides who does what. Living Flow is the bridge — an interactive map of how AI and human handoffs move through a real operating system, not a slide deck.",
+    iframeTitle: "Living Flow landscape — interactive multi-agent workflow",
+    src: "/Living Flow Landscape - Standalone (5).html",
+    openLabel: "Open full screen",
+  },
+
   flagship: {
     title: "A Multi-Agent Company, Cast as Seinfeld",
     lead: "The real operating system that runs my own company — and the clearest proof of how I make complex AI legible.",
