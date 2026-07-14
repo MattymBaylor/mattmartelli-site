@@ -18,23 +18,33 @@ type HtmlItem = {
 
 export type ExplainerItem = VideoItem | HtmlItem;
 
-/** Shared footprint for every explainer in the carousel — do not vary per item. */
+/** Shared footprint for every explainer in the train — do not vary per item. */
 export const EXPLAINER_PHONE_WIDTH_PX = 220;
-export const EXPLAINER_PHONE_STEP_PX = EXPLAINER_PHONE_WIDTH_PX + 24; // width + gap-6
+
+type ExplainerPhoneProps = {
+  item: ExplainerItem;
+  /** Larger shell for the lightbox expand view */
+  size?: "train" | "hero";
+  /** When true, media cannot receive clicks (train strip) */
+  inertMedia?: boolean;
+  /** Play with sound / controls (lightbox only) */
+  interactive?: boolean;
+};
 
 /**
  * 9:16 phone frame — identical outer size for video and HTML reels.
- * Videos get site chrome; self-framed HTML fills the same shell.
  */
-export function ExplainerPhone({ item }: { item: ExplainerItem }) {
+export function ExplainerPhone({
+  item,
+  size = "train",
+  inertMedia = true,
+  interactive = false,
+}: ExplainerPhoneProps) {
   const ownFrame = item.kind === "html" && item.hasOwnFrame;
+  const width = size === "hero" ? 300 : EXPLAINER_PHONE_WIDTH_PX;
 
   return (
-    <div
-      className="relative flex w-[220px] shrink-0 flex-col"
-      style={{ width: EXPLAINER_PHONE_WIDTH_PX }}
-    >
-      {/* Backlight stack — same on every card */}
+    <div className="relative flex shrink-0 flex-col" style={{ width }}>
       <div
         className="pointer-events-none absolute -inset-8 -z-30 rounded-[5rem] bg-[radial-gradient(closest-side,rgba(34,211,238,0.20),rgba(99,102,241,0.08)_45%,transparent_75%)] blur-2xl"
         aria-hidden
@@ -48,18 +58,19 @@ export function ExplainerPhone({ item }: { item: ExplainerItem }) {
         aria-hidden
       />
 
-      {/* Fixed shell — identical aspect + chrome box for every item */}
       <div className="relative aspect-[9/19.5] w-full overflow-hidden rounded-[2.2rem] border border-line-strong bg-night shadow-[0_24px_48px_-12px_rgba(34,211,238,0.40),0_0_0_1px_rgba(255,255,255,0.04)_inset] ring-1 ring-white/[0.04]">
-        {/* Media always fills the full shell so outer size never drifts */}
-        <div className="absolute inset-0">
+        <div
+          className={`absolute inset-0 ${inertMedia ? "pointer-events-none" : ""}`}
+        >
           {item.kind === "video" ? (
             <video
               src={item.src}
               className="h-full w-full object-cover"
               autoPlay
-              muted
+              muted={!interactive}
               loop
               playsInline
+              controls={interactive}
               preload="metadata"
               aria-label={item.label}
             />
@@ -69,11 +80,12 @@ export function ExplainerPhone({ item }: { item: ExplainerItem }) {
               title={item.label}
               className="h-full w-full border-0 bg-night"
               loading="lazy"
+              // Block interaction until expanded so reels stay silent / non-clickable
+              tabIndex={inertMedia ? -1 : 0}
             />
           )}
         </div>
 
-        {/* Site chrome only when the media itself is not already a phone */}
         {!ownFrame && (
           <>
             <div
@@ -97,10 +109,11 @@ export function ExplainerPhone({ item }: { item: ExplainerItem }) {
         )}
       </div>
 
-      {/* Fixed label row height so cards align even when labels wrap */}
-      <p className="mt-3 h-8 text-center font-mono text-[10px] uppercase leading-snug tracking-[0.14em] text-ink-faint">
-        {item.label}
-      </p>
+      {size === "train" && (
+        <p className="mt-3 h-8 text-center font-mono text-[10px] uppercase leading-snug tracking-[0.14em] text-ink-faint">
+          {item.label}
+        </p>
+      )}
     </div>
   );
 }
