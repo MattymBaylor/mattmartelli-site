@@ -105,7 +105,7 @@ export default function RecruiterPage() {
         </header>
 
         {/* Target Roles */}
-        <section aria-labelledby="target-roles" className="mt-8">
+        <section aria-labelledby="target-roles" className="mt-12">
           <h2 id="target-roles" className="eyebrow mb-3">
             Target Roles
           </h2>
@@ -122,7 +122,7 @@ export default function RecruiterPage() {
         </section>
 
         {/* Field Note — game theory, the eval-design methodology on film */}
-        <section aria-labelledby="field-note" className="mt-8">
+        <section aria-labelledby="field-note" className="mt-12">
           <p className="mb-2 inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-warm">
             <PlayCircle size={11} aria-hidden /> {recruiter.fieldNote.eyebrow}
           </p>
@@ -270,6 +270,15 @@ export default function RecruiterPage() {
                   {recruiter.flagship.caseStudy.label}
                   <ArrowUpRight size={15} aria-hidden />
                 </Link>
+                <a
+                  href={recruiter.flagship.demo.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-md border border-line-strong px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:border-accent-cyan/50"
+                >
+                  {recruiter.flagship.demo.label}
+                  <ArrowUpRight size={15} aria-hidden />
+                </a>
               </div>
             </div>
             <Image

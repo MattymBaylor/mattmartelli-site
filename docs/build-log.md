@@ -4,6 +4,25 @@ Operational memory + deck source material. Logs the *moves* (judgment calls, dec
 
 ---
 
+## 2026-07-14 — Living Flow + carte-blanche site audit
+
+**Living Flow on Recruiter Fast Path**
+- Embedded standalone landscape HTML between Field Note and Seinfeld flagship.
+- Iteration: padded card matching Flagship; taller fixed iframe (`min-h` 520→760, max ~960 / 88vh) so the canvas doesn’t rattle around in a short box.
+
+**End-to-end audit (carte blanche while Matt was out)**
+- Build green; live URL smoke: `/`, `/recruiter`, `/playbook`, `/seinfeld-hq`, resume PDF, Living Flow, field-note PDF all **200**.
+- Local href scan against `public/` + app routes: no missing static assets.
+- **P0-ish content bug:** `/alt` Audit Framework CTA pointed at `…/blog/who-audits-the-robots` (**404** without `.html`). Fixed to vanity `/who-audits-the-robots` and added rewrite for extensionless `/blog/who-audits-the-robots`.
+- Lint cleanup: unused imports on `/seinfeld-hq`, preview RecruiterProof, dead `PULSE_DURATION_MS`; WorkflowCarousel keyboard handler deps via `useCallback`.
+- SEO: `noindex` on `/layout-preview` and `/recruiter-preview` (framework + alt already had it); sitemap gains `/who-audits-the-robots`.
+- Recruiter rhythm: major sections `mt-12`; Flagship secondary **Launch Interactive Demo** button restored from content (was defined, not rendered).
+- README résumé path corrected to `matt_martelli_resume.pdf`.
+
+`[DECK]` **Audit while the operator is offline.** Full-site smoke + content-link truth-check caught a published CTA 404 that visual polish would never surface. Rewrite + vanity URL alignment is the portfolio equivalent of “don’t ship a button to nowhere.”
+
+---
+
 ## 2026-06-18 — Architecture showcase, GA4, Seinfeld org chart, podcast
 
 **Shipped to production (mattmartelli.com), verified live:**

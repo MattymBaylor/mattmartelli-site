@@ -1,6 +1,4 @@
-import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
 import { projects } from "@/content/projects";
 
 const PROOF_IDS = ["voice-ecosystem", "revenue-recovery", "client-dashboard"] as const;

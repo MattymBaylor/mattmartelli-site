@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Header } from "@/components/nav/Header";
@@ -18,6 +19,11 @@ import { Contact } from "@/components/sections/Contact";
  * Layout preview — Suhas Bhairav-inspired structure applied to current
  * mattmartelli.com content. Does NOT replace the live homepage.
  */
+export const metadata: Metadata = {
+  title: "Layout Preview — Matt Martelli",
+  robots: { index: false, follow: false },
+};
+
 export default function LayoutPreviewPage() {
   return (
     <>

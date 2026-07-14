@@ -16,9 +16,7 @@ const { auditFramework } = site;
  * visualization sits on the left. Order is reversed on mobile via
  * `lg:order-*` so the copy always reads first on small screens.
  *
- * TODO: the blog CTA below points to a placeholder URL
- * (https://mattmartelli.com/blog/who-audits-the-robots). Replace with the
- * real published URL for "Who Audits the Robots?" before shipping.
+ * CTA points at /who-audits-the-robots (rewritten to the Field Notes HTML).
  */
 export function AuditFramework() {
   return (

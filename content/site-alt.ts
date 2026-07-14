@@ -425,9 +425,8 @@ export const site = {
     ],
     cta: {
       label: "Read the Audit Framework",
-      // TODO: placeholder URL — replace with the real published URL for the
-      // "Who Audits the Robots?" blog article before shipping.
-      href: "https://mattmartelli.com/blog/who-audits-the-robots",
+      // Vanity rewrite → /blog/who-audits-the-robots.html (see next.config.mjs)
+      href: "/who-audits-the-robots",
     },
     ctaSub: "The field note behind the Tiger Team methodology.",
   },

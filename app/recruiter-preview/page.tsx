@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Header } from "@/components/nav/Header";
@@ -13,6 +14,11 @@ import { recruiterFirst } from "@/content/recruiter-first";
  * Recruiter-first homepage sketch — hiring signal in the first two screens.
  * Does NOT replace the live homepage or /recruiter page.
  */
+export const metadata: Metadata = {
+  title: "Recruiter Preview — Matt Martelli",
+  robots: { index: false, follow: false },
+};
+
 export default function RecruiterPreviewPage() {
   return (
     <>

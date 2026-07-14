@@ -36,6 +36,11 @@ const nextConfig = {
       { source: "/hq", destination: "/seinfeld-hq/index.html" },
       // /who-audits-the-robots → the "Who Audits the Robots?" Field Notes post.
       { source: "/who-audits-the-robots", destination: "/blog/who-audits-the-robots.html" },
+      // extensionless /blog/... also resolves (old absolute URLs without .html)
+      {
+        source: "/blog/who-audits-the-robots",
+        destination: "/blog/who-audits-the-robots.html",
+      },
     ];
   },
 };

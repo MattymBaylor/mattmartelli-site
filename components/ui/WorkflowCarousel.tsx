@@ -10,7 +10,7 @@
  * prefers-reduced-motion get a static, horizontally scrollable strip.
  */
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
@@ -32,8 +32,12 @@ export function WorkflowCarousel({ items, reverse }: { items: readonly Slide[]; 
   const lightIndex = lightbox === null ? 0 : norm(lightbox);
   const lightCurrent = items[lightIndex];
 
-  const goLightbox = (dir: number) =>
-    setLightbox((i) => (i === null ? null : norm(i + dir)));
+  const goLightbox = useCallback(
+    (dir: number) => setLightbox((i) => (i === null ? null : norm(i + dir))),
+    // norm closes over count; recreate when slide count changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [count],
+  );
 
   useEffect(() => setMounted(true), []);
 
@@ -51,7 +55,7 @@ export function WorkflowCarousel({ items, reverse }: { items: readonly Slide[]; 
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = prev;
     };
-  }, [open, count]);
+  }, [open, goLightbox]);
 
   useEffect(() => {
     if (wasOpen.current && !open) triggerRef.current?.focus();

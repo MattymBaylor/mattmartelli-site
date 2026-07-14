@@ -1,20 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import {
   ArrowLeft,
   ArrowRight,
   ArrowUpRight,
-  Play,
   ChevronDown,
-  AlertTriangle,
   Briefcase,
 } from "lucide-react";
 import { Header } from "@/components/nav/Header";
 import { Footer } from "@/components/nav/Footer";
 import { Reveal } from "@/components/ui/Reveal";
 import {
-  LiveAgentFeed,
   LiveAgentFeedPhone,
   LiveAgentFeedTablet,
 } from "@/components/sections/LiveAgentFeed";

@@ -136,7 +136,7 @@ prominent full-width treatment. To add a real demo/repo link, fill in the `link`
 
 ### Change the Recruiter Fast Path (section 9 + /recruiter)
 Edit **`content/recruiter.ts`** — executive summary, accomplishments, condensed projects, and
-links. Drop the real résumé at **`public/resume.pdf`** (a placeholder is included).
+links. Résumé lives at **`public/matt_martelli_resume.pdf`** (`/resume.pdf` redirects there).
 
 ### Retune the design system
 Edit **`tailwind.config.ts`** — colors (`base`, `surface`, `accent`, `warm`), radii, shadows,

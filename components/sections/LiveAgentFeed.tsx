@@ -334,7 +334,6 @@ const WAR_ROOM_EVENTS: PulseEvent[] = [
 
 const VISIBLE_COUNT = 5;
 const ADVANCE_INTERVAL_MS = 6500;
-const PULSE_DURATION_MS = 1800;
 
 const SEVERITY_DOT: Record<Severity, string> = {
   ok: "bg-emerald-400",
