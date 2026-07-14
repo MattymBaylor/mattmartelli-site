@@ -190,7 +190,10 @@ export default function RecruiterPage() {
         </section>
 
         {/* Living Flow — interactive bridge: governance → multi-agent architecture */}
-        <section aria-labelledby="living-flow" className="mt-8">
+        <section
+          aria-labelledby="living-flow"
+          className="mt-12 overflow-hidden rounded-2xl border border-accent-cyan/30 bg-surface-elevated/60 p-6 shadow-glow sm:p-8"
+        >
           <p className="mb-2 inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-warm">
             <Workflow size={11} aria-hidden /> {recruiter.livingFlow.eyebrow}
           </p>
@@ -203,16 +206,17 @@ export default function RecruiterPage() {
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-ink-muted sm:text-base">
             {recruiter.livingFlow.lead}
           </p>
-          <div className="mt-6 overflow-hidden rounded-2xl border border-accent-cyan/30 bg-surface-elevated/60 shadow-glow">
+          {/* Tall fixed viewport so the landscape fits without panning/scrolling the embed */}
+          <div className="mt-6 overflow-hidden rounded-xl border border-line bg-night/40">
             <iframe
               src={recruiter.livingFlow.src}
               title={recruiter.livingFlow.iframeTitle}
-              className="h-[min(70vh,720px)] min-h-[320px] w-full border-0 sm:min-h-[420px]"
+              className="block h-[min(88vh,960px)] min-h-[520px] w-full border-0 sm:min-h-[640px] lg:min-h-[760px]"
               loading="lazy"
               allow="fullscreen"
             />
           </div>
-          <p className="mt-3">
+          <p className="mt-4">
             <a
               href={recruiter.livingFlow.src}
               target="_blank"
@@ -228,7 +232,7 @@ export default function RecruiterPage() {
         {/* Featured Flagship Project */}
         <section
           aria-labelledby="flagship"
-          className="mt-8 overflow-hidden rounded-2xl border border-accent-cyan/30 bg-surface-elevated/60 p-6 shadow-glow sm:p-8"
+          className="mt-12 overflow-hidden rounded-2xl border border-accent-cyan/30 bg-surface-elevated/60 p-6 shadow-glow sm:p-8"
         >
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:gap-10">
             <div className="lg:flex-1">
