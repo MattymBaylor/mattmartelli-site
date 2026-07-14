@@ -2,7 +2,11 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { ExplainerPhone, type ExplainerItem } from "@/components/ui/ExplainerPhone";
+import {
+  ExplainerPhone,
+  EXPLAINER_PHONE_STEP_PX,
+  type ExplainerItem,
+} from "@/components/ui/ExplainerPhone";
 
 /**
  * Horizontal phone strip — drag / scroll / arrow navigation with snap.
@@ -37,8 +41,7 @@ export function ExplainerCarousel({ items }: { items: readonly ExplainerItem[] }
   const scrollByPhone = (dir: -1 | 1) => {
     const el = scrollerRef.current;
     if (!el) return;
-    // One phone card ≈ 220px + gap 24px
-    el.scrollBy({ left: dir * 260, behavior: "smooth" });
+    el.scrollBy({ left: dir * EXPLAINER_PHONE_STEP_PX, behavior: "smooth" });
   };
 
   return (
@@ -59,16 +62,16 @@ export function ExplainerCarousel({ items }: { items: readonly ExplainerItem[] }
 
       <div
         ref={scrollerRef}
-        className="flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-1 pb-4 pt-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="flex snap-x snap-mandatory items-start gap-6 overflow-x-auto scroll-smooth px-1 pb-4 pt-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         role="list"
         aria-label="Explainer video reels"
       >
         {items.map((item) => (
-          <div key={item.src} className="snap-start" role="listitem">
+          <div key={item.src} className="w-[220px] shrink-0 snap-start" role="listitem">
             <ExplainerPhone item={item} />
           </div>
         ))}
-        {/* Trailing spacer so last phone can center / breathe */}
+        {/* Trailing spacer so last phone can breathe */}
         <div className="w-2 shrink-0" aria-hidden />
       </div>
 
