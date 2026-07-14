@@ -20,6 +20,7 @@ import { site } from "@/content/site";
 import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
 import { Capabilities } from "@/components/sections/Capabilities";
 import { DeferredYouTubeEmbed } from "@/components/ui/DeferredYouTubeEmbed";
+import { LivingFlowEmbed } from "@/components/ui/LivingFlowEmbed";
 
 export const metadata: Metadata = {
   title: "Recruiter Fast Path",
@@ -206,14 +207,10 @@ export default function RecruiterPage() {
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-ink-muted sm:text-base">
             {recruiter.livingFlow.lead}
           </p>
-          {/* Tall fixed viewport so the landscape fits without panning/scrolling the embed */}
-          <div className="mt-6 overflow-hidden rounded-xl border border-line bg-night/40">
-            <iframe
+          <div className="mt-6">
+            <LivingFlowEmbed
               src={recruiter.livingFlow.src}
               title={recruiter.livingFlow.iframeTitle}
-              className="block h-[min(88vh,960px)] min-h-[520px] w-full border-0 sm:min-h-[640px] lg:min-h-[760px]"
-              loading="lazy"
-              allow="fullscreen"
             />
           </div>
           <p className="mt-4">
