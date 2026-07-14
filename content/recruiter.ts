@@ -107,6 +107,12 @@ export const recruiter = {
         label: "Lead Nurture",
         hasOwnFrame: true,
       },
+      {
+        kind: "html" as const,
+        src: "/explainers/voice-ai-flywheel.html",
+        label: "Voice AI Flywheel",
+        hasOwnFrame: true,
+      },
     ],
   },
 
