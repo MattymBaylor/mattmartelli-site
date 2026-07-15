@@ -103,7 +103,7 @@ export function ExplainerCarousel({ items }: { items: readonly ExplainerItem[] }
       <div
         role="group"
         aria-roledescription="carousel"
-        aria-label="Explainer video reels — slow conveyor, click a phone to expand and play"
+        aria-label="Explainer video reels — slow conveyor, click a phone to expand (silent)"
         className="exp-viewport relative overflow-hidden"
       >
         <div
@@ -119,7 +119,7 @@ export function ExplainerCarousel({ items }: { items: readonly ExplainerItem[] }
       </div>
 
       <p className="mt-3 text-center font-mono text-[10px] uppercase tracking-[0.14em] text-ink-faint">
-        Click a phone to expand · train pauses while open
+        Click a phone to expand · silent preview · train pauses while open
       </p>
 
       <style>{`
