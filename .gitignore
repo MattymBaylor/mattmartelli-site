@@ -45,3 +45,6 @@ __pycache__/
 public/workflows/*.pdf
 public/workflows/*.png
 public/workflows/*.jpg
+
+# Playwright verification screenshots (local artifacts)
+/playwright-out/

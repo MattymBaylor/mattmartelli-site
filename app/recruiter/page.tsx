@@ -14,6 +14,7 @@ import {
   Quote,
   PlayCircle,
   Workflow,
+  Layers,
 } from "lucide-react";
 import { recruiter } from "@/content/recruiter";
 import { site } from "@/content/site";
@@ -21,6 +22,7 @@ import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
 import { Capabilities } from "@/components/sections/Capabilities";
 import { DeferredYouTubeEmbed } from "@/components/ui/DeferredYouTubeEmbed";
 import { LivingFlowEmbed } from "@/components/ui/LivingFlowEmbed";
+import { FiveLayerFramework } from "@/components/ui/FiveLayerFramework";
 import { ExplainerCarousel } from "@/components/ui/ExplainerCarousel";
 
 export const metadata: Metadata = {
@@ -121,6 +123,33 @@ export default function RecruiterPage() {
               </li>
             ))}
           </ul>
+        </section>
+
+        {/* Five-Layer Framework — the sequencing methodology, interactive */}
+        <section aria-labelledby="five-layer" className="mt-12">
+          <p className="mb-2 inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-warm">
+            <Layers size={11} aria-hidden /> {recruiter.fiveLayer.eyebrow}
+          </p>
+          <h2 id="five-layer" className="font-display text-2xl font-semibold sm:text-3xl">
+            {recruiter.fiveLayer.title}
+          </h2>
+          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-ink-muted sm:text-base">
+            {recruiter.fiveLayer.lead}
+          </p>
+
+          <FiveLayerFramework layers={recruiter.fiveLayer.layers} />
+
+          <p className="mt-4">
+            <a
+              href={recruiter.fiveLayer.src}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-accent-cyan transition-colors hover:text-accent-cyan/80"
+            >
+              {recruiter.fiveLayer.openLabel}
+              <ArrowUpRight size={13} aria-hidden />
+            </a>
+          </p>
         </section>
 
         {/* Field Note — game theory, the eval-design methodology on film */}

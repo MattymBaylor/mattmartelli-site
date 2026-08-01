@@ -68,7 +68,8 @@ function silenceFrame(iframe: HTMLIFrameElement) {
     // Late-starting audio (Howl after mount)
     if (!(win as unknown as { __expMuted?: boolean }).__expMuted) {
       (win as unknown as { __expMuted?: boolean }).__expMuted = true;
-      const MediaProto = win.HTMLMediaElement?.prototype;
+      const MediaProto = (win as unknown as { HTMLMediaElement?: typeof HTMLMediaElement })
+        .HTMLMediaElement?.prototype;
       if (MediaProto?.play) {
         const orig = MediaProto.play;
         MediaProto.play = function (this: HTMLMediaElement, ...args: unknown[]) {
