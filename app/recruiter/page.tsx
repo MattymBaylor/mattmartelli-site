@@ -133,9 +133,20 @@ export default function RecruiterPage() {
           <h2 id="five-layer" className="font-display text-2xl font-semibold sm:text-3xl">
             {recruiter.fiveLayer.title}
           </h2>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-ink-muted sm:text-base">
-            {recruiter.fiveLayer.lead}
-          </p>
+          <div className="mt-4 flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between sm:gap-10">
+            <p className="max-w-2xl text-sm leading-relaxed text-ink-muted sm:text-base">
+              {recruiter.fiveLayer.lead}
+            </p>
+            <a
+              href={recruiter.fiveLayer.articleUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex shrink-0 items-center gap-2 self-start rounded-md border border-warm/30 bg-warm/10 px-4 py-2.5 text-sm font-medium text-warm transition-colors hover:border-warm/50 hover:bg-warm/[0.16]"
+            >
+              {recruiter.fiveLayer.articleLabel}
+              <ArrowUpRight size={15} aria-hidden />
+            </a>
+          </div>
 
           <FiveLayerFramework layers={recruiter.fiveLayer.layers} />
 
