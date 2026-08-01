@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 export type FrameworkLayer = {
@@ -41,13 +41,24 @@ export function FiveLayerFramework({ layers }: { layers: readonly FrameworkLayer
     setOpen((prev) => (prev.length === layers.length ? [] : layers.map((l) => l.n)));
   }, [layers]);
 
+  // Spotlight is a transient lens, not a mode you should get stuck in:
+  // Escape clears it, and so does clicking any dimmed layer.
+  useEffect(() => {
+    if (!spotlight) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSpotlight(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [spotlight]);
+
   return (
     <div className="mt-6">
       <div className="flex flex-wrap items-center gap-2">
         <button
           type="button"
           onClick={toggleAll}
-          className="rounded-md border border-line-strong bg-surface-elevated/60 px-3.5 py-2 font-mono text-[11px] uppercase tracking-[0.12em] text-ink-muted transition-colors hover:border-accent-cyan/50 hover:text-ink"
+          className="rounded-md border border-line-strong bg-[#06070B] px-3.5 py-2 font-mono text-[11px] uppercase tracking-[0.12em] text-ink-muted transition-colors hover:border-accent-cyan/50 hover:text-ink"
         >
           {allOpen ? "Collapse all" : "Expand all"}
         </button>
@@ -58,11 +69,16 @@ export function FiveLayerFramework({ layers }: { layers: readonly FrameworkLayer
           className={`rounded-md border px-3.5 py-2 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors ${
             spotlight
               ? "border-accent-cyan bg-accent-cyan/10 text-accent-cyan shadow-glow"
-              : "border-line-strong bg-surface-elevated/60 text-ink-muted hover:border-accent-cyan/50 hover:text-ink"
+              : "border-line-strong bg-[#06070B] text-ink-muted hover:border-accent-cyan/50 hover:text-ink"
           }`}
         >
-          Where does technology live?
+          {spotlight ? "✕  Show all layers" : "Where does technology live?"}
         </button>
+        {spotlight ? (
+          <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-ink-faint">
+            Esc to exit
+          </span>
+        ) : null}
       </div>
 
       <ol className="mt-5 space-y-3">
@@ -74,7 +90,7 @@ export function FiveLayerFramework({ layers }: { layers: readonly FrameworkLayer
           return (
             <li
               key={layer.n}
-              className={`overflow-hidden rounded-xl border bg-surface-elevated/60 transition-all duration-300 ${
+              className={`overflow-hidden rounded-xl border bg-[#06070B] transition-all duration-300 ${
                 dimmed
                   ? "border-line opacity-30"
                   : lit
@@ -86,7 +102,7 @@ export function FiveLayerFramework({ layers }: { layers: readonly FrameworkLayer
             >
               <button
                 type="button"
-                onClick={() => toggle(layer.n)}
+                onClick={() => (dimmed ? setSpotlight(false) : toggle(layer.n))}
                 aria-expanded={isOpen}
                 aria-controls={`layer-panel-${layer.n}`}
                 className="flex w-full items-center gap-4 p-4 text-left sm:gap-5 sm:p-5"
@@ -142,7 +158,7 @@ export function FiveLayerFramework({ layers }: { layers: readonly FrameworkLayer
 
                   <ul className="mt-5 divide-y divide-line overflow-hidden rounded-lg border border-line">
                     {layer.subs.map((sub) => (
-                      <li key={sub.label} className="bg-surface-raised/40 p-3.5">
+                      <li key={sub.label} className="bg-[#030407] p-3.5">
                         <p className="text-[13px] font-semibold text-ink">{sub.label}</p>
                         <p className="mt-0.5 text-[13px] leading-relaxed text-ink-muted">
                           {sub.detail}
