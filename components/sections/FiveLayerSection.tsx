@@ -1,4 +1,4 @@
-import { ArrowUpRight, Layers } from "lucide-react";
+import { ArrowUpRight, BookOpen, Layers } from "lucide-react";
 import { fiveLayer } from "@/content/five-layer";
 import { FiveLayerFramework } from "@/components/ui/FiveLayerFramework";
 
@@ -19,17 +19,26 @@ export function FiveLayerSection() {
 
         <FiveLayerFramework layers={fiveLayer.layers} />
 
-        <p className="mt-4">
-          <a
-            href={fiveLayer.src}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.12em] text-accent-cyan transition-colors hover:text-accent-cyan/80"
-          >
-            {fiveLayer.openLabel}
-            <ArrowUpRight size={13} aria-hidden />
-          </a>
-        </p>
+        <a
+          href={fiveLayer.src}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group mt-6 flex flex-col gap-4 rounded-xl border border-accent-cyan/30 bg-[#06070B] p-5 shadow-glow transition-colors hover:border-accent-cyan/60 sm:flex-row sm:items-center sm:justify-between sm:gap-8"
+        >
+          <span className="min-w-0">
+            <span className="flex items-center gap-2 font-display text-base font-semibold text-ink">
+              <BookOpen size={16} className="shrink-0 text-accent-cyan" aria-hidden />
+              {fiveLayer.deepDive.title}
+            </span>
+            <span className="mt-2 block max-w-2xl text-sm leading-relaxed text-ink-muted">
+              {fiveLayer.deepDive.body}
+            </span>
+          </span>
+          <span className="inline-flex shrink-0 items-center gap-2 self-start rounded-md bg-accent-gradient px-4 py-2.5 text-sm font-semibold text-night shadow-glow transition-transform group-hover:scale-[1.03] sm:self-auto">
+            {fiveLayer.deepDive.cta}
+            <ArrowUpRight size={15} aria-hidden />
+          </span>
+        </a>
       </section>
   );
 }
