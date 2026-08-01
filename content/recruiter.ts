@@ -62,6 +62,9 @@ export const recruiter = {
     lead:
       "How I sequence an enterprise AI engagement. Each layer bears load for every layer that follows it \u2014 skipping one does not save time, it relocates the cost to a more expensive point later. Notice what is missing from the top of the list: technology.",
     openLabel: "Open full screen",
+    articleLabel: "Read the article on LinkedIn",
+    articleUrl:
+      "https://www.linkedin.com/pulse/enterprise-ai-starts-business-model-matt-martelli-orkfe",
     src: "/five-layer-framework.html",
     iframeTitle: "The Five-Layer Enterprise AI Framework \u2014 interactive",
     layers: [
