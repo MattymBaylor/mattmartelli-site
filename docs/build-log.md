@@ -4,6 +4,33 @@ Operational memory + deck source material. Logs the *moves* (judgment calls, dec
 
 ---
 
+## 2026-07-31 — Five-Layer Framework section + a 17-day silent production stall
+
+**Five-Layer Enterprise AI Framework on /recruiter**
+- New interactive accordion between Target Roles and Field Note. Native React, not an iframe — inherits the page's Tailwind tokens directly and sidesteps the nested-scroll problem `LivingFlowEmbed` has to patch around. Standalone HTML also shipped to `/public` alongside the other canvases.
+- Deliberate constraint held: **Technology gets no band of its own.** It appears only as a tag inside Layer 3, and a "Where does technology live?" control dims the other four layers to prove the point. The absence *is* the argument — the temptation to add a technology layer is exactly what the control exists to answer. [DECK]
+- Maturity rungs (Emerging / Seed) stay visible. Honest framing over implied confidence — the visual must not claim more than the evidence supports. (Principle 6.)
+
+**[DECK] The real find: production had been stale for 17 days and nobody knew.**
+- Commit `975502b` ("Explainer train: force silent phones") introduced a one-line TS error: `Property 'HTMLMediaElement' does not exist on type 'Window & { Howler?: ... }'`.
+- `next build` failed on it, so the Vercel production deploy **errored out on 2026-07-15** and the live site quietly kept serving the previous commit. Confirmed via `vercel inspect --logs` — the failing deploy's log names the exact file and line.
+- Three weeks of "shipped" work that was never actually live. The lesson isn't the type error; it's that **a failed deploy is silent unless something is watching it.** Green local, red production, no signal in between. [DECK]
+- Tech-debt item logged: no deploy-failure alerting on this project. The ops-health dashboard already has the Slack/Pushover alert pattern — wire Vercel deploy status into it.
+
+**Verification discipline — the part that was skipped elsewhere**
+- The change arrived built but visually unverified. Wrote `scripts/verify-five-layer.mjs`: 70 Playwright assertions across 1440×900 / 768×1024 / 390×844 covering section rhythm, left alignment, overflow, accordion behavior, spotlight state, mobile treatment, WCAG AA contrast, and the standalone page.
+- **Two of the first five "failures" were bugs in the test, not the component** — worth remembering, because both are easy traps:
+  - Asserted every control button shares the same left x. But the two controls sit in one `flex flex-wrap gap-2` row; the second is *supposed* to sit beside the first (Δ117.2px = button width 109.2 + gap 8). Only the row's leading edge is an alignment landmark.
+  - Measured "does the page shift when toggling?" with viewport-relative `boundingBox()`. Playwright auto-scrolls an element into view before clicking, so that reads page scroll as layout shift. Re-measured in absolute document coords: 0.00px. Real answer, opposite conclusion.
+- **A third bug was worse: the contrast check was passing on garbage.** Reported ratios of 3,827,504:1 when the WCAG maximum is 21:1 — the alpha regex was capturing the blue channel of `rgb()` as the alpha value. Fixed the parser to read alpha only as a true 4th component, composited the translucent surface stack properly, and validated the math against known values (white/black = 21.00, cyan on #0A0A0F = 10.93 by hand) before trusting a single number. Real results: 7.76:1 to 10.93:1, all comfortably above AA.
+- Takeaway: **a green check is only as good as the assertion behind it.** An implausible number that passes is more dangerous than a failure — failures get investigated, passes don't. Sanity-check against a known value whenever a metric has a theoretical bound. [DECK]
+
+**Scope discipline**
+- Left an unrelated `content/trains.manifest.json` modification (blueprint-train bookkeeping) out of the feature commit rather than sweeping it in with `git add -A`. A feature PR should answer "what did this change?" with one thing. (Principle 11.)
+- PR: https://github.com/MattymBaylor/mattmartelli-site/pull/8 — held for review, not merged.
+
+---
+
 ## 2026-07-14 — Living Flow + carte-blanche site audit
 
 **Living Flow on Recruiter Fast Path**
