@@ -3,7 +3,11 @@ import { fiveLayer } from "@/content/five-layer";
 import { FiveLayerFramework } from "@/components/ui/FiveLayerFramework";
 
 /** Sequencing methodology, interactive. Sits between Target Roles and the
- *  Field Note on /recruiter. Copy and layer data live in content/five-layer.ts. */
+ *  Field Note on /recruiter. Copy and layer data live in content/five-layer.ts.
+ *
+ *  The deep-dive opens in the SAME tab on purpose: a new tab makes the browser
+ *  Back button a no-op, and Back is the control people reach for. Same-tab
+ *  returns them here with scroll position intact. */
 export function FiveLayerSection() {
   return (
       <section aria-labelledby="five-layer" className="mt-12">
@@ -21,8 +25,6 @@ export function FiveLayerSection() {
 
         <a
           href={fiveLayer.src}
-          target="_blank"
-          rel="noopener noreferrer"
           className="group mt-6 flex flex-col gap-4 rounded-xl border border-accent-cyan/30 bg-[#06070B] p-5 shadow-glow transition-colors hover:border-accent-cyan/60 sm:flex-row sm:items-center sm:justify-between sm:gap-8"
         >
           <span className="min-w-0">
