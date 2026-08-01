@@ -7,6 +7,12 @@ export const fiveLayer = {
     lead:
       "How I sequence an enterprise AI engagement. Each layer bears load for every layer that follows it — skipping one does not save time, it relocates the cost to a more expensive point later. Notice what is missing from the top of the list: technology.",
     openLabel: "Open full screen",
+    deepDive: {
+      title: "Go deeper — the full interactive framework",
+      body:
+        "Every layer taken apart: the discovery questions I actually ask, real engagements, the warning signs that surface first, what good looks like, and field notes from the work. Switch between a 60-second executive read and the full advisor walkthrough.",
+      cta: "Open the walkthrough",
+    },
     src: "/five-layer-framework.html",
     iframeTitle: "The Five-Layer Enterprise AI Framework — interactive",
     layers: [
