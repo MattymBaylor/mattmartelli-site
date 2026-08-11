@@ -7,7 +7,33 @@
       "contentArray": "agentic.workflows",
       "component": "components/sections/AgenticSystems.tsx",
       "direction": "left",
-      "sources": {},
+      "sources": {
+        "AI_Architecture_Blueprint (1) 1.pdf": [],
+        "Advanced_AI_Command_Center_Architecture.png": [],
+        "Architecting_Human_Connection.pdf": [],
+        "ClaudeClaw_v2_Modular_AI_Infrastructure (1).pdf": [],
+        "Claw-Crew_AI_Blueprint 2.pdf": [],
+        "Claw-Crew_AI_Blueprint 3.pdf": [],
+        "Claw-Crew_AI_Blueprint 4.pdf": [],
+        "Claw-Crew_AI_Blueprint 5.pdf": [],
+        "Claw-Crew_AI_Blueprint 6.pdf": [],
+        "Enterprise_AI_Command_Center (1).pdf": [],
+        "MedBridge_GTM_Systems_Blueprint.pdf": [],
+        "Revenue_Architecture_Blueprint_(3).pdf": [],
+        "Sales_Mission_Control_Architecture_Blueprint.jpg": [],
+        "Sales_Mission_Control_Blueprint.jpg": [],
+        "Scalable_AI_Command_Center_Architecture (1).jpg": [],
+        "The 90-Day Roadmap .png": [],
+        "The tooling orbit blueprint theme.png": [],
+        "The_AI_Sales_Blueprint-1 1.pdf": [],
+        "The_AI_Sales_Blueprint-1 2.pdf": [],
+        "The_AI_Sales_Blueprint-1 3.pdf": [],
+        "The_AI_Sales_Blueprint-1 4.pdf": [],
+        "The_Autonomous_Enterprise 2.pdf": [],
+        "The_Autonomous_Enterprise 3.pdf": [],
+        "The_Autonomous_Enterprise 4.pdf": [],
+        "The_Revenue_Architecture_Blueprint.pdf": []
+      },
       "legacySlides": [
         "autonomous-enterprise-linear-vs-parallel.webp",
         "one-brain-many-channels.webp",
@@ -23,7 +49,8 @@
         "tooling-orbit-infrastructure.webp",
         "executive-control-panel.webp",
         "ninety-day-implementation-roadmap.webp"
-      ]
+      ],
+      "backfillNote": "2026-07-31: agentic.sources was empty because the manifest was created during the Train #2 (guides) work; the 14 legacySlides above were already curated from these sources pre-manifest. All sources attributed as [] \u2014 they produced no slides beyond the protected legacy set, so removing any of them is correctly a no-op and can never delete a legacy slide. Genuinely new drops will now diff cleanly."
     },
     "guides": {
       "watchFolder": "~/BlueprintTrains/Guides",
