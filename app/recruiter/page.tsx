@@ -21,6 +21,7 @@ import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
 import { Capabilities } from "@/components/sections/Capabilities";
 import { DeferredYouTubeEmbed } from "@/components/ui/DeferredYouTubeEmbed";
 import { LivingFlowEmbed } from "@/components/ui/LivingFlowEmbed";
+import { AppointmentAgentEmbed } from "@/components/ui/AppointmentAgentEmbed";
 import { FiveLayerSection } from "@/components/sections/FiveLayerSection";
 import { ExplainerCarousel } from "@/components/ui/ExplainerCarousel";
 
@@ -228,6 +229,9 @@ export default function RecruiterPage() {
               <ArrowUpRight size={13} aria-hidden />
             </a>
           </p>
+
+          {/* Live agent — the stage-02 box above, actually answering */}
+          <AppointmentAgentEmbed />
         </section>
 
         {/* Featured Flagship Project */}

@@ -34,6 +34,8 @@ const nextConfig = {
       // /hq → the interactive Seinfeld HQ demo (full-page escape hatch for the
       // HQ Cam facade on small screens; also a memorable share link).
       { source: "/hq", destination: "/seinfeld-hq/index.html" },
+      // /appointment-demo → the live voice agent embedded on /recruiter.
+      { source: "/appointment-demo", destination: "/appointment-demo/index.html" },
       // /who-audits-the-robots → the "Who Audits the Robots?" Field Notes post.
       { source: "/who-audits-the-robots", destination: "/blog/who-audits-the-robots.html" },
       // extensionless /blog/... also resolves (old absolute URLs without .html)
