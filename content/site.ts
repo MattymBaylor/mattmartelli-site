@@ -681,7 +681,7 @@ export const site = {
     privacy: { label: "Privacy Policy", href: "/privacy" },
     thoughtLeadership: {
       eyebrow: "Thought leadership & company",
-      note: "Audience-building — separate from the portfolio and hiring evaluation.",
+      note: "Audience building and companies, kept separate from the portfolio and hiring evaluation.",
     },
   },
 } as const;
