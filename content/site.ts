@@ -22,6 +22,7 @@ export const site = {
     youtubeLabel: "The 60-Second AI Brief",
     videoId: "bF7DsaHtUcQ",
     company: { name: "growthmindset.ai", url: "https://growthmindset.ai" },
+    conclave: { name: "conclaveagentic.com", url: "https://conclaveagentic.com" },
     podcast: { name: "The Matt & Maya Show", url: "https://mattandmayashow.com" },
     jobTitle: "AI Automation Architect",
     location: "United States",

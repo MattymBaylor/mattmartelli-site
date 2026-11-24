@@ -136,6 +136,17 @@ export function Footer() {
                   {meta.company.name}
                 </a>
               </li>
+              <li>
+                <a
+                  href={meta.conclave.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-ink-muted transition-colors hover:text-accent-cyan"
+                >
+                  <Globe size={15} aria-hidden />
+                  {meta.conclave.name}
+                </a>
+              </li>
             </ul>
           </div>
 
